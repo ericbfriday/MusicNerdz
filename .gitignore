@@ -45,6 +45,9 @@ typings/
 # Optional eslint cache
 .eslintcache
 
+#JSLint config
+.jslintrc
+
 # Optional REPL history
 .node_repl_history
 
@@ -57,3 +60,10 @@ typings/
 # dotenv environment variables file
 .env
 
+#IntelliJ Editor Ignored Files
+.idea/
+!.gitkeep
+tmp
+
+#Mac Junk ignore file
+.DS_Store
