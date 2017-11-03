@@ -1,0 +1,40 @@
+/* Coolors Exported Palette - coolors.co/000000-14213d-fca311-e5e5e5-ffffff */
+/* HSL */
+/* RGB */
+/* line 21, ../sass/musicnerdz.scss */
+.instructions {
+  background-color: #fca311;
+  background-image: url("../../assets/images/nav.jpeg");
+  background-size: cover;
+  min-height: 300px;
+  opacity: .9;
+  padding: 0;
+}
+/* line 28, ../sass/musicnerdz.scss */
+.instructions .lead {
+  text-shadow: 3px 3px black;
+  font-size: 45px;
+  margin: 0;
+  padding: 25px;
+  text-align: center;
+}
+/* line 34, ../sass/musicnerdz.scss */
+.instructions .lead span {
+  color: #fca311;
+}
+
+/* line 39, ../sass/musicnerdz.scss */
+main > .container {
+  height: 100vh;
+}
+
+/* line 43, ../sass/musicnerdz.scss */
+.instructions > div {
+  width: 100%;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.78) 0, rgba(255, 255, 255, 0) 100%);
+}
+
+/* line 48, ../sass/musicnerdz.scss */
+form > div {
+  width: auto;
+}
