@@ -1,5 +1,3 @@
-
-
 body, html {
   margin: 0;
   padding: 0;
@@ -80,3 +78,19 @@ li a:hover {
   text-decoration: underline;
   color: #eee;
 }
+
+/* Student module */
+
+/* increase size of info in module */
+.sizeMd {
+  font-size: 33px;
+}
+.sizeLg,
+.md-tab {
+   font-size: 35px;
+}
+  p,
+.sameAsP {
+  font-size: 30px;
+}
+ 
