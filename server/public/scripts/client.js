@@ -33,7 +33,8 @@ myApp.config(function($routeProvider, $locationProvider) {
     })
     .when('/viewclass', {
       templateUrl: '/views/templates/viewclass.html',
-      controller: 'ViewController as vc'
+      controller: 'ViewController as vc',
+      
     })
     .otherwise({
       redirectTo: 'home'
