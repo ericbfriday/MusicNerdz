@@ -122,7 +122,7 @@ myApp.controller('QuizCreation', function ($http, $scope, $mdDialog) {
     }; // end pushToQuiz function
 
     // confirm functionality for submit of form
-    $scope.showConfirm = function(ev) {
+    vm.showConfirm = function(ev) {
         vm.status = ''; // status of submission to log if submission is declined.
         var confirm = $mdDialog.confirm()
               .title('Confirm Quiz Submission')
@@ -132,11 +132,11 @@ myApp.controller('QuizCreation', function ($http, $scope, $mdDialog) {
               .ok('YES')
               .cancel('NO');
         $mdDialog.show(confirm).then(function() { // following script runs if 'yes' is selected.
-          $scope.status = 'Form submitted.';
+          vm.status = 'Form submitted.';
           vm.pushToQuiz(vm.name, vm.questions);
         }, function() { // status updated and logged if form is not submitted.
-          $scope.status = 'Form not submitted.'; 
-          console.log($scope.status);
+          vm.status = 'Form not submitted.'; 
+          console.log(vm.status);
           
         });
       };
