@@ -12,7 +12,6 @@ myApp.controller('QuizCreation', function (ModuleCreation) {
     const vm = this;
 
     vm.quiz = ModuleCreation.quiz;
-    vm.name = ModuleCreation.name;
     vm.currentQType = ModuleCreation.currentQType;
     vm.questions = ModuleCreation.questions; // holds questions to push into quiz
     vm.currentMCQ = ModuleCreation.currentMCQ; // MC Question
@@ -37,7 +36,7 @@ myApp.controller('QuizCreation', function (ModuleCreation) {
     // pushes Essay question into Q array
     vm.pushEssayQ = ModuleCreation.pushEssayQ; // end pushEssayQ function
 
-    // // creates quiz object using name and questions array.
+    // // creates quiz object questions array.
     // // POST calls to router with quiz object. Response logged and quiz array reset to 0;
     // vm.pushToQuiz = ModuleCreation.pushToQuiz; // end pushToQuiz function
 

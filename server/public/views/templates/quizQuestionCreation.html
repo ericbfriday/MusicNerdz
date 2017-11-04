@@ -4,15 +4,9 @@
         <div layout="row">
             <form name="newQuizForm" flex="66" layout-fill>
                 <md-card>
-                    <md-input-container flex="100">
-                        <label>
-                            <span class="md-headline">Quiz Name</span>
-                        </label>
-                        <input ng-model="qc.name">
-                    </md-input-container>
                     <md-input-container flex="50">
                         <label>Type of Question to Add</label>
-                        <md-select name="correctAnswer" ng-model="qc.currentQType">
+                        <md-select name="currentQType" ng-model="qc.currentQType">
                             <md-option value="mc" selected>Multiple Choice</md-option>
                             <md-option value="sa">Short Answer</md-option>
                             <md-option value="e">Essay</md-option>

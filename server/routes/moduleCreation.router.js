@@ -14,7 +14,6 @@ var quiz = {};
 router.post('/quiz', (req, res, next) => {
     quiz = req.body.data[0];
     console.log('logging quiz in moduleCreation router -> ', quiz);
-    console.log('logging quiz.name in moduleCreation router -> ', quiz.name);
     console.log('logging quiz.questions in moduleCreation router -> ', quiz.questions);
     res.sendStatus(200);
 });
