@@ -56,7 +56,6 @@ CREATE TABLE "responses" (
 	"response" text,
 	"admin_notes" text,
 	"teacher_comments" text,
-    "questions_correct" text REFERENCES questions(correct),
     "questions_id" INT REFERENCES questions(id)
 );
 
