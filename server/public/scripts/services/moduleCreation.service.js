@@ -12,9 +12,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     // ca = correct answer (for multiple choice)
     // e = essay (like SA, but longer char limit)
 
-    sv.quiz = {
-        data: []
-    };
+    sv.quiz = {data: []};
     sv.name = '';
     sv.currentQType = '';
     sv.questions = []; // holds questions to push into quiz
@@ -114,10 +112,10 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     sv.pushToQuiz = (name, q) => {
         sv.newQuiz = new Quiz(name, q);
         sv.quiz.data.push(sv.newQuiz);
-        console.log('logging sv.quiz in pushToquiz => ', sv.quiz);
-        return $http.post('/moduleCreation', sv.quiz)
+        console.log('logging sv.newQuiz in pushToquiz => ', sv.newQuiz);
+        return $http.post('/moduleCreation/quiz', sv.quiz)
             .then((response) => {
-                console.log('Posted');
+                console.log('Posted -> ', response );
                 sv.quiz.data.length = 0; // empties quiz item
                 sv.name = '';
             })
