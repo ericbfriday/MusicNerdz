@@ -9,6 +9,7 @@ var sessionConfig = require('./modules/session.config');
 var indexRouter = require('./routes/index.router');
 var userRouter = require('./routes/user.router');
 var registerRouter = require('./routes/register.router');
+var moduleCreation = require('./routes/moduleCreation.router');
 
 var port = process.env.PORT || 8080;
 
@@ -29,6 +30,7 @@ app.use(passport.session());
 // Routes
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
+app.use('/moduleCreation', moduleCreation);
 
 // Catch all bucket, must be last!
 app.use('/', indexRouter);

@@ -115,7 +115,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         sv.newQuiz = new Quiz(name, q);
         sv.quiz.data.push(sv.newQuiz);
         console.log('logging sv.quiz in pushToquiz => ', sv.quiz);
-        return $http.post('/quizGeneration', sv.quiz)
+        return $http.post('/moduleCreation', sv.quiz)
             .then((response) => {
                 console.log('Posted');
                 sv.quiz.data.length = 0; // empties quiz item
