@@ -1,0 +1,135 @@
+<section>
+    <!-- See readability notes in controller for abbreviations -->
+    <md-content>
+        <div layout="row">
+            <form name="newQuizForm" flex="66" layout-fill>
+                <md-card>
+                    <md-input-container flex="100">
+                        <label>
+                            <span class="md-headline">Quiz Name</span>
+                        </label>
+                        <input ng-model="qc.name">
+                    </md-input-container>
+                    <md-input-container flex="50">
+                        <label>Type of Question to Add</label>
+                        <md-select name="correctAnswer" ng-model="qc.currentQType">
+                            <md-option value="mc" selected>Multiple Choice</md-option>
+                            <md-option value="sa">Short Answer</md-option>
+                            <md-option value="e">Essay</md-option>
+                        </md-select>
+                    </md-input-container>
+                </md-card>
+
+                <!-- Multiple Choice Template -->
+                <md-card ng-show="qc.currentQType=='mc'">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Multiple Choice:</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <div layout="row" layout-align="center center" flex layout-fill>
+                            <md-input-container flex="100">
+                                <label>Question:</label>
+                                <textarea ng-model="qc.currentMCQ" rows="2" md-select-on-focus></textarea>
+                            </md-input-container>
+                        </div>
+                        <div layout="row" layout-align="center center" flex layout-fill>
+                            <md-input-container flex="50">
+                                <label>Potential Answer A</label>
+                                <input ng-model="qc.currentMCA1">
+                            </md-input-container>
+                            <md-input-container flex="50">
+                                <label>Potential Answer B</label>
+                                <input ng-model="qc.currentMCA2">
+                            </md-input-container>
+                        </div>
+                        <div layout="row" layout-align="center center" flex layout-fill>
+                            <md-input-container flex="50">
+                                <label>Potential Answer C</label>
+                                <input ng-model="qc.currentMCA3">
+                            </md-input-container>
+                            <md-input-container flex="50">
+                                <label>Potential Answer D</label>
+                                <input ng-model="qc.currentMCA4">
+                            </md-input-container>
+                        </div>
+                        <div layout="row" layout-align="left center" flex layout-fill>
+                            <md-input-container flex="50">
+                                <label>Correct Answer</label>
+                                <md-select name="correctAnswer" ng-model="qc.currentMCCA" required>
+                                    <md-option value="a">A</md-option>
+                                    <md-option value="b">B</md-option>
+                                    <md-option value="c">C</md-option>
+                                    <md-option value="d">D</md-option>
+                                </md-select>
+                            </md-input-container>
+                        </div>
+                    </md-card-content>
+                    <md-button class="md-primary" ng-click="qc.pushMCQ(qc.currentMCQ, qc.currentMCA1, qc.currentMCA2, qc.currentMCA3, qc.currentMCA4, qc.currentMCCA)">Make New Multiple Choice Question</md-button>
+                </md-card>
+
+                <!-- Short Answer Tempalte -->
+                <md-card ng-show="qc.currentQType=='sa'">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Short Answer:</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-input-container>
+                        <label>Question:</label>
+                        <textarea ng-model="qc.currentSAQ" rows="2" md-select-on-focus></textarea>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Notes or Answer</label>
+                        <textarea ng-model="qc.currentSAA" rows="2" md-select-on-focus></textarea>
+                    </md-input-container>
+                    <br/>
+                    <md-button class="md-primary" ng-click="qc.pushSAQ(qc.currentSAQ, qc.currentSAA)">Make New Short Answer Question</md-button>
+                </md-card>
+
+                <!-- Essay template below -->
+                <md-card ng-show="qc.currentQType=='e'">
+                    <md-card-title>
+                        <md-card-title-text>
+                            <span class="md-headline">Essay:</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-input-container>
+                        <label>Essay Title/Question</label>
+                        <textarea ng-model="qc.currentEQ" rows="2" md-select-on-focus></textarea>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Essay Notes & Answers</label>
+                        <textarea ng-model="qc.currentEA" rows="4" md-select-on-focus></textarea>
+                    </md-input-container>
+                    <br>
+                    <md-button class="md-primary" ng-click="qc.pushEssayQ(qc.currentEQ, qc.currentEA)">Make New Essay Topic</md-button>
+                </md-card>
+
+                <!-- Final submit button -->
+                <md-card>
+                    <md-button class="md-primary md-raised" ng-click="showConfirm($event)">Finish & Submit Module</md-button>
+                </md-card>
+            </form>
+
+            <!-- Quiz summary for admins to track their progress in adding quiz questions. -->
+            <div flex="33" layout-fill>
+                <div class="quizSummary">
+                    <md-card>
+                        <md-card-title>
+                            <md-card-title-text>
+                                <span class="md-headline">Summary of Quiz Questions</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <ol layout="column">
+                            <li ng-repeat="question in qc.questions">{{question.q}}</li>
+                        </ol>
+                    </md-card>
+                </div>
+            </div>
+        </div>
+    </md-content>
+
+
+</section>
