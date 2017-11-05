@@ -10,11 +10,13 @@ router.use(bodyParser.urlencoded({
 }));
 
 var quiz = {};
+var questions = [];
 
 router.post('/quiz', (req, res, next) => {
     quiz = req.body.data[0];
-    console.log('logging quiz in moduleCreation router -> ', quiz);
-    console.log('logging quiz.questions in moduleCreation router -> ', quiz.questions);
+    questions = req.body.data[0].questions;
+    // console.log('logging quiz in moduleCreation router -> ', quiz);
+    // console.log('logging questions in moduleCreation router -> ', questions);
     res.sendStatus(200);
 });
 

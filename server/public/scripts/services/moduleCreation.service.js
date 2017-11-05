@@ -74,12 +74,12 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         console.log('loggin sv.newMCQ in pushMCQuestion -> ', sv.newMCQ);
 
         // clear the form for the next questions submission
-        sv.currentMCQ = '';
-        sv.currentMCA1 = '';
+        sv.currentMCQ = ''; // MC Question
+        sv.currentMCA1 = ''; // MC Answers 1-4 below
         sv.currentMCA2 = '';
         sv.currentMCA3 = '';
         sv.currentMCA4 = '';
-        sv.currentMCCA = '';
+        sv.currentMCCA = ''; // MCCA = Multiple Choice Correct Answer
     }; // end pushMCQ function
 
     // pushes SA Q into Q array
