@@ -3,12 +3,6 @@ var router = express.Router();
 var pool = require('../modules/pool.js');
 var bodyParser = require( 'body-parser');
 
-// Body parser middleware
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({
-    extended: true
-}));
-
 var quiz = {};
 var questions = [];
 
