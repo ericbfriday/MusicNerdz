@@ -1,56 +1,52 @@
-<section>
+<section ng-init="auc.getSchools()">
     <div layout="column">
         <md-card>
-            <div class="container">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Create School:</span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <h1 class="lead alert alert-danger" role="alert" ng-if="auc.message != ''">{{lc.message}}</h2>
-                        <form ng-submit="lc.addSchool()">
-                            <md-input-container flex="100">
-                                <label for="name">Name</label>
-                                <input ng-model="auc.schoolName" md-select-on-focus>
-                            </md-input-container>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Create School:</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <h1 class="lead alert alert-danger" role="alert" ng-if="auc.message != ''">{{lc.message}}</h2>
+                    <form ng-submit="auc.addSchool(auc.schoolName)">
+                        <md-input-container flex="100">
+                            <label for="name">Name</label>
+                            <input ng-model="auc.schoolName" md-select-on-focus>
+                        </md-input-container>
 
-                            <md-button class="btn btn-default" type="submit" name="submit" value="addSchool">Add School</md-button>
-                            <md-button class="btn btn-default">
-                                <a href="#home" style="text-decoration: none">Cancel</a>
-                                <!-- will need to update to move to admin landing page or clear form-->
-                            </md-button>
-                        </form>
-                </md-card-content>
-            </div>
+                        <md-button class="btn btn-default" type="submit" name="submit" value="addSchool">Add School</md-button>
+                        <md-button class="btn btn-default">
+                            <a href="#home" style="text-decoration: none">Cancel</a>
+                            <!-- will need to update to move to admin landing page or clear form-->
+                        </md-button>
+                    </form>
+            </md-card-content>
         </md-card>
 
         <md-card>
-            <div class="container">
-                <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">Create Teacher:</span>
-                    </md-card-title-text>
-                </md-card-title>
-                <md-card-content>
-                    <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-                        <form ng-submit="lc.addTeacher()">
-                            <md-input-container flex="100">
-                                <label for="teacherName">Name</label>
-                                <input ng-model="auc.teacherName" md-select-on-focus>
-                            </md-input-container>
-                            <md-input-container flex="100">
-                                <label for="teacherEmail">Email:</label>
-                                <input ng-model="auc.teacherEmail" md-select-on-focus>
-                            </md-input-container>
-                            <md-button class="btn btn-default" type="submit" name="submit" value="addTeacher">Add Teacher</md-button>
-                            <md-button class="btn btn-default">
-                                <a href="#home" style="text-decoration: none">Cancel</a>
-                                <!-- will need to update to move to admin landing page or clear form-->
-                            </md-button>
-                        </form>
-                </md-card-content>
-            </div>
+            <md-card-title>
+                <md-card-title-text>
+                    <span class="md-headline">Create Teacher:</span>
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
+                    <form ng-submit="auc.addTeacher(auc.teacherName, auc.teacherEmail)">
+                        <md-input-container flex="100">
+                            <label for="teacherName">Name</label>
+                            <input ng-model="auc.teacherName" md-select-on-focus>
+                        </md-input-container>
+                        <md-input-container flex="100">
+                            <label for="teacherEmail">Email:</label>
+                            <input ng-model="auc.teacherEmail" md-select-on-focus>
+                        </md-input-container>
+                        <md-button class="btn btn-default" type="submit" name="submit" value="addTeacher">Add Teacher</md-button>
+                        <md-button class="btn btn-default">
+                            <a href="#home" style="text-decoration: none">Cancel</a>
+                            <!-- will need to update to move to admin landing page or clear form-->
+                        </md-button>
+                    </form>
+            </md-card-content>
         </md-card>
     </div>
 </section>
