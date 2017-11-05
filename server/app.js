@@ -35,13 +35,12 @@ app.use(passport.session());
 // Routes
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
-<<<<<<< HEAD
+
 app.use('/teacher', teacherRouter);
 app.use('/class', classRouter);
 app.use('/student', studentRouter);
-=======
 app.use('/moduleCreation', moduleCreation);
->>>>>>> master
+
 
 // Catch all bucket, must be last!
 app.use('/', indexRouter);
