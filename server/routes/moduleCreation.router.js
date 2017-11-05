@@ -14,4 +14,9 @@ router.post('/quiz', (req, res, next) => {
     res.sendStatus(200);
 });
 
+router.get('/existingHistoricalInfo', (req,res,next) => {
+    console.log('req.body inside /existingHistoricalInfo in moduleCreation route -> ', req.body);
+    res.sendStatus(200);
+});
+
 module.exports = router;

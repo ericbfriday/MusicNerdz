@@ -11,6 +11,6 @@ myApp.controller('EventCreation', function (ModuleCreation) {
     vm.historicalEvent = ModuleCreation.historicalEvent;
     vm.historicalEventTags = ModuleCreation.historicalEventTags;
 
-    
+    vm.getHistoricalInfo = ModuleCreation.getHistoricalInfo;
 
 });

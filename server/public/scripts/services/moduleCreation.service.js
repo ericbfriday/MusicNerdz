@@ -24,6 +24,19 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         
     };
 
+    // fetches existing historical events and tags for use searching for events
+    sv.getHistoricalInfo = () => {
+        console.log('sv.getHistoricalInfo activated!');
+        return $http.get('/moduleCreation/existingHistoricalInfo')
+        .then(
+            (res)=> {console.log('res in getHistoricalInfo ', res);
+            }//,
+            // (err) => {console.log('err in getHistoricalInfo ', err);
+        ).catch((err)=>{
+            console.log('catch err in getHistoricalInfo -', err);  
+        });
+    };
+
     /* BEGIN QUIZ GENERATION SECTION OF CODE */
     // Code Readability notes:
     // q = question
