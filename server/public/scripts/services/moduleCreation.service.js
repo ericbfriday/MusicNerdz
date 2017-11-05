@@ -1,6 +1,28 @@
 myApp.service('ModuleCreation', function ($http, $mdDialog) {
     var sv = this;
 
+    /** BEGIN HISTORICAL EVENT SECTION OF CODE */
+    // Notes:
+
+    sv.year = 0; // date of new event - integer to match structure of DB
+    sv.dateRange = []; // date to search for existing events
+    sv.description = ''; // description for new historical event
+    sv.existingHistoricalEvent = []; // Existing events to be pulled from server for searching/filtering
+    sv.existingHistoricalEventTags = []; // existing tags to be associated with new historical event
+    sv.historicalEvent = ''; // title for new historical event
+    sv.historicalEventTags = []; // tags for new historical event
+
+    class Event {
+        constructor(desc, year) {
+            this.description = desc;
+            this.year = year;
+        }
+    } // end Event class
+
+    sv.makeEvent = () => {
+        console.log('sv.makeEvent activated!');
+        
+    };
 
     /* BEGIN QUIZ GENERATION SECTION OF CODE */
     // Code Readability notes:

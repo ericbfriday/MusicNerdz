@@ -3,7 +3,7 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngM
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
-  console.log('myApp -- config')
+  console.log('myApp -- config');
   $routeProvider
     .when('/home', {
       templateUrl: '/views/templates/home.html',
@@ -13,9 +13,13 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/register.html',
       controller: 'LoginController as lc'
     })
-    .when('/quizCreation', {
+    .when('/admin/quizCreation', {
       templateUrl: '/views/templates/quizQuestionCreation.html',
       controller: 'QuizCreation as qc'
+    })
+    .when('/admin/eventCreation', {
+      templateUrl: '/views/templates/quizHistoricalEvents.html',
+      controller: 'EventCreation as ec'
     })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
