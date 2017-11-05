@@ -32,7 +32,7 @@ CREATE TABLE "modules" (
 	"title" text NOT NULL,
     "album" text NOT NULL,
     "artist" text NOT NULL,
-    "year" text NOT NULL,
+    "year" INT NOT NULL,
     "art" text,
     "lyrics" text NOT NULL,
     "video" text NOT NULL
