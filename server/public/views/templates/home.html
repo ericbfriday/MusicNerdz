@@ -2,13 +2,36 @@
     <div>
         <div layout="column" layout-align="center center" class="login">
             <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
+                <div class="container" layout="row" layout-align="center center">
+                    <div class="radio-tile-group">
+                        <div class="input-container">
+                            <input id="student" class="radio-button" type="radio" name="radio" />
+                            <div class="radio-tile">
+                                <label for="student" class="radio-tile-label">Student</label>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input id="teacher" class="radio-button" type="radio" name="radio" />
+                            <div class="radio-tile">
+                                <label for="teacher" class="radio-tile-label">Teacher</label>
+                            </div>
+                        </div>
+                        <div class="input-container">
+                            <input id="admin" class="radio-button" type="radio" name="radio" />
+                            <div class="radio-tile">
+                                <label for="admin" class="radio-tile-label">Admininstrator</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <form ng-submit="lc.login()" layout="column" layout-align="space-around stretch">
                     <div>
                         <span class="fa fa-user-circle-o" flex="none"></span>
-                        <input type="text" ng-model="lc.user.username" placeholder="username" flex="grow"/>
+                        <input type="text" ng-model="lc.user.username" placeholder="username" flex="grow" />
                     </div>
                     <div>
-                        <span flex="none" class ="fa fa-unlock"></span>
+                        <span flex="none" class="fa fa-unlock"></span>
                         <input type="password" ng-model="lc.user.password" placeholder="password" flex="grow" />
                     </div>
                     <div>
@@ -17,6 +40,5 @@
         </div>
     </div>
     </form>
-
 
 </div>
