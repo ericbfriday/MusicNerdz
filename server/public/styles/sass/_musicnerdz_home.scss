@@ -1,0 +1,25 @@
+.navbar {
+    .container {
+        min-height: 150px;
+        background-image:url('../../assets/images/header2.jpeg');
+        background-size: cover;
+        background-position: 100% 80%;
+        opacity: 0.95;
+        // filter: sepia(100%);
+        a {
+            @include font-medium;
+        }
+        input {
+            width: 100%;
+            text-align: center;   
+            height: 55px;
+            line-height: 55px;
+            border-radius: 0;
+            font-size: 4rem;
+            ::-webkit-input-placeholder {
+                color: $white;
+            }     
+        }
+    }
+
+}
