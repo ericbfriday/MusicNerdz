@@ -51,7 +51,7 @@ myApp
           })
           .catch(function (response) {
             console.log('LoginController -- registerUser -- error');
-            vm.message = "Please try again."
+            vm.message = "Please try again.";
           });
       }
     };
