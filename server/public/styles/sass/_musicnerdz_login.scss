@@ -1,0 +1,210 @@
+@charset "utf-8";
+
+/* HSL */
+
+$color1: hsla(0%, 0%, 0%, 1);
+$color2: hsla(221%, 51%, 16%, 1);
+$color3: hsla(37%, 98%, 53%, 1);
+$color4: hsla(0%, 0%, 90%, 1);
+$color5: hsla(0%, 0%, 100%, 1);
+
+/* RGB */
+
+$black: rgba(0, 0, 0, 1);
+$blue: rgba(20, 33, 61, 1);
+$orange: rgba(252, 163, 17, 1);
+$grey: rgba(229, 229, 229, 1);
+$white: rgba(255, 255, 255, 1);
+
+// mixins 
+@mixin font-small() {
+    font-size: 15px;
+}
+
+@mixin font-medium() {
+    font-size: 25px;
+}
+
+@mixin font-large() {
+    font-size: 45px;
+}
+
+// login page
+[class*="fa "]:before {
+    font-family: 'FontAwesome', sans-serif;
+}
+
+input {
+    border: none;
+    font-size: 1.5em;
+    line-height: 1.5em;
+    padding: 0;
+    -webkit-appearance: none;
+}
+
+.instructions {
+    background-color: $orange;
+    background-image: url('../../assets/images/nav.jpeg');
+    background-size: cover;
+    min-height: 300px;
+    opacity: .9;
+    padding: 0;
+    .lead {
+        @include font-large;
+        text-shadow: 3px 3px $black;
+        margin: 0;
+        padding: 25px;
+        text-align: center;
+        span {
+            color: $orange;
+        }
+    }
+    >div {
+        background-color: rgba(255, 255, 255, 0.658);
+        color: $black;
+        border-radius: 5px;
+        border-top: 3px solid $black;
+        border-bottom: 3px solid $black;
+    }
+}
+
+main>.container {
+    height: 100vh;
+}
+
+.loginControls {
+    width:625px;
+    padding: 0 22px;
+}
+
+.login {
+    margin: 50px auto;
+    width: 625px;
+    form {
+        .fa {
+            font-size: 2em;
+        }
+        margin: auto;
+        padding: 22px 22px 22px 22px;
+        width: 100%;
+        div {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+        span {
+            background-color: #363b41;
+            border-radius: 3px 0px 0px 3px;
+            border-right: 3px solid #434a52;
+            color: #606468;
+            display: block;
+            float: left;
+            line-height: 50px;
+            text-align: center;
+            width: 50px;
+            height: 50px;
+        }
+        input[type="password"] {
+            background-color: #3b4148;
+            border-radius: 0px 3px 3px 0px;
+            color: $grey;
+            margin-bottom: 1em;
+            padding: 0 16px;
+            width: 235px;
+            height: 50px;
+        }
+        input[type="text"] {
+            background-color: #3b4148;
+            border-radius: 0px 3px 3px 0px;
+            color: $grey;
+            margin-bottom: 1em;
+            padding: 0 16px;
+            width: 235px;
+            height: 50px;
+        }
+        input[type="submit"] {
+            background: $orange;
+            border: 0;
+            width: 100%;
+            height: 40px;
+            border-radius: 3px;
+            color: white;
+            cursor: pointer;
+            -webkit-transition: background 0.3s ease-in-out;
+            transition: background 0.3s ease-in-out;
+        }
+        input[type="submit"]:hover {
+            background: darken( $orange, 10%);
+        }
+    }
+}
+
+.radio-tile-group {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    .input-container {
+        position: relative;
+        margin: .5rem;
+        .radio-button {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            cursor: pointer;
+        }
+        .radio-tile {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            border: 2px solid $orange;
+            border-radius: 5px;
+            padding: 1rem;
+            background: $white;
+            box-shadow: 2px 2px 5px grey;            
+            -webkit-transition: -webkit-transform 300ms ease;
+            transition: -webkit-transform 300ms ease;
+            -o-transition: transform 300ms ease;
+            transition: transform 300ms ease;
+            transition: transform 300ms ease, -webkit-transform 300ms ease;
+        }
+        .radio-tile-label {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: $orange;
+        }
+        .radio-button:checked+.radio-tile {
+            background-color: $orange;
+            border: 2px solid $orange;
+            color: white;
+            -webkit-transform: scale(1.1, 1.1);
+            -ms-transform: scale(1.1, 1.1);
+            transform: scale(1.1, 1.1);
+            .radio-tile-label {
+                color: white;
+                background-color: $orange;
+            }
+        }
+    }
+}
