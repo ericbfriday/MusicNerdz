@@ -60,6 +60,10 @@ body, html {
   background-color: hotpink;
 }
 
+.addClsBtn {
+  background-color: hotpink;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
