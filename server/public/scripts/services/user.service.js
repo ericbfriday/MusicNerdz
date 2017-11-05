@@ -30,6 +30,11 @@ myApp.factory('UserService', function($http, $location){
         console.log('UserService -- logout -- logged out');
         $location.path("/home");
       });
+    },
+
+    toggleLogin : function(type) {
+      console.log('changing login form');
+      userObject.toggle = type;
     }
   };
 });

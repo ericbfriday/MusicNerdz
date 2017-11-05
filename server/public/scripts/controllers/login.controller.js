@@ -1,11 +1,17 @@
 myApp.controller('LoginController', function($http, $location, UserService) {
     console.log('LoginController created');
     var vm = this;
+
     vm.user = {
       username: '',
       password: ''
     };
     vm.message = '';
+
+    vm.userService = UserService;
+    vm.userObject = UserService.userObject;
+
+    
 
     vm.login = function() {
       console.log('LoginController -- login');
@@ -43,5 +49,7 @@ myApp.controller('LoginController', function($http, $location, UserService) {
           vm.message = "Please try again."
         });
       }
-    }
+    };
+
+
 });
