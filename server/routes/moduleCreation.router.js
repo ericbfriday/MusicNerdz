@@ -15,7 +15,7 @@ router.post('/quiz', (req, res, next) => {
 });
 
 router.get('/existingHistoricalInfo', (req,res,next) => {
-    console.log('req.body inside /existingHistoricalInfo in moduleCreation route -> ', req.body);
+    console.log('inside /existingHistoricalInfo in moduleCreation route');
     res.sendStatus(200);
 });
 
