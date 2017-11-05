@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngMessages','angAccordion']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngMessages', 'angAccordion']);
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
@@ -40,3 +40,4 @@ myApp.config(function($routeProvider, $locationProvider) {
       redirectTo: 'home'
     });
 });
+
