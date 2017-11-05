@@ -25,9 +25,8 @@
                     </div>
                 </div>
             </div>
-            {{ lc.userObject.toggle }}
             <!-- Teacher Login -->
-            <form ng-submit="lc.login()" layout="column" layout-align="space-around stretch" ng-show="lc.userObject.toggle=='teacher'">
+            <form ng-submit="lc.login()" layout="column" layout-align="space-around stretch" ng-if="lc.userObject.toggle=='teacher'">
                 <div>
                     <span class="fa fa-user-circle-o" flex="none"></span>
                     <input type="text" ng-model="lc.user.username" placeholder="E-Mail" flex="grow" />
@@ -42,7 +41,7 @@
             </form>
 
             <!-- Student Login -->
-            <form ng-submit="lc.login()" layout="column" layout-align="space-around stretch" ng-show="lc.userObject.toggle=='student'">
+            <form ng-submit="lc.login()" layout="column" layout-align="space-around stretch" ng-if="lc.userObject.toggle=='student'">
                 <div>
                     <span class="fa fa-user-circle-o" flex="none"></span>
                     <input type="text" ng-model="lc.user.username" placeholder="Student ID" flex="grow" />
@@ -53,7 +52,7 @@
             </form>
 
             <!-- Admin Login -->
-            <form ng-submit="lc.login()" layout="column" layout-align="space-around stretch" ng-show="lc.userObject.toggle=='admin'">
+            <form ng-submit="lc.login()" layout="column" layout-align="space-around stretch" ng-if="lc.userObject.toggle=='admin'">
                 <div>
                     <span class="fa fa-user-circle-o" flex="none"></span>
                     <input type="text" ng-model="lc.user.username" placeholder="E-Mail" flex="grow" />
