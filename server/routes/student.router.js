@@ -4,17 +4,17 @@ const pool = require('../modules/pool.js');
 const encryptLib = require('../modules/encryption');
 
 router.post('/addStudent', function (req, res) {
-    console.log('in add student post req:', req);
-
+    console.log('in add student post req:', req.body);
     pool.connect(function(err, client, done) {
         let query = "INSERT INTO students (first, last, student_id, classes_id, teacher_id) VALUES ($1, $2, $3, $4, $5)";
         let saveStudent = {
             fName: req.body.first,
             lName: req.body.last,
-            sId: encryptLib.encryptPassword(req.body.sId),
+            number: encryptLib.encryptPassword(req.body.number),
             classId: req.body.classId,
-            teachId: req.body.teachId
+            teacherId: req.body.teacherId
         };
+        console.log(saveStudent);
         
         if(err) {
           console.log("Error connecting: ", err);
