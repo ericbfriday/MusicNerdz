@@ -3,16 +3,28 @@ myApp.controller('ViewController', function (UserService) {
     var vm = this;
     vm.userService = UserService;
     vm.class1 = {
-        name: 'firstHour'
+        name: 'firstHour',
+        classId: '1'
     };
 
     vm.class2 = {
-        name: 'secondHour'
+        name: 'secondHour',
+        classId: '2'
     };
+
+    vm.student = {
+        first: '',
+        last: '',
+        email: '',
+        number: '',
+        classId: ''
+    }
 
     vm.classes = [vm.class1, vm.class2]
-    vm.addStudent = function () {
-
+    vm.addStudent = function (classinfo) {
+        vm.student.classId = classinfo;
+        console.log("vm.student", vm.student);
+        
     };
-    console.log("vm.classes", vm.classes);
+    console.log("vm.student", vm.student);
 });

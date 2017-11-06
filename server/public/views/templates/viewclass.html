@@ -23,12 +23,12 @@
                     <label>Class</label>
                     <md-select ng-model="vc.selectedClass">
                       <md-option><em>None</em></md-option>
-                      <md-option ng-repeat="class in vc.classes" ng-value="{{class.name}}">
+                      <md-option ng-repeat="class in vc.classes" ng-value="class.classId">
                         {{class.name}}
                       </md-option>
                     </md-select>
                   </md-input-container>
-                <md-button class="addStudBtn" ng-click="">+ Add Student</md-button>
+                <md-button class="addStudBtn" ng-click="vc.addStudent(vc.selectedClass)">+ Add Student</md-button>
             </div>
         </collapsible-item>
     </ang-accordion>
