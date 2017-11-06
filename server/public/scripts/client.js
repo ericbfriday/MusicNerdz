@@ -1,4 +1,5 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngMessages', 'jkAngularCarousel']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngMessages', 'ngYoutubeEmbed', 'jkAngularCarousel']);
+
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
@@ -22,6 +23,15 @@ myApp.config(function($routeProvider, $locationProvider) {
       controller: 'UserController as uc',
       // resolve: {
       //   getuser : function(UserService){
+      //     return UserService.getuser();
+      //   }
+      // }
+    })
+    .when('/student/module', {
+      templateUrl: '/views/templates/lesson.html',
+      controller: 'StudentModuleController as smc',
+      // resolve: {
+      //   getuser: function (UserService) {
       //     return UserService.getuser();
       //   }
       // }
