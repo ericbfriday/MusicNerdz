@@ -10,6 +10,12 @@ var indexRouter = require('./routes/index.router');
 var userRouter = require('./routes/user.router');
 var registerRouter = require('./routes/register.router');
 
+var teacherRouter = require('./routes/teacher.router');
+var studentRouter = require('./routes/student.router');
+var classRouter = require('./routes/class.router');
+var moduleCreation = require('./routes/moduleCreation.router');
+
+
 var port = process.env.PORT || 8080;
 
 // Body parser middleware
@@ -29,6 +35,12 @@ app.use(passport.session());
 // Routes
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
+
+app.use('/teacher', teacherRouter);
+app.use('/class', classRouter);
+app.use('/student', studentRouter);
+app.use('/moduleCreation', moduleCreation);
+
 
 // Catch all bucket, must be last!
 app.use('/', indexRouter);

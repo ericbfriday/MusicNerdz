@@ -3,7 +3,7 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngM
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
   $locationProvider.hashPrefix('');
-  console.log('myApp -- config')
+  console.log('myApp -- config');
   $routeProvider
     .when('/home', {
       templateUrl: '/views/templates/home.html',
@@ -13,14 +13,18 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/register.html',
       controller: 'LoginController as lc'
     })
+    .when('/quizCreation', {
+      templateUrl: '/views/templates/quizQuestionCreation.html',
+      controller: 'QuizCreation as qc'
+    })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
-      resolve: {
-        getuser : function(UserService){
-          return UserService.getuser();
-        }
-      }
+      // resolve: {
+      //   getuser : function(UserService){
+      //     return UserService.getuser();
+      //   }
+      // }
     })
     .when('/student/module', {
       templateUrl: '/views/templates/lesson.html',
@@ -41,6 +45,6 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .otherwise({
-      redirectTo: 'home'
+      redirectTo: 'user'
     });
 });
