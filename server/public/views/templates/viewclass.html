@@ -1,0 +1,23 @@
+<div ng-include="'views/partials/nav.html'"></div>
+<div class="container">
+    <p>
+        In viewclass
+    </p>
+</div>
+<ang-accordion>
+    <collapsible-item item-title="1st Period">
+        <div>Student 1 Student ID</div>
+        <div>Student 2 Student ID</div>
+        <div>
+            <md-button class="addStudBtn">+ Add Student</md-button>
+        </div>
+    </collapsible-item>
+    <collapsible-item item-title="2nd Period">
+        <div>Student 1 Student ID</div>
+        <div>Student 2 Student ID</div>
+        <div>
+            <md-button class="addStudBtn" ng-click="">+ Add Student</md-button>
+        </div>
+    </collapsible-item>
+</ang-accordion>
+<md-button class="addClsBtn">+ Add Class</md-button>
