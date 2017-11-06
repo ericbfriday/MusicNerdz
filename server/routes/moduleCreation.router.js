@@ -15,17 +15,22 @@ router.post('/quiz', (req, res, next) => {
     let a3 = questions.a3;
     let a4 = questions.a4;
     let ca = questions.ca;
-    let values = [q, a1, a2, a3, a4, ca];
+    let modules_id = req.body.data[0].modulesID;
+    let values = [q, a1, a2, a3, a4, ca, modules_id];
 
     // console.log('logging questions in moduleCreation router -> ', questions);
-    console.log('logging values in moduleCreation router -> ', values);
+    // console.log('logging values in moduleCreation router -> ', values);
+
+    /** ROUTER INSERT STATEMENT CURRENTLY WRONG - PENDING DB POPULATION TO 
+     * FIX REQUIREMENTS OF DATA STRUCTURE
+     */
 
     pool.connect(function(err, client, done) {
         if(err) {
           console.log("Error connecting: ", err);
           res.sendStatus(500);
         }
-        client.query("INSERT INTO questions (question_text, type, a, b, c, d, correct) VALUES ($1, $2, $3, $4, $5, $6)",
+        client.query("INSERT INTO questions (question_text, type, a, b, c, d, correct, modules_id) VALUES ($1, $2, $3, $4, $5, $6, $7)",
           values,
             function (err, result) {
               client.end();
