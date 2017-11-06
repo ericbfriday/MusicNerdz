@@ -93,4 +93,9 @@ li a:hover {
 .sameAsP {
   font-size: 1.8rem;
 }
+
+.fixed{
+  background-color: #afafaf;
+  color: white;
+}
  
