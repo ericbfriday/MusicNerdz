@@ -5,6 +5,7 @@ myApp.controller('LoginController', function ($http, $location, UserService) {
       username: '',
       password: ''
     };
+
     vm.message = '';
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
