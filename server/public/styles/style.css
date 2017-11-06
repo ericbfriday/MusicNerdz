@@ -83,14 +83,14 @@ li a:hover {
 
 /* increase size of info in module */
 .sizeMd {
-  font-size: 33px;
+  font-size: 2.2rem;
 }
 .sizeLg,
 .md-tab {
-   font-size: 35px;
+   font-size: 2.5rem;
 }
   p,
 .sameAsP {
-  font-size: 30px;
+  font-size: 1.8rem;
 }
  
