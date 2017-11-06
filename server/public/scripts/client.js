@@ -14,9 +14,13 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/register.html',
       controller: 'LoginController as lc'
     })
-    .when('/quizCreation', {
+    .when('/admin/quizCreation', {
       templateUrl: '/views/templates/quizQuestionCreation.html',
       controller: 'QuizCreation as qc'
+    })
+    .when('/admin/userMgmt', {
+      templateUrl: '/views/templates/adminUserMgmt.html',
+      controller: 'AdminUserController as auc'
     })
     .when('/user', {
       templateUrl: '/views/templates/user.html',

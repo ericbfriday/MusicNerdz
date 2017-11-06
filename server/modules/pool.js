@@ -6,6 +6,10 @@
 
 var pg = require('pg');
 var url = require('url');
+pg.defaults.ssl = true;
+
+// var params = url.parse(process.env.DATABASE_URL);
+// var auth = params.auth.split(':');
 
 var config = {
   user: process.env.PG_USER, // || null, //env var: PGUSER

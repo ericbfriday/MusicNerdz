@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
+require('dotenv').config();
 
 var passport = require('./strategies/sql.localstrategy');
 var sessionConfig = require('./modules/session.config');
