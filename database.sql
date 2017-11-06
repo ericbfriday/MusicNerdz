@@ -1,20 +1,29 @@
-CREATE TABLE "admin" (
+CREATE TABLE "users" (
 	"id" serial PRIMARY KEY,
-	"name" text NOT NULL,
+	"type" INT NOT NULL,
 	"email" text UNIQUE NOT NULL,
-	"password" text NOT NULL
+	"password" text NOT NULL,
+	"students_id" INT REFERENCES students(id),
+    "teachers_id" INT REFERENCES teachers(id)
+);
+
+CREATE TABLE "schools" (
+	"id" serial PRIMARY KEY,
+	"name" text NOT NULL
 );
 
 CREATE TABLE "teachers" (
 	"id" serial PRIMARY KEY,
-	"name" text NOT NULL,
+	"first" text NOT NULL,
+	"last" text NOT NULL,
 	"email" text UNIQUE NOT NULL,
-	"password" text NOT NULL
+	"schools_id" INT REFERENCES schools(id)
 );
 
 CREATE TABLE "classes" (
 	"id" serial PRIMARY KEY,
-	"name" text NOT NULL,
+	"title" text NOT NULL,
+	"code" text,
     "teacher_id" INT REFERENCES teachers(id)
 );
 
@@ -22,13 +31,14 @@ CREATE TABLE "students" (
 	"id" serial PRIMARY KEY,
 	"first" text NOT NULL,
     "last" text NOT NULL,
-    "student_id" text UNIQUE NOT NULL,
-    "classes_id" INT REFERENCES classes(id),
-    "teacher_id" INT REFERENCES teachers(id)
+	"email" text UNIQUE NOT NULL,
+    "number" text UNIQUE NOT NULL,
+    "classes_id" INT REFERENCES classes(id)
 );
 
 CREATE TABLE "modules" (
 	"id" serial PRIMARY KEY,
+	"description" text NOT NULL,
 	"title" text NOT NULL,
     "album" text NOT NULL,
     "artist" text NOT NULL,
@@ -52,10 +62,11 @@ CREATE TABLE "questions" (
 
 CREATE TABLE "responses" (
 	"id" serial PRIMARY KEY,
-    "student_id" INT REFERENCES students(id) ON DELETE CASCADE,
+    "students_id" INT REFERENCES students(id) ON DELETE CASCADE,
 	"response" text,
 	"admin_notes" text,
 	"teacher_comments" text,
+	"final_grade" text,
     "questions_id" INT REFERENCES questions(id)
 );
 
