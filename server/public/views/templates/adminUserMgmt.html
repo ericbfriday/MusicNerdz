@@ -31,7 +31,7 @@
             </md-card-title>
             <md-card-content>
                 <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-                    <form ng-submit="auc.addTeacher(auc.teacherName, auc.teacherEmail, auc.teacherSchool)">
+                    <form ng-submit="auc.addTeacher(auc.teacherFName, auc.teacherLName, auc.teacherEmail, auc.teacherSchool)">
                         <md-input-container>
                             <label for="schoolList">Existing Schools</label>
                             <md-select placeholder="School Name" ng-model="auc.teacherSchool" required>
@@ -40,9 +40,13 @@
                         </md-input-container>
                         <br>
                         <md-input-container flex="100">
-                            <label for="teacherName">Name</label>
-                            <input ng-model="auc.teacherName" md-select-on-focus required>
+                            <label for="teacherFName">First Name:</label>
+                            <input ng-model="auc.teacherFName" md-select-on-focus required>
                         </md-input-container>
+                        <md-input-container flex="100">
+                                <label for="teacherLName">Last Name:</label>
+                                <input ng-model="auc.teacherLName" md-select-on-focus required>
+                            </md-input-container>
                         <md-input-container flex="100">
                             <label for="teacherEmail">Email:</label>
                             <input ng-model="auc.teacherEmail" md-select-on-focus required>

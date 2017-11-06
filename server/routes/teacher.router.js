@@ -30,9 +30,10 @@ router.post('/addTeacher', function (req, res) {
   console.log('in add teacher post req:', req.body);
 
   pool.connect((err, client, done) => {
-    let query = "INSERT INTO teachers (name, email, schools_id) VALUES ($1, $2, $3)";
+    let query = "INSERT INTO teachers (first, last, email, schools_id) VALUES ($1, $2, $3, $4)";
     let saveTeacher = {
-      name: req.body.name,
+      fname: req.body.fname,
+      lname: req.body.lname,
       email: req.body.email,
       schoolID: req.body.schoolID
     };
@@ -41,7 +42,7 @@ router.post('/addTeacher', function (req, res) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query(query, [saveTeacher.name, saveTeacher.email, saveTeacher.schoolID],
+    client.query(query, [saveTeacher.fname, saveTeacher.lname, saveTeacher.email, saveTeacher.schoolID],
       (err, result) => {
         client.end();
         if (err) {

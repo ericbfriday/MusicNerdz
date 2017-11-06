@@ -6,7 +6,8 @@ myApp.controller('AdminUserController', function(UserService, $http) {
     vm.schoolName = '';
     vm.schoolObj = {name: ''};
     vm.teacherEmail = '';
-    vm.teacherName = '';
+    vm.teacherFName = '';
+    vm.teacherLName = '';
     vm.teacherSchool = '';
 
     // Creates brand new, non-existing school
@@ -24,9 +25,9 @@ myApp.controller('AdminUserController', function(UserService, $http) {
     };
 
     // creates brand new, non-existing teacher from name and e-mail
-    vm.addTeacher = (name, email, schoolID) => {
+    vm.addTeacher = (fname, lname, email, schoolID) => {
         console.log('inside addTeacher (name, email, schoolID)', name, email, schoolID);
-        vm.teacherObj = {name:name,email:email,schoolID:schoolID};
+        vm.teacherObj = {fname:fname,lname:lname,email:email,schoolID:schoolID};
         console.log('logging teacherObj -> ', vm.teacherObj);
         
         $http.post('/teacher/addTeacher', vm.teacherObj)
