@@ -35,7 +35,7 @@
                         <md-input-container>
                             <label for="schoolList">Existing Schools</label>
                             <md-select placeholder="School Name" ng-model="auc.teacherSchool" required>
-                                <md-option ng-repeat="school in auc.schoolList" ng-value="school.id">{{school.name}}</md-option>
+                                <md-option ng-repeat="school in auc.schoolList.data" ng-value="school.id">{{school.name}}</md-option>
                             </md-select>
                         </md-input-container>
                         <br>

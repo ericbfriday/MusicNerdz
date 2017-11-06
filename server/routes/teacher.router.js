@@ -24,10 +24,10 @@ router.post('/addSchool', function (req, res) {
         }
       });
   });
-});
+}); // end addSchool
 
 router.post('/addTeacher', function (req, res) {
-  console.log('in add teacher post req:', req.body);
+  // console.log('in add teacher post req:', req.body);
 
   pool.connect((err, client, done) => {
     let query = "INSERT INTO teachers (first, last, email, schools_id) VALUES ($1, $2, $3, $4)";
@@ -53,7 +53,7 @@ router.post('/addTeacher', function (req, res) {
         }
       });
   });
-});
+}); // end /addTeacher
 
 router.get('/schools', (req, res) => {
   // console.log('Inside schools of teacher.router.js');
@@ -73,6 +73,6 @@ router.get('/schools', (req, res) => {
       }
     });
   });
-});
+}); // end /schools
 
 module.exports = router;

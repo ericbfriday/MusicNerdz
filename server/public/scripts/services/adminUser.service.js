@@ -1,7 +1,7 @@
 myApp.service('AdminUserService', function ($http) {
     var sv = this;
 
-    sv.schoolList = [];
+    sv.schoolList = {data: []};
     sv.schoolName = '';
     sv.schoolObj = {name: ''};
     sv.teacherEmail = '';
@@ -34,9 +34,8 @@ myApp.service('AdminUserService', function ($http) {
 
     // creates brand new, non-existing teacher from name and e-mail
     sv.addTeacher = (fname, lname, email, schoolID) => {
-        console.log('inside addTeacher (name, email, schoolID)', name, email, schoolID);
-        sv.teacherObj = {fname:fname, lname:lname, email:email, schoolID:schoolID};
-        console.log('logging teacherObj -> ', sv.teacherObj);
+        console.log('inside addTeacher (name, email, schoolID)', fname, lname, email, schoolID);
+        sv.teacherObj = new Teacher(fname, lname, email, schoolID);
         
         $http.post('/teacher/addTeacher', sv.teacherObj)
         .then((response)=>{console.log('Logging response from addTeacher -> ', response);
@@ -48,7 +47,7 @@ myApp.service('AdminUserService', function ($http) {
     sv.getSchools = () => {
         return $http.get('/teacher/schools')
         .then((res) => {
-            sv.schoolList = res.data.rows;
+            sv.schoolList.data = res.data.rows;
             console.log('logging sv.schoolList -> ', sv.schoolList);
         }, (err) => {
             console.log('logging err in getSchools -> ', err);

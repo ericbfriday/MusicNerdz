@@ -10,13 +10,13 @@ myApp.controller('AdminUserController', function(AdminUserService) {
     vm.teacherLName = AdminUserService.teacherLName;
     vm.teacherSchool = AdminUserService.teacherSchool;
 
-    // Creates brand new, non-existing school
+    // Function that creates brand new, non-existing school
     vm.addSchool = AdminUserService.addSchool;
 
-    // creates brand new, non-existing teacher from name and e-mail
+    // Function that creates brand new, non-existing teacher from name and e-mail
     vm.addTeacher = AdminUserService.addTeacher;
 
-    // fetches shools to populate drop down menu
+    // Function that creates shools to populate drop down menu
     vm.getSchools = AdminUserService.getSchools;
 
   });
