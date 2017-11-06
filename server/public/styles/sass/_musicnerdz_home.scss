@@ -72,6 +72,10 @@
             }
             .tile-artist {
                 font-weight: 800;
+                text-overflow: ellipsis;
+                width: 145px;
+                overflow: hidden;
+                white-space: nowrap;
             }
             .tile-art {
                 background-image: url('http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg');
@@ -90,6 +94,7 @@
                 }
                 .tile-name {
                     border-right: 1px solid #777777;
+                    max-height: 35px;
                 }
             }
         }
