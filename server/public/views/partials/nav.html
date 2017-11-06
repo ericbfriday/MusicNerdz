@@ -1,8 +1,22 @@
 <div class="navbar">
-  <div class="container">
-    <ul>
-      <li><a href="#/user">User Home</a></li>
-      <li><a href="#/info">Info Page</a></li>
+  <div class="container" layout="row" layout-align="space-between center">
+    <div class="main-logo" flex="noshrink">Music
+      <span>Nerdz</span>
+    </div>
+    <div flex=45>
+      <div class="search-form" layout="row" layout-align="space-between center">
+        <form ng-submit="" layout="row" layout-align="space-between center" flex=100>
+          <input type="text" placeholder="Search by artist or song">
+          <button>
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+    <ul flex=25>
+      <li>
+        <a href="#/user">Login</a>
+      </li>
     </ul>
   </div>
 </div>

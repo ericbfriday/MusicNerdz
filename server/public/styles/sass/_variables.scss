@@ -1,0 +1,44 @@
+@charset "utf-8";
+
+/* HSL */
+
+$color1: hsla(0%, 0%, 0%, 1);
+$color2: hsla(221%, 51%, 16%, 1);
+$color3: hsla(37%, 98%, 53%, 1);
+$color4: hsla(0%, 0%, 90%, 1);
+$color5: hsla(0%, 0%, 100%, 1);
+
+/* RGB */
+
+$black: rgba(0, 0, 0, 1);
+$blue: rgba(20, 33, 61, 1);
+$orange: rgba(252, 163, 17, 1);
+$grey: rgba(229, 229, 229, 1);
+$white: rgba(255, 255, 255, 1);
+
+// mixins 
+@mixin font-small() {
+    font-size: 1rem;
+}
+
+@mixin font-medium() {
+    font-size: 1.5rem;
+}
+
+@mixin font-large() {
+    font-size: 2.5rem;
+}
+
+html {
+    font-size: 10px;
+    // each px increase adds 1.5px to the entire site's text
+    // increase or decrease incrementally to change site overall
+}
+
+body, input {
+    font-family: 'Lato';
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
