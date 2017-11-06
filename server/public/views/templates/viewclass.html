@@ -3,21 +3,34 @@
     <p>
         In viewclass
     </p>
+    <ang-accordion>
+        <collapsible-item item-title="1st Period">
+            <div>Student 1 Student ID</div>
+            <div>Student 2 Student ID</div>
+            <div>
+                <md-button class="addStudBtn">+ Add Student</md-button>
+            </div>
+        </collapsible-item>
+        <collapsible-item item-title="2nd Period">
+            <div>Student 1 Student ID</div>
+            <div>Student 2 Student ID</div>
+            <div>
+                <input type="text" ng-model="vc.student.first" placeholder="First Name" ng-required="true" flex="grow" />
+                <input type="text" ng-model="vc.student.last" placeholder="Last Name" ng-required="true" flex="grow" />
+                <input type="text" ng-model="vc.student.email" placeholder="Student Email" ng-required="true" flex="grow" />
+                <input type="text" ng-model="vc.student.number" placeholder="Student ID" flex="grow" />
+                <md-input-container>
+                    <label>Class</label>
+                    <md-select ng-model="vc.selectedClass">
+                      <md-option><em>None</em></md-option>
+                      <md-option ng-repeat="class in vc.classes" ng-value="{{class.name}}">
+                        {{class.name}}
+                      </md-option>
+                    </md-select>
+                  </md-input-container>
+                <md-button class="addStudBtn" ng-click="">+ Add Student</md-button>
+            </div>
+        </collapsible-item>
+    </ang-accordion>
+    <md-button class="addClsBtn">+ Add Class</md-button>
 </div>
-<ang-accordion>
-    <collapsible-item item-title="1st Period">
-        <div>Student 1 Student ID</div>
-        <div>Student 2 Student ID</div>
-        <div>
-            <md-button class="addStudBtn">+ Add Student</md-button>
-        </div>
-    </collapsible-item>
-    <collapsible-item item-title="2nd Period">
-        <div>Student 1 Student ID</div>
-        <div>Student 2 Student ID</div>
-        <div>
-            <md-button class="addStudBtn" ng-click="">+ Add Student</md-button>
-        </div>
-    </collapsible-item>
-</ang-accordion>
-<md-button class="addClsBtn">+ Add Class</md-button>
