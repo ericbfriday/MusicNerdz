@@ -2,7 +2,7 @@ var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngM
 
 
 /// Routes ///
-myApp.config(function($routeProvider, $locationProvider) {
+myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config');
   $routeProvider
@@ -36,16 +36,29 @@ myApp.config(function($routeProvider, $locationProvider) {
       //   }
       // }
     })
+    .when('/student/grades', {
+      templateUrl: '/views/templates/studentGrade.html',
+      controller: 'StudentGradeController as sgc',
+      // resolve: {
+      //   getuser: function (UserService) {
+      //     return UserService.getuser();
+      //   }
+      // }
+    })
     .when('/info', {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController',
-      resolve: {
-        getuser : function(UserService){
-          return UserService.getuser();
-        }
-      }
+      // resolve: {
+      //   getuser : function(UserService){
+      //     return UserService.getuser();
+      //   }
+      // }
     })
     .otherwise({
       redirectTo: 'user'
     });
+
+  $mdThemingProvider.theme('default').primaryPalette('grey').accentPalette('orange', {
+    'default': '300'
+  });
 });

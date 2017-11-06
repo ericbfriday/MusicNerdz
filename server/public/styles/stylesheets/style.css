@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: 'Lato';
@@ -24,8 +25,8 @@ body, html {
   margin-top: 10px;
 }
 
-.container p{
-  margin-top : 14px;
+.container p {
+  margin-top: 14px;
 }
 
 .message {
@@ -37,14 +38,14 @@ body, html {
 }
 
 .message:nth-child(odd) {
-   background-color: #eeeeee;
+  background-color: #eeeeee;
 }
 
 .message:nth-child(even) {
   background-color: #f8f8f8;
 }
 
-.btn-danger{
+.btn-danger {
   margin-left: 10px;
 }
 
@@ -73,29 +74,53 @@ li a {
   text-decoration: none;
 }
 
+
 /* Change the link color to #111 (black) on hover */
+
 li a:hover {
   text-decoration: underline;
   color: #eee;
 }
 
+
 /* Student module */
+
 
 /* increase size of info in module */
 .sizeMd {
   font-size: 2.2rem;
 }
+
 .sizeLg,
 .md-tab {
-   font-size: 2.5rem;
+  font-size: 2.5rem;
 }
-  p,
+
 .sameAsP {
   font-size: 1.8rem;
 }
 
-.fixed{
+
+/* set bg and text color for song info in module */
+.fixed {
   background-color: #afafaf;
   color: white;
 }
- 
+
+
+/* fix tabs on scroll in module */
+md-tabs.md-dynamic-height md-tabs-content-wrapper {
+  overflow: scroll;
+  height: 800px;
+}
+
+
+/* Student Grades */
+
+
+/* add margins to student grading view */
+.gradeMarg {
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
+}

@@ -3,4 +3,4 @@ myApp.controller('StudentModuleController', function (UserService) {
     var vm = this;
     vm.video1 = 'https://www.youtube.com/watch?v=N0DcVbSYWUA';
     vm.userService = UserService;
-});
+});//END App Controller
