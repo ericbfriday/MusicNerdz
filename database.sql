@@ -1,11 +1,4 @@
-CREATE TABLE "users" (
-	"id" serial PRIMARY KEY,
-	"type" INT NOT NULL,
-	"email" text UNIQUE NOT NULL,
-	"password" text NOT NULL,
-	"students_id" INT REFERENCES students(id),
-    "teachers_id" INT REFERENCES teachers(id)
-);
+database = "d5v1g130uppe55";
 
 CREATE TABLE "schools" (
 	"id" serial PRIMARY KEY,
@@ -34,6 +27,15 @@ CREATE TABLE "students" (
 	"email" text UNIQUE NOT NULL,
     "number" text UNIQUE NOT NULL,
     "classes_id" INT REFERENCES classes(id)
+);
+
+CREATE TABLE "users" (
+	"id" serial PRIMARY KEY,
+	"type" INT NOT NULL,
+	"username" text UNIQUE NOT NULL,
+	"password" text NOT NULL,
+	"students_id" INT REFERENCES students(id),
+    "teachers_id" INT REFERENCES teachers(id)
 );
 
 CREATE TABLE "modules" (
