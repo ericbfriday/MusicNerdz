@@ -18,9 +18,6 @@ router.post('/quiz', (req, res, next) => {
     let modules_id = req.body.data[0].modulesID;
     let values = [q, a1, a2, a3, a4, ca, modules_id];
 
-    // console.log('logging questions in moduleCreation router -> ', questions);
-    // console.log('logging values in moduleCreation router -> ', values);
-
     /** ROUTER INSERT STATEMENT CURRENTLY WRONG - PENDING DB POPULATION TO 
      * FIX REQUIREMENTS OF DATA STRUCTURE
      */
