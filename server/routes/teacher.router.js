@@ -3,6 +3,7 @@ const router = express.Router();
 const pool = require('../modules/pool.js');
 const passport = require('passport');
 
+// Adds school to DB so it may later be associated to teacher.
 router.post('/addSchool', function (req, res) {
   pool.connect(function (err, client, done) {
     let query = "INSERT INTO schools (name) VALUES ($1)";
@@ -26,6 +27,7 @@ router.post('/addSchool', function (req, res) {
   });
 }); // end addSchool
 
+  // add teacher to db -> CURRENTLY DOES NOT INSERT TO USER TABLE OR PROVIDE ENCRYPTION
 router.post('/addTeacher', function (req, res) {
   // console.log('in add teacher post req:', req.body);
 
@@ -55,6 +57,7 @@ router.post('/addTeacher', function (req, res) {
   });
 }); // end /addTeacher
 
+  // gets list of schools to associate to teacher upon teacher creation
 router.get('/schools', (req, res) => {
   // console.log('Inside schools of teacher.router.js');
   pool.connect(function (err, client, done) {

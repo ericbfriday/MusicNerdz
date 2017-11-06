@@ -9,6 +9,7 @@ myApp.service('AdminUserService', function ($http) {
     sv.teacherLName = '';
     sv.teacherSchool = '';
 
+    // establishes structure of teacher object to be sent to router.
     class Teacher {
         constructor(fname, lname, email, schoolID){
             this.fname = fname;
@@ -16,13 +17,13 @@ myApp.service('AdminUserService', function ($http) {
             this.email = email;
             this.schoolID = schoolID;
         }
-    }
+    } // end class Teacher
 
     // Creates brand new, non-existing school
     sv.addSchool = (name) => {
         sv.schoolObj.name = name;
-        console.log('inside addSchool (sv.schoolObj.name)', sv.schoolObj.name);
-        $http.post('/teacher/addSchool', sv.schoolObj)
+        // console.log('inside addSchool (sv.schoolObj.name)', sv.schoolObj.name);
+        return $http.post('/teacher/addSchool', sv.schoolObj)
         .then((response)=> {
             console.log('Logging response from addSchool -> ', response);
             sv.getSchools();
@@ -34,13 +35,15 @@ myApp.service('AdminUserService', function ($http) {
 
     // creates brand new, non-existing teacher from name and e-mail
     sv.addTeacher = (fname, lname, email, schoolID) => {
-        console.log('inside addTeacher (name, email, schoolID)', fname, lname, email, schoolID);
+        // console.log('inside addTeacher (name, email, schoolID)', fname, lname, email, schoolID);
         sv.teacherObj = new Teacher(fname, lname, email, schoolID);
         
-        $http.post('/teacher/addTeacher', sv.teacherObj)
-        .then((response)=>{console.log('Logging response from addTeacher -> ', response);
+        return $http.post('/teacher/addTeacher', sv.teacherObj)
+        .then((response)=>{
+            console.log('Logging response from addTeacher -> ', response);
         })
-        .catch((err)=>{console.log('Logging error in addTeacher catch -> ', err);
+        .catch((err)=>{
+            console.log('Logging error in addTeacher catch -> ', err);
         });
     }; // end addTeacher()
 
@@ -48,7 +51,7 @@ myApp.service('AdminUserService', function ($http) {
         return $http.get('/teacher/schools')
         .then((res) => {
             sv.schoolList.data = res.data.rows;
-            console.log('logging sv.schoolList -> ', sv.schoolList);
+            // console.log('logging sv.schoolList -> ', sv.schoolList);
         }, (err) => {
             console.log('logging err in getSchools -> ', err);
         })
