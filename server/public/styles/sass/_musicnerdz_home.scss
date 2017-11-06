@@ -3,6 +3,7 @@
     font-size: 3rem;
     position: relative;
     z-index: 3;
+    position: fixed;
     span {
         color: $orange;
     }
@@ -50,11 +51,13 @@
     text-align: center;
     line-height: 200px;
     overflow: hidden;
+    padding: 75px 0 0;
     .main-carousel {
         box-shadow: 0px 1px 5px $black;
         position: relative;
         z-index: 2;
         background-color: #cecece;
+        height: 200px;
     }
     .main-display {
         position: relative;
