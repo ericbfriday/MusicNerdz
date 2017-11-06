@@ -55,7 +55,7 @@
             <form ng-submit="lc.login()" layout="column" layout-align="space-around stretch" ng-if="lc.userObject.toggle=='admin'">
                 <div>
                     <span class="fa fa-user-circle-o" flex="none"></span>
-                    <input type="text" ng-model="lc.user.username" placeholder="E-Mail" flex="grow" />
+                    <input type="text" ng-model="lc.user.username" placeholder="E-Mail (required)" ng-required="true" flex="grow" />
                 </div>
                 <div>
                     <span flex="none" class="fa fa-unlock"></span>

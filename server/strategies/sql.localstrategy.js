@@ -53,7 +53,7 @@ passport.use('local', new localStrategy({
 	    	console.log('called local - pg');
 
         // assumes the username will be unique, thus returning 1 or 0 results
-        client.query("SELECT * FROM users WHERE username = $1", [username],
+        client.query("SELECT * FROM users WHERE email = $1", [username],
           function(err, result) {
             var user = {};
 
