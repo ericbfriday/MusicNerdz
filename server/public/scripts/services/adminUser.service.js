@@ -11,16 +11,17 @@ myApp.service('AdminUserService', function ($http) {
 
     // establishes structure of teacher object to be sent to router.
     class Teacher {
-        constructor(fname, lname, email, schoolID){
+        constructor(fname, lname, email, schoolID, password){
             this.fname = fname;
             this.lname = lname;
             this.email = email;
             this.schoolID = schoolID;
+            this.password = password;
         }
     } // end class Teacher
 
     // Creates brand new, non-existing school
-    sv.addSchool = (name) => {
+    sv.addSchool = function (name) {
         sv.schoolObj.name = name;
         // console.log('inside addSchool (sv.schoolObj.name)', sv.schoolObj.name);
         return $http.post('/teacher/addSchool', sv.schoolObj)
@@ -34,10 +35,8 @@ myApp.service('AdminUserService', function ($http) {
     }; // end addSchool()
 
     // creates brand new, non-existing teacher from name and e-mail
-    sv.addTeacher = (fname, lname, email, schoolID) => {
-        // console.log('inside addTeacher (name, email, schoolID)', fname, lname, email, schoolID);
-        sv.teacherObj = new Teacher(fname, lname, email, schoolID);
-        
+    sv.addTeacher = function (fname, lname, email, schoolID) {
+        sv.teacherObj = new Teacher(fname, lname, email, schoolID, sv.passwordGenerator());
         return $http.post('/teacher/addTeacher', sv.teacherObj)
         .then((response)=>{
             console.log('Logging response from addTeacher -> ', response);
@@ -47,7 +46,7 @@ myApp.service('AdminUserService', function ($http) {
         });
     }; // end addTeacher()
 
-    sv.getSchools = () => {
+    sv.getSchools = function () {
         return $http.get('/teacher/schools')
         .then((res) => {
             sv.schoolList.data = res.data.rows;
@@ -60,4 +59,13 @@ myApp.service('AdminUserService', function ($http) {
         }));
     }; // end getSchools()
 
+    sv.passwordGenerator = function () {
+        let length = 12,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+        for (var i = 0, n = charset.length; i < length; ++i) {
+            retVal += charset.charAt(Math.floor(Math.random() * n));
+        }
+        return retVal;        
+    };
 });
