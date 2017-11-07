@@ -4,12 +4,12 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     /** BEGIN HISTORICAL EVENT SECTION OF CODE */
 
     sv.year = 2017; // date of new event - integer to match structure of DB
-    sv.dateRange = []; // date to search for existing events
-    sv.description = ''; // description for new historical event
-    sv.existingHistoricalEvent = []; // Existing events to be pulled from server for searching/filtering
-    sv.existingHistoricalEventTags = []; // existing tags to be associated with new historical event
-    sv.historicalEvent = ''; // title for new historical events
-    sv.historicalEventTags = []; // tags for new historical event
+    sv.dateRange = {data: []}; // date to search for existing events
+    sv.description = {data: ''}; // description for new historical event
+    sv.existingHistoricalEvent = {data: []}; // Existing events to be pulled from server for searching/filtering
+    sv.existingHistoricalEventTags = {data: ['Event A', 'Event B']}; // existing tags to be associated with new historical event
+    sv.historicalEvent = {data: ''}; // title for new historical events
+    sv.historicalEventTags = {data: ['Civil Rights', 'Womens Sufferage', 'Other Topic']}; // tags for new historical event
 
     class Event {
         constructor(desc, year, tags) {
@@ -19,7 +19,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         }
     } // end Event class
 
-    sv.makeEvent = (desc, year, tags) => {
+    sv.makeEvent = function (desc, year, tags) {
         console.log('sv.makeEvent activated!');
         sv.newEvent = new Event (desc, year, tags);
         return $http.post('/moduleCreation/newHistoricalInfo')
@@ -28,12 +28,11 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         })
         .then((err)=>{
             console.log('loggin err in makeEvent -> ', err);
-            
         });
     };
 
     // fetches existing historical events and tags for use searching for events
-    sv.getHistoricalInfo = () => {
+    sv.getHistoricalInfo = function() {
         console.log('sv.getHistoricalInfo activated!');
         return $http.get('/moduleCreation/existingHistoricalInfo')
         .then((res)=> {
@@ -110,12 +109,12 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     } // end Quiz class
 
     // pushes MC Q into Q array
-    sv.pushMCQ = (q, a1, a2, a3, a4, ca) => {
+    sv.pushMCQ = function (q, a1, a2, a3, a4, ca) {
         sv.newMCQ = new MCQuestion(q, a1, a2, a3, a4, ca);
         sv.questions.push(sv.newMCQ);
         console.log('loggin sv.newMCQ in pushMCQuestion -> ', sv.newMCQ);
 
-        // clear the form for the next questions submission
+        // Attempt to clear the form for the next questions submission
         sv.currentMCQ = ''; // MC Question
         sv.currentMCA1 = ''; // MC Answers 1-4 below
         sv.currentMCA2 = '';
@@ -125,30 +124,30 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     }; // end pushMCQ function
 
     // pushes SA Q into Q array
-    sv.pushSAQ = (q, a) => {
+    sv.pushSAQ = function (q, a) {
         sv.newSAQuestion = new ShortAnsQuestion(q, a);
         sv.questions.push(sv.newSAQuestion);
         console.log('logging sv.newSAQuestion in pushShortAnsQuestion -> ', sv.newSAQuestion);
 
-        // clear SA fields
+        // Attempt to clear SA fields
         sv.currentSAQ = ''; // SA Question
         sv.currentSAA = ''; // SA Answer/hints to grade on
     }; // end pushSAQ function
 
     // pushes Essay question into Q array
-    sv.pushEssayQ = (q, a) => {
+    sv.pushEssayQ = function (q, a) {
         sv.newEQ = new Essay(q, a);
         sv.questions.push(sv.newEQ);
         console.log('logging sv.newEQ in pushEssayQ -> ', sv.newEQ);
 
-        // clear Essay fields
+        // Attempt to clear Essay fields
         sv.currentEQ = ''; // Essay Question/Topic
         sv.currentEA = ''; // Essay Answer/hints to grade on
     }; // end pushEssayQ function
 
     // creates quiz object using questions array.
     // POST calls to router with quiz object. Response logged and quiz array reset to 0;
-    sv.pushToQuiz = (q) => {
+    sv.pushToQuiz = function (q) {
         sv.newQuiz = new Quiz(q);
         sv.quiz.data.push(sv.newQuiz);
         console.log('logging sv.newQuiz in pushToquiz => ', sv.newQuiz);

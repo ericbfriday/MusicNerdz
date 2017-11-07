@@ -11,7 +11,7 @@
                     <label>Title of Event</label>
                     <input ng-model="ec.historicalEvent" md-select-on-focus>
                 </md-input-container>
-                <md-input-container flex="25" >
+                <md-input-container flex="25">
                     <label>Event Year</label>
                     <input ng-model="ec.year" md-select-on-focus>
                 </md-input-container>
@@ -20,6 +20,14 @@
                 <md-input-container flex="100">
                     <label>Description of Event</label>
                     <textarea rows="4"></textarea>
+                </md-input-container>
+            </div>
+            <div layout="row" layout-align="left center" flex layout-fill>
+                <md-input-container flex="50">
+                    <label>Historical Tags</label>
+                    <md-select name="correctAnswer" ng-model="ec.currentMCCA" required>
+                        <md-option ng-repeat="tag in ec.existingHistoricalTags.data" value="{{tag}}">{{tag}}</md-option>
+                    </md-select>
                 </md-input-container>
             </div>
             <div layout="row">
