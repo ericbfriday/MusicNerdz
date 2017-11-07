@@ -13,18 +13,22 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/register.html',
       controller: 'LoginController as lc'
     })
-    .when('/quizCreation', {
+    .when('/admin/quizCreation', {
       templateUrl: '/views/templates/quizQuestionCreation.html',
       controller: 'QuizCreation as qc'
+    })
+    .when('/admin/userMgmt', {
+      templateUrl: '/views/templates/adminUserMgmt.html',
+      controller: 'AdminUserController as auc'
     })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
-      // resolve: {
-      //   getuser : function(UserService){
-      //     return UserService.getuser();
-      //   }
-      // }
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getuser();
+        }
+      }
     })
     .when('/student/module', {
       templateUrl: '/views/templates/lesson.html',
@@ -53,6 +57,11 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       //   }
       // }
     })
+    .when('/viewclass', {
+      templateUrl: '/views/templates/viewclass.html',
+      controller: 'ViewController as vc',
+      
+    })
     .otherwise({
       redirectTo: 'user'
     });
@@ -61,3 +70,4 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     'default': '300'
   });
 });
+

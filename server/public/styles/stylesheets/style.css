@@ -55,6 +55,14 @@ html {
   border-radius: 0px;
 }
 
+.addStudBtn {
+  background-color: hotpink;
+}
+
+.addClsBtn {
+  background-color: hotpink;
+}
+
 ul {
   list-style-type: none;
   margin: 0;
