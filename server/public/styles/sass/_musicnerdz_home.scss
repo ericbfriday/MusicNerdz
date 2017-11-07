@@ -73,9 +73,12 @@
             .tile-artist {
                 font-weight: 800;
                 text-overflow: ellipsis;
-                width: 145px;
+                width: 100%;
                 overflow: hidden;
                 white-space: nowrap;
+            }
+            .tile-name {
+                font-size: 1.5rem;
             }
             .tile-art {
                 background-image: url('http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg');
@@ -101,5 +104,27 @@
     }
     .container {
         height: auto;
+    }
+}
+
+.carousel-item {
+    img {
+    max-width: 225px;
+    }
+    .main-display {
+        padding: 0 295px;
+    }
+}
+
+.ui-carousel {
+    .carousel-prev {
+        .carousel-btn {
+            left: inherit;
+        }
+    }
+    .carousel-next {
+        .carousel-btn {
+            right: 0;
+        }
     }
 }
