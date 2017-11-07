@@ -1,5 +1,5 @@
 {
-  "name": "MusicNerdz",
+  "name": "musicnerdz",
   "version": "1.0.0",
   "description": "MusicNerdz is a new startup to help disrupt the current education system. As The Client says, “School is boring” and he wants to make it more engaging and relevant to the scholars. MusicNerdz web application will associate music and lyrics with relevant historical events. Then it will provide the students with a small quiz to reflect on what they learned.",
   "main": "server/app.js",
@@ -22,10 +22,10 @@
     "angular": "^1.6.4",
     "angular-animate": "^1.6.6",
     "angular-aria": "^1.6.6",
-    "angular-jk-carousel": "^0.5.0",
     "angular-material": "^1.1.5",
     "angular-messages": "^1.6.6",
     "angular-route": "^1.6.4",
+    "angular-ui-carousel": "^0.1.10",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.13.3",
     "dotenv": "^4.0.0",
@@ -36,5 +36,6 @@
     "passport-local": "^1.0.0",
     "path": "^0.11.14",
     "pg": "^7.1.0"
-  }
+  },
+  "devDependencies": {}
 }
