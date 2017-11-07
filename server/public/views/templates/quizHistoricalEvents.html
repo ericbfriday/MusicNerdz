@@ -6,26 +6,25 @@
             </md-card-title-text>
         </md-card-title>
         <md-card-content layout="column">
-            <div layout="row">
-                <md-input-container flex="100">
-                    <label>Historical Title:</label>
+            <div layout="row" layout-fill>
+                <md-input-container flex="75">
+                    <label>Title of Event</label>
                     <input ng-model="ec.historicalEvent" md-select-on-focus>
                 </md-input-container>
-            </div>
-            <div layout="row">
-                <md-input-container flex="100">
-                    <label>Description</label>
-                    <textarea rows="4"></textarea>
-                </md-input-container>
-            </div>
-            <div layout="row">
-                <md-input-container flex="50">
+                <md-input-container flex="25" >
                     <label>Event Year</label>
                     <input ng-model="ec.year" md-select-on-focus>
                 </md-input-container>
             </div>
             <div layout="row">
-                    <md-chips ng-model="ec.existingHistoricalEventTags" md-removable="ec.removable"></md-chips>
+                <md-input-container flex="100">
+                    <label>Description of Event</label>
+                    <textarea rows="4"></textarea>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-chips flex="100" placeholder="Historical Themes" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag"
+                    ng-model="ec.existingHistoricalEventTags" md-removable="ec.removable"></md-chips>
             </div>
         </md-card-content>
     </md-card>

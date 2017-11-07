@@ -8,7 +8,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     sv.description = ''; // description for new historical event
     sv.existingHistoricalEvent = []; // Existing events to be pulled from server for searching/filtering
     sv.existingHistoricalEventTags = []; // existing tags to be associated with new historical event
-    sv.historicalEvent = ''; // title for new historical event
+    sv.historicalEvent = ''; // title for new historical events
     sv.historicalEventTags = []; // tags for new historical event
 
     class Event {
