@@ -2,9 +2,8 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     var sv = this;
 
     /** BEGIN HISTORICAL EVENT SECTION OF CODE */
-    // Notes:
 
-    sv.year = 0; // date of new event - integer to match structure of DB
+    sv.year = 2017; // date of new event - integer to match structure of DB
     sv.dateRange = []; // date to search for existing events
     sv.description = ''; // description for new historical event
     sv.existingHistoricalEvent = []; // Existing events to be pulled from server for searching/filtering
@@ -13,29 +12,37 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     sv.historicalEventTags = []; // tags for new historical event
 
     class Event {
-        constructor(desc, year) {
+        constructor(desc, year, tags) {
             this.description = desc;
             this.year = year;
+            this.tags = tags;
         }
     } // end Event class
 
-    sv.makeEvent = () => {
+    sv.makeEvent = (desc, year, tags) => {
         console.log('sv.makeEvent activated!');
-        
+        sv.newEvent = new Event (desc, year, tags);
+        return $http.post('/moduleCreation/newHistoricalInfo')
+        .then((res) => {
+            console.log('loggin response in makeEvent -> ', res);
+        })
+        .then((err)=>{
+            console.log('loggin err in makeEvent -> ', err);
+            
+        });
     };
 
     // fetches existing historical events and tags for use searching for events
     sv.getHistoricalInfo = () => {
         console.log('sv.getHistoricalInfo activated!');
         return $http.get('/moduleCreation/existingHistoricalInfo')
-        .then(
-            (res)=> {console.log('res in getHistoricalInfo ', res);
-            }//,
-            // (err) => {console.log('err in getHistoricalInfo ', err);
-        ).catch((err)=>{
+        .then((res)=> {
+            console.log('res in getHistoricalInfo ', res);
+        }).catch((err)=>{
             console.log('catch err in getHistoricalInfo -', err);  
         });
     };
+    /** END HISTORICAL EVENT SECTION OF CODE */
 
     /* BEGIN QUIZ GENERATION SECTION OF CODE */
     // Code Readability notes:
