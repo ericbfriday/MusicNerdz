@@ -27,24 +27,20 @@ router.post('/addSchool', function (req, res) {
   });
 }); // end addSchool
 
-  // add teacher to db -> CURRENTLY DOES NOT INSERT TO USER TABLE OR PROVIDE ENCRYPTION
+// add teacher to db -> CURRENTLY DOES NOT INSERT TO USER TABLE OR PROVIDE ENCRYPTION
 router.post('/addTeacher', function (req, res) {
   // console.log('in add teacher post req:', req.body);
 
   pool.connect((err, client, done) => {
-    let query = "INSERT INTO teachers (first, last, email, schools_id) VALUES ($1, $2, $3, $4)";
-    let saveTeacher = {
-      fname: req.body.fname,
-      lname: req.body.lname,
-      email: req.body.email,
-      schoolID: req.body.schoolID
-    };
+
+    let query = "WITH new_teacher AS (INSERT INTO teachers (first, last, email, schools_id) VALUES ($1, $2, $3, $4) RETURNING id) INSERT INTO users (type, username, password, teachers_id) VALUES (2, $5, $6, (SELECT id FROM new_teacher));";
+    let values = [req.body.fname, req.body.lname, req.body.email, req.body.schoolID, req.body.email, req.body.password];
 
     if (err) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query(query, [saveTeacher.fname, saveTeacher.lname, saveTeacher.email, saveTeacher.schoolID],
+    client.query(query, values,
       (err, result) => {
         client.end();
         if (err) {
@@ -57,7 +53,7 @@ router.post('/addTeacher', function (req, res) {
   });
 }); // end /addTeacher
 
-  // gets list of schools to associate to teacher upon teacher creation
+// gets list of schools to associate to teacher upon teacher creation
 router.get('/schools', (req, res) => {
   // console.log('Inside schools of teacher.router.js');
   pool.connect(function (err, client, done) {
