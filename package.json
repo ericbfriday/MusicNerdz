@@ -20,6 +20,7 @@
   "dependencies": {
     "angular": "^1.6.4",
     "angular-jk-carousel": "^0.5.0",
+    "angular-material-accordion": "^1.0.1",
     "angular-route": "^1.6.4",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.13.3",

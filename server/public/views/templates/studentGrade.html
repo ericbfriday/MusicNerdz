@@ -1,10 +1,24 @@
 <div ng-include="'views/partials/nav.html'"></div>
-<div class="sizeLg gradeMarg" layout="row">
+<section class="sizeLg gradeMarg">
+    <h3>Dustin Henderson</h3>
+<div layout="row">
     <div flex>
-        total lessons finished:<br> 25
+        Total Lessons Completed:<br> 25
     </div>
     <div flex>
         Average Grade:<br> 90%
     </div>
-
 </div>
+
+<ang-accordion>
+    <collapsible-item item-title="Lesson One" initially-open="true">
+        <div>This is regular html code</div>
+    </collapsible-item>
+    <collapsible-item item-title="Lesson Two">
+        <div>This is regular html code</div>
+    </collapsible-item>
+    <collapsible-item item-title="Lesson Three">
+        <div>This is regular html code</div>
+    </collapsible-item>
+</ang-accordion>
+</section>
