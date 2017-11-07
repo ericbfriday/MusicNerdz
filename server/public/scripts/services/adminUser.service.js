@@ -21,7 +21,7 @@ myApp.service('AdminUserService', function ($http) {
     } // end class Teacher
 
     // Creates brand new, non-existing school
-    sv.addSchool = (name) => {
+    sv.addSchool = function (name) {
         sv.schoolObj.name = name;
         // console.log('inside addSchool (sv.schoolObj.name)', sv.schoolObj.name);
         return $http.post('/teacher/addSchool', sv.schoolObj)
@@ -35,7 +35,7 @@ myApp.service('AdminUserService', function ($http) {
     }; // end addSchool()
 
     // creates brand new, non-existing teacher from name and e-mail
-    sv.addTeacher = (fname, lname, email, schoolID) => {
+    sv.addTeacher = function (fname, lname, email, schoolID) {
         sv.teacherObj = new Teacher(fname, lname, email, schoolID, sv.passwordGenerator());
         return $http.post('/teacher/addTeacher', sv.teacherObj)
         .then((response)=>{
@@ -46,7 +46,7 @@ myApp.service('AdminUserService', function ($http) {
         });
     }; // end addTeacher()
 
-    sv.getSchools = () => {
+    sv.getSchools = function () {
         return $http.get('/teacher/schools')
         .then((res) => {
             sv.schoolList.data = res.data.rows;

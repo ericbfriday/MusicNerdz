@@ -28,15 +28,11 @@ router.post('/addSchool', function (req, res) {
   });
 }); // end addSchool
 
-// add teacher to db -> CURRENTLY DOES NOT INSERT TO USER TABLE OR PROVIDE ENCRYPTION
+  // adds teacher to user and teachers DB.
 router.post('/addTeacher', function (req, res) {
-  // console.log('in add teacher post req:', req.body);
-
   pool.connect((err, client, done) => {
-
     let query = "WITH new_teacher AS (INSERT INTO teachers (first, last, email, schools_id) VALUES ($1, $2, $3, $4) RETURNING id) INSERT INTO users (type, username, password, teachers_id) VALUES (2, $5, $6, (SELECT id FROM new_teacher));";
     let values = [req.body.fname, req.body.lname, req.body.email, req.body.schoolID, req.body.email, encryptLib.encryptPassword(req.body.password)];
-
     if (err) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
