@@ -126,9 +126,11 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
 }
 
 md-card-title {
-  background: linear-gradient(whitesmoke, white, whitesmoke)
+  background: linear-gradient( rgb(255, 247, 233), white, rgb(255, 247, 233))
+  ;
+  color: #535250;
 }
 
-.center {
-  text-align: center
+.orange {
+  color: #fca311
 }
