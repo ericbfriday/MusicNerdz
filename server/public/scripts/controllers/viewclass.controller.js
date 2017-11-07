@@ -20,7 +20,7 @@ myApp.controller('ViewController', function ($http, UserService) {
         email: '',
         number: '',
         classId: '',
-        teacherId: '5'
+        teachersId: '1'
     }
 
     vm.classes = [vm.class1, vm.class2];
