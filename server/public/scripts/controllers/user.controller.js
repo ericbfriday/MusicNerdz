@@ -1,19 +1,19 @@
 myApp
-  .controller('UserController', function (UserService, $scope) {
+  .controller('UserController', function (UserService) {
     console.log('UserController created');
     var vm = this;
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
 
-    vm.arrayData = [
+    vm.slides = [
       {
-        src: 'http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg'
+        url: "../../assets/images/kittens.jpeg",
+        artist: "Cats",
+        album: "Faux Paws"
       }, {
-        src: 'http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg'
-      }, {
-        src: 'http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg'
-      }, {
-        src: 'http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg'
+        url: "../../assets/images/nav.jpeg",
+        artist: "A Record",
+        album: "Record on Fire"
       }
     ];
   });

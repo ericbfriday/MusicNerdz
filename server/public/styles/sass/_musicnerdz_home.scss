@@ -73,7 +73,7 @@
             .tile-artist {
                 font-weight: 800;
                 text-overflow: ellipsis;
-                width: 145px;
+                width: 100%;
                 overflow: hidden;
                 white-space: nowrap;
             }
@@ -107,6 +107,24 @@
     }
 }
 
-md-radio-button .md-on {
-    background-color: $white;
+.carousel-item {
+    img {
+    max-width: 225px;
+    }
+    .main-display {
+        padding: 0 295px;
+    }
+}
+
+.ui-carousel {
+    .carousel-prev {
+        .carousel-btn {
+            left: inherit;
+        }
+    }
+    .carousel-next {
+        .carousel-btn {
+            right: 0;
+        }
+    }
 }

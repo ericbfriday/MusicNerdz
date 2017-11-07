@@ -1,11 +1,13 @@
 <div ng-include="'views/partials/nav.html'"></div>
+
 <div class="container" layout="column" layout-align="start stretch">
     <div class="main" layout="column" layout-align="start stretch" flex>
         <div class="main-carousel" flex=25>
-            <jk-carousel data="uc.arrayData" item-template-url="carousel.html" max-width="1000" max-height="200">
-            </jk-carousel>
-        </div>
 
+            <div ng-include="'views/partials/carousel.html'" flex></div>
+
+
+        </div>
         <div class="main-container" flex=75 layout="column" layout-align="start stretch">
             <div class="main-display" layout="row" layout-align="space-around">
                 <div class="tile" layout="column" layout-align=" stretch" flex>

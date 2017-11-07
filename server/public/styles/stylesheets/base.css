@@ -307,7 +307,7 @@ input {
 .main .main-display .tile .tile-artist {
   font-weight: 800;
   text-overflow: ellipsis;
-  width: 145px;
+  width: 100%;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -345,7 +345,20 @@ input {
   height: auto;
 }
 
-/* line 110, ../sass/_musicnerdz_home.scss */
-md-radio-button .md-on {
-  background-color: white;
+/* line 111, ../sass/_musicnerdz_home.scss */
+.carousel-item img {
+  max-width: 225px;
+}
+/* line 114, ../sass/_musicnerdz_home.scss */
+.carousel-item .main-display {
+  padding: 0 295px;
+}
+
+/* line 121, ../sass/_musicnerdz_home.scss */
+.ui-carousel .carousel-prev .carousel-btn {
+  left: inherit;
+}
+/* line 126, ../sass/_musicnerdz_home.scss */
+.ui-carousel .carousel-next .carousel-btn {
+  right: 0;
 }

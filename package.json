@@ -19,8 +19,8 @@
   "homepage": "https://github.com/ericbfriday/MusicNerdz#readme",
   "dependencies": {
     "angular": "^1.6.4",
-    "angular-jk-carousel": "^0.5.0",
     "angular-route": "^1.6.4",
+    "angular-ui-carousel": "^0.1.10",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.13.3",
     "express": "^4.13.1",
