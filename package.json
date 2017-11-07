@@ -20,13 +20,10 @@
   "dependencies": {
     "ang-accordion": "^1.0.2",
     "angular": "^1.6.4",
-<<<<<<< HEAD
     "angular-animate": "^1.6.6",
     "angular-aria": "^1.6.6",
     "angular-material": "^1.1.5",
     "angular-messages": "^1.6.6",
-=======
->>>>>>> carousel
     "angular-route": "^1.6.4",
     "angular-ui-carousel": "^0.1.10",
     "bcrypt": "^1.0.2",
