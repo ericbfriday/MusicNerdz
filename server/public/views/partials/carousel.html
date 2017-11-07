@@ -1,0 +1,32 @@
+<ui-carousel slides="uc.slides" slides-to-show="1" slides-to-scroll="1" initial-slide="1" autoplay="false" autoplay-speed="2000"
+  arrows="true" dots="false">
+  <carousel-item layout="row" layout-align="center center">
+    <!-- 
+    <h3>
+      <img ng-src="{{ item }}">
+    </h3> -->
+    <div class="main-container" flex layout="column" layout-align="start stretch">
+      <div class="main-display" layout="row" layout-align="space-around">
+
+        <div class="tile" layout="column" layout-align=" stretch" flex>
+          <div class="tile-art" flex=none ng-style="{'background-image':'url({{item.url}})'}"
+          >
+
+          </div>
+          <div class="tile-details" flex=60 layout="row" layout-align="center center">
+            <div class="tile-name" flex layout="column" layout-align="space-around stretch">
+              <p class="tile-artist" flex>{{ item.artist }}</p>
+              <p class="tile-record" flex>{{ item.album }}</p>
+            </div>
+            <div class="tile-album" flex=40>
+              5.0
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </carousel-item>
+</ui-carousel>
