@@ -6,8 +6,26 @@
 
 var pg = require('pg');
 var url = require('url');
-var config = {};
+pg.defaults.ssl = true;
 
+// var params = url.parse(process.env.DATABASE_URL);
+// var auth = params.auth.split(':');
+
+var config = {
+  user: process.env.PG_USER, // || null, //env var: PGUSER
+  password: process.env.DATABASE_SECRET, // || null, //env var: PGPASSWORD
+  host: process.env.DATABASE_SERVER, // || 'localhost', // Server hosting the postgres database
+  port: process.env.DATABASE_PORT, //|| 5432, //env var: PGPORT
+  database: process.env.DATABASE_NAME, //|| 'musicnerdz', //env var: PGDATABASE
+  max: 10, // max number of clients in the pool
+  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+};
+
+
+module.exports = new pg.Pool(config);
+
+/** ORIGINAL POOL.JS CODE BELOW -> SWITCHED TO HARD CODED HEROKU FOR TESTING PURPOSES
+ * 
 if (process.env.DATABASE_URL) {
   // Heroku gives a url, not a connection object
   // https://github.com/brianc/node-pg-pool
@@ -31,10 +49,16 @@ if (process.env.DATABASE_URL) {
     password: process.env.DATABASE_SECRET || null, //env var: PGPASSWORD
     host: process.env.DATABASE_SERVER || 'localhost', // Server hosting the postgres database
     port: process.env.DATABASE_PORT || 5432, //env var: PGPORT
-    database: process.env.DATABASE_NAME || 'solo-project', //env var: PGDATABASE
+    database: process.env.DATABASE_NAME || 'musicnerdz', //env var: PGDATABASE
     max: 10, // max number of clients in the pool
     idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
   };
 }
 
+
 module.exports = new pg.Pool(config);
+
+END ORIGINAL CONFIG CODE
+**/
+
+

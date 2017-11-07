@@ -1,4 +1,5 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngMessages']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngMessages', 'ngYoutubeEmbed', 'jkAngularCarousel']);
+
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
@@ -21,14 +22,27 @@ myApp.config(function($routeProvider, $locationProvider) {
       templateUrl: '/views/templates/quizHistoricalEvents.html',
       controller: 'EventCreation as ec'
     })
+    .when('/admin/userMgmt', {
+      templateUrl: '/views/templates/adminUserMgmt.html',
+      controller: 'AdminUserController as auc'
+    })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
-      resolve: {
-        getuser : function(UserService){
-          return UserService.getuser();
-        }
-      }
+      // resolve: {
+      //   getuser : function(UserService){
+      //     return UserService.getuser();
+      //   }
+      // }
+    })
+    .when('/student/module', {
+      templateUrl: '/views/templates/lesson.html',
+      controller: 'StudentModuleController as smc',
+      // resolve: {
+      //   getuser: function (UserService) {
+      //     return UserService.getuser();
+      //   }
+      // }
     })
     .when('/info', {
       templateUrl: '/views/templates/info.html',
@@ -40,6 +54,6 @@ myApp.config(function($routeProvider, $locationProvider) {
       }
     })
     .otherwise({
-      redirectTo: 'home'
+      redirectTo: 'user'
     });
 });
