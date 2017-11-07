@@ -2,7 +2,7 @@
   "name": "MusicNerdz",
   "version": "1.0.0",
   "description": "MusicNerdz is a new startup to help disrupt the current education system. As The Client says, “School is boring” and he wants to make it more engaging and relevant to the scholars. MusicNerdz web application will associate music and lyrics with relevant historical events. Then it will provide the students with a small quiz to reflect on what they learned.",
-  "main": "index.js",
+  "main": "server/app.js",
   "scripts": {
     "test": "nodemon --delay 1 server/app.js",
     "start": "node server/app.js"
@@ -18,8 +18,13 @@
   },
   "homepage": "https://github.com/ericbfriday/MusicNerdz#readme",
   "dependencies": {
+    "ang-accordion": "^1.0.2",
     "angular": "^1.6.4",
+    "angular-animate": "^1.6.6",
+    "angular-aria": "^1.6.6",
     "angular-jk-carousel": "^0.5.0",
+    "angular-material": "^1.1.5",
+    "angular-messages": "^1.6.6",
     "angular-route": "^1.6.4",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.13.3",
