@@ -3,7 +3,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
 
     /** BEGIN HISTORICAL EVENT SECTION OF CODE */
 
-    sv.year = 2017; // date of new event - integer to match structure of DB
+    sv.year = {data: 2017}; // date of new event - integer to match structure of DB
     sv.dateRange = {data: []}; // date to search for existing events
     sv.description = {data: ''}; // description for new historical event
     sv.existingHistoricalEvent = {data: []}; // Existing events to be pulled from server for searching/filtering

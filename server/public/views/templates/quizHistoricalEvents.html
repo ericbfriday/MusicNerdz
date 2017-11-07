@@ -9,11 +9,11 @@
             <div layout="row" layout-fill>
                 <md-input-container flex="75">
                     <label>Title of Event</label>
-                    <input ng-model="ec.historicalEvent" md-select-on-focus>
+                    <input ng-model="ec.historicalEvent.data" md-select-on-focus>
                 </md-input-container>
                 <md-input-container flex="25">
                     <label>Event Year</label>
-                    <input ng-model="ec.year" md-select-on-focus>
+                    <input ng-model="ec.year.data" md-select-on-focus>
                 </md-input-container>
             </div>
             <div layout="row">
@@ -22,18 +22,26 @@
                     <textarea rows="4"></textarea>
                 </md-input-container>
             </div>
-            <div layout="row" layout-align="left center" flex layout-fill>
-                <md-input-container flex="50">
-                    <label>Historical Tags</label>
-                    <md-select name="correctAnswer" ng-model="ec.currentMCCA" required>
-                        <md-option ng-repeat="tag in ec.existingHistoricalTags.data" value="{{tag}}">{{tag}}</md-option>
-                    </md-select>
-                </md-input-container>
-            </div>
+
+            
             <div layout="row">
                 <md-chips flex="100" placeholder="Historical Themes" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag"
-                    ng-model="ec.existingHistoricalEventTags" md-removable="ec.removable"></md-chips>
+                    ng-model="ec.historicalEventTags.data" md-removable="ec.removable"></md-chips>
             </div>
+
+
+            <md-chips ng-model="ctrl.selectedVegetables" md-autocomplete-snap md-transform-chip="ctrl.transformChip($chip)" md-require-match="ctrl.autocompleteDemoRequireMatch">
+                <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="ctrl.searchText" md-items="item in ctrl.querySearch(ctrl.searchText)"
+                    md-item-text="item.name" placeholder="Search for a vegetable">
+                    <span md-highlight-text="ctrl.searchText">{{item.name}} :: {{item.type}}</span>
+                </md-autocomplete>
+                <md-chip-template>
+                    <span>
+                        <strong>{{$chip.name}}</strong>
+                        <em>({{$chip.type}})</em>
+                    </span>
+                </md-chip-template>
+            </md-chips>
         </md-card-content>
     </md-card>
 </section>

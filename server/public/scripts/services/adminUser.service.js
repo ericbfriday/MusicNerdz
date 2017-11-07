@@ -59,5 +59,5 @@ myApp.service('AdminUserService', function ($http) {
             console.log('error reason in getSchools -> ', reason);
         }));
     }; // end getSchools()
-
+    
 });
