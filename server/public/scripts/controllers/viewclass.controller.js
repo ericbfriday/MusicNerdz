@@ -23,7 +23,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         teachersId: '1'
     }
 
-    vm.students = vm.teacherService.students;
+    vm.students = [];
 
     vm.classes = [vm.class1, vm.class2];
 
