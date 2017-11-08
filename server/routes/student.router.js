@@ -63,4 +63,29 @@ router.post('/addStudent', function (req, res) {
   });
 });
 
+//get module info from database
+router.get('/getModule', function (req, res){
+  // connect to database
+  pool.connect(function (err, client, done){
+    //error handling
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } //END if connection error
+    else {
+      client.query('SELECT * FROM modules', function (quErr, resultObj) {
+        done();
+        //error handling
+        if (quErr) {
+          console.log('Query Error:', quErr);
+          res.sendStatus(500);
+        } //END if query error
+        else {
+          //send the list from the database to client side
+          res.send(resultObj.rows);
+        } //END else send
+      }); //END client.query
+    } //END else send query
+  });//END pool.connect
+});//END router GET
 module.exports = router;
