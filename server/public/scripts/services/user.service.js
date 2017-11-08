@@ -24,6 +24,17 @@ myApp.factory('UserService', function($http, $location){
       });
     },
 
+    getfeatured : function() {
+      $http
+      .get('/student/getModule')
+      .then(function (resp) {
+          userObject.featured = [resp.data[Math.floor(Math.random() * (resp.data.length))]];
+          userObject.featured.push(resp.data[Math.floor(Math.random() * (resp.data.length))]);
+          console.log(userObject.featured);
+          userObject.modules = resp.data;
+      }); //END $http GET
+    },
+
     logout : function() {
       console.log('UserService -- logout');
       $http.get('/user/logout').then(function(response) {

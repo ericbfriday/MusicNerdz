@@ -62,14 +62,14 @@
     .main-display {
         position: relative;
         z-index: 1;
-        padding: 0 75px;
+        padding: 0 0;
         margin: 25px 0;
         .tile {
             height: 275px;
-            width: 175px;
+            width: 255px;
             background-color: $white;
             line-height: normal;
-            margin: 0 20px;
+            margin: 0 0 25px;
             p {
                 margin: 0;
             }
@@ -106,6 +106,9 @@
                 }
             }
         }
+    }
+    .main-container {
+        overflow: visible;
     }
     .container {
         height: auto;
@@ -146,6 +149,10 @@
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     .main {
         width: 100%;
+        .main-container {
+            width: 95%;
+            margin: 25px auto;
+        }
         .main-carousel {
             width: 100%;
         }

@@ -291,16 +291,16 @@ input {
 .main .main-display {
   position: relative;
   z-index: 1;
-  padding: 0 75px;
+  padding: 0 0;
   margin: 25px 0;
 }
 /* line 67, ../sass/_musicnerdz_home.scss */
 .main .main-display .tile {
   height: 275px;
-  width: 175px;
+  width: 255px;
   background-color: white;
   line-height: normal;
-  margin: 0 20px;
+  margin: 0 0 25px;
 }
 /* line 73, ../sass/_musicnerdz_home.scss */
 .main .main-display .tile p {
@@ -346,55 +346,64 @@ input {
   max-height: 45px;
 }
 /* line 110, ../sass/_musicnerdz_home.scss */
+.main .main-container {
+  overflow: visible;
+}
+/* line 113, ../sass/_musicnerdz_home.scss */
 .main .container {
   height: auto;
 }
 
-/* line 116, ../sass/_musicnerdz_home.scss */
+/* line 119, ../sass/_musicnerdz_home.scss */
 .carousel-item img {
   max-width: 225px;
 }
-/* line 119, ../sass/_musicnerdz_home.scss */
+/* line 122, ../sass/_musicnerdz_home.scss */
 .carousel-item .main-display {
   padding: 0 175px;
 }
 
-/* line 126, ../sass/_musicnerdz_home.scss */
+/* line 129, ../sass/_musicnerdz_home.scss */
 .ui-carousel .carousel-prev .carousel-btn {
   left: inherit;
 }
-/* line 131, ../sass/_musicnerdz_home.scss */
+/* line 134, ../sass/_musicnerdz_home.scss */
 .ui-carousel .carousel-next .carousel-btn {
   right: 0;
 }
-/* line 135, ../sass/_musicnerdz_home.scss */
+/* line 138, ../sass/_musicnerdz_home.scss */
 .ui-carousel .carousel-btn {
   opacity: 1;
 }
-/* line 137, ../sass/_musicnerdz_home.scss */
+/* line 140, ../sass/_musicnerdz_home.scss */
 .ui-carousel .carousel-btn:active {
   color: black;
 }
-/* line 140, ../sass/_musicnerdz_home.scss */
+/* line 143, ../sass/_musicnerdz_home.scss */
 .ui-carousel .carousel-btn:hover {
   color: black;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  /* line 147, ../sass/_musicnerdz_home.scss */
+  /* line 150, ../sass/_musicnerdz_home.scss */
   .main {
     width: 100%;
   }
-  /* line 149, ../sass/_musicnerdz_home.scss */
+  /* line 152, ../sass/_musicnerdz_home.scss */
+  .main .main-container {
+    width: 95%;
+    margin: 25px auto;
+  }
+  /* line 156, ../sass/_musicnerdz_home.scss */
   .main .main-carousel {
     width: 100%;
   }
-  /* line 153, ../sass/_musicnerdz_home.scss */
+  /* line 160, ../sass/_musicnerdz_home.scss */
   .main .carousel-item .main-display {
     padding: 0;
   }
 
-  /* line 158, ../sass/_musicnerdz_home.scss */
+  /* line 165, ../sass/_musicnerdz_home.scss */
   .navbar .container a {
     font-size: 2.5rem;
     color: black;
