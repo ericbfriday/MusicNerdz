@@ -5,5 +5,4 @@ myApp
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
 
-
   });
