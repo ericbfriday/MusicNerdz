@@ -10,22 +10,17 @@ myApp.controller('EventCreation', function (ModuleCreation) {
     vm.existingHistoricalEventTags = ModuleCreation.existingHistoricalEventTags;
     vm.historicalEvent = ModuleCreation.historicalEvent;
     vm.historicalEventTags = ModuleCreation.historicalEventTags;
-
     vm.getHistoricalInfo = ModuleCreation.getHistoricalInfo;
 
     /** copy/paste of reference code below */
 
-    self.readonly = false;
-    self.selectedItem = null;
-    self.searchText = null;
-    self.querySearch = querySearch;
-    self.vegetables = loadVegetables();
-    self.selectedVegetables = [];
-    self.numberChips = [];
-    self.numberChips2 = [];
-    self.numberBuffer = '';
-    self.autocompleteDemoRequireMatch = true;
-    self.transformChip = transformChip;
-
-
+    vm.selectedItem = ModuleCreation.selectedItem;
+    vm.searchText = ModuleCreation.searchText;
+    vm.querySearch = ModuleCreation.querySearch;
+    vm.vegetables = ModuleCreation.vegetables;
+    vm.loadTags = ModuleCreation.loadTags;
+    vm.selectedVegetables = ModuleCreation.selectedVegetables;
+    vm.autocompleteDemoRequireMatch = ModuleCreation.autocompleteDemoRequireMatch;
+    vm.transformChip = ModuleCreation.transformChip;
+    vm.tags = ModuleCreation.tags;
 });

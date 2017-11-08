@@ -3,13 +3,33 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
 
     /** BEGIN HISTORICAL EVENT SECTION OF CODE */
 
-    sv.year = {data: 2017}; // date of new event - integer to match structure of DB
-    sv.dateRange = {data: []}; // date to search for existing events
-    sv.description = {data: ''}; // description for new historical event
-    sv.existingHistoricalEvent = {data: []}; // Existing events to be pulled from server for searching/filtering
-    sv.existingHistoricalEventTags = {data: ['Event A', 'Event B']}; // existing tags to be associated with new historical event
-    sv.historicalEvent = {data: ''}; // title for new historical events
-    sv.historicalEventTags = {data: ['Civil Rights', 'Womens Sufferage', 'Other Topic']}; // tags for new historical event
+    sv.year = {
+        data: 2017
+    }; // date of new event - integer to match structure of DB
+    sv.dateRange = {
+        data: []
+    }; // date to search for existing events
+    sv.description = {
+        data: ''
+    }; // description for new historical event
+    sv.existingHistoricalEvent = {
+        data: []
+    }; // Existing events to be pulled from server for searching/filtering
+    sv.existingHistoricalEventTags = {
+        data: []
+    }; // existing tags to be associated with new historical event
+    sv.historicalEvent = {
+        data: ''
+    }; // title for new historical events
+    sv.historicalEventTags = {
+        data: []
+    }; // tags for new historical event
+    sv.selectedItem = null;
+    sv.searchText = null;
+    sv.querySearch = querySearch;
+    sv.autocompleteDemoRequireMatch = true;
+    sv.transformChip = transformChip;
+    sv.tags = [];
 
     class Event {
         constructor(desc, year, tags) {
@@ -21,24 +41,65 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
 
     sv.makeEvent = function (desc, year, tags) {
         console.log('sv.makeEvent activated!');
-        sv.newEvent = new Event (desc, year, tags);
+        sv.newEvent = new Event(desc, year, tags);
         return $http.post('/moduleCreation/newHistoricalInfo')
-        .then((res) => {
-            console.log('loggin response in makeEvent -> ', res);
-        })
-        .then((err)=>{
-            console.log('loggin err in makeEvent -> ', err);
-        });
+            .then((res) => {
+                console.log('loggin response in makeEvent -> ', res);
+            })
+            .then((err) => {
+                console.log('loggin err in makeEvent -> ', err);
+            });
     };
 
-    // fetches existing historical events and tags for use searching for events
-    sv.getHistoricalInfo = function() {
+    // On load, fetches existing historical events and tags for use searching for events
+    sv.getHistoricalInfo = function () {
         console.log('sv.getHistoricalInfo activated!');
         return $http.get('/moduleCreation/existingHistoricalInfo')
-        .then((res)=> {
-            console.log('res in getHistoricalInfo ', res);
-        }).catch((err)=>{
-            console.log('catch err in getHistoricalInfo -', err);  
+            .then((res) => {
+                sv.existingHistoricalEventTags.data = res.data.rows;
+                console.log('sv.existingHistoricalEventTags -> ', sv.existingHistoricalEventTags.data);
+                sv.loadTags();
+            }).catch((err) => {
+                console.log('catch err in getHistoricalInfo -', err);
+            });
+    };
+
+    function transformChip(chip) {
+        // If it is an object, it's already a known chip
+        if (angular.isObject(chip)) {
+            return chip;
+        }
+        // Otherwise, create a new one
+        return {
+            name: chip,
+            type: 'new'
+        };
+    }
+
+    function querySearch(query) {
+        // console.log('in querySearch', query);
+        // console.log('loggin sv.tags -> ', sv.tags);
+        var results = query ? sv.tags.filter(createFilterFor(query)) : [];
+        return results;
+    }
+
+    function createFilterFor(query) {
+        var lowercaseQuery = angular.lowercase(query);
+        // console.log('logging lowercaseQuery -> ', lowercaseQuery);
+        return function filterFn(tag) {
+            return (tag._lowertype.indexOf(lowercaseQuery) === 0);
+        };
+    }
+
+    sv.loadTags = function () {
+        sv.tags = sv.existingHistoricalEventTags.data;
+        // console.log('tags ', sv.tags);
+
+        return sv.tags.map(function (tag) {
+            tag._lowertype = tag.type.toLowerCase();
+            tag.name = tag.type;
+            // console.log('tag ', tag);
+            return tag;
         });
     };
     /** END HISTORICAL EVENT SECTION OF CODE */
@@ -52,7 +113,9 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     // ca = correct answer (for multiple choice)
     // e = essay (like SA, but longer char limit)
 
-    sv.quiz = {data: []};
+    sv.quiz = {
+        data: []
+    };
     sv.currentQType = '';
     sv.questions = []; // holds questions to push into quiz
     sv.currentMCQ = ''; // MC Question
@@ -153,7 +216,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         console.log('logging sv.newQuiz in pushToquiz => ', sv.newQuiz);
         return $http.post('/moduleCreation/quiz', sv.quiz)
             .then((response) => {
-                console.log('Posted -> ', response );
+                console.log('Posted -> ', response);
                 sv.quiz.data.length = 0; // empties quiz item
             })
             .catch((e) => {
