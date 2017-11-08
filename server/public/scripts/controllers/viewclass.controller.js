@@ -1,9 +1,9 @@
-myApp.controller('ViewController', function ($http, UserService) {
+myApp.controller('ViewController', function ($http, TeacherService) {
     console.log('ViewController created');
     var vm = this;
-    vm.userService = UserService;
+    vm.teacherService = TeacherService;
 
-    //Misc classes fo testing
+    //Misc classes for testing
     vm.class1 = {
         name: 'firstHour',
         classId: '1'
@@ -22,6 +22,8 @@ myApp.controller('ViewController', function ($http, UserService) {
         classId: '',
         teachersId: '1'
     }
+
+    vm.students = vm.teacherService.students;
 
     vm.classes = [vm.class1, vm.class2];
 
@@ -45,5 +47,16 @@ myApp.controller('ViewController', function ($http, UserService) {
               });
           }
     };
+
+    //connect to service to make http call to get students by class
+    vm.getStudents = function (classId) {
+        console.log('in get students with class ID', classId);
+        TeacherService.getStudents(classId).then( function () {
+            vm.students = vm.teacherService.students;
+            console.log('students array after GET', vm.students);            
+        })
+    };
+
+    vm.getStudents(vm.class1.classId);
     console.log("vm.student", vm.student);
 });

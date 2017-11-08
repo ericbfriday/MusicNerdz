@@ -24,6 +24,7 @@
     "angular-aria": "^1.6.6",
     "angular-jk-carousel": "^0.5.0",
     "angular-material": "^1.1.5",
+    "angular-material-data-table": "^0.10.10",
     "angular-messages": "^1.6.6",
     "angular-route": "^1.6.4",
     "bcrypt": "^1.0.2",

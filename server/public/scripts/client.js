@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngMessages', 'angAccordion', 'ngYoutubeEmbed', 'jkAngularCarousel']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngMessages', 'angAccordion', 'ngYoutubeEmbed', 'jkAngularCarousel', 'md.data.table']);
 
 /// Routes ///
 myApp.config(function($routeProvider, $locationProvider) {
