@@ -1,0 +1,37 @@
+.collapsible-item .icon {
+  float: right;
+  height: 20px;
+  width: 20px;
+  font-size: 19px !important;
+  padding-right: 1px;
+}
+
+.collapsible-item .iconleft {
+  float: left !important;
+}
+
+.accordion-title {
+    cursor: pointer;
+}
+
+.accordion-title:focus {
+    outline: none;
+}
+
+.collapsible-item .body {
+  position: relative;
+  top: -4px;
+  max-height: 0;
+  overflow: hidden;
+  border-top: 0;
+  z-index: -1;
+  -webkit-transition: max-height 0.5s ease;
+     -moz-transition: max-height 0.5s ease;
+       -o-transition: max-height 0.5s ease;
+          transition: max-height 0.5s ease;
+}
+
+.collapsible-item.open .body {
+  max-height: 1000px;
+  z-index: 1;
+}
