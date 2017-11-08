@@ -6,7 +6,28 @@ const bodyParser = require('body-parser');
 var quiz = {};
 var questions = [];
 
-router.post('/quiz', (req, res, next) => {
+class Event {
+  constructor(title, desc, year, htags) {
+    this.title = title;
+    this.desc = desc;
+    this.year = year;
+    this.htags = htags;
+  }
+}
+
+router.post('/newHistoricalEvent', function (req, res, next) {
+  let title = req.body.title;
+  let desc = req.body.desc;
+  let year = req.body.year;
+  let hTagsName = req.body.hTags[0].name;
+  let hTagsType = req.body.hTags[0].type;
+  let nEvent = new Event (title, desc, year, hTagsName);
+  console.log('logging newHistoricalEvent ', nEvent);
+
+  res.sendStatus(200);
+});
+
+router.post('/quiz', function (req, res, next) {
 
   questions = req.body.data[0].questions[0];
   let q = questions.q;
@@ -49,7 +70,7 @@ router.get('/existingHistoricalInfo', function (req, res, next) {
       res.sendStatus(500);
     }
     // fetches all of the tags to be put into chips at historical events
-    client.query("SELECT * FROM tags;", function (err, result) { 
+    client.query("SELECT * FROM tags;", function (err, result) {
       client.end();
       if (err) {
         console.log("Error inserting data: ", err);

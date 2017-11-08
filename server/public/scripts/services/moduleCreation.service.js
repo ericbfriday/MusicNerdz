@@ -4,35 +4,35 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     /** BEGIN HISTORICAL EVENT SECTION OF CODE */
 
     sv.year = {data: 2017}; // date of new event - integer to match structure of DB
-    sv.dateRange = {data: []}; // date to search for existing events
-    sv.description = {data: ''}; // description for new historical event
+    sv.title = {data: ''};
+    sv.desc = {data: ''}; // description for new historical event
+    sv.hTags = {data: []}; // tags for new historical event
     sv.existingHistoricalEvent = {data: []}; // Existing events to be pulled from server for searching/filtering
-    sv.existingHistoricalEventTags = {data: []}; // existing tags to be associated with new historical event
-    sv.historicalEvent = {data: ''}; // title for new historical events
-    sv.historicalEventTags = {data: []}; // tags for new historical event
+    sv.existingHistoricalEventTags = {data: []}; // existing tags to be associated with new historical event. Is this necessary?
     sv.selectedItem = null;
     sv.searchText = null;
     sv.querySearch = querySearch;
-    sv.requireMatch = true; // temporarily true until route set up to allow insertion and association of new tags
+    sv.requireMatch = true; // temporarily 'true' until route set up to allow insertion and association of new tags
     sv.transformChip = transformChip;
     sv.tags = [];
 
     class Event {
-        constructor(desc, year, tags) {
-            this.description = desc;
+        constructor(title, desc, year, htags) {
+            this.title = title;
+            this.desc = desc;
             this.year = year;
-            this.tags = tags;
+            this.hTags = htags; // hTags are the tags assigned to an event by the user.
         }
     } // end Event class
 
-    sv.makeEvent = function (desc, year, tags) {
+    sv.makeEvent = function (title, desc, year, hTags) {
         console.log('sv.makeEvent activated!');
-        sv.newEvent = new Event(desc, year, tags);
-        return $http.post('/moduleCreation/newHistoricalInfo')
+        sv.newEvent = new Event(title, desc, year, hTags);
+        return $http.post('/moduleCreation/newHistoricalEvent', sv.newEvent)
             .then((res) => {
                 console.log('loggin response in makeEvent -> ', res);
             })
-            .then((err) => {
+            .catch((err) => {
                 console.log('loggin err in makeEvent -> ', err);
             });
     };
