@@ -79,8 +79,8 @@ router.get('/getModule', function (req, res){
           //send the list from the database to client side
           res.send(resultObj.rows);
         } //END else send
-      }) //END client.query
+      }); //END client.query
     } //END else send query
-  })//END pool.connect
-})//END router GET
+  });//END pool.connect
+});//END router GET
 module.exports = router;

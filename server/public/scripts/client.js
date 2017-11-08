@@ -65,7 +65,6 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     .otherwise({
       redirectTo: 'user'
     });
-
   $mdThemingProvider.theme('default').primaryPalette('grey').accentPalette('orange', {
     'default': '300'
   });
