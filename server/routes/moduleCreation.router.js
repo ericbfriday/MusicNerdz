@@ -48,7 +48,8 @@ router.get('/existingHistoricalInfo', function (req, res, next) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     }
-    client.query("SELECT * FROM tags;", function (err, result) {
+    // fetches all of the tags to be put into chips at historical events
+    client.query("SELECT * FROM tags;", function (err, result) { 
       client.end();
       if (err) {
         console.log("Error inserting data: ", err);

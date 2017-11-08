@@ -3,31 +3,17 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
 
     /** BEGIN HISTORICAL EVENT SECTION OF CODE */
 
-    sv.year = {
-        data: 2017
-    }; // date of new event - integer to match structure of DB
-    sv.dateRange = {
-        data: []
-    }; // date to search for existing events
-    sv.description = {
-        data: ''
-    }; // description for new historical event
-    sv.existingHistoricalEvent = {
-        data: []
-    }; // Existing events to be pulled from server for searching/filtering
-    sv.existingHistoricalEventTags = {
-        data: []
-    }; // existing tags to be associated with new historical event
-    sv.historicalEvent = {
-        data: ''
-    }; // title for new historical events
-    sv.historicalEventTags = {
-        data: []
-    }; // tags for new historical event
+    sv.year = {data: 2017}; // date of new event - integer to match structure of DB
+    sv.dateRange = {data: []}; // date to search for existing events
+    sv.description = {data: ''}; // description for new historical event
+    sv.existingHistoricalEvent = {data: []}; // Existing events to be pulled from server for searching/filtering
+    sv.existingHistoricalEventTags = {data: []}; // existing tags to be associated with new historical event
+    sv.historicalEvent = {data: ''}; // title for new historical events
+    sv.historicalEventTags = {data: []}; // tags for new historical event
     sv.selectedItem = null;
     sv.searchText = null;
     sv.querySearch = querySearch;
-    sv.autocompleteDemoRequireMatch = true;
+    sv.requireMatch = true; // temporarily true until route set up to allow insertion and association of new tags
     sv.transformChip = transformChip;
     sv.tags = [];
 
@@ -56,15 +42,15 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         console.log('sv.getHistoricalInfo activated!');
         return $http.get('/moduleCreation/existingHistoricalInfo')
             .then((res) => {
-                sv.existingHistoricalEventTags.data = res.data.rows;
-                console.log('sv.existingHistoricalEventTags -> ', sv.existingHistoricalEventTags.data);
-                sv.loadTags();
+                sv.existingHistoricalEventTags.data = res.data.rows; // associates tags to variable for chip manipulation
+                // console.log('sv.existingHistoricalEventTags -> ', sv.existingHistoricalEventTags.data);
+                sv.loadTags(); // calls tags for association to chips
             }).catch((err) => {
                 console.log('catch err in getHistoricalInfo -', err);
             });
     };
 
-    function transformChip(chip) {
+    function transformChip (chip) { // Used for chip functionality
         // If it is an object, it's already a known chip
         if (angular.isObject(chip)) {
             return chip;
@@ -72,32 +58,35 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         // Otherwise, create a new one
         return {
             name: chip,
-            type: 'new'
+            type: 'new' // THIS RETURN OF TYPE: 'NEW' IS CURRENTLY CAUSING CONFUSION/CONFLICT WITH 
+                        // MAP FUNCTION. THIS IS BECAUSE ALL ISSUES ARE CURRENTLY LABELLED AS 'TYPE'
+                        // IN THE DB. MUST ADDRESS GOING FORWARD.
         };
     }
 
-    function querySearch(query) {
+    function querySearch (query) { // Used for chip functionality
         // console.log('in querySearch', query);
         // console.log('loggin sv.tags -> ', sv.tags);
         var results = query ? sv.tags.filter(createFilterFor(query)) : [];
         return results;
     }
 
-    function createFilterFor(query) {
+    function createFilterFor (query) { // Used for chip functionality
         var lowercaseQuery = angular.lowercase(query);
         // console.log('logging lowercaseQuery -> ', lowercaseQuery);
-        return function filterFn(tag) {
+        return function filterFn (tag) {
             return (tag._lowertype.indexOf(lowercaseQuery) === 0);
         };
     }
 
-    sv.loadTags = function () {
+    sv.loadTags = function () { // Used for chip functionality
         sv.tags = sv.existingHistoricalEventTags.data;
         // console.log('tags ', sv.tags);
 
         return sv.tags.map(function (tag) {
             tag._lowertype = tag.type.toLowerCase();
-            tag.name = tag.type;
+            tag.name = tag.type;    // ONLY NEEDED BECAUSE THE transformChip() CURRENTLY ASSIGNS TYPE 'NEW'
+                                    // TO ALL USER-CREATED CHIPS. MUST ADDRESS GOING FORWARD.
             // console.log('tag ', tag);
             return tag;
         });
@@ -113,9 +102,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     // ca = correct answer (for multiple choice)
     // e = essay (like SA, but longer char limit)
 
-    sv.quiz = {
-        data: []
-    };
+    sv.quiz = {data: []};
     sv.currentQType = '';
     sv.questions = []; // holds questions to push into quiz
     sv.currentMCQ = ''; // MC Question
@@ -240,8 +227,6 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         }, function () { // status updated and logged if form is not submitted.
             sv.status = 'Form not submitted.';
             console.log(sv.status);
-
         });
     };
-
 });

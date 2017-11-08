@@ -17,10 +17,9 @@ myApp.controller('EventCreation', function (ModuleCreation) {
     vm.selectedItem = ModuleCreation.selectedItem;
     vm.searchText = ModuleCreation.searchText;
     vm.querySearch = ModuleCreation.querySearch;
-    vm.vegetables = ModuleCreation.vegetables;
     vm.loadTags = ModuleCreation.loadTags;
     vm.selectedVegetables = ModuleCreation.selectedVegetables;
-    vm.autocompleteDemoRequireMatch = ModuleCreation.autocompleteDemoRequireMatch;
+    vm.requireMatch = ModuleCreation.requireMatch;
     vm.transformChip = ModuleCreation.transformChip;
     vm.tags = ModuleCreation.tags;
 });

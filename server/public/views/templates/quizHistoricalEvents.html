@@ -22,28 +22,6 @@
                     <textarea rows="4"></textarea>
                 </md-input-container>
             </div>
-
-            <!-- <div layout="row">
-                <md-chips flex="100" placeholder="Historical Themes" delete-button-label="Remove Tag" delete-hint="Press delete to remove tag"
-                    ng-model="ec.historicalEventTags.data" md-removable="ec.removable"></md-chips>
-            </div> -->
-
-
-            <!-- <md-chips ng-model="ec.selectedVegetables" md-autocomplete-snap md-transform-chip="ec.transformChip($chip)" md-require-match="ec.autocompleteDemoRequireMatch">
-                <md-autocomplete md-selected-item="ec.selectedItem" md-search-text="ec.searchText" md-items="item in ec.querySearch(ec.searchText)"
-                    md-item-text="item.name" placeholder="Search for a vegetable">
-                    <span md-highlight-text="ec.searchText">{{item.name}} :: {{item.type}}</span>
-                </md-autocomplete>
-                <md-chip-template>
-                    <span>
-                        <strong>{{$chip.name}}</strong>
-                        <em>({{$chip.type}})</em>
-                    </span>
-                </md-chip-template>
-            </md-chips> -->
-
-
-            <!-- My butering of the code below -->
             <md-chips ng-model="ec.historicalEventTags.data" md-autocomplete-snap md-transform-chip="ec.transformChip($chip)" md-require-match="ec.requireMatch">
                 <md-autocomplete md-selected-item="ec.selectedItem" md-search-text="ec.searchText" md-items="item in ec.querySearch(ec.searchText)"
                     md-item-text="item.name" placeholder="Search for an Issue">
@@ -55,8 +33,6 @@
                     </span>
                 </md-chip-template>
             </md-chips>
-            <!-- End butchered code -->
-
         </md-card-content>
     </md-card>
 </section>
