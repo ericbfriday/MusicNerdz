@@ -1,4 +1,5 @@
 <section ng-init="auc.getSchools()">
+    <div ng-include="'views/partials/nav.html'"></div>
     <div layout="column">
         <md-card>
             <md-card-title>
@@ -43,9 +44,9 @@
                             <input ng-model="auc.teacherFName" md-select-on-focus required>
                         </md-input-container>
                         <md-input-container flex="100">
-                                <label for="teacherLName">Last Name:</label>
-                                <input ng-model="auc.teacherLName" md-select-on-focus required>
-                            </md-input-container>
+                            <label for="teacherLName">Last Name:</label>
+                            <input ng-model="auc.teacherLName" md-select-on-focus required>
+                        </md-input-container>
                         <md-input-container flex="100">
                             <label for="teacherEmail">Email:</label>
                             <input ng-model="auc.teacherEmail" md-select-on-focus required>

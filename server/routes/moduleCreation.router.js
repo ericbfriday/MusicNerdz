@@ -8,6 +8,7 @@ var questions = []; // questions for `questions` table
 var newTags = []; // all 'new' tags for insertion into `tags` table & `oldTags` variable
 var oldTags = []; // all 'old' tags for insertion into `allTags` variable
 var allTags = []; // all tags for insertion into `history_tags` tables. Receives `newTags` and `oldTags` items.
+var moduleID = 0;
 
 /**
 Steps for module creation insert.
@@ -80,6 +81,9 @@ router.post('/songCreation', function (req, res, next) {
           console.log("Error inserting data: ", err);
           res.sendStatus(500);
         } else {
+          moduleID = result.rows[0].id; 
+          // sets router variable moduleId to ID of last inserted mosule for association to other insert statements.
+          console.log('moduleID -> ', moduleID);
           res.status(203).send(result);
         }
       });

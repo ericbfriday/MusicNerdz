@@ -1,4 +1,5 @@
 <section ng-init="ec.getHistoricalInfo()">
+        <div ng-include="'views/partials/nav.html'"></div>
     <md-card>
         <md-card-title>
             <md-card-title-text>
@@ -34,7 +35,7 @@
                         </span>
                     </md-chip-template>
                 </md-chips>
-                <md-button class="md-primary" ng-submit ng-click="ec.makeEvent(ec.title, ec.desc, ec.year, ec.hTags)">Submit & Move On to Quiz Questions</md-button>
+                <md-button class="md-primary md-raised" ng-submit ng-click="ec.makeEvent(ec.title, ec.desc, ec.year, ec.hTags)">Submit & Move On to Quiz Questions</md-button>
             </form>
         </md-card-content>
     </md-card>
