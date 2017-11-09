@@ -27,7 +27,7 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       resolve: {
         getuser : function(UserService){
           return UserService.getfeatured();
-        }
+        },
       }
     })
     .when('/student/module', {
