@@ -40,10 +40,21 @@ myApp.controller('ViewController', function ($http, TeacherService) {
 
     vm.classes = [];
 
+    //add class
+    vm.addClass = function () {
+        console.log('in add class', vm.class);
+        TeacherService.addClass(vm.class).then( function() {
+            console.log('addClass function after .then');
+            vm.classes = [];
+            vm.getClasses(vm.teacher);
+        })
+
+    };
+    
     //send student info to server for addition to db
-    vm.addStudent = function (classinfo) {
-        console.log(classinfo);
-        vm.student.classesId = classinfo;
+    vm.addStudent = function (classId) {
+        console.log(classId);
+        vm.student.classesId = classId;
         console.log("vm.student", vm.student);
         if (vm.student.email === '' || vm.student.number === '') {
             vm.message = "Please complete all fields!";
