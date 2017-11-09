@@ -22,11 +22,11 @@
                 </md-input-container>
             </div>
             <div layout="row">
-                    <md-input-container flex="100">
-                        <label>Album Art URL</label>
-                        <input ng-model="sc.songArt.data" md-select-on-focus>
-                    </md-input-container>
-                </div>
+                <md-input-container flex="100">
+                    <label>Album Art URL</label>
+                    <input ng-model="sc.songArt.data" md-select-on-focus>
+                </md-input-container>
+            </div>
             <div layout="row">
                 <md-input-container flex="100">
                     <label>Youtube Video URL</label>
@@ -36,13 +36,17 @@
             <div layout="row">
                 <md-input-container flex="100">
                     <label>Description</label>
+                    <pre>
                     <textarea ng-model="sc.songDesc.data" rows="4" md-select-on-focus></textarea>
+                </pre>
                 </md-input-container>
             </div>
             <div layout="row">
                 <md-input-container flex="100">
                     <label>Lyrics</label>
+                    <pre>
                     <textarea ng-model="sc.songLyrics.data" rows="20" md-select-on-focus></textarea>
+                    </pre>
                 </md-input-container>
             </div>
         </div>
