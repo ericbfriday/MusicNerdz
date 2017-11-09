@@ -2,30 +2,44 @@ myApp.controller('ViewController', function ($http, TeacherService) {
     console.log('ViewController created');
     var vm = this;
     vm.teacherService = TeacherService;
+    vm.userObject = TeacherService.userObject;
 
-    //Misc classes for testing
-    vm.class1 = {
-        name: 'firstHour',
-        classId: '1'
+    //just for testing
+    vm.teacher = '12';
+
+    function Class (id, title, code) {
+        this.id = id;
+        this.title = title;
+        this.code = code;
+        this.students = [];
     };
 
-    vm.class2 = {
-        name: 'secondHour',
-        classId: '2'
+    function Student (first, last, email) {
+        this.first = first;
+        this.last = last;
+        this.email = email;
     };
 
+    //create new class data
+    vm.class = {
+        id: '',
+        title: '',
+        code: '',
+        teacherId: '',
+        students: []
+    };
+
+    //create new student data
     vm.student = {
         first: '',
         last: '',
         email: '',
         number: '',
         classId: '',
-        teachersId: '1'
+        teachersId: '12'
     }
 
-    vm.students = [];
-
-    vm.classes = [vm.class1, vm.class2];
+    vm.classes = [];
 
     //send student info to server for addition to db
     vm.addStudent = function (classinfo) {
@@ -48,6 +62,36 @@ myApp.controller('ViewController', function ($http, TeacherService) {
           }
     };
 
+    //retrieve class list from db by teacher
+    vm.getClasses = function (teacherId) {
+        TeacherService.getClasses(teacherId).then( function () {
+            vm.returnedClasses = vm.teacherService.classes;
+            var classMap = {};
+            for (var i = 0; i < vm.returnedClasses.length; i++) {
+                var classId = vm.returnedClasses[i].id;
+                var title = vm.returnedClasses[i].title;
+                var code = vm.returnedClasses[i].code;
+                var first = vm.returnedClasses[i].first;
+                var last = vm.returnedClasses[i].last;
+                var email = vm.returnedClasses[i].email;
+
+                var newStudent = new Student(first, last, email);
+                
+                var classObj = classMap[classId];
+
+                if (classObj == null) {
+                    var newClass = new Class(classId, title, code);
+                    classMap[classId] = newClass;                    
+                    newClass.students.push(newStudent);
+                    vm.classes.push(newClass);
+                } else {
+                    classObj.students.push(newStudent);
+                };  
+            };
+            console.log('class and students after GET', vm.classes);            
+        });
+    };
+
     //connect to service to make http call to get students by class
     vm.getStudents = function (classId) {
         console.log('in get students with class ID', classId);
@@ -57,6 +101,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         })
     };
 
-    vm.getStudents(vm.class1.classId);
+    vm.getClasses(vm.teacher);
+
     console.log("vm.student", vm.student);
 });

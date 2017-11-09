@@ -3,8 +3,8 @@
     <p>
         In viewclass
     </p>
-    <ang-accordion>
-        <collapsible-item item-title="1st Period">
+    <ang-accordion ng-repeat="class in vc.classes">
+        <collapsible-item item-title={{class.title}}>
             <div>
                 <md-table-container>
                     <table md-table>
@@ -14,7 +14,7 @@
                             <th md-column >Student Email</th>
                         </thead>
                         <tbody md-body>
-                            <tr ng-repeat="student in vc.students | orderBy: lastName">
+                            <tr ng-repeat="student in class.students | orderBy: lastName">
                                 <td md-cell>{{student.last}}</td>                                    
                                 <td md-cell>{{student.first}}</td>
                                 <td md-cell>{{student.email}}</td>
@@ -40,7 +40,7 @@
                 <md-button class="addStudBtn" ng-click="vc.addStudent(vc.selectedClass)">+ Add Student</md-button>
             </div>
         </collapsible-item>
-        <collapsible-item item-title="2nd Period">
+        <!-- <collapsible-item item-title="2nd Period">
             <div>
                 <md-table-container>
                     <table md-table>
@@ -75,7 +75,7 @@
                   </md-input-container>
                 <md-button class="addStudBtn" ng-click="vc.addStudent(vc.selectedClass)">+ Add Student</md-button>
             </div>
-        </collapsible-item>
+        </collapsible-item> -->
     </ang-accordion>
     <md-button class="addClsBtn">+ Add Class</md-button>
 </div>
