@@ -1,4 +1,13 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngMessages', 'angAccordion', 'ngYoutubeEmbed', 'md.data.table', 'ui.carousel']);
+var myApp = angular.module('myApp', [
+  'ngRoute',
+  'ngMaterial',
+  'ngSanitize',
+  'ngMessages',
+  'angAccordion',
+  'ngYoutubeEmbed',
+  'md.data.table',
+  'ui.carousel'
+]);
 
 /// Routes ///
 myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
@@ -6,9 +15,9 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
   console.log('myApp -- config');
   $routeProvider
     .when('/register', {
-      templateUrl: '/views/templates/register.html',
-      controller: 'LoginController as lc'
-    })
+    templateUrl: '/views/templates/register.html',
+    controller: 'LoginController as lc'
+  })
     .when('/admin/songCreation', {
       templateUrl: '/views/templates/moduleSongCreation.html',
       controller: 'SongCreation as sc'
@@ -25,15 +34,21 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/adminUserMgmt.html',
       controller: 'AdminUserController as auc'
     })
+    .when('/home', {
+      templateUrl: '/views/templates/home.html',
+      controller: 'UserController as uc',
+      resolve: {
+      }
+    })
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
       resolve: {
-        getfeatured : function(UserService){
+        getfeatured: function (UserService) {
           console.log('resolve featured modules');
           return UserService.getfeatured();
         },
-        getMod : function(StudentService) {
+        getMod: function (StudentService) {
           console.log('resolve all modules');
           return StudentService.getMod();
         }
@@ -42,40 +57,28 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     .when('/student/module', {
       templateUrl: '/views/templates/lesson.html',
       controller: 'StudentModuleController as smc',
-      // resolve: {
-      //   getuser: function (UserService) {
-      //     return UserService.getuser();
-      //   }
-      // }
+      // resolve: {   getuser: function (UserService) {     return
+      // UserService.getuser();   } }
     })
     .when('/student/grades', {
       templateUrl: '/views/templates/studentGrade.html',
       controller: 'StudentGradeController as sgc',
-      // resolve: {
-      //   getuser: function (UserService) {
-      //     return UserService.getuser();
-      //   }
-      // }
+      // resolve: {   getuser: function (UserService) {     return
+      // UserService.getuser();   } }
     })
     .when('/info', {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController',
-      // resolve: {
-      //   getuser : function(UserService){
-      //     return UserService.getuser();
-      //   }
-      // }
+      // resolve: {   getuser : function(UserService){     return
+      // UserService.getuser();   } }
     })
     .when('/viewclass', {
       templateUrl: '/views/templates/viewclass.html',
-      controller: 'ViewController as vc',
-      
+      controller: 'ViewController as vc'
     })
-    .otherwise({
-      redirectTo: 'user'
-    });
-  $mdThemingProvider.theme('default').primaryPalette('grey').accentPalette('orange', {
-    'default': '300'
-  });
+    .otherwise({redirectTo: 'user'});
+  $mdThemingProvider
+    .theme('default')
+    .primaryPalette('grey')
+    .accentPalette('orange', {'default': '300'});
 });
-
