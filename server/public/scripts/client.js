@@ -1,7 +1,7 @@
-var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngMessages', 'angAccordion', 'ngYoutubeEmbed', 'jkAngularCarousel', 'md.data.table']);
+var myApp = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngSanitize', 'ngMessages', 'angAccordion', 'ngYoutubeEmbed', 'jkAngularCarousel', 'md.data.table', 'ui.carousel']);
 
 /// Routes ///
-myApp.config(function($routeProvider, $locationProvider) {
+myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config');
   $routeProvider
@@ -26,7 +26,7 @@ myApp.config(function($routeProvider, $locationProvider) {
       controller: 'UserController as uc',
       resolve: {
         getuser : function(UserService){
-          return UserService.getuser();
+          return UserService.getfeatured();
         }
       }
     })
@@ -39,14 +39,23 @@ myApp.config(function($routeProvider, $locationProvider) {
       //   }
       // }
     })
+    .when('/student/grades', {
+      templateUrl: '/views/templates/studentGrade.html',
+      controller: 'StudentGradeController as sgc',
+      // resolve: {
+      //   getuser: function (UserService) {
+      //     return UserService.getuser();
+      //   }
+      // }
+    })
     .when('/info', {
       templateUrl: '/views/templates/info.html',
       controller: 'InfoController',
-      resolve: {
-        getuser : function(UserService){
-          return UserService.getuser();
-        }
-      }
+      // resolve: {
+      //   getuser : function(UserService){
+      //     return UserService.getuser();
+      //   }
+      // }
     })
     .when('/viewclass', {
       templateUrl: '/views/templates/viewclass.html',
@@ -56,5 +65,8 @@ myApp.config(function($routeProvider, $locationProvider) {
     .otherwise({
       redirectTo: 'user'
     });
+  $mdThemingProvider.theme('default').primaryPalette('grey').accentPalette('orange', {
+    'default': '300'
+  });
 });
 

@@ -21,21 +21,43 @@ router.post('/addStudent', function (req, res) {
         if(err) {
           console.log("Error connecting: ", err);
           res.sendStatus(500);
+        } else {
+          client.query(query, values, function (quErr, resultObj) {
+            done();
+            if (quErr) {
+              console.log("Error connecting: ", quErr);
+              res.sendStatus(500);
+            } else {
+              res.sendStatus(201);
+            };
+          });
         }
-        client.query(query,
-            [saveStudent.fName, saveStudent.lName, saveStudent.email, saveStudent.number, saveStudent.classId],
-            function (err, result) {
-              client.end();
-    
-              if(err) {
-                console.log("Error inserting data: ", err);
-                res.sendStatus(500);
-              } else {
-                res.sendStatus(201);
-              }
-            });
-      });
+    });
 });
 
-
+//get module info from database
+router.get('/getModule', function (req, res){
+  // connect to database
+  pool.connect(function (err, client, done){
+    //error handling
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } //END if connection error
+    else {
+      client.query('SELECT * FROM modules', function (quErr, resultObj) {
+        done();
+        //error handling
+        if (quErr) {
+          console.log('Query Error:', quErr);
+          res.sendStatus(500);
+        } //END if query error
+        else {
+          //send the list from the database to client side
+          res.send(resultObj.rows);
+        } //END else send
+      }); //END client.query
+    } //END else send query
+  });//END pool.connect
+});//END router GET
 module.exports = router;

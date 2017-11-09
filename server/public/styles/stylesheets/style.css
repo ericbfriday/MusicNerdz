@@ -1,109 +1,144 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   font-family: 'Lato';
-  font-size: 14px;
 }
 
 .instructions .container h1 {
-  font-size: 32px;
-  font-weight: 600;
+    font-size: 32px;
+    font-weight: 600;
 }
 
 .instructions {
-  background-color: #333333;
-  color: #DDDDDD;
-  padding: 15px;
+    background-color: #333333;
+    color: #DDDDDD;
+    padding: 15px;
 }
 
 #entryForm {
-  margin-top: 14px;
+    margin-top: 14px;
 }
 
 #container {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
-.container p{
-  margin-top : 14px;
+.container p {
+  margin-top: 14px;
 }
 
 .message {
-  padding: 10px 0;
+    padding: 10px 0;
 }
 
 .message p {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 
 .message:nth-child(odd) {
-   background-color: #eeeeee;
+  background-color: #eeeeee;
 }
 
 .message:nth-child(even) {
-  background-color: #f8f8f8;
+    background-color: #f8f8f8;
 }
 
-.btn-danger{
+.btn-danger {
   margin-left: 10px;
 }
 
 .navbar {
-  background-color: #333333;
-  width: 100%;
-  border-radius: 0px;
+    background-color: #333333;
+    width: 100%;
+    border-radius: 0px;
 }
 
 .addStudBtn {
-  background-color: hotpink;
+    background-color: hotpink;
 }
 
 .addClsBtn {
-  background-color: hotpink;
+    background-color: hotpink;
 }
 
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 li {
-  float: left;
+    float: left;
 }
 
 li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
+
 /* Change the link color to #111 (black) on hover */
+
 li a:hover {
-  text-decoration: underline;
-  color: #eee;
+    text-decoration: underline;
+    color: #eee;
 }
+
 
 /* Student module */
 
+
 /* increase size of info in module */
+
 .sizeMd {
-  font-size: 2.2rem;
-}
-.sizeLg,
-.md-tab {
-   font-size: 2.5rem;
-}
-  p,
-.sameAsP {
-  font-size: 1.8rem;
+    font-size: 2.2rem;
 }
 
-.fixed{
+.sizeLg,
+.md-tab {
+  font-size: 2.5rem;
+}
+
+.sameAsP {
+    font-size: 1.8rem;
+}
+
+
+/* set bg and text color for song info in module */
+.fixed {
   background-color: #afafaf;
   color: white;
 }
- 
+
+
+/* fix tabs on scroll in module */
+md-tabs.md-dynamic-height md-tabs-content-wrapper {
+  overflow: scroll;
+  height: 700px;
+}
+
+
+/* Student Grades */
+
+
+/* add margins to student grading view */
+.gradeMarg {
+  margin: 15px;
+  padding: 10px;
+  /* text-align: center; */
+}
+
+md-card-title {
+  background: linear-gradient( rgb(255, 247, 233), white, rgb(255, 247, 233))
+  ;
+  color: #535250;
+}
+
+.orange {
+  color: #fca311
+}
