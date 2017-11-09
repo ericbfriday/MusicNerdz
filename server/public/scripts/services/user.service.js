@@ -1,47 +1,80 @@
-myApp.factory('UserService', function($http, $location){
-  console.log('UserService Loaded');
+myApp
+  .factory('UserService', function ($http, $location, $mdDialog) {
+    console.log('UserService Loaded');
 
-  var userObject = {};
+    var userObject = {};
 
-  return {
-    userObject : userObject,
+    return {
+      userObject: userObject,
 
-    getuser : function(){
-      console.log('UserService -- getuser');
-      $http.get('/user').then(function(response) {
-          if(response.data.username) {
+      getuser: function () {
+        console.log('UserService -- getuser');
+        $http
+          .get('/user')
+          .then(function (response) {
+            if (response.data.username) {
               // user has a curret session on the server
               userObject.userName = response.data.username;
               console.log('UserService -- getuser -- User Data: ', userObject.userName);
-          } else {
+            } else {
               console.log('UserService -- getuser -- failure');
               // user has no session, bounce them back to the login page
               $location.path("/home");
-          }
-      },function(response){
-        console.log('UserService -- getuser -- failure: ', response);
-        $location.path("/home");
-      });
-    },
+            }
+          }, function (response) {
+            console.log('UserService -- getuser -- failure: ', response);
+            $location.path("/home");
+          });
+      },
 
-    getfeatured : function() {
-      $http
-      .get('/student/getModule')
-      .then(function (resp) {
-        
-        for(var i = resp.data.length;i>3;i--){
-          userObject.featured = resp.data;
-          userObject.featured.splice(Math.floor(Math.random()*resp.data.length), 1);
-        }
-      }); //END $http GET
-    },
+      getfeatured: function () {
+        $http
+          .get('/student/getModule')
+          .then(function (resp) {
 
-    logout : function() {
-      console.log('UserService -- logout');
-      $http.get('/user/logout').then(function(response) {
-        console.log('UserService -- logout -- logged out');
-        $location.path("/home");
-      });
-    }
-  };
-});
+            for (var i = resp.data.length; i > 3; i--) {
+              userObject.featured = resp.data;
+              userObject
+                .featured
+                .splice(Math.floor(Math.random() * resp.data.length), 1);
+            }
+          }); //END $http GET
+      },
+
+      loadmodule: function (id, ev) {
+        $http
+          .get('/user')
+          .then(function (response) {
+            if (response.data.username) {
+              // user has a curret session on the server
+              userObject.userName = response.data.username;
+              console.log('UserService -- getuser -- User Data: ', userObject.userName);
+            } else {
+              // user has no session, bounce them back to the login page
+              $mdDialog.show({
+                controller: 'LoginController',
+                templateUrl: '../../views/templates/home.html',
+                parent: angular.element(document.body),
+                targetEvent: ev,
+                clickOutsideToClose:true,
+                fullscreen: this.customFullscreen // Only for -xs, -sm breakpoints.
+              });
+            }
+          }, function (response) {
+            console.log('UserService -- getuser -- failure: ', response);
+            // $location.path("/student/module/" + id);
+            console.log('id here', id);
+          });
+      },
+
+      logout: function () {
+        console.log('UserService -- logout');
+        $http
+          .get('/user/logout')
+          .then(function (response) {
+            console.log('UserService -- logout -- logged out');
+            $location.path("/home");
+          });
+      }
+    };
+  });

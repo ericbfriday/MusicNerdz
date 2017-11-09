@@ -5,10 +5,6 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
   $locationProvider.hashPrefix('');
   console.log('myApp -- config');
   $routeProvider
-    .when('/home', {
-      templateUrl: '/views/templates/home.html',
-      controller: 'LoginController as lc',
-    })
     .when('/register', {
       templateUrl: '/views/templates/register.html',
       controller: 'LoginController as lc'
@@ -33,8 +29,13 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
       resolve: {
-        getuser : function(UserService){
+        getfeatured : function(UserService){
+          console.log('resolve featured modules');
           return UserService.getfeatured();
+        },
+        getMod : function(StudentService) {
+          console.log('resolve all modules');
+          return StudentService.getMod();
         }
       }
     })
