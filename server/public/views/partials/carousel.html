@@ -1,5 +1,5 @@
-<ui-carousel slides="uc.slides" slides-to-show="1" slides-to-scroll="1" initial-slide="1" autoplay="false" autoplay-speed="2000"
-  arrows="true" dots="false">
+<ui-carousel slides="uc.userObject.featured" slides-to-show="1" slides-to-scroll="1" autoplay="true" autoplay-speed="3000"
+  arrows="false" dots="false">
   <carousel-item layout="row" layout-align="center center">
     <!-- 
     <h3>
@@ -7,11 +7,8 @@
     </h3> -->
     <div class="main-container" flex layout="column" layout-align="start stretch">
       <div class="main-display" layout="row" layout-align="space-around">
-
         <div class="tile" layout="column" layout-align=" stretch" flex>
-          <div class="tile-art" flex=none ng-style="{'background-image':'url({{item.url}})'}"
-          >
-
+          <div class="tile-art" flex=none ng-style="{'background-image':'url({{item.art}})'}">
           </div>
           <div class="tile-details" flex=60 layout="row" layout-align="center center">
             <div class="tile-name" flex layout="column" layout-align="space-around stretch">

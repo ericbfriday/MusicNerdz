@@ -32,11 +32,11 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     .when('/user', {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
-      // resolve: {
-      //   getuser : function(UserService){
-      //     return UserService.getuser();
-      //   }
-      // }
+      resolve: {
+        getuser : function(UserService){
+          return UserService.getfeatured();
+        }
+      }
     })
     .when('/student/module', {
       templateUrl: '/views/templates/lesson.html',
@@ -73,7 +73,6 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     .otherwise({
       redirectTo: 'user'
     });
-
   $mdThemingProvider.theme('default').primaryPalette('grey').accentPalette('orange', {
     'default': '300'
   });

@@ -3,103 +3,27 @@
 <div class="container" layout="column" layout-align="start stretch">
     <div class="main" layout="column" layout-align="start stretch" flex>
         <div class="main-carousel" flex=25>
-
             <div ng-include="'views/partials/carousel.html'" flex></div>
-
-
         </div>
         <div class="main-container" flex=75 layout="column" layout-align="start stretch">
-            <div class="main-display" layout="row" layout-align="space-around">
-                <div class="tile" layout="column" layout-align=" stretch" flex>
-                    <div class="tile-art" flex=none>
-                        <!-- <img src="http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg"> -->
+            <div class="main-display" layout-wrap layout="row" layout-align="space-between">
+                <!-- Repeated modules here -->
+                
+                <div class="tile" layout="column" flex=30 ng-repeat="i in uc.userObject.modules | filter: uc.search">
+                    <div class="tile-art" flex=none ng-style="{'background-image':'url({{i.art}})'}">
                     </div>
                     <div class="tile-details" flex=60 layout="row" layout-align="center center">
                         <div class="tile-name" flex layout="column" layout-align="space-around stretch">
-                            <p class="tile-artist" flex>Brand New</p>
-                            <p class="tile-record" flex>Daisy</p>
+                            <p class="tile-artist" flex>{{ i.artist }}</p>
+                            <p class="tile-record" flex>{{ i.title }}</p>
                         </div>
                         <div class="tile-album" flex=40>
                             5.0
                         </div>
                     </div>
                 </div>
-                <div class="tile" layout="column" layout-align=" stretch" flex>
-                    <div class="tile-art" flex=none>
-                        <!-- <img src="http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg"> -->
-                    </div>
-                    <div class="tile-details" flex=60 layout="row" layout-align="center center">
-                        <div class="tile-name" flex layout="column" layout-align="space-around stretch">
-                            <p class="tile-artist" flex>Brand New</p>
-                            <p class="tile-record" flex>Daisy</p>
-                        </div>
-                        <div class="tile-album" flex=40>
-                            5.0
-                        </div>
-                    </div>
-                </div>
-                <div class="tile" layout="column" layout-align=" stretch" flex>
-                    <div class="tile-art" flex=none>
-                        <!-- <img src="http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg"> -->
-                    </div>
-                    <div class="tile-details" flex=60 layout="row" layout-align="center center">
-                        <div class="tile-name" flex layout="column" layout-align="space-around stretch">
-                            <p class="tile-artist" flex>Brand New</p>
-                            <p class="tile-record" flex>Daisy</p>
-                        </div>
-                        <div class="tile-album" flex=40>
-                            5.0
-                        </div>
-                    </div>
-                </div>
-
+                <!-- Repeated modules here -->
             </div>
-            <div class="main-display" layout="row" layout-align="space-around">
-                <div class="tile" layout="column" layout-align=" stretch" flex>
-                    <div class="tile-art" flex=none>
-                        <!-- <img src="http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg"> -->
-                    </div>
-                    <div class="tile-details" flex=60 layout="row" layout-align="center center">
-                        <div class="tile-name" flex layout="column" layout-align="space-around stretch">
-                            <p class="tile-artist" flex>Brand New</p>
-                            <p class="tile-record" flex>Daisy</p>
-                        </div>
-                        <div class="tile-album" flex=40>
-                            5.0
-                        </div>
-                    </div>
-                </div>
-                <div class="tile" layout="column" layout-align=" stretch" flex>
-                    <div class="tile-art" flex=none>
-                        <!-- <img src="http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg"> -->
-                    </div>
-                    <div class="tile-details" flex=60 layout="row" layout-align="center center">
-                        <div class="tile-name" flex layout="column" layout-align="space-around stretch">
-                            <p class="tile-artist" flex>Brand New</p>
-                            <p class="tile-record" flex>Daisy</p>
-                        </div>
-                        <div class="tile-album" flex=40>
-                            5.0
-                        </div>
-                    </div>
-                </div>
-                <div class="tile" layout="column" layout-align=" stretch" flex>
-                    <div class="tile-art" flex=none>
-                        <!-- <img src="http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg"> -->
-                    </div>
-                    <div class="tile-details" flex=60 layout="row" layout-align="center center">
-                        <div class="tile-name" flex layout="column" layout-align="space-around stretch">
-                            <p class="tile-artist" flex>Brand New</p>
-                            <p class="tile-record" flex>Daisy</p>
-                        </div>
-                        <div class="tile-album" flex=40>
-                            5.0
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
         </div>
     </div>
 </div>
