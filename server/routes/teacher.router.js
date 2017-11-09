@@ -84,7 +84,7 @@ router.get('/students/:classParam', (req, res) => {
 router.get('/classes/:teacherParam', (req, res) => {
   console.log('in get classes teacher route with', req.params.teacherParam);
   pool.connect(function (err, client, done) {
-    let queryString = "SELECT * FROM students JOIN classes ON students.classes_id = classes.id WHERE classes.teacher_id = $1;";
+    let queryString = "SELECT * FROM students FULL OUTER JOIN classes ON students.classes_id = classes.id WHERE classes.teacher_id = $1;";
     let value = [req.params.teacherParam];
 
     if (err) {
