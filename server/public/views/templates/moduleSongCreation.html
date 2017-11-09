@@ -1,0 +1,51 @@
+<section>
+    <md-card>
+        <div layout="column">
+            <div layout="row">
+                <md-input-container flex="50">
+                    <label>Title of Song</label>
+                    <input ng-model="sc.songTitle.data" md-select-on-focus>
+                </md-input-container>
+                <md-input-container flex="50">
+                    <label>Title of Album</label>
+                    <input ng-model="sc.songAlbum.data" md-select-on-focus>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container flex="50">
+                    <label>Artist</label>
+                    <input ng-model="sc.songArtist.data" md-select-on-focus>
+                </md-input-container>
+                <md-input-container flex="50">
+                    <label>Year</label>
+                    <input ng-model="sc.songYear.data" md-select-on-focus>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                    <md-input-container flex="100">
+                        <label>Album Art URL</label>
+                        <input ng-model="sc.songArt.data" md-select-on-focus>
+                    </md-input-container>
+                </div>
+            <div layout="row">
+                <md-input-container flex="100">
+                    <label>Youtube Video URL</label>
+                    <input ng-model="sc.songURL.data" md-select-on-focus>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container flex="100">
+                    <label>Description</label>
+                    <textarea ng-model="sc.songDesc.data" rows="4" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+            <div layout="row">
+                <md-input-container flex="100">
+                    <label>Lyrics</label>
+                    <textarea ng-model="sc.songLyrics.data" rows="20" md-select-on-focus></textarea>
+                </md-input-container>
+            </div>
+        </div>
+        <md-button class="md-primary" ng-submit ng-click="sc.makeSong(sc.songTitle, sc.songAlbum, sc.songArtist, sc.songYear, sc.songURL, sc.songArt, sc.songDesc, sc.songLyrics)">Submit & Move On to Historical Event Questions</md-button>
+    </md-card>
+</section>

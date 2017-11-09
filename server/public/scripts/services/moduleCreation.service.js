@@ -1,6 +1,43 @@
 myApp.service('ModuleCreation', function ($http, $mdDialog) {
     var sv = this;
 
+    /**BEGIN SONG CREATION SECTION OF CODE */
+
+    class Song {
+        constructor (songTitle, songAlbum, songArtist, songYear, songURL, songArt, songDesc, songLyrics){
+            this.songTitle = songTitle.data;
+            this.songAlbum = songAlbum.data;
+            this.songArtist = songArtist.data;
+            this.songYear = songYear.data;
+            this.songURL = songURL.data;
+            this.songDesc = songDesc.data;
+            this.songLyrics = songLyrics.data;
+            this.songArt = songArt.data;
+        }
+    }
+
+    sv.songTitle = {data: ''};
+    sv.songAlbum = {data: ''};
+    sv.songArtist = {data: ''};
+    sv.songYear = {data: 2017};
+    sv.songURL = {data: ''};
+    sv.songDesc = {data: ''};
+    sv.songLyrics = {data: ''};
+    sv.songArt = {data: ''};
+
+    sv.makeSong = function(songTitle, songAlbum, songArtist, songYear, songURL, songArt, songDesc, songLyrics) {
+        sv.song = new Song(songTitle, songAlbum, songArtist, songYear, songURL, songArt, songDesc, songLyrics);
+        return $http.post('/moduleCreation/songCreation', sv.song)
+        .then((response) => {
+            console.log('logging response in makeSong -> ', response);
+        })
+        .catch((e)=>{
+            console.log('Logging error in makeSong -> ', e);
+        });
+    };
+
+    /** END SONG CREATION SECTION OF CODE */
+
     /** BEGIN HISTORICAL EVENT SECTION OF CODE */
 
     sv.year = {data: 2017}; // date of new event - integer to match structure of DB

@@ -54,6 +54,39 @@ var tagSorter = function (tags) {
 // ** WITH new_event AS (INSERT INTO history (title, description, year) VALUES($1, $2, $3) RETURNING id), new_tag AS (INSERT INTO tags (type) VALUES ($4) RETURNING id) INSERT INTO history_tags (history_id, tags_id) VALUES ((SELECT id FROM new_event), (SELECT id FROM new_tag));
 // let values = [title, desc, year, **need tags variable**];
 
+router.post('/songCreation', function (req, res, next) {
+  console.log('req.body in /songCreation -> ', req.body);
+  let songTitle = req.body.songTitle;
+  let songAlbum = req.body.songAlbum;
+  let songArtist = req.body.songArtist;
+  let songYear = req.body.songYear;
+  let songURL = req.body.songURL;
+  let songDesc = req.body.songDesc;
+  let songLyrics = req.body.songLyrics;
+  let songArt = req.body.songArt;
+
+  let values = [songDesc, songTitle, songAlbum, songArtist, songYear, songArt, songLyrics, songURL];
+  let insertQuery = "INSERT INTO modules (description, title, album, artist, year, art, lyrics, video) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;";
+
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(insertQuery, values,
+      function (err, result) {
+        client.end();
+        if (err) {
+          console.log("Error inserting data: ", err);
+          res.sendStatus(500);
+        } else {
+          res.status(203).send(result);
+        }
+      });
+  });
+});
+
+
 router.post('/newHistoricalEvent', function (req, res, next) {
   let title = req.body.title;
   let desc = req.body.desc;
