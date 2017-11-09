@@ -30,6 +30,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         return $http.post('/moduleCreation/songCreation', sv.song)
         .then((response) => {
             console.log('logging response in makeSong -> ', response);
+            document.getElementById("addSongForm").reset();
         })
         .catch((e)=>{
             console.log('Logging error in makeSong -> ', e);
@@ -241,7 +242,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         return $http.post('/moduleCreation/quiz', sv.quiz)
             .then((response) => {
                 console.log('Posted -> ', response);
-                sv.quiz.data.length = 0; // empties quiz item
+                document.getElementById("addQuestionsForm").reset();
             })
             .catch((e) => {
                 console.log('logging catch error in sv.pushToQuiz', e);

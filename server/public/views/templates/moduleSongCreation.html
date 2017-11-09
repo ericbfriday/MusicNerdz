@@ -1,6 +1,7 @@
 <section>
         <div ng-include="'views/partials/nav.html'"></div>
     <md-card>
+        <form id="addSongForm">
         <div layout="column">
             <div layout="row">
                 <md-input-container flex="50">
@@ -52,5 +53,6 @@
             </div>
         </div>
         <md-button class="md-primary md-raised" ng-submit ng-click="sc.makeSong(sc.songTitle, sc.songAlbum, sc.songArtist, sc.songYear, sc.songURL, sc.songArt, sc.songDesc, sc.songLyrics)">Submit & Move On to Historical Event Questions</md-button>
+        </form>
     </md-card>
 </section>

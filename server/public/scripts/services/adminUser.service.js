@@ -41,6 +41,7 @@ myApp.service('AdminUserService', function ($http) {
         return $http.post('/teacher/addTeacher', sv.teacherObj)
         .then((response)=>{
             console.log('Logging response from addTeacher -> ', response);
+            document.getElementById("addTeacherForm").reset();
         })
         .catch((err)=>{
             console.log('Logging error in addTeacher catch -> ', err);
