@@ -67,3 +67,6 @@ tmp
 
 #Mac Junk ignore file
 .DS_Store
+
+#VS Code ignores
+.vscode/
