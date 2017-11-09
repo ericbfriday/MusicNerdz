@@ -50,6 +50,52 @@ router.post('/addTeacher', function (req, res) {
   });
 }); // end /addTeacher
 
+//get list of students by class
+router.get('/students/:classParam', (req, res) => {
+  console.log('in get students teacher route with', req.params.classParam);
+  pool.connect(function (err, client, done) {
+    let queryString = "SELECT * FROM students WHERE classes_id = $1;";
+    let value = [req.params.classParam];
+
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(queryString, value, (err, result) => {
+      client.end();
+      if (err) {
+        console.log("Error querying data in /students GET route: ", err);
+        res.sendStatus(500);
+      } else {
+        res.send(result.rows);
+      }
+    });
+  });
+}); // end /students
+
+//get classes and students
+router.get('/classes/:teacherParam', (req, res) => {
+  console.log('in get classes teacher route with', req.params.teacherParam);
+  pool.connect(function (err, client, done) {
+    let queryString = "SELECT * FROM students FULL OUTER JOIN classes ON students.classes_id = classes.id WHERE classes.teacher_id = $1;";
+    let value = [req.params.teacherParam];
+
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(queryString, value, (err, result) => {
+      client.end();
+      if (err) {
+        console.log("Error querying data in /students GET route: ", err);
+        res.sendStatus(500);
+      } else {
+        res.send(result.rows);
+      }
+    });
+  });
+}); // end /students
+
 // gets list of schools to associate to teacher upon teacher creation
 router.get('/schools', (req, res) => {
   // console.log('Inside schools of teacher.router.js');
