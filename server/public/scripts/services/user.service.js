@@ -48,23 +48,18 @@ myApp
             if (response.data.username) {
               // user has a curret session on the server
               userObject.userName = response.data.username;
-              console.log('UserService -- getuser -- User Data: ', userObject.userName);
+              console.log('UserService -- getuser -- User Data: ', userObject.userName, id);
+              $location.path("/student/module/");
+
             } else {
               // user has no session, bounce them back to the login page
-              $mdDialog.show({
-                controller: 'LoginController',
-                templateUrl: '../../views/templates/home.html',
-                parent: angular.element(document.body),
-                targetEvent: ev,
-                clickOutsideToClose:true,
-                fullscreen: this.customFullscreen // Only for -xs, -sm breakpoints.
-              });
+              
             }
           }, function (response) {
             console.log('UserService -- getuser -- failure: ', response);
-            // $location.path("/student/module/" + id);
-            console.log('id here', id);
+
           });
+          
       },
 
       logout: function () {
@@ -73,7 +68,7 @@ myApp
           .get('/user/logout')
           .then(function (response) {
             console.log('UserService -- logout -- logged out');
-            $location.path("/home");
+            $location.path("/user");
           });
       }
     };

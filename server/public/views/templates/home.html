@@ -1,8 +1,7 @@
-<div ng-include="'views/partials/nav.html'"></div>
 <div class="container instructions" layout="column" layout-align="center center">
     <div>
         <div layout="column" layout-align="center center" class="login">
-            <form ng-submit="lc.login()" layout="column" layout-align="space-around stretch">
+            <form name="loginForm" ng-submit="lc.login()" layout="column" layout-align="space-around stretch">
                 <div>
                     <span class="fa fa-user-circle-o" flex="none"></span>
                     <input type="text" ng-model="lc.user.username" placeholder="E-Mail (required)" ng-required="true" flex="grow" />
@@ -12,7 +11,7 @@
                     <input type="password" ng-model="lc.user.password" placeholder="Password" ng-required="true" flex="grow" />
                 </div>
                 <div>
-                    <input class="btn btn-default" type="submit" name="submit" value="Log In" />
+                    <input class="btn btn-default" type="submit" name="submit" value="Submit" ng-click="lg.close()"/>
                 </div>
             </form>
         </div>
