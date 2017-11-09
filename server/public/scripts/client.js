@@ -17,6 +17,10 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/moduleSongCreation.html',
       controller: 'SongCreation as sc'
     })
+    .when('/admin/nav', {
+      templateUrl: '/views/templates/adminNav.html',
+      controller: 'SongCreation as sc'
+    })
     .when('/admin/quizCreation', {
       templateUrl: '/views/templates/moduleQuestionCreation.html',
       controller: 'QuizCreation as qc'
