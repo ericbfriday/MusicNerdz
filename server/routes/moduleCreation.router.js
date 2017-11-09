@@ -8,7 +8,7 @@ var questions = []; // questions for `questions` table
 var newTags = []; // all 'new' tags for insertion into `tags` table & `oldTags` variable
 var oldTags = []; // all 'old' tags for insertion into `allTags` variable
 var allTags = []; // all tags for insertion into `history_tags` tables. Receives `newTags` and `oldTags` items.
-var moduleID = 0;
+var moduleID = null;
 
 /**
 Steps for module creation insert.

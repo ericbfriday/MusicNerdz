@@ -4,5 +4,9 @@ myApp
     var vm = this;
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
+    vm.studentService = StudentService;
+
+    vm.studentService.mods = [];
+    vm.studentService.getMod();
 
   });

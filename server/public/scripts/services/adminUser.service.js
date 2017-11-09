@@ -28,6 +28,7 @@ myApp.service('AdminUserService', function ($http) {
         .then((response)=> {
             console.log('Logging response from addSchool -> ', response);
             sv.getSchools();
+            document.getElementById("addSchoolForm").reset();
         })
         .catch((err)=> {
             console.log('logging error in catch from addSchool -> ', err);
