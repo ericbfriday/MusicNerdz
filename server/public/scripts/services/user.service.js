@@ -16,6 +16,7 @@ myApp
               // user has a curret session on the server
               userObject.userName = response.data.username;
               console.log('UserService -- getuser -- User Data: ', userObject.userName);
+              $location.path("/user");
             } else {
               console.log('UserService -- getuser -- failure');
               // user has no session, bounce them back to the login page
@@ -53,11 +54,13 @@ myApp
 
             } else {
               // user has no session, bounce them back to the login page
-              
+              console.log('UserService -- getuser -- failure');
+              // user has no session, bounce them back to the login page
+              $location.path("/home");
             }
           }, function (response) {
             console.log('UserService -- getuser -- failure: ', response);
-
+            $location.path("/home");
           });
           
       },

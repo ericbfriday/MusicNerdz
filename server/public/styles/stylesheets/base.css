@@ -56,36 +56,38 @@ input {
   background-color: rgba(255, 255, 255, 0.7);
   color: black;
   border-radius: 5px;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
 }
 
-/* line 43, ../sass/_musicnerdz_login.scss */
+/* line 45, ../sass/_musicnerdz_login.scss */
 .loginControls {
   width: 625px;
   padding: 0 22px;
 }
 
-/* line 48, ../sass/_musicnerdz_login.scss */
+/* line 50, ../sass/_musicnerdz_login.scss */
 .login {
   margin: 50px auto;
   width: 625px;
 }
-/* line 51, ../sass/_musicnerdz_login.scss */
+/* line 53, ../sass/_musicnerdz_login.scss */
 .login form {
   margin: auto;
   padding: 22px 22px 22px 22px;
   width: 100%;
 }
-/* line 52, ../sass/_musicnerdz_login.scss */
+/* line 54, ../sass/_musicnerdz_login.scss */
 .login form .fa {
   font-size: 2em;
 }
-/* line 58, ../sass/_musicnerdz_login.scss */
+/* line 60, ../sass/_musicnerdz_login.scss */
 .login form div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
-/* line 63, ../sass/_musicnerdz_login.scss */
+/* line 65, ../sass/_musicnerdz_login.scss */
 .login form span {
   background-color: #363b41;
   border-radius: 3px 0px 0px 3px;
@@ -98,7 +100,7 @@ input {
   width: 50px;
   height: 50px;
 }
-/* line 75, ../sass/_musicnerdz_login.scss */
+/* line 77, ../sass/_musicnerdz_login.scss */
 .login form input[type="password"] {
   background-color: #3b4148;
   border-radius: 0px 3px 3px 0px;
@@ -108,7 +110,7 @@ input {
   width: 235px;
   height: 50px;
 }
-/* line 84, ../sass/_musicnerdz_login.scss */
+/* line 86, ../sass/_musicnerdz_login.scss */
 .login form input[type="text"] {
   background-color: #3b4148;
   border-radius: 0px 3px 3px 0px;
@@ -118,7 +120,7 @@ input {
   width: 235px;
   height: 50px;
 }
-/* line 93, ../sass/_musicnerdz_login.scss */
+/* line 95, ../sass/_musicnerdz_login.scss */
 .login form input[type="submit"] {
   background: #fca311;
   border: 0;
@@ -130,12 +132,12 @@ input {
   -webkit-transition: background 0.3s ease-in-out;
   transition: background 0.3s ease-in-out;
 }
-/* line 104, ../sass/_musicnerdz_login.scss */
+/* line 106, ../sass/_musicnerdz_login.scss */
 .login form input[type="submit"]:hover {
   background: #d78703;
 }
 
-/* line 110, ../sass/_musicnerdz_login.scss */
+/* line 112, ../sass/_musicnerdz_login.scss */
 .radio-tile-group {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -146,12 +148,12 @@ input {
   -ms-flex-pack: center;
   justify-content: center;
 }
-/* line 119, ../sass/_musicnerdz_login.scss */
+/* line 121, ../sass/_musicnerdz_login.scss */
 .radio-tile-group .input-container {
   position: relative;
   margin: .5rem;
 }
-/* line 122, ../sass/_musicnerdz_login.scss */
+/* line 124, ../sass/_musicnerdz_login.scss */
 .radio-tile-group .input-container .radio-button {
   opacity: 0;
   position: absolute;
@@ -162,7 +164,7 @@ input {
   margin: 0;
   cursor: pointer;
 }
-/* line 132, ../sass/_musicnerdz_login.scss */
+/* line 134, ../sass/_musicnerdz_login.scss */
 .radio-tile-group .input-container .radio-tile {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -188,7 +190,7 @@ input {
   transition: transform 300ms ease;
   transition: transform 300ms ease, -webkit-transform 300ms ease;
 }
-/* line 157, ../sass/_musicnerdz_login.scss */
+/* line 159, ../sass/_musicnerdz_login.scss */
 .radio-tile-group .input-container .radio-tile-label {
   text-align: center;
   font-size: 1.2rem;
@@ -197,7 +199,7 @@ input {
   letter-spacing: 1px;
   color: #fca311;
 }
-/* line 165, ../sass/_musicnerdz_login.scss */
+/* line 167, ../sass/_musicnerdz_login.scss */
 .radio-tile-group .input-container .radio-button:checked + .radio-tile {
   background-color: #fca311;
   border: 2px solid #fca311;
@@ -206,7 +208,7 @@ input {
   -ms-transform: scale(1.1, 1.1);
   transform: scale(1.1, 1.1);
 }
-/* line 172, ../sass/_musicnerdz_login.scss */
+/* line 174, ../sass/_musicnerdz_login.scss */
 .radio-tile-group .input-container .radio-button:checked + .radio-tile .radio-tile-label {
   color: white;
   background-color: #fca311;
