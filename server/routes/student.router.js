@@ -6,7 +6,7 @@ const encryptLib = require('../modules/encryption');
 router.post('/addStudent', function (req, res) {
     console.log('in add student post req:', req.body);
     pool.connect(function(err, client, done) {
-        let query = "WITH new_student AS (INSERT INTO students (first, last, email, number, classes_id) VALUES ($1, $2, $3, $4, $5) RETURNING id) INSERT INTO users (type, username, password, teachers_id) VALUES (1, $5, $6, (SELECT id FROM new_student))"
+        let query = "WITH new_student AS (INSERT INTO students (first, last, email, number, classes_id) VALUES ($1, $2, $3, $4, $5) RETURNING id) INSERT INTO users (type, username, password, students_id) VALUES (1, $6, $7, (SELECT id FROM new_student))"
         let saveStudent = {
             fName: req.body.first,
             lName: req.body.last,
