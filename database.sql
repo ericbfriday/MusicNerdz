@@ -17,7 +17,7 @@ CREATE TABLE "classes" (
 	"id" serial PRIMARY KEY,
 	"title" text NOT NULL,
 	"code" text,
-    "teacher_id" INT REFERENCES teachers(id)
+    "teachers_id" INT REFERENCES teachers(id)
 );
 
 CREATE TABLE "students" (
