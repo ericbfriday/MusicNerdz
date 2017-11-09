@@ -12,7 +12,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     sv.selectedItem = null;
     sv.searchText = null;
     sv.querySearch = querySearch;
-    sv.requireMatch = true; // temporarily 'true' until route set up to allow insertion and association of new tags
+    sv.requireMatch = false; // temporarily 'true' until route set up to allow insertion and association of new tags
     sv.transformChip = transformChip;
     sv.tags = [];
 
@@ -29,11 +29,11 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         console.log('sv.makeEvent activated!');
         sv.newEvent = new Event(title, desc, year, hTags);
         return $http.post('/moduleCreation/newHistoricalEvent', sv.newEvent)
-            .then((res) => {
-                console.log('loggin response in makeEvent -> ', res);
+            .then( function (res) {
+                console.log('loggin res status in makeEvent -> ', res);
             })
-            .catch((err) => {
-                console.log('loggin err in makeEvent -> ', err);
+            .catch( function (err) {
+                console.log('loggin err msg in makeEvent -> ', err);
             });
     };
 
@@ -41,11 +41,11 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     sv.getHistoricalInfo = function () {
         console.log('sv.getHistoricalInfo activated!');
         return $http.get('/moduleCreation/existingHistoricalInfo')
-            .then((res) => {
+            .then( function (res) {
                 sv.existingHistoricalEventTags.data = res.data.rows; // associates tags to variable for chip manipulation
                 // console.log('sv.existingHistoricalEventTags -> ', sv.existingHistoricalEventTags.data);
                 sv.loadTags(); // calls tags for association to chips
-            }).catch((err) => {
+            }).catch( function (err) {
                 console.log('catch err in getHistoricalInfo -', err);
             });
     };
@@ -87,7 +87,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
             tag._lowertype = tag.type.toLowerCase();
             tag.name = tag.type;    // ONLY NEEDED BECAUSE THE transformChip() CURRENTLY ASSIGNS TYPE 'NEW'
                                     // TO ALL USER-CREATED CHIPS. MUST ADDRESS GOING FORWARD.
-            // console.log('tag ', tag);
+            // console.log('mapped tags', tag);
             return tag;
         });
     };
