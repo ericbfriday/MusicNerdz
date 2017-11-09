@@ -1,6 +1,6 @@
 myApp.service('StudentService', function ($http) {
-    const sv = this
-    sv.mods = {data: []}
+    const sv = this;
+    sv.mods = {data: []};
 
     //Function to modules form server
     sv.getMod = function () {
@@ -8,6 +8,6 @@ myApp.service('StudentService', function ($http) {
         $http.get('/student/getModule').then(function (resp) {
             console.log('response:', resp);
             sv.mods = resp.data;
-        }) //END $http GET
-    } //END getListings
+        }); //END $http GET
+    }; //END getListings
 });//END
