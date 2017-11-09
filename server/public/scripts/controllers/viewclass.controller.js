@@ -25,8 +25,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         id: '',
         title: '',
         code: '',
-        teacherId: '',
-        students: []
+        teachersId: vm.teacher
     };
 
     //create new student data
@@ -35,15 +34,16 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         last: '',
         email: '',
         number: '',
-        classId: '',
-        teachersId: '12'
+        classesId: '',
+        teachersId: vm.teacher
     }
 
     vm.classes = [];
 
     //send student info to server for addition to db
     vm.addStudent = function (classinfo) {
-        vm.student.classId = classinfo;
+        console.log(classinfo);
+        vm.student.classesId = classinfo;
         console.log("vm.student", vm.student);
         if (vm.student.email === '' || vm.student.number === '') {
             vm.message = "Please complete all fields!";

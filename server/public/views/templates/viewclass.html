@@ -23,16 +23,19 @@
                     </table>
                 </md-table-container>
             </div>
-            <div>
+            <div class="md-padding">
                 <input type="text" ng-model="vc.student.first" placeholder="First Name" ng-required="true" flex="grow" />
                 <input type="text" ng-model="vc.student.last" placeholder="Last Name" ng-required="true" flex="grow" />
                 <input type="text" ng-model="vc.student.email" placeholder="Student Email" ng-required="true" flex="grow" />
                 <input type="text" ng-model="vc.student.number" placeholder="Student ID" flex="grow" />
-                
-                <md-button class="addStudBtn" ng-click="vc.addStudent(vc.selectedClass)">+ Add Student</md-button>
+                <md-button class="addStudBtn" ng-click="vc.addStudent(class.id)">+ Add Student</md-button>
             </div>
         </collapsible-item>
         
     </ang-accordion>
-    <md-button class="addClsBtn">+ Add Class</md-button>
+    <div class="md-padding">
+        <input type="text" ng-model="vc.class.title" placeholder="Class Title" ng-required="true" flex="grow" />
+        <input type="text" ng-model="vc.class.code" placeholder="Class Code" flex="grow" />
+        <md-button class="addClsBtn">+ Add Class</md-button>
+    </div>
 </div>
