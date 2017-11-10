@@ -17,10 +17,6 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     .when('/register', {
     templateUrl: '/views/templates/register.html',
     controller: 'LoginController as lc'
-  })
-    .when('/admin/home', {
-      templateUrl: '/views/templates/adminLandingPage.html',
-      controller: 'AdminUserController as auc'
     })
     .when('/admin/home', {
       templateUrl: '/views/templates/adminLandingPage.html',

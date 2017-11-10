@@ -47,8 +47,8 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
     sv.hTags = {data: []}; // tags for new historical event
     sv.existingHistoricalEvent = {data: []}; // Existing events to be pulled from server for searching/filtering
     sv.existingHistoricalEventTags = {data: []}; // existing tags to be associated with new historical event. Is this necessary?
-    sv.selectedItem = null;
-    sv.searchText = null;
+    sv.selectedItem = {data: null};
+    sv.searchText = {data: null};
     sv.chipsQuerySearch = chipsQuerySearch;
     sv.requireMatch = false; // temporarily 'true' until route set up to allow insertion and association of new tags
     sv.transformChip = transformChip;
@@ -58,7 +58,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
     sv.selectedEvent = {data: null};
     sv.searchEventTextChange = searchEventTextChange;
     sv.searchEventText = {data: null};
-    sv.eventList = {data: []};
+    sv.eventList = {};
     sv.loadEvents = loadEvents;
 
     class Event {
@@ -73,8 +73,8 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
     sv.getEvents = function () {
         return $http.get('/moduleCreation/getEvents')
         .then((res) => {
-            console.log('Loggin res (sv.eventList) in sv.getEvents => ', res.data.rows);
             sv.eventList = res.data.rows;
+            // console.log('Loggin res (sv.eventList) in sv.getEvents => ', sv.eventList);
             sv.loadEvents();
         })
         .catch((err)=> {
@@ -85,21 +85,21 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
     function loadEvents() {
         return sv.eventList.map(function (event) {
             event._lowertype = event.title.toLowerCase();
-            console.log('mapped event', event);
+            // console.log('mapped event', event);
             return event;
         });
     }
 
     sv.makeEvent = function (title, desc, year, hTags) {
-        console.log('sv.makeEvent activated!');
+        // console.log('sv.makeEvent activated!');
         sv.newEvent = new Event(title, desc, year, hTags);
         return $http.post('/moduleCreation/newHistoricalEvent', sv.newEvent)
             .then( function (res) {
-                console.log('loggin res status in makeEvent -> ', res);
+                // console.log('loggin res status in makeEvent -> ', res);
                 document.getElementById('eventCreationForm').reset();
             })
             .catch( function (err) {
-                console.log('loggin err msg in makeEvent -> ', err);
+                // console.log('loggin err msg in makeEvent -> ', err);
             });
     };
 
@@ -109,7 +109,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
         return $http.get('/moduleCreation/existingHistoricalInfo')
             .then( function (res) {
                 sv.existingHistoricalEventTags.data = res.data.rows; // associates tags to variable for chip manipulation
-                console.log('sv.existingHistoricalEventTags -> ', sv.existingHistoricalEventTags.data);
+                // console.log('sv.existingHistoricalEventTags -> ', sv.existingHistoricalEventTags.data);
                 sv.loadTags(); // calls tags for association to chips
             }).catch( function (err) {
                 console.log('catch err in getHistoricalInfo -', err);
@@ -144,8 +144,8 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
     }
 
     function chipsQuerySearch (query) { // Used for chip functionality
-        console.log('in chipsQuerySearch', query);
-        console.log('loggin sv.tags -> ', sv.tags); 
+        // console.log('in chipsQuerySearch', query);
+        // console.log('loggin sv.tags -> ', sv.tags); 
         var results = query ? sv.tags.filter(createChipsFilterFor(query)) : [];
         return results;
     }
@@ -160,10 +160,9 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
 
     function eventQuerySearch(query) {
         // console.log('Logging query in eventQuerySearch -> ', query);
-        console.log('Logging sv.eventsList in eventQuerySearch -> ', sv.eventsList);
-        var results = query ? sv.eventsList.filter(createEventFilterFor(query)) : sv.eventsList;
-        console.log('Logging results in eventQuerySearch -> ', results);
-        
+        // console.log('Logging sv.eventsList in eventQuerySearch -> ', sv.eventList);
+        var results = query ? sv.eventList.filter(createEventFilterFor(query)) : [];
+        // console.log('Logging results in eventQuerySearch -> ', results);
         return results;
     }
 
@@ -177,16 +176,11 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
 
     function createEventFilterFor(query) {
         var lowercaseQuery = angular.lowercase(query);
-
-        return function filterFn(state) {
-            return (state.value.indexOf(lowercaseQuery) === 0);
+        return function filterFn(event) {
+            // console.log('Logging event inside createEventFilterfor filterFn -> ', event);
+            return (event._lowertype.indexOf(lowercaseQuery) === 0);
         };
-
     }
-
-
-
-
 
     /** END HISTORICAL EVENT SECTION OF CODE */
 

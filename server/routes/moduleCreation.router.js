@@ -123,7 +123,6 @@ router.post('/newHistoricalEvent', function (req, res, next) {
 });
 
 router.post('/quiz', function (req, res, next) {
-
   questions = req.body.data[0].questions[0];
   let q = questions.q;
   let a1 = questions.a1;
@@ -168,7 +167,9 @@ router.get('/getEvents', function (req, res, next) {
       client.end();
       if (err) {
         console.log('logging error inside /getEvents query -> ', err);
+        res.sendStatus(500);
       } else {
+        console.log('logging result in /getEvents ', result.rows);
         res.send(result).status(200);
       }
     });
@@ -179,7 +180,7 @@ router.get('/existingHistoricalInfo', function (req, res, next) {
   console.log('inside /existingHistoricalInfo in moduleCreation route');
   pool.connect(function (err, client, done) {
     if (err) {
-      console.log("Error connecting: ", err);
+      console.log("Error connecting in /existingHistoricalInfo: ", err);
       res.sendStatus(500);
     }
     // fetches all of the tags to be put into chips at historical events

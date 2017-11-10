@@ -11,8 +11,8 @@ myApp.controller('EventCreation', function (ModuleCreation) {
     vm.getHistoricalInfo = ModuleCreation.getHistoricalInfo;
     vm.makeEvent = ModuleCreation.makeEvent;
     /** Chips variables below */
-    vm.selectedItem = ModuleCreation.selectedItem;
-    vm.searchText = ModuleCreation.searchText;
+    vm.selectedItem = ModuleCreation.selectedItem.data;
+    vm.searchText = ModuleCreation.searchText.data;
     vm.chipsQuerySearch = ModuleCreation.chipsQuerySearch;
     vm.loadTags = ModuleCreation.loadTags;
     vm.requireMatch = ModuleCreation.requireMatch;
