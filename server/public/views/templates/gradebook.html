@@ -1,0 +1,21 @@
+<div class="navbar">
+    <div class="container" layout="row" layout-align="space-between center" flex=100>
+        <div class="main-logo" flex="noshrink">Music
+        <span>Nerdz</span>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <p>Gradebook</p>
+    <div>
+        <md-input-container class="md-block" flex-gt-sm>
+            <label>Class</label>
+            <md-select ng-model="user.state">
+                <md-option ng-repeat="class in vm.classes" value="{{class.id}}">
+                {{class.title}}
+                </md-option>
+            </md-select>
+        </md-input-container>
+    </div>
+    
+</div>

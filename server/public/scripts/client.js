@@ -79,6 +79,10 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/viewclass.html',
       controller: 'ViewController as vc'
     })
+    .when('/teacher/grading', {
+      templateUrl: '/views/templates/gradebook.html',
+      controller: 'TeacherGradeController as tgc'
+    })
     .otherwise({redirectTo: 'user'});
   $mdThemingProvider
     .theme('default')
