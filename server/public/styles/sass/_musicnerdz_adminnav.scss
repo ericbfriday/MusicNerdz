@@ -1,0 +1,21 @@
+.admin {
+    .container {
+        height: 75px;
+    }
+    .admin-nav {
+        a {
+            &:before {
+                content: "\A";
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: $orange;
+                display: inline-block;
+                margin: 0 10px;
+            }
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
