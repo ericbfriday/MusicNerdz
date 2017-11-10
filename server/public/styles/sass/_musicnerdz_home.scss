@@ -69,9 +69,19 @@
         padding: 0 0;
         margin: 25px 0;
     }
-    .main-container {
+    .main-container, .main-assigned {
         overflow: visible;
         padding: 0 50px;
+        h1 {
+            line-height: normal;
+            margin: 20px;
+            font-size: 3rem;
+        }
+    }
+    .main-completed {
+        line-height: normal;
+        margin: 20px;
+        font-size: 3rem;
     }
     .container {
         height: auto;
@@ -115,6 +125,9 @@
         .tile-album {
             font-size: 3em;
             line-height: 40px;
+            .fa-check-square-o {
+                color: $orange;
+            }
         }
         .tile-name {
             border-right: 1px solid #777777;
@@ -131,6 +144,7 @@
         background-position: 100% 40%;
         -webkit-box-shadow: 0px 1px 5px #333333;
         box-shadow: 0px 1px 5px #333333;
+        height: 235px;
     }
     .main-display {
         color:$white;
