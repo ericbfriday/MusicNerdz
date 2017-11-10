@@ -171,6 +171,7 @@ router.get('/existingHistoricalInfo', function (req, res, next) {
         console.log("Error inserting data: ", err);
         res.sendStatus(500);
       } else {
+        // console.log('sending results of existingHistoricalInfo GET request , ', result.rows);
         res.send(result).status(200);
       }
     });

@@ -49,7 +49,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     sv.existingHistoricalEventTags = {data: []}; // existing tags to be associated with new historical event. Is this necessary?
     sv.selectedItem = null;
     sv.searchText = null;
-    sv.querySearch = querySearch;
+    sv.chipsQuerySearch = chipsQuerySearch;
     sv.requireMatch = false; // temporarily 'true' until route set up to allow insertion and association of new tags
     sv.transformChip = transformChip;
     sv.tags = [];
@@ -69,6 +69,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         return $http.post('/moduleCreation/newHistoricalEvent', sv.newEvent)
             .then( function (res) {
                 console.log('loggin res status in makeEvent -> ', res);
+                document.getElementById('eventCreationForm').reset();
             })
             .catch( function (err) {
                 console.log('loggin err msg in makeEvent -> ', err);
@@ -77,7 +78,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
 
     // On load, fetches existing historical events and tags for use searching for events
     sv.getHistoricalInfo = function () {
-        console.log('sv.getHistoricalInfo activated!');
+        // console.log('sv.getHistoricalInfo activated!');
         return $http.get('/moduleCreation/existingHistoricalInfo')
             .then( function (res) {
                 sv.existingHistoricalEventTags.data = res.data.rows; // associates tags to variable for chip manipulation
@@ -102,16 +103,16 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         };
     }
 
-    function querySearch (query) { // Used for chip functionality
-        // console.log('in querySearch', query);
-        // console.log('loggin sv.tags -> ', sv.tags);
+    function chipsQuerySearch (query) { // Used for chip functionality
+        console.log('in chipsQuerySearch', query);
+        console.log('loggin sv.tags -> ', sv.tags); 
         var results = query ? sv.tags.filter(createFilterFor(query)) : [];
         return results;
     }
 
     function createFilterFor (query) { // Used for chip functionality
         var lowercaseQuery = angular.lowercase(query);
-        // console.log('logging lowercaseQuery -> ', lowercaseQuery);
+        console.log('logging lowercaseQuery -> ', lowercaseQuery);
         return function filterFn (tag) {
             return (tag._lowertype.indexOf(lowercaseQuery) === 0);
         };
@@ -119,13 +120,13 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
 
     sv.loadTags = function () { // Used for chip functionality
         sv.tags = sv.existingHistoricalEventTags.data;
-        // console.log('tags ', sv.tags);
+        console.log('tags ', sv.tags);
 
         return sv.tags.map(function (tag) {
             tag._lowertype = tag.type.toLowerCase();
             tag.name = tag.type;    // ONLY NEEDED BECAUSE THE transformChip() CURRENTLY ASSIGNS TYPE 'NEW'
                                     // TO ALL USER-CREATED CHIPS. MUST ADDRESS GOING FORWARD.
-            // console.log('mapped tags', tag);
+            console.log('mapped tags', tag);
             return tag;
         });
     };

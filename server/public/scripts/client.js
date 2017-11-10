@@ -13,12 +13,12 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/register.html',
       controller: 'LoginController as lc'
     })
+    .when('/admin/home', {
+      templateUrl: '/views/templates/adminLandingPage.html',
+      controller: 'AdminUserController as auc'
+    })
     .when('/admin/songCreation', {
       templateUrl: '/views/templates/moduleSongCreation.html',
-      controller: 'SongCreation as sc'
-    })
-    .when('/admin/nav', {
-      templateUrl: '/views/templates/adminNav.html',
       controller: 'SongCreation as sc'
     })
     .when('/admin/quizCreation', {
