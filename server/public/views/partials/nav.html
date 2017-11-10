@@ -1,11 +1,11 @@
 <div class="navbar">
-  <div class="container" layout="row" layout-align="space-between center" flex=100>
-    <a href="/#/user">
-    <div class="main-logo" flex="noshrink">Music<span>Nerdz</span>
-    </div>
-  </a>
-    <div flex=45>
-      <div class="search-form" layout="row" layout-align="space-between center">
+  <div class="container" layout="row" layout-align="start center" flex=100>
+    <a href="/#/user" flex=25>
+      <div class="main-logo" flex="noshrink">Music<span>Nerdz</span>
+      </div>
+    </a>
+    <div flex=55>
+      <div class="search-form" layout="row" layout-align="start center">
         <form ng-submit="" layout="row" layout-align="space-between center" flex=100>
           <input type="text" placeholder="Search by artist or song" ng-model="uc.search">
           <button>
@@ -14,13 +14,5 @@
         </form>
       </div>
     </div>
-    <ul flex=25>
-      <li>
-        <a href="#/home" ng-if="!uc.userObject.loggedIn">Login</a>
-      </li>
-      <li>
-        <a href="#/home" ng-click="uc.userService.logout()">Logout</a>
-      </li>
-    </ul>
   </div>
 </div>
