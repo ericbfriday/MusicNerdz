@@ -1,5 +1,35 @@
 <section ng-init="ec.getHistoricalInfo()">
-    <div ng-include="'views/partials/nav.html'"></div>
+    <div ng-include="'views/partials/nav.html'" ng-init="ec.getEvents()"></div>
+    <md-card>
+            <md-card-title>
+                <md-card-title-text>
+                    Associate Historical Events to Current Song:
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <form id="eventSearchForm" class="md-padding">
+                        <md-autocomplete
+                        ng-disabled="ec.isDisabled"
+                        md-no-cache="ec.noCache"
+                        md-selected-item="ec.selectedEvent"
+                        md-search-text-change="ec.searchEventTextChange(ec.searchEventText)"
+                        md-search-text="ec.searchEventText"
+                        md-selected-item-change="ec.selectedEventChange(event)"
+                        md-items="event in ec.eventQuerySearch(ec.searchEventText)"
+                        md-item-text="event.display"
+                        md-min-length="0"
+                        placeholder="Historical Event to Associate to Song">
+                      <md-item-template>
+                        <span md-highlight-text="ec.searchEventText" md-highlight-flags="^i">{{event.display}}</span>
+                      </md-item-template>
+                      <md-not-found>
+                        No events matching "{{ec.searchEventText}}" were found.
+                      </md-not-found>
+                    </md-autocomplete>
+                </form>
+            </md-card-content>
+        </md-card>
+
     <md-card>
         <md-card-title>
             <md-card-title-text>
@@ -24,13 +54,15 @@
                         <pre><textarea rows="4" ng-model="ec.desc"></textarea></pre>
                     </md-input-container>
                 </div>
-                <md-chips ng-model="ec.hTags" md-autocomplete-snap md-transform-chip="ec.transformChip($chip)" md-require-match="ec.requireMatch">
+                <md-chips ng-model="ec.hTags" 
+                md-autocomplete-snap md-transform-chip="ec.transformChip($chip)" 
+                md-require-match="ec.requireMatch">
                     <md-autocomplete 
                     md-selected-item="ec.selectedItem" 
                     md-search-text="ec.searchText" 
                     md-items="item in ec.chipsQuerySearch(ec.searchText)"
                     md-item-text="item.name" 
-                    placeholder="Search for an Issue">
+                    placeholder="Associate Historical Themes">
                         <span md-highlight-text="ec.searchText">{{item.name}}</span>
                     </md-autocomplete>
                     <md-chip-template>
@@ -40,37 +72,6 @@
                     </md-chip-template>
                 </md-chips>
                 <md-button class="md-primary md-raised" ng-submit ng-click="ec.makeEvent(ec.title, ec.desc, ec.year, ec.hTags)" ng-href="#/admin/quizCreation">Submit & Move On to Quiz Questions</md-button>
-            </form>
-        </md-card-content>
-    </md-card>
-
-
-    <md-card>
-        <md-card-title>
-            <md-card-title-text>
-                Associate Historical Events to Current Song:
-            </md-card-title-text>
-        </md-card-title>
-        <md-card-content>
-            <form id="eventSearchForm">
-                    <md-autocomplete
-                    ng-disabled="ec.isDisabled"
-                    md-no-cache="ec.noCache"
-                    md-selected-item="ec.selectedEvent"
-                    md-search-text-change="ec.searchEventTextChange(ec.searchEventText)"
-                    md-search-text="ec.searchEventText"
-                    md-selected-item-change="ec.selectedEventChange(event)"
-                    md-items="event in ec.eventQuerySearch(ec.searchEventText)"
-                    md-item-text="event.display"
-                    md-min-length="0"
-                    placeholder="Historical Event to Associate to Song">
-                  <md-item-template>
-                    <span md-highlight-text="ec.searchEventText" md-highlight-flags="^i">{{event.display}}</span>
-                  </md-item-template>
-                  <md-not-found>
-                    No events matching "{{ec.searchEventText}}" were found.
-                  </md-not-found>
-                </md-autocomplete>
             </form>
         </md-card-content>
     </md-card>

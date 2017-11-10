@@ -39,7 +39,7 @@ var tagSorter = function (tags) {
       newTags.push(tags[i].id);
       allTags.push(tags[i].id);
       // console.log('logging newTags ', newTags);
-    } else if (typeof(tags[i].type) == 'string') {
+    } else if (typeof (tags[i].type) == 'string') {
       oldTags.push(tags[i].id);
       allTags.push(tags[i].id);
       // console.log('loggin oldTags ', oldTags);
@@ -81,7 +81,7 @@ router.post('/songCreation', function (req, res, next) {
           console.log("Error inserting data: ", err);
           res.sendStatus(500);
         } else {
-          moduleID = result.rows[0].id; 
+          moduleID = result.rows[0].id;
           // sets router variable moduleId to ID of last inserted mosule for association to other insert statements.
           console.log('moduleID -> ', moduleID);
           res.status(203).send(result);
@@ -97,7 +97,7 @@ router.post('/newHistoricalEvent', function (req, res, next) {
   let year = req.body.year;
   let hTags = req.body.hTags;
   let hTagsType = req.body.hTags[0].type;
-  let nEvent = new Event (title, desc, year, hTags);
+  let nEvent = new Event(title, desc, year, hTags);
   let nTag = req.body.hTags[0];
   let queryString = "WITH new_event AS (INSERT INTO history (title, description, year) VALUES($1, $2, $3) RETURNING id), new_tag AS (INSERT INTO tags (type) VALUES ($4) RETURNING id) INSERT INTO history_tags (history_id, tags_id) VALUES ((SELECT id FROM new_event), (SELECT id FROM new_tag));";
   tagSorter(req.body.hTags);
@@ -154,6 +154,24 @@ router.post('/quiz', function (req, res, next) {
           res.sendStatus(201);
         }
       });
+  });
+});
+
+router.get('/getEvents', function (req, res, next) {
+  console.log('Inside /getEvents in moduleCreation route');
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log('Logging error inside /getEvents -> ', err);
+      res.sendStatus(500);
+    }
+    client.query("SELECT * FROM history;", function (err, result) {
+      client.end();
+      if (err) {
+        console.log('logging error inside /getEvents query -> ', err);
+      } else {
+        res.send(result).status(200);
+      }
+    });
   });
 });
 

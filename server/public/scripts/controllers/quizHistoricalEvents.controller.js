@@ -1,4 +1,4 @@
-myApp.controller('EventCreation', function (ModuleCreation, $timeout, $q, $log) {
+myApp.controller('EventCreation', function (ModuleCreation) {
     console.log('in quizHistoricalEvents.controller!');
 
     const vm = this;
@@ -19,62 +19,17 @@ myApp.controller('EventCreation', function (ModuleCreation, $timeout, $q, $log) 
     vm.transformChip = ModuleCreation.transformChip;
     vm.tags = ModuleCreation.tags;
 
-    /** COPY PASTA BELOW */
+    /** Associating event code is below */
     vm.simulateQuery = false;
     vm.isDisabled = false;
 
-    // list of `state` value/display objects
-    vm.states = loadAll();
-    vm.eventQuerySearch = eventQuerySearch;
-    vm.selectedEventChange = selectedEventChange;
-    vm.selectedEvent = null;
-    vm.searchEventTextChange = searchEventTextChange;
-    vm.searchEventText = null;
-
-    // ******************************
-    // Internal methods
-    // ******************************
-
-    /**
-     * Search for states... use $timeout to simulate
-     * remote dataservice call.
-     */
-    function eventQuerySearch(query) {
-        var results = query ? vm.states.filter(createEventFilterFor(query)) : vm.states, deferred;
-        return results;
-    }
-
-    function searchEventTextChange(text) {
-        $log.info('Text changed to ' + text);
-    }
-
-    function selectedEventChange(item) {
-        $log.info('Item changed to ' + JSON.stringify(item));
-    }
-
-    /**
-     * Build `states` list of key/value pairs
-     */
-    function loadAll() {
-        var allStates = 'Alabama, Alaska';
-
-        return allStates.split(/, +/g).map(function (state) {
-            return {
-                value: state.toLowerCase(),
-                display: state
-            };
-        });
-    }
-
-    /**
-     * Create filter function for a query string
-     */
-    function createEventFilterFor(query) {
-        var lowercaseQuery = angular.lowercase(query);
-
-        return function filterFn(state) {
-            return (state.value.indexOf(lowercaseQuery) === 0);
-        };
-
-    }
+    vm.states = ModuleCreation.states;
+    vm.eventQuerySearch = ModuleCreation.eventQuerySearch;
+    vm.selectedEventChange = ModuleCreation.selectedEventChange;
+    vm.selectedEvent = ModuleCreation.selectedEvent.data;
+    vm.searchEventTextChange = ModuleCreation.searchEventTextChange;
+    vm.searchEventText = ModuleCreation.searchEventText.data;
+    vm.eventList = ModuleCreation.eventList.data;
+    vm.loadEvents = ModuleCreation.loadEvents;
+    vm.getEvents = ModuleCreation.getEvents;
 });

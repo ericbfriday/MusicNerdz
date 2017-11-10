@@ -1,4 +1,4 @@
-myApp.service('ModuleCreation', function ($http, $mdDialog) {
+myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) {
     var sv = this;
 
     /**BEGIN SONG CREATION SECTION OF CODE */
@@ -53,6 +53,13 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     sv.requireMatch = false; // temporarily 'true' until route set up to allow insertion and association of new tags
     sv.transformChip = transformChip;
     sv.tags = [];
+    sv.eventQuerySearch = eventQuerySearch;
+    sv.selectedEventChange = selectedEventChange;
+    sv.selectedEvent = {data: null};
+    sv.searchEventTextChange = searchEventTextChange;
+    sv.searchEventText = {data: null};
+    sv.eventList = {data: []};
+    sv.loadEvents = loadEvents;
 
     class Event {
         constructor(title, desc, year, htags) {
@@ -62,6 +69,26 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
             this.hTags = htags; // hTags are the tags assigned to an event by the user.
         }
     } // end Event class
+
+    sv.getEvents = function () {
+        return $http.get('/moduleCreation/getEvents')
+        .then((res) => {
+            console.log('Loggin res (sv.eventList) in sv.getEvents => ', res.data.rows);
+            sv.eventList = res.data.rows;
+            sv.loadEvents();
+        })
+        .catch((err)=> {
+            console.log('Logging err in sv.getEvents => ', err);
+        }); 
+    };
+
+    function loadEvents() {
+        return sv.eventList.map(function (event) {
+            event._lowertype = event.title.toLowerCase();
+            console.log('mapped event', event);
+            return event;
+        });
+    }
 
     sv.makeEvent = function (title, desc, year, hTags) {
         console.log('sv.makeEvent activated!');
@@ -87,6 +114,19 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
             }).catch( function (err) {
                 console.log('catch err in getHistoricalInfo -', err);
             });
+    };
+
+    sv.loadTags = function () { // Used for chip functionality
+        sv.tags = sv.existingHistoricalEventTags.data;
+        // console.log('tags ', sv.tags);
+
+        return sv.tags.map(function (tag) {
+            tag._lowertype = tag.type.toLowerCase();
+            tag.name = tag.type;    // ONLY NEEDED BECAUSE THE transformChip() CURRENTLY ASSIGNS TYPE 'NEW'
+                                    // TO ALL USER-CREATED CHIPS. MUST ADDRESS GOING FORWARD.
+            // console.log('mapped tags', tag);
+            return tag;
+        });
     };
 
     function transformChip (chip) { // Used for chip functionality
@@ -118,18 +158,35 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         };
     }
 
-    sv.loadTags = function () { // Used for chip functionality
-        sv.tags = sv.existingHistoricalEventTags.data;
-        // console.log('tags ', sv.tags);
+    function eventQuerySearch(query) {
+        console.log('Logging query in eventQuerySearch -> ', query);
+        var results = query ? sv.eventsList.filter(createEventFilterFor(query)) : sv.eventsList, deferred;
+        console.log('Logging results in eventQuerySearch -> ', results);
+        
+        return results;
+    }
 
-        return sv.tags.map(function (tag) {
-            tag._lowertype = tag.type.toLowerCase();
-            tag.name = tag.type;    // ONLY NEEDED BECAUSE THE transformChip() CURRENTLY ASSIGNS TYPE 'NEW'
-                                    // TO ALL USER-CREATED CHIPS. MUST ADDRESS GOING FORWARD.
-            // console.log('mapped tags', tag);
-            return tag;
-        });
-    };
+    function searchEventTextChange(text) {
+        $log.info('Text changed to ' + text);
+    }
+
+    function selectedEventChange(item) {
+        $log.info('Item changed to ' + JSON.stringify(item));
+    }
+
+    function createEventFilterFor(query) {
+        var lowercaseQuery = angular.lowercase(query);
+
+        return function filterFn(state) {
+            return (state.value.indexOf(lowercaseQuery) === 0);
+        };
+
+    }
+
+
+
+
+
     /** END HISTORICAL EVENT SECTION OF CODE */
 
     /* BEGIN QUIZ GENERATION SECTION OF CODE */
