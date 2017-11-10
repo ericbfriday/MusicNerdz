@@ -159,8 +159,9 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
     }
 
     function eventQuerySearch(query) {
-        console.log('Logging query in eventQuerySearch -> ', query);
-        var results = query ? sv.eventsList.filter(createEventFilterFor(query)) : sv.eventsList, deferred;
+        // console.log('Logging query in eventQuerySearch -> ', query);
+        console.log('Logging sv.eventsList in eventQuerySearch -> ', sv.eventsList);
+        var results = query ? sv.eventsList.filter(createEventFilterFor(query)) : sv.eventsList;
         console.log('Logging results in eventQuerySearch -> ', results);
         
         return results;

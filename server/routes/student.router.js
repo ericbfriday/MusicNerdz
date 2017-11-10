@@ -6,7 +6,7 @@ const encryptLib = require('../modules/encryption');
 router.post('/addStudent', function (req, res) {
     console.log('in add student post req:', req.body);
     pool.connect(function(err, client, done) {
-        let query = "WITH new_student AS (INSERT INTO students (first, last, email, number, classes_id) VALUES ($1, $2, $3, $4, $5) RETURNING id) INSERT INTO users (type, username, password, students_id) VALUES (1, $6, $7, (SELECT id FROM new_student))"
+        let query = "WITH new_student AS (INSERT INTO students (first, last, email, number, classes_id) VALUES ($1, $2, $3, $4, $5) RETURNING id) INSERT INTO users (type, username, password, students_id) VALUES (1, $6, $7, (SELECT id FROM new_student))";
         let saveStudent = {
             fName: req.body.first,
             lName: req.body.last,
@@ -15,7 +15,7 @@ router.post('/addStudent', function (req, res) {
             classId: req.body.classId,
             teachersId: req.body.teachersId,
         };
-        let values = [saveStudent.fName, saveStudent.lName, saveStudent.email, saveStudent.number, saveStudent.classId, saveStudent.email, saveStudent.number]
+        let values = [saveStudent.fName, saveStudent.lName, saveStudent.email, saveStudent.number, saveStudent.classId, saveStudent.email, saveStudent.number];
         console.log(saveStudent);
         
         if(err) {
@@ -29,7 +29,7 @@ router.post('/addStudent', function (req, res) {
               res.sendStatus(500);
             } else {
               res.sendStatus(201);
-            };
+            }
           });
         }
     });

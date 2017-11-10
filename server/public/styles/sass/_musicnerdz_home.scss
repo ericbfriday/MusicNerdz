@@ -14,6 +14,7 @@
         a {
             @include font-medium;
             color: $black;
+            text-decoration: none;
         }
         input {
             width: 100%;
@@ -35,6 +36,8 @@
             background-color: $white;
             font-size: 3rem;
             padding: 0;
+            border-bottom-left-radius: 0;
+            border-top-left-radius: 0;
             i {
                 text-align: center;
             }
@@ -42,6 +45,7 @@
         .main-logo {
             color: $black;
             margin: 0px 30px;
+            font-size: 3rem;
         }
     }
 }
@@ -57,61 +61,65 @@
         box-shadow: 0px 1px 5px $black;
         position: relative;
         z-index: 2;
-        background-color: #cecece;
+        background-color: #a8a8a8;
     }
     .main-display {
         position: relative;
         z-index: 1;
         padding: 0 0;
         margin: 25px 0;
-        .tile {
-            height: 275px;
-            width: 255px;
-            background-color: $white;
-            line-height: normal;
-            margin: 0 0 25px;
-            p {
-                margin: 0;
-            }
-            .tile-artist {
-                font-weight: 800;
-                -o-text-overflow: ellipsis;
-                text-overflow: ellipsis;
-                width: 100%;
-                overflow: hidden;
-                white-space: nowrap;
-            }
-            .tile-name {
-                font-size: 1.5rem;
-            }
-            .tile-art {
-                background-image: url('http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg');
-                background-size: cover;
-                background-position: 100% 10%;
-                height: 220px;
-                img {
-                    max-width: 100px;
-                }
-            }
-            .tile-details {
-                -webkit-box-shadow: 0px 1px 5px #777777;
-                box-shadow: 0px 1px 5px #777777;
-                .tile-album {
-                    font-size: 3em;
-                    line-height: 40px;
-                }
-                .tile-name {
-                    border-right: 1px solid #777777;
-                    max-height: 45px;
-                }
-            }
-        }
     }
     .main-container {
         overflow: visible;
+        padding: 0 50px;
     }
     .container {
         height: auto;
+    }
+}
+
+.tile {
+    height: 275px;
+    width: 255px;
+    background-color: $white;
+    line-height: normal;
+    margin: 0 0 25px;
+    -webkit-box-shadow: 0px 1px 5px #777777;
+    box-shadow: 0px 1px 5px #777777;
+    p {
+        margin: 0;
+    }
+    .tile-artist {
+        font-weight: 800;
+        -o-text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+    .tile-name {
+        font-size: 1.5rem;
+    }
+    .tile-art {
+        background-image: url('http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg');
+        background-size: cover;
+        background-position: 100% 25%;
+        height: 220px;
+        img {
+            max-width: 100px;
+        }
+    }
+    .tile-details {
+        -webkit-box-shadow: 0px 1px 5px #777777;
+        box-shadow: 0px 1px 5px #777777;
+        .tile-album {
+            font-size: 3em;
+            line-height: 40px;
+        }
+        .tile-name {
+            border-right: 1px solid #777777;
+            max-height: 45px;
+        }
     }
 }
 
@@ -119,8 +127,38 @@
     img {
         max-width: 225px;
     }
+    & .tile-art {
+        background-position: 100% 40%;
+        -webkit-box-shadow: 0px 1px 5px #333333;
+        box-shadow: 0px 1px 5px #333333;
+    }
     .main-display {
-        padding: 0 175px;
+        color:$white;
+        
+        .tile {
+            margin: 0;
+            height: auto;
+        }
+        .tile-artist {
+            font-weight: 100;
+        }
+        .tile-record {
+            font-weight: 300;
+        }
+        .tile-artist, .tile-record {
+            font-size: 4.5rem;
+            line-height: normal;
+            margin: 0;
+            padding-left: 35px;
+        }
+        .tile-desc {
+            font-weight: normal;
+            font-size: 1.5rem;
+            margin: 0;
+            padding: 35px;
+            line-height: normal;
+            text-align: left;
+        }
     }
 }
 
