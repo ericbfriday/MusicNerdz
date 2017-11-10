@@ -30,7 +30,7 @@
             </md-card-title-text>
         </md-card-title>
         <md-card-content layout="column">
-            <form name="eventCreation" id="eventCreationForm">
+            <form name="eventCreation" id="eventCreationForm" class="md-padding">
                 <div layout="row" layout-fill>
                     <md-input-container flex="75">
                         <label>Title of Event</label>
@@ -58,8 +58,11 @@
                         </span>
                     </md-chip-template>
                 </md-chips>
-                <md-button class="md-raised md-warn" ng-submit ng-click="ec.makeEvent(ec.title, ec.desc, ec.year, ec.hTags)" ng-href="#/admin/quizCreation">Submit & Move On to Quiz Questions</md-button>
+                <md-button class="md-primary md-raised">Create New Event</md-button>
             </form>
         </md-card-content>
+    </md-card>
+    <md-card class="md-padding">
+        <md-button class="md-raised md-warn md-padding" ng-submit ng-click="ec.makeEvent(ec.title, ec.desc, ec.year, ec.hTags)" ng-href="#/admin/quizCreation">Submit & Move On to Quiz Questions</md-button>
     </md-card>
 </section>

@@ -10,6 +10,7 @@ myApp.controller('EventCreation', function (ModuleCreation) {
     vm.hTags = ModuleCreation.hTags.data;
     vm.getHistoricalInfo = ModuleCreation.getHistoricalInfo;
     vm.makeEvent = ModuleCreation.makeEvent;
+
     /** Chips variables below */
     vm.selectedItem = ModuleCreation.selectedItem.data;
     vm.searchText = ModuleCreation.searchText.data;
@@ -19,11 +20,9 @@ myApp.controller('EventCreation', function (ModuleCreation) {
     vm.transformChip = ModuleCreation.transformChip;
     vm.tags = ModuleCreation.tags;
 
-    /** Associating event code is below */
+    /** Associating events to module code is below */
     vm.simulateQuery = false;
     vm.isDisabled = false;
-
-    vm.states = ModuleCreation.states;
     vm.eventQuerySearch = ModuleCreation.eventQuerySearch;
     vm.selectedEventChange = ModuleCreation.selectedEventChange;
     vm.selectedEvent = ModuleCreation.selectedEvent.data;

@@ -34,6 +34,10 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/moduleHistoricalEvents.html',
       controller: 'EventCreation as ec'
     })
+    .when('/admin/externalEventCreation', {
+      templateUrl: '/views/templates/adminCreateHistoricalEvents.html',
+      controller: 'EventCreation as ec'
+    })
     .when('/admin/userMgmt', {
       templateUrl: '/views/templates/adminUserMgmt.html',
       controller: 'AdminUserController as auc'
