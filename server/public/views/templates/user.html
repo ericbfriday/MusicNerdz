@@ -8,8 +8,7 @@
         <div class="main-container" flex=75 layout="column" layout-align="start stretch">
             <div class="main-display" layout-wrap layout="row" layout-align="space-between">
                 <!-- Repeated modules here -->
-                
-                <div class="tile" layout="column" flex=30 ng-repeat="i in uc.studentService.mods | filter: uc.search">
+                <div class="tile" layout="column" flex=30 ng-repeat="i in uc.studentService.mods | filter: uc.search" ng-click="uc.userService.loadmodule(i.id, $event)">
                     <div class="tile-art" flex=none ng-style="{'background-image':'url({{i.art}})'}">
                     </div>
                     <div class="tile-details" flex=60 layout="row" layout-align="center center">

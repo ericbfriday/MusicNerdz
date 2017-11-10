@@ -7,6 +7,4 @@ myApp
     vm.studentService = StudentService;
 
     vm.studentService.mods = [];
-    vm.studentService.getMod();
-
   });

@@ -20,7 +20,7 @@ input {
     min-height: 300px;
     opacity: .9;
     padding: 0;
-    height: 100vh;    
+    height: calc(100vh - 75px);
     .lead {
         @include font-large;
         text-shadow: 3px 3px $black;
@@ -32,7 +32,7 @@ input {
         }
     }
     >div {
-        background-color: rgba(255, 255, 255, 0.658);
+        background-color: rgba(255, 255, 255, 0.7);
         color: $black;
         border-radius: 5px;
         border-top: 3px solid $black;

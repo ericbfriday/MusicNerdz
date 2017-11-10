@@ -7,5 +7,4 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
 
     StudentService.getMod();
     console.log('resp in controller:');
-    
 });//END App Controller
