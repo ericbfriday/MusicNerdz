@@ -26,8 +26,9 @@ myApp.controller('EventCreation', function (ModuleCreation, $timeout, $q, $log) 
     // list of `state` value/display objects
     vm.states = loadAll();
     vm.eventQuerySearch = eventQuerySearch;
-    vm.selectedItemChange = selectedItemChange;
-    vm.searchTextChange = searchTextChange;
+    vm.selectedEventChange = selectedEventChange;
+    vm.selectedEvent = null;
+    vm.searchEventTextChange = searchEventTextChange;
     vm.searchEventText = null;
 
     // ******************************
@@ -39,24 +40,15 @@ myApp.controller('EventCreation', function (ModuleCreation, $timeout, $q, $log) 
      * remote dataservice call.
      */
     function eventQuerySearch(query) {
-        var results = query ? vm.states.filter(createFilterFor(query)) : vm.states,
-            deferred;
-        if (vm.simulateQuery) {
-            deferred = $q.defer();
-            $timeout(function () {
-                deferred.resolve(results);
-            }, Math.random() * 1000, false);
-            return deferred.promise;
-        } else {
-            return results;
-        }
+        var results = query ? vm.states.filter(createEventFilterFor(query)) : vm.states, deferred;
+        return results;
     }
 
-    function searchTextChange(text) {
+    function searchEventTextChange(text) {
         $log.info('Text changed to ' + text);
     }
 
-    function selectedItemChange(item) {
+    function selectedEventChange(item) {
         $log.info('Item changed to ' + JSON.stringify(item));
     }
 
@@ -64,13 +56,7 @@ myApp.controller('EventCreation', function (ModuleCreation, $timeout, $q, $log) 
      * Build `states` list of key/value pairs
      */
     function loadAll() {
-        var allStates = 'Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware,\
-              Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana,\
-              Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana,\
-              Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina,\
-              North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina,\
-              South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia,\
-              Wisconsin, Wyoming';
+        var allStates = 'Alabama, Alaska';
 
         return allStates.split(/, +/g).map(function (state) {
             return {
@@ -83,7 +69,7 @@ myApp.controller('EventCreation', function (ModuleCreation, $timeout, $q, $log) 
     /**
      * Create filter function for a query string
      */
-    function createFilterFor(query) {
+    function createEventFilterFor(query) {
         var lowercaseQuery = angular.lowercase(query);
 
         return function filterFn(state) {

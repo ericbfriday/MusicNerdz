@@ -25,8 +25,12 @@
                     </md-input-container>
                 </div>
                 <md-chips ng-model="ec.hTags" md-autocomplete-snap md-transform-chip="ec.transformChip($chip)" md-require-match="ec.requireMatch">
-                    <md-autocomplete md-selected-item="ec.selectedItem" md-search-text="ec.searchText" md-items="item in ec.chipseventQuerySearch(ec.searchText)"
-                        md-item-text="item.name" placeholder="Search for an Issue">
+                    <md-autocomplete 
+                    md-selected-item="ec.selectedItem" 
+                    md-search-text="ec.searchText" 
+                    md-items="item in ec.chipsQuerySearch(ec.searchText)"
+                    md-item-text="item.name" 
+                    placeholder="Search for an Issue">
                         <span md-highlight-text="ec.searchText">{{item.name}}</span>
                     </md-autocomplete>
                     <md-chip-template>
@@ -52,16 +56,16 @@
                     <md-autocomplete
                     ng-disabled="ec.isDisabled"
                     md-no-cache="ec.noCache"
-                    md-selected-item="ec.selectedItem"
-                    md-search-text-change="ec.searchTextChange(ec.searchEventText)"
+                    md-selected-item="ec.selectedEvent"
+                    md-search-text-change="ec.searchEventTextChange(ec.searchEventText)"
                     md-search-text="ec.searchEventText"
-                    md-selected-item-change="ec.selectedItemChange(item)"
-                    md-items="item in ec.eventQuerySearch(ec.searchEventText)"
-                    md-item-text="item.display"
+                    md-selected-item-change="ec.selectedEventChange(event)"
+                    md-items="event in ec.eventQuerySearch(ec.searchEventText)"
+                    md-item-text="event.display"
                     md-min-length="0"
                     placeholder="Historical Event to Associate to Song">
                   <md-item-template>
-                    <span md-highlight-text="ctrl.searchEventText" md-highlight-flags="^i">{{item.display}}</span>
+                    <span md-highlight-text="ec.searchEventText" md-highlight-flags="^i">{{event.display}}</span>
                   </md-item-template>
                   <md-not-found>
                     No events matching "{{ec.searchEventText}}" were found.

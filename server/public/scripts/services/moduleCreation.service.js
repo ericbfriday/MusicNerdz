@@ -82,7 +82,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         return $http.get('/moduleCreation/existingHistoricalInfo')
             .then( function (res) {
                 sv.existingHistoricalEventTags.data = res.data.rows; // associates tags to variable for chip manipulation
-                // console.log('sv.existingHistoricalEventTags -> ', sv.existingHistoricalEventTags.data);
+                console.log('sv.existingHistoricalEventTags -> ', sv.existingHistoricalEventTags.data);
                 sv.loadTags(); // calls tags for association to chips
             }).catch( function (err) {
                 console.log('catch err in getHistoricalInfo -', err);
@@ -106,11 +106,11 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     function chipsQuerySearch (query) { // Used for chip functionality
         console.log('in chipsQuerySearch', query);
         console.log('loggin sv.tags -> ', sv.tags); 
-        var results = query ? sv.tags.filter(createFilterFor(query)) : [];
+        var results = query ? sv.tags.filter(createChipsFilterFor(query)) : [];
         return results;
     }
 
-    function createFilterFor (query) { // Used for chip functionality
+    function createChipsFilterFor (query) { // Used for chip functionality
         var lowercaseQuery = angular.lowercase(query);
         console.log('logging lowercaseQuery -> ', lowercaseQuery);
         return function filterFn (tag) {
@@ -120,13 +120,13 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
 
     sv.loadTags = function () { // Used for chip functionality
         sv.tags = sv.existingHistoricalEventTags.data;
-        console.log('tags ', sv.tags);
+        // console.log('tags ', sv.tags);
 
         return sv.tags.map(function (tag) {
             tag._lowertype = tag.type.toLowerCase();
             tag.name = tag.type;    // ONLY NEEDED BECAUSE THE transformChip() CURRENTLY ASSIGNS TYPE 'NEW'
                                     // TO ALL USER-CREATED CHIPS. MUST ADDRESS GOING FORWARD.
-            console.log('mapped tags', tag);
+            // console.log('mapped tags', tag);
             return tag;
         });
     };
