@@ -4,7 +4,7 @@
       <div class="main-logo" flex="noshrink">Music<span>Nerdz</span>
       </div>
     </a>
-    <div flex=55>
+    <div flex=50>
       <div class="search-form" layout="row" layout-align="start center">
         <form ng-submit="" layout="row" layout-align="space-between center" flex=100>
           <input type="text" placeholder="Search by artist or song" ng-model="uc.search">
@@ -14,5 +14,11 @@
         </form>
       </div>
     </div>
+    <div flex layout="row" layout-align="end">
+        <li flex layout="row" layout-align="end center" class="student-nav">     
+           <a href="/#/" ng-if="loggedIn"> <i class="fa fa-line-chart" aria-hidden="true"></i>View Grades</a>
+           <a href="/#/home" ng-if="!loggedIn"> <i class="fa fa-sign-in" aria-hidden="true"></i>Log In</a>       
+        </li>
+      </div>
   </div>
 </div>

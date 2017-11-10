@@ -42,6 +42,17 @@
                 text-align: center;
             }
         }
+        .student-nav {
+            a {
+                font-size: 2rem;
+                margin: 0 15px;
+                box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+                background:$orange;
+                .fa-line-chart {
+                    margin: 5px;
+                }
+            }
+        }
         .main-logo {
             color: $black;
             margin: 0px 30px;
@@ -90,7 +101,7 @@
 
 .tile {
     height: 275px;
-    width: 255px;
+    width: 325px;
     background-color: $white;
     line-height: normal;
     margin: 0 0 25px;
@@ -114,7 +125,7 @@
         background-image: url('http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg');
         background-size: cover;
         background-position: 100% 25%;
-        height: 220px;
+        height: 200px;
         img {
             max-width: 100px;
         }
