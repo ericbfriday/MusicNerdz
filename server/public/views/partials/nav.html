@@ -1,8 +1,9 @@
 <div class="navbar">
   <div class="container" layout="row" layout-align="space-between center" flex=100>
-    <div class="main-logo" flex="noshrink">Music
-      <span>Nerdz</span>
+    <a href="/#/user">
+    <div class="main-logo" flex="noshrink">Music<span>Nerdz</span>
     </div>
+  </a>
     <div flex=45>
       <div class="search-form" layout="row" layout-align="space-between center">
         <form ng-submit="" layout="row" layout-align="space-between center" flex=100>
@@ -15,7 +16,7 @@
     </div>
     <ul flex=25>
       <li>
-        <a href="#/home">Login</a>
+        <a href="#/home" ng-if="!uc.userObject.loggedIn">Login</a>
       </li>
       <li>
         <a href="#/home" ng-click="uc.userService.logout()">Logout</a>

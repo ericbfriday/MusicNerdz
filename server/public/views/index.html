@@ -1,58 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>MusicNerdz</title>
 
-        <!-- angular -->
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
-        <!-- angular material -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-aria.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-animate.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.6.4/angular-messages.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.6/angular-sanitize.min.js"></script>
-        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/md-data-table/2.2.0/md-data-table.min.js"></script> -->
-        <script src="/vendors/md-data-table.min.js"></script>
-        <script src="vendors/ng-youtube-embed/build/ng-youtube-embed.min.js"></script>
-        <script src="../vendors/ui-carousel.js"></script>
-        <script src="https://use.fontawesome.com/ff62201e32.js"></script>
-        <script type="text/javascript" src="vendors/angular-material-accordion/js/ang-accordion.js"></script>
+<head>
+    <title>MusicNerdz</title>
 
-        <!-- Local PP & server scripts -->
-        <script type="text/javascript" src="scripts/client.js"></script>
-        <script type="text/javascript" src="scripts/controllers/info.controller.js"></script>
-        <script type="text/javascript" src="scripts/controllers/login.controller.js"></script>
-        <script type="text/javascript" src="scripts/controllers/user.controller.js"></script>
-        <script type="text/javascript" src="scripts/controllers/studentGrade.controller.js"></script>
-        <script type="text/javascript" src="scripts/controllers/studModule.controller.js"></script>
-        <script type="text/javascript" src="scripts/controllers/quizCreation.controller.js"></script>
-        <script type="text/javascript" src="scripts/controllers/quizHistoricalEvents.controller.js"></script>
-        <script type="text/javascript" src="scripts/controllers/viewclass.controller.js"></script>
-        <script type="text/javascript" src="scripts/controllers/adminUser.controller.js"></script>
-        <script type="text/javascript" src="scripts/controllers/songCreation.controller.js"></script>
-        <script type="text/javascript" src="scripts/services/user.service.js"></script>
-        <script type="text/javascript" src="scripts/services/moduleCreation.service.js"></script>
-        <script type="text/javascript" src="scripts/services/adminUser.service.js"></script>
-        <script type="text/javascript" src="scripts/services/teacher.service.js"></script>
-        <script type="text/javascript" src="scripts/services/student.service.js"></script>
+    <!-- angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <!-- angular material -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-aria.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.4/angular-animate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.6.4/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.6.6/angular-sanitize.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/md-data-table/2.2.0/md-data-table.min.js"></script> -->
+    <script src="/vendors/md-data-table.min.js"></script>
+    <script src="vendors/ng-youtube-embed/build/ng-youtube-embed.min.js"></script>
+    <script src="../vendors/ui-carousel.js"></script>
+    <script src="https://use.fontawesome.com/ff62201e32.js"></script>
+    <script type="text/javascript" src="vendors/angular-material-accordion/js/ang-accordion.js"></script>
 
-        <!-- styles -->
-        <link rel="stylesheet" type="text/css" href="vendors/angular-material-accordion/css/ang-accordion.css">
-        <link rel="stylesheet" href="https://gitcdn.link/repo/angular/bower-material/master/angular-material.min.css">
-        <link rel="stylesheet" type="text/css" href="vendors/md-data-table.min.css">
+    <!-- Local PP & server scripts -->
+    <script type="text/javascript" src="scripts/client.js"></script>
+    <script type="text/javascript" src="scripts/controllers/info.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/login.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/user.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/studentGrade.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/studModule.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/quizCreation.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/quizHistoricalEvents.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/viewclass.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/adminUser.controller.js"></script>
+    <script type="text/javascript" src="scripts/controllers/songCreation.controller.js"></script>
+    <script type="text/javascript" src="scripts/services/user.service.js"></script>
+    <script type="text/javascript" src="scripts/services/moduleCreation.service.js"></script>
+    <script type="text/javascript" src="scripts/services/adminUser.service.js"></script>
+    <script type="text/javascript" src="scripts/services/teacher.service.js"></script>
+    <script type="text/javascript" src="scripts/services/student.service.js"></script>
 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-        <link rel="stylesheet" href="../styles/stylesheets/ui-carousel.css">        
-        <link rel="stylesheet" href="styles/stylesheets/style.css">
-        <link rel="stylesheet" href="styles/stylesheets/base.css">
+    <!-- styles -->
+    <link rel="stylesheet" type="text/css" href="vendors/angular-material-accordion/css/ang-accordion.css">
+    <link rel="stylesheet" href="https://gitcdn.link/repo/angular/bower-material/master/angular-material.min.css">
+    <link rel="stylesheet" type="text/css" href="vendors/md-data-table.min.css">
 
-    </head>
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/stylesheets/ui-carousel.css">
+    <link rel="stylesheet" href="styles/stylesheets/style.css">
+    <link rel="stylesheet" href="styles/stylesheets/base.css">
 
-    <body ng-app="myApp">
+</head>
 
-      <main ng-view>
-      </main>
+<body ng-app="myApp">
 
-    </body>
+    <main ng-view>
+    </main>
+
+</body>
+
 </html>
