@@ -42,6 +42,17 @@
                 text-align: center;
             }
         }
+        .student-nav {
+            a {
+                font-size: 2rem;
+                margin: 0 15px;
+                box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
+                background:$orange;
+                .fa-line-chart {
+                    margin: 5px;
+                }
+            }
+        }
         .main-logo {
             color: $black;
             margin: 0px 30px;
@@ -69,9 +80,19 @@
         padding: 0 0;
         margin: 25px 0;
     }
-    .main-container {
+    .main-container, .main-assigned {
         overflow: visible;
         padding: 0 50px;
+        h1 {
+            line-height: normal;
+            margin: 20px;
+            font-size: 3rem;
+        }
+    }
+    .main-completed {
+        line-height: normal;
+        margin: 20px;
+        font-size: 3rem;
     }
     .container {
         height: auto;
@@ -80,7 +101,7 @@
 
 .tile {
     height: 275px;
-    width: 255px;
+    width: 325px;
     background-color: $white;
     line-height: normal;
     margin: 0 0 25px;
@@ -104,7 +125,7 @@
         background-image: url('http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg');
         background-size: cover;
         background-position: 100% 25%;
-        height: 220px;
+        height: 200px;
         img {
             max-width: 100px;
         }
@@ -115,6 +136,9 @@
         .tile-album {
             font-size: 3em;
             line-height: 40px;
+            .fa-check-square-o {
+                color: $orange;
+            }
         }
         .tile-name {
             border-right: 1px solid #777777;
@@ -131,6 +155,7 @@
         background-position: 100% 40%;
         -webkit-box-shadow: 0px 1px 5px #333333;
         box-shadow: 0px 1px 5px #333333;
+        height: 235px;
     }
     .main-display {
         color:$white;
