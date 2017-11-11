@@ -18,6 +18,10 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     templateUrl: '/views/templates/register.html',
     controller: 'LoginController as lc'
     })
+    .when('/admin/additionalResources', {
+      templateUrl: '/views/templates/moduleAdditionalResources.html',
+      controller: 'ResourcesController as rc'
+    })
     .when('/admin/home', {
       templateUrl: '/views/templates/adminLandingPage.html',
       controller: 'AdminUserController as auc'

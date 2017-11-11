@@ -8,7 +8,7 @@ var questions = []; // questions for `questions` table
 var newTags = []; // all 'new' tags for insertion into `tags` table & `oldTags` variable
 var oldTags = []; // all 'old' tags for insertion into `allTags` variable
 var allTags = []; // all tags for insertion into `history_tags` tables. Receives `newTags` and `oldTags` items.
-var moduleID = null;
+var moduleID = 5;
 
 /**
 Steps for module creation insert.
@@ -50,10 +50,32 @@ var tagSorter = function (tags) {
   console.log('logging allTags', allTags);
 };
 
-// Reference String for /newHistoricalEvent Query Below:
-// ** WITH new_event AS (INSERT INTO history (title, description, year) VALUES($1, $2, $3) RETURNING id), new_tag as (INSERT INTO tags (type) VALUES ($4) RETURNING id) INSERT INTO history_tags (history_id, tags_id) VALUES ((SELECT id FROM new_event), (SELECT id FROM new_tag));
-// ** WITH new_event AS (INSERT INTO history (title, description, year) VALUES($1, $2, $3) RETURNING id), new_tag AS (INSERT INTO tags (type) VALUES ($4) RETURNING id) INSERT INTO history_tags (history_id, tags_id) VALUES ((SELECT id FROM new_event), (SELECT id FROM new_tag));
-// let values = [title, desc, year, **need tags variable**];
+router.post('/resources', function (req, res, next) {
+  let resources = req.body.data;
+  // console.log('resources -> ', resources);
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    } else {
+    for (let i = 0; i < resources.length; i++) {
+      let query = 'INSERT INTO resources (description, type, link, modules_id, title) VALUES ($1, $2, $3, $4, $5);';
+      let values = [resources[i].desc, resources[i].type, resources[i].url, moduleID, resources[i].title];
+      console.log('loggin values -> ', values);
+      client.query(query, values,
+        function (err, result) {
+          if (err) {
+            console.log("Error inserting data: ", err);
+            res.sendStatus(500);
+          } else {
+            // console.log('log result -> ', result);
+          } 
+        });
+    }}
+    done();
+    res.sendStatus(200);
+  });
+});
 
 router.post('/songCreation', function (req, res, next) {
   console.log('req.body in /songCreation -> ', req.body);
@@ -90,7 +112,6 @@ router.post('/songCreation', function (req, res, next) {
   });
 });
 
-
 router.post('/newHistoricalEvent', function (req, res, next) {
   let title = req.body.title;
   let desc = req.body.desc;
@@ -101,7 +122,7 @@ router.post('/newHistoricalEvent', function (req, res, next) {
   let nTag = req.body.hTags[0];
   let queryString = "WITH new_event AS (INSERT INTO history (title, description, year) VALUES($1, $2, $3) RETURNING id), new_tag AS (INSERT INTO tags (type) VALUES ($4) RETURNING id) INSERT INTO history_tags (history_id, tags_id) VALUES ((SELECT id FROM new_event), (SELECT id FROM new_tag));";
   tagSorter(req.body.hTags);
-  let values = [title, desc, year, allTags[0]];
+  let values = [title, desc, year, allTags[0].value]; // allTags[0] currently inserts tag ID number into table
   console.log('logging values', values);
 
   pool.connect(function (err, client, done) {

@@ -1,6 +1,61 @@
 myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) {
     var sv = this;
 
+    /** BEGIN ADDITIONAL RESOURCES SECTION OF CODE */
+
+    sv.resourceType = {data: ''};
+    sv.vTitle = {data: ''};
+    sv.vURL = {data: ''};
+    sv.vDesc =  {data: ''};
+    sv.naTitle = {data: ''};
+    sv.naURL = {data: ''};
+    sv.naDesc =  {data: ''};
+    sv.bpTitle = {data: ''};
+    sv.bpURL = {data: ''};
+    sv.bpDesc =  {data: ''};
+    sv.oTitle = {data: ''};
+    sv.oURL = {data: ''};
+    sv.oDesc =  {data: ''};
+    sv.resources = {data: []};
+
+    class Resource {
+        constructor (title, url, desc, type) {
+            this.title = title;
+            this.url = url;
+            this.desc = desc;
+            this.type = type;
+        }
+    }
+
+    sv.pushV = function (title, url, desc) {
+        sv.v = new Resource(title, url, desc, 'v');
+        sv.resources.data.push(sv.v);
+    };
+    sv.pushNA = function (title, url, desc) {
+        sv.na = new Resource(title, url, desc, 'na');
+        sv.resources.push(sv.na);
+    };
+    sv.pushBP = function (title, url, desc) {
+        sv.bp = new Resource(title, url, desc, 'bp');
+        sv.resources.push(sv.bp);
+    };
+    sv.pushO = function (title, url, desc) {
+        sv.o = new Resource(title, url, desc, 'o');
+        sv.resources.push(sv.o);
+    };
+    sv.pushResources = function() {
+        console.log('logging pushResources() obj -> ', sv.resources);
+        return $http.post('/moduleCreation/resources', sv.resources)
+        .then(function (response){
+            console.log('logging response in pushResources -> ', response);
+        })
+        .catch(function(e) {
+            console.log('logging catch error in pushResources -> ', e);
+        });
+    };
+
+    /** END ADDITIONAL RESOURCES SECTION OF CODE */
+
     /**BEGIN SONG CREATION SECTION OF CODE */
 
     class Song {
@@ -255,13 +310,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
         sv.questions.push(sv.newMCQ);
         console.log('loggin sv.newMCQ in pushMCQuestion -> ', sv.newMCQ);
 
-        // Attempt to clear the form for the next questions submission
-        sv.currentMCQ = ''; // MC Question
-        sv.currentMCA1 = ''; // MC Answers 1-4 below
-        sv.currentMCA2 = '';
-        sv.currentMCA3 = '';
-        sv.currentMCA4 = '';
-        sv.currentMCCA = ''; // MCCA = Multiple Choice Correct Answer
+        document.getElementById('addQuestionsForm').reset();
     }; // end pushMCQ function
 
     // pushes SA Q into Q array

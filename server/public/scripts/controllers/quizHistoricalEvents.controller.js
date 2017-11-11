@@ -2,7 +2,7 @@ myApp.controller('EventCreation', function (ModuleCreation) {
     console.log('in quizHistoricalEvents.controller!');
 
     const vm = this;
-    /** main variables below -> excludes chips */
+    /** main variables below -> excludes chips & event association code */
     vm.year = ModuleCreation.year.data;
     vm.title = ModuleCreation.title.data;
     vm.desc = ModuleCreation.desc.data;
