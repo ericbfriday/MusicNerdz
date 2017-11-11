@@ -30,18 +30,22 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
     sv.pushV = function (title, url, desc) {
         sv.v = new Resource(title, url, desc, 'v');
         sv.resources.data.push(sv.v);
+        document.getElementById('addResourcesForm').reset();
     };
     sv.pushNA = function (title, url, desc) {
         sv.na = new Resource(title, url, desc, 'na');
-        sv.resources.push(sv.na);
+        sv.resources.data.push(sv.na);
+        document.getElementById('addResourcesForm').reset();
     };
     sv.pushBP = function (title, url, desc) {
         sv.bp = new Resource(title, url, desc, 'bp');
-        sv.resources.push(sv.bp);
+        sv.resources.data.push(sv.bp);
+        document.getElementById('addResourcesForm').reset();
     };
     sv.pushO = function (title, url, desc) {
         sv.o = new Resource(title, url, desc, 'o');
-        sv.resources.push(sv.o);
+        sv.resources.data.push(sv.o);
+        document.getElementById('addResourcesForm').reset();
     };
     sv.pushResources = function() {
         console.log('logging pushResources() obj -> ', sv.resources);
