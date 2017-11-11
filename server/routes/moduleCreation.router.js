@@ -3,26 +3,14 @@ const router = express.Router();
 const pool = require('../modules/pool.js');
 const bodyParser = require('body-parser');
 
-var quiz = {}; // master quiz variable to hold all questions, answers, etc... for `questions` table
-var questions = []; // questions for `questions` table
-var newTags = []; // all 'new' tags for insertion into `tags` table & `oldTags` variable
-var oldTags = []; // all 'old' tags for insertion into `allTags` variable
-var allTags = []; // all tags for insertion into `history_tags` tables. Receives `newTags` and `oldTags` items.
-var moduleID = 5;
+let quiz = {}; // master quiz variable to hold all questions, answers, etc... for `questions` table
+let questions = []; // questions for `questions` table
+let newTags = []; // all 'new' tags for insertion into `tags` table & `oldTags` variable
+let oldTags = []; // all 'old' tags for insertion into `allTags` variable
+let moduleID = {id: 0};
+let newModule = {data: null};
 
-/**
-Steps for module creation insert.
-1) insert module into `modules` table. return ID. 
-2) insert questions into `questions` table using `modules` returned ID.
-3) insert historic events into `history` table. 
-4) associate all `history` events to `modules` ID.
-5) insert tags into `tags` table if they do not exist, returning ID.
-6) retain existing tags' IDs and combine with new tags' IDs.
-7) insert all tags' IDs into `history_tags` table using returned 
-    tags' IDs and returned historic event's IDs.
-8) insert all tags' IDs into `module_tags` table using returned
-    tags' IDs and returned historic event's IDs.
- */
+/** Still need to empty arrays and objects for submitting second and third modules. */
 
 class Event {
   constructor(title, desc, year, htags) {
@@ -36,19 +24,84 @@ class Event {
 var tagSorter = function (tags) {
   tags.forEach(function (tag, i) {
     if (tags[i].type == 'new') {
-      newTags.push(tags[i].id);
-      allTags.push(tags[i].id);
-      // console.log('logging newTags ', newTags);
+      newTags.push(tags[i].name);
     } else if (typeof (tags[i].type) == 'string') {
       oldTags.push(tags[i].id);
-      allTags.push(tags[i].id);
-      // console.log('loggin oldTags ', oldTags);
     } else {
       console.log('Logging error in tagSorter');
     }
   });
-  console.log('logging allTags', allTags);
 };
+
+    // Original queryString and values -> let queryString = "WITH new_event AS (INSERT INTO history (title, description, year) VALUES($1, $2, $3) RETURNING id), new_tag AS (INSERT INTO tags (type) VALUES ($4) RETURNING id) INSERT INTO history_tags (history_id, tags_id) VALUES ((SELECT id FROM new_event), (SELECT id FROM new_tag));";
+    // Original queryString and values -> let values = [nEvent.title, nEvent.desc, nEvent.year, newTags[i]];
+    // This function inserts a new historical event into the db. It also adds historical tags (old and new), and associates those tags to the event.
+router.post('/newHistoricalEvent', function (req, res, next) {
+  let nEventID = [];
+  let newTagsID = [];
+  let oldTagsID = [];
+  let nEvent = new Event(req.body.title, req.body.desc, req.body.year, req.body.hTags);
+  // console.log('Logging nEvent in /newHistoricalEvent ', nEvent);
+  tagSorter(nEvent.hTags);
+  // console.log('newTags ', newTags);
+  // console.log('oldTags', oldTags);
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    //FIRST QUERY INSERTS HISOTRICAL EVENT AND RETURNS ID
+    let initialQueryString = "INSERT INTO history (title, description, year) VALUES($1, $2, $3) RETURNING id;";
+    let initialQueryValues = [nEvent.title, nEvent.desc, nEvent.year];
+    console.log('logging values in initialQuery (event insertion)', initialQueryValues);
+    client.query(initialQueryString, initialQueryValues,
+      function (err, result) {
+        if (err) {
+          console.log("Error inserting data: ", err);
+          res.sendStatus(500);
+        } else {
+          console.log('Result in event insert statement-> ', result);
+          nEventID = newTagsID.push(result.rows.id); // sets nEventID to the event ID returned by the first query string.
+        }
+      });
+
+      // SECOND QUERY INSERTS NEW TAGS, RETURNS ID, & ASSOCIATES TO HISTORICAL EVENT
+    for (let i = 0; i < newTags.length; i++) {
+      let newTagQueryString = "INSERT INTO tags (type) VALUES ($1) RETURNING id";
+      let newTagQueryValues = [newTags[i]];
+      console.log('logging values in newTagQueryValues (new tags event insertion) -> ', newTagQueryValues);
+      client.query(newTagQueryString, newTagQueryValues,
+        function (err, result) {
+          if (err) {
+            console.log("Error inserting data: ", err);
+            res.sendStatus(500);
+          } else {
+            console.log('Result in new query tag insert statement -> ', result);
+            newTagsID.push(result.rows.id);
+          }
+        });
+    }
+
+    // THIRD QUERY ASSOCIATES EXISTING HISTORICAL EVENTS TO NEW HISTORICAL EVENT
+    for (let i = 0; i < oldTags.length; i++) {
+      let oldTagQueryString = "INSERT INTO history_tags (history_id, tags_id) VALUES ($1, $2)";
+      let oldTagQueryValues = [moduleID.id, oldTags[i]];
+      console.log('logging values in history_tags insert statement -> ', oldTagQueryValues);
+      client.query(oldTagQueryString, oldTagQueryValues,
+        function (err, result) {
+          if (err) {
+            console.log("Error inserting data: ", err);
+            res.sendStatus(500);
+          } else {
+            console.log('Result in history_tags insert statemet -> ', result);
+            oldTagsID.push(result.rows.id);
+          }
+        });
+    }
+    res.sendStatus(201);
+    done();
+  });
+});
 
 router.post('/resources', function (req, res, next) {
   let resources = req.body.data;
@@ -58,22 +111,23 @@ router.post('/resources', function (req, res, next) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     } else {
-    for (let i = 0; i < resources.length; i++) {
-      let query = 'INSERT INTO resources (description, type, link, modules_id, title) VALUES ($1, $2, $3, $4, $5);';
-      let values = [resources[i].desc, resources[i].type, resources[i].url, moduleID, resources[i].title];
-      console.log('loggin values -> ', values);
-      client.query(query, values,
-        function (err, result) {
-          if (err) {
-            console.log("Error inserting data: ", err);
-            res.sendStatus(500);
-          } else {
-            // console.log('log result -> ', result);
-          } 
+      for (let i = 0; i < resources.length; i++) {
+        let query = 'INSERT INTO resources (description, type, link, modules_id, title) VALUES ($1, $2, $3, $4, $5);';
+        let values = [resources[i].desc, resources[i].type, resources[i].url, moduleID.id, resources[i].title];
+        // console.log('loggin values -> ', values);
+        client.query(query, values,
+          function (err, result) {
+            if (err) {
+              console.log("Error inserting data: ", err);
+              res.sendStatus(500);
+            } else {
+              // console.log('log result -> ', result.rows);
+            }
         });
-    }}
+      }
+    }
     done();
-    res.sendStatus(200);
+    res.sendStatus(201);
   });
 });
 
@@ -103,41 +157,10 @@ router.post('/songCreation', function (req, res, next) {
           console.log("Error inserting data: ", err);
           res.sendStatus(500);
         } else {
-          moduleID = result.rows[0].id;
+          moduleID.id = result.rows[0].id;
           // sets router variable moduleId to ID of last inserted mosule for association to other insert statements.
-          console.log('moduleID -> ', moduleID);
+          console.log('moduleID -> ', moduleID.id);
           res.status(203).send(result);
-        }
-      });
-  });
-});
-
-router.post('/newHistoricalEvent', function (req, res, next) {
-  let title = req.body.title;
-  let desc = req.body.desc;
-  let year = req.body.year;
-  let hTags = req.body.hTags;
-  let hTagsType = req.body.hTags[0].type;
-  let nEvent = new Event(title, desc, year, hTags);
-  let nTag = req.body.hTags[0];
-  let queryString = "WITH new_event AS (INSERT INTO history (title, description, year) VALUES($1, $2, $3) RETURNING id), new_tag AS (INSERT INTO tags (type) VALUES ($4) RETURNING id) INSERT INTO history_tags (history_id, tags_id) VALUES ((SELECT id FROM new_event), (SELECT id FROM new_tag));";
-  tagSorter(req.body.hTags);
-  let values = [title, desc, year, allTags[0].value]; // allTags[0] currently inserts tag ID number into table
-  console.log('logging values', values);
-
-  pool.connect(function (err, client, done) {
-    if (err) {
-      console.log("Error connecting: ", err);
-      res.sendStatus(500);
-    }
-    client.query(queryString, values,
-      function (err, result) {
-        client.end();
-        if (err) {
-          console.log("Error inserting data: ", err);
-          res.sendStatus(500);
-        } else {
-          res.status(203).send(res);
         }
       });
   });
