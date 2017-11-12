@@ -1,21 +1,32 @@
-<div class="navbar">
-    <div class="container" layout="row" layout-align="space-between center" flex=100>
-        <div class="main-logo" flex="noshrink">Music
-        <span>Nerdz</span>
-        </div>
-    </div>
-</div>
-<div class="container">
+<div ng-include="'views/partials/teacher_nav.html'"></div>
+<div class="container" ng-init=vc.getClasses(vc.teacher)>
     <p>Gradebook</p>
     <div layout="row" layout-align="center center" flex layout-fill>
         <md-input-container class="md-block" flex=30>
             <label>Class</label>
-            <md-select ng-model="user.state">
-                <md-option ng-repeat="class in vm.classes" value="{{class.id}}">
+            <md-select ng-model="title">
+                <md-option ng-repeat="class in vc.classes" value={{class.title}}>
                 {{class.title}}
                 </md-option>
             </md-select>
         </md-input-container>
     </div>
-    
+    <div ng-repeat="class in vc.classes" ng-if="class.title == title">
+        <md-table-container>
+            <table md-table>
+                <thead md-head md-row-select multiple>
+                    <th md-column md-order-by="name" flex=25>Name</th>
+                    <th md-column ng-repeat="module in vc.modules">{{module.title}}</th>
+                </thead>
+                <tbody md-body>
+                    <tr ng-repeat="student in class.students | orderBy: name">
+                        <td md-cell>{{student.last}}, {{student.first}}</td>
+                        <div ng-virtual-repeat="response in vc.responses">
+                            <td md-cell><a icon>{{module.grade}}</td>                        
+                        </div>                                    
+                    </tr>
+                </tbody>
+            </table>
+        </md-table-container>
+    </div>  
 </div>

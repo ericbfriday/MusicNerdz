@@ -96,7 +96,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
                     newClass.students.push(newStudent);
                     vm.classes.push(newClass);
                 } else {
-                    classObj.students.push(newStudent);
+                    newClass.students.push(newStudent);
                 };  
             };
             console.log('class and students after GET', vm.classes);            
@@ -111,8 +111,6 @@ myApp.controller('ViewController', function ($http, TeacherService) {
             console.log('students array after GET', vm.students);            
         })
     };
-
-    vm.getClasses(vm.teacher);
-
+    
     console.log("vm.student", vm.student);
 });
