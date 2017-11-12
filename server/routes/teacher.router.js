@@ -50,6 +50,29 @@ router.post('/addTeacher', function (req, res) {
   });
 }); // end /addTeacher
 
+//get all assigned module info that matches class Id
+router.get('/assigned/:classIdParam', function (req, res) {
+  console.log('getting assigned module info with', req.params.classIdParam);
+  pool.connect(function (err, client, done) {
+    let queryString = "SELECT title FROM modules JOIN classes_modules ON modules.id = classes_modules.modules_id WHERE classes_id = $1;";
+    let value = [req.params.classIdParam];
+
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(queryString, value, function (err, result) {
+      client.end();
+      if (err) {
+        console.log("Error querying data in /assigned GET route: ", err);
+        res.sendStatus(500);
+      } else {
+        res.send(result.rows);
+      }
+    });
+  });
+})
+
 //get list of students by class
 router.get('/students/:classParam', (req, res) => {
   console.log('in get students teacher route with', req.params.classParam);
