@@ -89,7 +89,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
         return $http.post('/moduleCreation/songCreation', sv.song)
         .then((response) => {
             console.log('logging response in makeSong -> ', response);
-            document.getElementById("addSongForm").reset();
+            // document.getElementById("addSongForm").reset();
         })
         .catch((e)=>{
             console.log('Logging error in makeSong -> ', e);
@@ -119,6 +119,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
     sv.searchEventText = {data: null};
     sv.eventList = {};
     sv.loadEvents = loadEvents;
+    sv.associatedEvents = {data: []};
 
     class Event {
         constructor(title, desc, year, htags) {
@@ -128,6 +129,24 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
             this.hTags = htags; // hTags are the tags assigned to an event by the user.
         }
     } // end Event class
+
+    sv.finishEvents = function() {
+        $http.post('/moduleCreation/associatedEvents', sv.associatedEvents)
+        .then(function(response) {
+            console.log('Logging response in finishEvents -> ', response);
+        }
+        ).catch(function(err) {
+            console.log('Logging catch error in finishEvents -> ', err);
+        }
+
+        );
+    }; // end sv.finishEvents()
+
+    sv.associateEvent = function (ev) {
+        console.log('Logging event in associatedEvent -> ', ev);
+        sv.associatedEvents.data.push(ev);
+        console.log('Logging sv.associatedEvents in associatedEvent -> ', sv.associatedEvents);
+    };
 
     sv.getEvents = function () {
         return $http.get('/moduleCreation/getEvents')

@@ -19,7 +19,7 @@
                             No events matching "{{ec.searchEventText}}" were found.
                         </md-not-found>
                     </md-autocomplete>
-                    <md-button class="md-primary md-raised">Associate Existing Event</md-button>
+                    <md-button class="md-primary md-raised" ng-click="ec.associateEvent(ec.selectedEvent)">Associate Existing Event</md-button>
                 </form>
             </md-card-content>
         </md-card>
@@ -64,7 +64,7 @@
             </md-card-content>
         </md-card>
         <md-card class="md-padding" class="md-padding">
-            <md-button class="btn1" ng-submit ng-click="ec.makeEvent(ec.title, ec.desc, ec.year, ec.hTags)" ng-href="#/admin/additionalResources">Submit & Move On to Quiz Questions</md-button>
+            <md-button class="btn1" ng-submit ng-click="ec.finishEvents()" ng-href="#/admin/additionalResources">Submit & Move On to Quiz Questions</md-button>
         </md-card>
     </div>
 </section>

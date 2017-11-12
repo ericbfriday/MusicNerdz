@@ -31,4 +31,6 @@ myApp.controller('EventCreation', function (ModuleCreation) {
     vm.eventList = ModuleCreation.eventList.data;
     vm.loadEvents = ModuleCreation.loadEvents;
     vm.getEvents = ModuleCreation.getEvents;
+    vm.associateEvent = ModuleCreation.associateEvent;
+    vm.finishEvents = ModuleCreation.finishEvents;
 });
