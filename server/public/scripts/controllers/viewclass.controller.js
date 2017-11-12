@@ -39,6 +39,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
     }
 
     vm.classes = [];
+    vm.modules = [];
 
     //add class
     vm.addClass = function () {
@@ -102,7 +103,14 @@ myApp.controller('ViewController', function ($http, TeacherService) {
             console.log('class and students after GET', vm.classes);            
         });
     };
+    
+    //call get assigned modules from service
+    vm.getAssigned = function (classId) {
+        console.log('in get assigned in teacher controller', classId);
+        TeacherService.getAssigned(classId).then( function () {
 
+        });
+    }
     //connect to service to make http call to get students by class
     vm.getStudents = function (classId) {
         console.log('in get students with class ID', classId);

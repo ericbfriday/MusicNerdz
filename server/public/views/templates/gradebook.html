@@ -4,14 +4,14 @@
     <div layout="row" layout-align="center center" flex layout-fill>
         <md-input-container class="md-block" flex=30>
             <label>Class</label>
-            <md-select ng-model="title">
-                <md-option ng-repeat="class in vc.classes" value={{class.title}}>
+            <md-select ng-model="id" md-on-close="vc.getAssigned(id)">
+                <md-option ng-repeat="class in vc.classes" value={{class.id}}>
                 {{class.title}}
                 </md-option>
             </md-select>
         </md-input-container>
     </div>
-    <div ng-repeat="class in vc.classes" ng-if="class.title == title">
+    <div ng-repeat="class in vc.classes" ng-if="class.id == id">
         <md-table-container>
             <table md-table>
                 <thead md-head md-row-select multiple>
