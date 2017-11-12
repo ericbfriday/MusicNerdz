@@ -66,6 +66,9 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         getMod: function (StudentService) {
           console.log('resolve all modules');
           return StudentService.getMod();
+        },
+        getuser: function (UserService) {
+          return UserService.getuser();
         }
       }
     })
@@ -89,7 +92,12 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     })
     .when('/viewclass', {
       templateUrl: '/views/templates/viewclass.html',
-      controller: 'ViewController as vc'
+      controller: 'ViewController as vc',
+      resolve: {
+        getteacher: function (UserService) {
+          return UserService.getteacher();
+        }
+      }
     })
     .otherwise({redirectTo: 'user'});
   $mdThemingProvider
