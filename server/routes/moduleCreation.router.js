@@ -72,14 +72,13 @@ let moduleQuestionList = {}; // new QuestionList(questions);
 let finalModule = new Module(moduleSong, moduleEventList, moduleResourceList, moduleQuestionList);
 
 function initModule(res) {
-  // let finalModule = new Module(moduleSong, moduleEventList, moduleResourceList, moduleQuestionList);
-  console.log('createModule() activated & connected!');
+  // console.log('createModule() activated & connected!');
   insertSong(moduleSong, res);
+  res.sendStatus(201);
 }
 
 var insertSong = function (song, res) {
-  console.log('song -> ', song);
-
+  // console.log('song -> ', song);
   let songTitle = song.title;
   let songAlbum = song.album;
   let songArtist = song.artist;
@@ -103,7 +102,7 @@ var insertSong = function (song, res) {
             res.sendStatus(500);
           } else {
             moduleID.id = result.rows[0].id;
-            console.log('logging moduleID.id in insertSong() -> ', moduleID.id);
+            // console.log('logging moduleID.id in insertSong() -> ', moduleID.id);
             insertAssociatedEvents(moduleEventList, client);
           }
         });
@@ -112,19 +111,19 @@ var insertSong = function (song, res) {
 };
 
 var insertAssociatedEvents = function (events, client, res) {
-  console.log('loggin events.events -> ', events.events);
+  // console.log('loggin events.events -> ', events.events);
   ev = events.events;
   for (let i = 0; i < ev.length; i++) {
     let query = "INSERT INTO modules_history (modules_id, history_id) VALUES ($1, $2) RETURNING id";
     let values = [moduleID.id, ev[i].id];
-    console.log('insertAssociatedEvents() values -> ', values);
+    // console.log('insertAssociatedEvents() values -> ', values);
     client.query(query, values,
       function (err, result) {
         if (err) {
           console.log("Error inserting data: ", err);
           res.sendStatus(500);
         } else {
-          console.log('Result in event insert statement-> ', result);
+          // console.log('Result in event insert statement-> ', result);
         }
       });
   }
@@ -133,19 +132,18 @@ var insertAssociatedEvents = function (events, client, res) {
 
 var insertResources = function (resources, client, res) {
   resource = resources.resources;
-  console.log('loggin resource -> ', resource);
-
+  // console.log('loggin resource -> ', resource);
   for (let i = 0; i < resource.length; i++) {
     let query = 'INSERT INTO resources (description, type, link, modules_id, title) VALUES ($1, $2, $3, $4, $5);';
     let values = [resource[i].desc, resource[i].type, resource[i].url, moduleID.id, resource[i].title];
-    console.log('loggin values -> ', values);
+    // console.log('loggin values -> ', values);
     client.query(query, values,
       function (err, result) {
         if (err) {
           console.log("Error inserting data: ", err);
           res.sendStatus(500);
         } else {
-          console.log('log result in insertResources-> ', result);
+          // console.log('log result in insertResources-> ', result);
         }
       });
   }
@@ -154,23 +152,22 @@ var insertResources = function (resources, client, res) {
 
 var insertQuestions = function (questions, client, res) {
   let que = questions.questions.questions[0].questions;
-  console.log('logging que -> ', que);
+  // console.log('logging que -> ', que);
   for (let i = 0; i < que.length; i++) {
     let query = "INSERT INTO questions (question, type, a, b, c, d, correct, modules_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
     let values = [que[i].q, que[i].type, que[i].a1, que[i].a2, que[i].a3, que[i].a4, que[i].ca, moduleID.id];
-    console.log('insertQuestions() values -> ', values);
+    // console.log('insertQuestions() values -> ', values);
     client.query(query, values,
       function (err, result) {
         if (err) {
           console.log("Error inserting data: ", err);
           res.sendStatus(500);
         } else {
-          console.log('Result in question insert statement-> ', result);
+          // console.log('Result in question insert statement-> ', result);
         }
       });
   }
 };
-
 
 var tagSorter = function (tags) {
   tags.forEach(function (tag, i) {
@@ -183,9 +180,6 @@ var tagSorter = function (tags) {
     }
   });
 };
-
-// Original queryString and values -> let queryString = "WITH new_event AS (INSERT INTO history (title, description, year) VALUES($1, $2, $3) RETURNING id), new_tag AS (INSERT INTO tags (type) VALUES ($4) RETURNING id) INSERT INTO history_tags (history_id, tags_id) VALUES ((SELECT id FROM new_event), (SELECT id FROM new_tag));";
-// Original queryString and values -> let values = [nEvent.title, nEvent.desc, nEvent.year, newTags[i]];
 
 // The below function inserts a new historical event into the db. It also adds historical tags (old and new), and associates those tags to the event.
 router.post('/newHistoricalEvent', function (req, res, next) {
@@ -269,7 +263,7 @@ router.post('/newHistoricalEvent', function (req, res, next) {
               console.log("Error inserting data: ", err);
               res.sendStatus(500);
             } else {
-              console.log('Result in new tags history_tags insert statemet -> completed');
+              // console.log('Result in new tags history_tags insert statemet -> completed');
             }
           });
         done();
@@ -312,7 +306,7 @@ router.post('/songCreation', function (req, res, next) {
   let songLyrics = req.body.songLyrics;
   let songArt = req.body.songArt;
   moduleSong = new Song(songTitle, songAlbum, songArtist, songYear, songURL, songDesc, songLyrics, songArt);
-  console.log('logging moduleSong => ', moduleSong);
+  // console.log('logging moduleSong => ', moduleSong);
   res.sendStatus(200);
 });
 
@@ -326,12 +320,12 @@ router.post('/associatedEvents', function (req, res, next) {
 router.post('/quiz', function (req, res, next) {
   questions = req.body.data;
   moduleQuestionList.questions = new QuestionList(questions);
-  console.log('logging moduleQuestionList in associatedEvents -> ', moduleQuestionList);
+  // console.log('logging moduleQuestionList in associatedEvents -> ', moduleQuestionList);
   initModule(res);
 });
 
 router.get('/getEvents', function (req, res, next) {
-  console.log('Inside /getEvents in moduleCreation route');
+  // console.log('Inside /getEvents in moduleCreation route');
   pool.connect(function (err, client, done) {
     if (err) {
       console.log('Logging error inside /getEvents -> ', err);
@@ -351,7 +345,7 @@ router.get('/getEvents', function (req, res, next) {
 });
 
 router.get('/existingHistoricalInfo', function (req, res, next) {
-  console.log('inside /existingHistoricalInfo in moduleCreation route');
+  // console.log('inside /existingHistoricalInfo in moduleCreation route');
   pool.connect(function (err, client, done) {
     if (err) {
       console.log("Error connecting in /existingHistoricalInfo: ", err);
