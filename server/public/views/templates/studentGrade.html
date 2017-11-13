@@ -1,28 +1,54 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <section class="sizeLg gradeMarg">
-    <h2 class="orange">{{sgc.studGrades.data[0].first}} {{sgc.studGrades.data[0].last}}</h2>
- 
-    <ang-accordion >
-        <collapsible-item ng-repeat="sa in sgc.studGrades.data" item-title="Lesson {{sa.modules_id}}" >
-          
+    <h2 class="orange">{{sgc.studGrades.lesson5[0].first}} {{sgc.studGrades.lesson5[0].last}}</h2>
+
+    <ang-accordion>
+        <collapsible-item item-title="Lesson {{sgc.studGrades.lesson5[0].modules_id}}">
             <div layout="row" class="gradeMarg sizeLg">
-            <div flex>
-                Grade:<br>
-                <strong class="uppercase">{{sgc.studGrades.data[0].final_grade}}</strong>
+                <div flex>
+                    Grade:
+                    <br>
+                    <strong class="uppercase">{{sgc.studGrades.lesson5[0].final_grade}}</strong>
+                </div>
+                <div flex>
+                    Correct Answers:
+                    <br>
+                    <strong>12/15</strong>
+                </div>
             </div>
-            <div flex>
-                Correct Answers:<br>
-                <strong>12/15</strong>
-            </div>
-            </div>
-            <div class="gradeMarg">
-                 {{sa.question}}
+            <div class="gradeMarg" ng-repeat="sa in sgc.studGrades.lesson5">
+                {{sa.question}}
                 <p>
-                     {{sa.response}}
+                    {{sa.response}}
                 </p>
                 <h4>Teacher Response:</h4>
                 <p>
-                     {{sa.teacher_comments}}
+                    {{sa.teacher_comments}}
+                </p>
+                <hr>
+            </div>
+        </collapsible-item>
+        <collapsible-item item-title="Lesson {{sgc.studGrades.lesson2[0].modules_id}}">
+            <div layout="row" class="gradeMarg sizeLg">
+                <div flex>
+                    Grade:
+                    <br>
+                    <strong class="uppercase">{{sgc.studGrades.lesson2[0].final_grade}}</strong>
+                </div>
+                <div flex>
+                    Correct Answers:
+                    <br>
+                    <strong>12/15</strong>
+                </div>
+            </div>
+            <div class="gradeMarg" ng-repeat="sa in sgc.studGrades.lesson2">
+                {{sa.question}}
+                <p>
+                    {{sa.response}}
+                </p>
+                <h4>Teacher Response:</h4>
+                <p>
+                    {{sa.teacher_comments}}
                 </p>
                 <hr>
             </div>
