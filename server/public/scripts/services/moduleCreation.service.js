@@ -1,5 +1,64 @@
-myApp.service('ModuleCreation', function ($http, $mdDialog) {
+myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) {
     var sv = this;
+
+    /** BEGIN ADDITIONAL RESOURCES SECTION OF CODE */
+
+    sv.resourceType = {data: ''};
+    sv.vTitle = {data: ''};
+    sv.vURL = {data: ''};
+    sv.vDesc =  {data: ''};
+    sv.naTitle = {data: ''};
+    sv.naURL = {data: ''};
+    sv.naDesc =  {data: ''};
+    sv.bpTitle = {data: ''};
+    sv.bpURL = {data: ''};
+    sv.bpDesc =  {data: ''};
+    sv.oTitle = {data: ''};
+    sv.oURL = {data: ''};
+    sv.oDesc =  {data: ''};
+    sv.resources = {data: []};
+
+    class Resource {
+        constructor (title, url, desc, type) {
+            this.title = title;
+            this.url = url;
+            this.desc = desc;
+            this.type = type;
+        }
+    }
+
+    sv.pushV = function (title, url, desc) {
+        sv.v = new Resource(title, url, desc, 'v');
+        sv.resources.data.push(sv.v);
+        document.getElementById('addResourcesForm').reset();
+    };
+    sv.pushNA = function (title, url, desc) {
+        sv.na = new Resource(title, url, desc, 'na');
+        sv.resources.data.push(sv.na);
+        document.getElementById('addResourcesForm').reset();
+    };
+    sv.pushBP = function (title, url, desc) {
+        sv.bp = new Resource(title, url, desc, 'bp');
+        sv.resources.data.push(sv.bp);
+        document.getElementById('addResourcesForm').reset();
+    };
+    sv.pushO = function (title, url, desc) {
+        sv.o = new Resource(title, url, desc, 'o');
+        sv.resources.data.push(sv.o);
+        document.getElementById('addResourcesForm').reset();
+    };
+    sv.pushResources = function() {
+        console.log('logging pushResources() obj -> ', sv.resources);
+        return $http.post('/moduleCreation/resources', sv.resources)
+        .then(function (response){
+            console.log('logging response in pushResources -> ', response);
+        })
+        .catch(function(e) {
+            console.log('logging catch error in pushResources -> ', e);
+        });
+    };
+
+    /** END ADDITIONAL RESOURCES SECTION OF CODE */
 
     /**BEGIN SONG CREATION SECTION OF CODE */
 
@@ -30,7 +89,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         return $http.post('/moduleCreation/songCreation', sv.song)
         .then((response) => {
             console.log('logging response in makeSong -> ', response);
-            document.getElementById("addSongForm").reset();
+            // document.getElementById("addSongForm").reset();
         })
         .catch((e)=>{
             console.log('Logging error in makeSong -> ', e);
@@ -47,12 +106,20 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
     sv.hTags = {data: []}; // tags for new historical event
     sv.existingHistoricalEvent = {data: []}; // Existing events to be pulled from server for searching/filtering
     sv.existingHistoricalEventTags = {data: []}; // existing tags to be associated with new historical event. Is this necessary?
-    sv.selectedItem = null;
-    sv.searchText = null;
-    sv.querySearch = querySearch;
+    sv.selectedItem = {data: null};
+    sv.searchText = {data: null};
+    sv.chipsQuerySearch = chipsQuerySearch;
     sv.requireMatch = false; // temporarily 'true' until route set up to allow insertion and association of new tags
     sv.transformChip = transformChip;
     sv.tags = [];
+    sv.eventQuerySearch = eventQuerySearch;
+    sv.selectedEventChange = selectedEventChange;
+    sv.selectedEvent = {data: null};
+    sv.searchEventTextChange = searchEventTextChange;
+    sv.searchEventText = {data: null};
+    sv.eventList = {};
+    sv.loadEvents = loadEvents;
+    sv.associatedEvents = {data: []};
 
     class Event {
         constructor(title, desc, year, htags) {
@@ -63,21 +130,60 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         }
     } // end Event class
 
+    sv.finishEvents = function() {
+        $http.post('/moduleCreation/associatedEvents', sv.associatedEvents)
+        .then(function(response) {
+            console.log('Logging response in finishEvents -> ', response);
+        }
+        ).catch(function(err) {
+            console.log('Logging catch error in finishEvents -> ', err);
+        }
+
+        );
+    }; // end sv.finishEvents()
+
+    sv.associateEvent = function (ev) {
+        console.log('Logging event in associatedEvent -> ', ev);
+        sv.associatedEvents.data.push(ev);
+        console.log('Logging sv.associatedEvents in associatedEvent -> ', sv.associatedEvents);
+    };
+
+    sv.getEvents = function () {
+        return $http.get('/moduleCreation/getEvents')
+        .then((res) => {
+            sv.eventList = res.data.rows;
+            // console.log('Loggin res (sv.eventList) in sv.getEvents => ', sv.eventList);
+            sv.loadEvents();
+        })
+        .catch((err)=> {
+            console.log('Logging err in sv.getEvents => ', err);
+        }); 
+    };
+
+    function loadEvents() {
+        return sv.eventList.map(function (event) {
+            event._lowertype = event.title.toLowerCase();
+            // console.log('mapped event', event);
+            return event;
+        });
+    }
+
     sv.makeEvent = function (title, desc, year, hTags) {
-        console.log('sv.makeEvent activated!');
+        // console.log('sv.makeEvent activated!');
         sv.newEvent = new Event(title, desc, year, hTags);
         return $http.post('/moduleCreation/newHistoricalEvent', sv.newEvent)
             .then( function (res) {
-                console.log('loggin res status in makeEvent -> ', res);
+                // console.log('loggin res status in makeEvent -> ', res);
+                document.getElementById('eventCreationForm').reset();
             })
             .catch( function (err) {
-                console.log('loggin err msg in makeEvent -> ', err);
+                // console.log('loggin err msg in makeEvent -> ', err);
             });
     };
 
     // On load, fetches existing historical events and tags for use searching for events
     sv.getHistoricalInfo = function () {
-        console.log('sv.getHistoricalInfo activated!');
+        // console.log('sv.getHistoricalInfo activated!');
         return $http.get('/moduleCreation/existingHistoricalInfo')
             .then( function (res) {
                 sv.existingHistoricalEventTags.data = res.data.rows; // associates tags to variable for chip manipulation
@@ -86,6 +192,19 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
             }).catch( function (err) {
                 console.log('catch err in getHistoricalInfo -', err);
             });
+    };
+
+    sv.loadTags = function () { // Used for chip functionality
+        sv.tags = sv.existingHistoricalEventTags.data;
+        // console.log('tags ', sv.tags);
+
+        return sv.tags.map(function (tag) {
+            tag._lowertype = tag.type.toLowerCase();
+            tag.name = tag.type;    // ONLY NEEDED BECAUSE THE transformChip() CURRENTLY ASSIGNS TYPE 'NEW'
+                                    // TO ALL USER-CREATED CHIPS. MUST ADDRESS GOING FORWARD.
+            // console.log('mapped tags', tag);
+            return tag;
+        });
     };
 
     function transformChip (chip) { // Used for chip functionality
@@ -102,33 +221,45 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         };
     }
 
-    function querySearch (query) { // Used for chip functionality
-        // console.log('in querySearch', query);
-        // console.log('loggin sv.tags -> ', sv.tags);
-        var results = query ? sv.tags.filter(createFilterFor(query)) : [];
+    function chipsQuerySearch (query) { // Used for chip functionality
+        // console.log('in chipsQuerySearch', query);
+        // console.log('loggin sv.tags -> ', sv.tags); 
+        var results = query ? sv.tags.filter(createChipsFilterFor(query)) : [];
         return results;
     }
 
-    function createFilterFor (query) { // Used for chip functionality
+    function createChipsFilterFor (query) { // Used for chip functionality
         var lowercaseQuery = angular.lowercase(query);
-        // console.log('logging lowercaseQuery -> ', lowercaseQuery);
+        console.log('logging lowercaseQuery -> ', lowercaseQuery);
         return function filterFn (tag) {
             return (tag._lowertype.indexOf(lowercaseQuery) === 0);
         };
     }
 
-    sv.loadTags = function () { // Used for chip functionality
-        sv.tags = sv.existingHistoricalEventTags.data;
-        // console.log('tags ', sv.tags);
+    function eventQuerySearch(query) {
+        // console.log('Logging query in eventQuerySearch -> ', query);
+        // console.log('Logging sv.eventsList in eventQuerySearch -> ', sv.eventList);
+        var results = query ? sv.eventList.filter(createEventFilterFor(query)) : [];
+        // console.log('Logging results in eventQuerySearch -> ', results);
+        return results;
+    }
 
-        return sv.tags.map(function (tag) {
-            tag._lowertype = tag.type.toLowerCase();
-            tag.name = tag.type;    // ONLY NEEDED BECAUSE THE transformChip() CURRENTLY ASSIGNS TYPE 'NEW'
-                                    // TO ALL USER-CREATED CHIPS. MUST ADDRESS GOING FORWARD.
-            // console.log('mapped tags', tag);
-            return tag;
-        });
-    };
+    function searchEventTextChange(text) {
+        $log.info('Text changed to ' + text);
+    }
+
+    function selectedEventChange(item) {
+        $log.info('Item changed to ' + JSON.stringify(item));
+    }
+
+    function createEventFilterFor(query) {
+        var lowercaseQuery = angular.lowercase(query);
+        return function filterFn(event) {
+            // console.log('Logging event inside createEventFilterfor filterFn -> ', event);
+            return (event._lowertype.indexOf(lowercaseQuery) === 0);
+        };
+    }
+
     /** END HISTORICAL EVENT SECTION OF CODE */
 
     /* BEGIN QUIZ GENERATION SECTION OF CODE */
@@ -202,13 +333,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog) {
         sv.questions.push(sv.newMCQ);
         console.log('loggin sv.newMCQ in pushMCQuestion -> ', sv.newMCQ);
 
-        // Attempt to clear the form for the next questions submission
-        sv.currentMCQ = ''; // MC Question
-        sv.currentMCA1 = ''; // MC Answers 1-4 below
-        sv.currentMCA2 = '';
-        sv.currentMCA3 = '';
-        sv.currentMCA4 = '';
-        sv.currentMCCA = ''; // MCCA = Multiple Choice Correct Answer
+        document.getElementById('addQuestionsForm').reset();
     }; // end pushMCQ function
 
     // pushes SA Q into Q array

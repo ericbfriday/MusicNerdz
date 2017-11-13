@@ -1,58 +1,66 @@
 <section>
-        <div ng-include="'views/partials/admin_nav.html'"></div>
+    <div ng-include="'views/partials/admin_nav.html'"></div>
+    <div class="md-padding">
         <md-card>
-        <form id="addSongForm">
-        <div layout="column">
-            <div layout="row">
-                <md-input-container flex="50">
-                    <label>Title of Song</label>
-                    <input ng-model="sc.songTitle.data" md-select-on-focus>
-                </md-input-container>
-                <md-input-container flex="50">
-                    <label>Title of Album</label>
-                    <input ng-model="sc.songAlbum.data" md-select-on-focus>
-                </md-input-container>
-            </div>
-            <div layout="row">
-                <md-input-container flex="50">
-                    <label>Artist</label>
-                    <input ng-model="sc.songArtist.data" md-select-on-focus>
-                </md-input-container>
-                <md-input-container flex="50">
-                    <label>Year</label>
-                    <input ng-model="sc.songYear.data" md-select-on-focus>
-                </md-input-container>
-            </div>
-            <div layout="row">
-                <md-input-container flex="100">
-                    <label>Album Art URL</label>
-                    <input ng-model="sc.songArt.data" md-select-on-focus>
-                </md-input-container>
-            </div>
-            <div layout="row">
-                <md-input-container flex="100">
-                    <label>Youtube Video URL</label>
-                    <input ng-model="sc.songURL.data" md-select-on-focus>
-                </md-input-container>
-            </div>
-            <div layout="row">
-                <md-input-container flex="100">
-                    <label>Description</label>
-                    <pre>
+            <md-card-title>
+                <md-card-title-text class="md-headline">
+                    Begin Module Creation - Step 1: Add Song Details
+                </md-card-title-text>
+            </md-card-title>
+            <form id="addSongForm" class="md-padding">
+                <div layout="column">
+                    <div layout="row">
+                        <md-input-container flex="50">
+                            <label>Title of Song</label>
+                            <input ng-model="sc.songTitle.data" md-select-on-focus>
+                        </md-input-container>
+                        <md-input-container flex="50">
+                            <label>Title of Album</label>
+                            <input ng-model="sc.songAlbum.data" md-select-on-focus>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="50">
+                            <label>Artist</label>
+                            <input ng-model="sc.songArtist.data" md-select-on-focus>
+                        </md-input-container>
+                        <md-input-container flex="50">
+                            <label>Year</label>
+                            <input ng-model="sc.songYear.data" md-select-on-focus>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="100">
+                            <label>Album Art URL</label>
+                            <input ng-model="sc.songArt.data" md-select-on-focus>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="100">
+                            <label>Youtube Video URL</label>
+                            <input ng-model="sc.songURL.data" md-select-on-focus>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="100">
+                            <label>Description</label>
+                            <pre>
                     <textarea ng-model="sc.songDesc.data" rows="4" md-select-on-focus></textarea>
                 </pre>
-                </md-input-container>
-            </div>
-            <div layout="row">
-                <md-input-container flex="100">
-                    <label>Lyrics</label>
-                    <pre>
-                    <textarea ng-model="sc.songLyrics.data" rows="20" md-select-on-focus></textarea>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="100">
+                            <label>Lyrics</label>
+                            <pre>
+                    <textarea ng-model="sc.songLyrics.data" rows="10" md-select-on-focus></textarea>
                     </pre>
-                </md-input-container>
-            </div>
-        </div>
-        <md-button class="md-primary md-raised" ng-submit ng-click="sc.makeSong(sc.songTitle, sc.songAlbum, sc.songArtist, sc.songYear, sc.songURL, sc.songArt, sc.songDesc, sc.songLyrics)">Submit & Move On to Historical Event Questions</md-button>
-        </form>
-    </md-card>
+                        </md-input-container>
+                    </div>
+                </div>
+                <md-button class="btn1" ng-submit ng-click="sc.makeSong(sc.songTitle, sc.songAlbum, sc.songArtist, sc.songYear, sc.songURL, sc.songArt, sc.songDesc, sc.songLyrics)"
+                    ng-href="#/admin/eventCreation">Submit</md-button>
+            </form>
+        </md-card>
+    </div>
 </section>

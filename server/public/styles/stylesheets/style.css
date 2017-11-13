@@ -147,4 +147,10 @@ md-card-title {
 
 .uppercase {
     text-transform: uppercase;
+  color: #fca311
+}
+
+/** Admin */
+.btn1 {
+    background-color: #fca311;
 }
