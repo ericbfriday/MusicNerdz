@@ -1,8 +1,10 @@
 myApp.service('StudentService', function ($http) {
+    //GLOBALS
     const sv = this
     sv.mods = {data: []}
     sv.saQuestions = {data: []};
     sv.mcQuestions = {data: []};
+    sv.studGrades = {data: []};
 
     // constructor to create multiple choice objects
     function McQs(question, a, b, c, d, correct) {
@@ -49,6 +51,15 @@ myApp.service('StudentService', function ($http) {
             console.log('mcQs:', sv.mcQuestions);
             console.log('Filtered:', questions_without_duplicates);
         }) //END $http GET
-    } //END getListings
+    } //END getMod
+
+    // function to get student grade info back from router
+   sv.getGrades = function () {
+        //$http get request
+        $http.get('/student/getGrades').then(function (resp) {
+            console.log('response in service:', resp);
+            sv.studGrades.data = resp.data
+        }) //END $http GET
+    }//END getGrades
     
 });//END

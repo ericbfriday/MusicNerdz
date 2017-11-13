@@ -1,6 +1,6 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <section class="sizeLg gradeMarg">
-    <h3 class="orange">Dustin Henderson</h3>
+    <h3 class="orange">{{sgc.studGrades.data[0].first}} {{sgc.studGrades.data[0].last}}</h3>
     <div layout="row">
         <div flex>
             Total Lessons Completed:
@@ -18,7 +18,7 @@
             <div layout="row" class="gradeMarg sizeLg">
             <div flex>
                 Grade:<br>
-                <strong>A-</strong>
+                <strong>{{sgc.studGrades.data[0].final_grade}}</strong>
             </div>
             <div flex>
                 Correct Answers:<br>
@@ -29,30 +29,16 @@
                 <strong>October 22 2018</strong>
             </div>
             </div>
-            <div class="gradeMarg">
-               1. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis?
+            <div class="gradeMarg" ng-repeat="sa in sgc.studGrades.data">
+                 {{sa.question}}
                 <p>
-                     Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
+                     {{sa.response}}
                 </p>
                 <h4>Teacher Response:</h4>
                 <p>
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
+                     {{sa.teacher_comments}}
                 </p>
                 <hr>
-                 2. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis?
-                <p>
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
-                </p>
-                <h4>Teacher Response:</h4>
-                <p>
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
-                </p>
             </div>
         </collapsible-item>
 

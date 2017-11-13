@@ -94,6 +94,37 @@ router.get('/getModule', function (req, res){
   })//END pool.connect
 })//END router GET
 
+//get student grades info from database
+router.get('/getGrades', function (req, res) {
+  // connect to database
+  pool.connect(function (err, client, done) {
+    // query to get grades based on student's id
+    let modQuery = 'SELECT * FROM questions JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1'
+    // var to hold student id
+    let studID = 5;
+    //error handling
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } //END if connection error
+    else {
+      client.query(modQuery, [studID], function (quErr, resultObj) {
+        done();
+        //error handling
+        if (quErr) {
+          console.log('Query Error:', quErr);
+          res.sendStatus(500);
+        } //END if query error
+        else {
+          //send the list from the database to client side
+          res.send(resultObj.rows);
+          console.log('RESULT:', resultObj.rows);
+        } //END else send
+      }); //END client.query
+    } //END else send query
+  })//END pool.connect
+})//END router GET
+
 // **********Modules queries*********
 // SELECT * FROM modules WHERE modules.id = 5;
 // SELECT * FROM questions WHERE modules_id = 5;
@@ -102,5 +133,9 @@ router.get('/getModule', function (req, res){
 // JOIN modules ON modules_history.modules_id = modules.id
 // WHERE modules.id = 5;
 
+// SELECT * FROM questions 
+// JOIN responses ON questions.id = responses.questions_id
+// JOIN students ON responses.students_id = students.id
+// WHERE students.id = 5
 
 module.exports = router;
