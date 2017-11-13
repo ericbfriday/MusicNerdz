@@ -20,6 +20,11 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         this.email = email;
     };
 
+    function ModTitleId (id, title) {
+        this.id = id;
+        this.title = title;
+    };
+
     //create new class data
     vm.class = {
         id: '',
@@ -39,7 +44,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
     }
 
     vm.classes = [];
-    vm.moduleTitles = [];
+    vm.modules = [];
 
     //add class
     vm.addClass = function () {
@@ -79,6 +84,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         TeacherService.getClasses(teacherId).then( function () {
             vm.returnedClasses = vm.teacherService.classes;
             var classMap = {};
+
             for (var i = 0; i < vm.returnedClasses.length; i++) {
                 var classId = vm.returnedClasses[i].id;
                 var title = vm.returnedClasses[i].title;
@@ -109,7 +115,24 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         console.log('in get assigned in teacher controller', classId);
         TeacherService.getAssigned(classId).then( function () {
             console.log('back from service with', vm.teacherService.assigned);
-            vm.moduleTitles = vm.teacherService.assigned
+            vm.returnedAssigned = vm.teacherService.assigned;
+            var assignedMap = {};
+
+            for (var i = 0; i < vm.returnedAssigned.length; i++) {
+                var moduleId = vm.returnedAssigned[i].id;
+                var title = vm.returnedAssigned[i].title;
+                var studentId = vm.returnedAssigned[i].students_id;
+                var final = vm.returnedAssigned[i].final_grade;
+                var resonse = vm.returnedAssigned[i].response;
+
+                var assignedObj = assignedMap[moduleId];
+                
+                if (assignedObj == null) {
+                    var newMod = new ModTitleId (moduleId, title);                    
+                    assignedMap[moduleId] = moduleId;
+                    vm.modules.push(newMod);
+                }
+            }
         });
     }
     //connect to service to make http call to get students by class

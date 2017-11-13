@@ -16,7 +16,7 @@
             <table md-table>
                 <thead md-head md-row-select multiple>
                     <th md-column md-order-by="name" flex=25>Name</th>
-                    <th md-column ng-repeat="module in vc.moduleTitles">{{module.title}}</th>
+                    <th md-column ng-repeat="module in vc.modules">{{module.title}}</th>
                 </thead>
                 <tbody md-body>
                     <tr ng-repeat="student in class.students | orderBy: name">
