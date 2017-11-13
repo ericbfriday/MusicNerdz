@@ -59,6 +59,11 @@ myApp.service('StudentService', function ($http) {
         $http.get('/student/getGrades').then(function (resp) {
             console.log('response in service:', resp);
             sv.studGrades.data = resp.data
+            // loop though response
+            for (var i = 0; i < resp.data.length; i++) {
+                
+                
+            }//END for loop
         }) //END $http GET
     }//END getGrades
     
