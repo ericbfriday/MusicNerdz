@@ -17,7 +17,15 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     .when('/register', {
     templateUrl: '/views/templates/register.html',
     controller: 'LoginController as lc'
-  })
+    })
+    .when('/admin/additionalResources', {
+      templateUrl: '/views/templates/moduleAdditionalResources.html',
+      controller: 'ResourcesController as rc'
+    })
+    .when('/admin/home', {
+      templateUrl: '/views/templates/adminLandingPage.html',
+      controller: 'AdminUserController as auc'
+    })
     .when('/admin/songCreation', {
       templateUrl: '/views/templates/moduleSongCreation.html',
       controller: 'SongCreation as sc'
@@ -28,6 +36,10 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     })
     .when('/admin/eventCreation', {
       templateUrl: '/views/templates/moduleHistoricalEvents.html',
+      controller: 'EventCreation as ec'
+    })
+    .when('/admin/externalEventCreation', {
+      templateUrl: '/views/templates/adminCreateHistoricalEvents.html',
       controller: 'EventCreation as ec'
     })
     .when('/admin/userMgmt', {
@@ -54,6 +66,9 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         getMod: function (StudentService) {
           console.log('resolve all modules');
           return StudentService.getMod();
+        },
+        getuser: function (UserService) {
+          return UserService.getuser();
         }
       }
     })
@@ -78,10 +93,20 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     .when('/viewclass', {
       templateUrl: '/views/templates/viewclass.html',
       controller: 'ViewController as vc',
+      resolve: {
+        getteacher: function (UserService) {
+          return UserService.getteacher();
+        }
+      }
     })
     .when('/teacher/grading', {
       templateUrl: '/views/templates/gradebook.html',
       controller: 'ViewController as vc',
+      resolve: {
+        getteacher: function (UserService) {
+          return UserService.getteacher();
+        }
+      }
     })
     .otherwise({redirectTo: 'user'});
   $mdThemingProvider
