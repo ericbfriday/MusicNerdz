@@ -54,7 +54,7 @@ router.post('/addTeacher', function (req, res) {
 router.get('/assigned/:classIdParam', function (req, res) {
   console.log('getting assigned module info with', req.params.classIdParam);
   pool.connect(function (err, client, done) {
-    let queryString = "SELECT title FROM modules JOIN classes_modules ON modules.id = classes_modules.modules_id WHERE classes_id = $1;";
+    let queryString = "SELECT responses.response, responses.final_grade, responses.students_id, modules.id, modules.title FROM students JOIN responses ON students.id = responses.students_id JOIN questions ON responses.questions_id = questions.id JOIN modules ON questions.modules_id = modules.id WHERE students.classes_id = $1;";
     let value = [req.params.classIdParam];
 
     if (err) {
