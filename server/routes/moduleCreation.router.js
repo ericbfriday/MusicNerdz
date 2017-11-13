@@ -112,20 +112,37 @@ var insertSong = function (song, res) {
 
 var insertAssociatedEvents = function (events, client, res) {
   // console.log('loggin events.events -> ', events.events);
+
+  // Query that works in pSQL, but fails due to 'cannot insert multiple commands into a prepared statement' error.
+  //let query = "INSERT INTO modules_history (modules_id, history_id) VALUES ($1, $2) RETURNING id; INSERT INTO modules_tags (modules_id, tags_id) VALUES ($3, (SELECT tags_id FROM history_tags WHERE history_id = $4));";
+  //let values = [moduleID.id, ev[i].id, moduleID.id, ev[i]];
+
+
   ev = events.events;
   for (let i = 0; i < ev.length; i++) {
-    let query = "INSERT INTO modules_history (modules_id, history_id) VALUES ($1, $2) RETURNING id";
+    let query = "INSERT INTO modules_history (modules_id, history_id) VALUES ($1, $2) RETURNING id;";
     let values = [moduleID.id, ev[i].id];
     // console.log('insertAssociatedEvents() values -> ', values);
     client.query(query, values,
       function (err, result) {
         if (err) {
           console.log("Error inserting data: ", err);
-          res.sendStatus(500);
+          res.sendStatus(500); // currently erroring with 'Cannot read property 'sendStatus' of undefined.
         } else {
           // console.log('Result in event insert statement-> ', result);
         }
       });
+      let query2 = "INSERT INTO modules_tags (modules_id, tags_id) VALUES ($1, (SELECT tags_id FROM history_tags WHERE history_id = $2));";
+      let values2 = [moduleID.id, ev[i].id];
+      client.query(query2, values2,
+        function (err, result) {
+          if (err) {
+            console.log("Error inserting data: ", err);
+            res.sendStatus(500);
+          } else {
+            // console.log('Result in event insert statement-> ', result);
+          }
+        });
   }
   insertResources(moduleResourceList, client, res);
 };
@@ -167,7 +184,24 @@ var insertQuestions = function (questions, client, res) {
         }
       });
   }
+  // insertModuleTags(client, res);
 };
+
+// var insertModuleTags = function (client, res) {
+// // INSERT INTO modules_tags (modules_id, tags_id) VALUES (moduleID/$1, (SELECT tags_id FROM history_tags WHERE history_id = ev[i] ))
+//   let query = "";
+//   let values = [moduleID.id];
+//   console.log('insertModuleTags() values -> ', values);
+//   client.query(query, values,
+//     function (err, result) {
+//       if (err) {
+//         console.log("Error inserting data: ", err);
+//         res.sendStatus(500);
+//       } else {
+//         // console.log('Result in question insert statement-> ', result);
+//       }
+//     });
+// };
 
 var tagSorter = function (tags) {
   tags.forEach(function (tag, i) {
