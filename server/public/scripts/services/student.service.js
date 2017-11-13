@@ -39,14 +39,34 @@ myApp.service('StudentService', function ($http) {
                     tempMC.push(question);
                 }//END else if
             }//END for loop
-            // remove duplicates from temp arrays
+            // remove duplicates from temp array
             let questions_without_duplicates = Array.from(new Set(tempSA));
-            
+            // remove duplicates from array of objects (tempMC)
+            function removeDuplicates(originalArray, objKey) {
+                // local variables
+                let trimmedArray = [];
+                let values = [];
+                let value;
+                // loop through array of mcs
+                for (let i = 0; i < originalArray.length; i++) {
+                    // set value to object key
+                    value = originalArray[i][objKey];
+                    if (values.indexOf(value) === -1) {
+                        // push to trimmedArray to hold
+                        trimmedArray.push(originalArray[i]);
+                        // push key value to values array
+                        values.push(value);
+                    }//END if
+                }//END for loop
+                // return array without duplicates
+                return trimmedArray;
+            }//END removeDuplicates
             // set globals to new arrays without duplicates
             sv.saQuestions.data = questions_without_duplicates;
-            sv.mcQuestions.data = tempMC
+            // set to value of return from function
+            sv.mcQuestions.data = removeDuplicates(tempMC, 'question');
             console.log('saQs:', sv.saQuestions);
-            console.log('mcQs:', sv.mcQuestions);
+            console.log('mcQs:', sv.mcQuestions.data);
             console.log('Filtered:', questions_without_duplicates);
         }) //END $http GET
     } //END getListings
