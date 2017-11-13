@@ -69,6 +69,6 @@ myApp.service('StudentService', function ($http) {
             console.log('mcQs:', sv.mcQuestions.data);
             console.log('Filtered:', questions_without_duplicates);
         }) //END $http GET
-    } //END getListings
+    } //END getMod
     
 });//END
