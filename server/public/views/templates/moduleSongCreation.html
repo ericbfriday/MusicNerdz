@@ -1,59 +1,60 @@
-<section>
+<section class="admin">
     <div ng-include="'views/partials/admin_nav.html'"></div>
-    <div class="md-padding">
+    <div class="md-padding admin-container">
         <md-card>
-            <md-card-title>
+            <md-card-title class="admin-title">
                 <md-card-title-text class="md-headline">
-                    Begin Module Creation - Step 1: Add Song Details
+                    Module Creation - Step 1: Add Song Details
                 </md-card-title-text>
             </md-card-title>
-            <form id="addSongForm" class="md-padding">
+            <form id="addSongForm" class="md-padding admin-form">
                 <div layout="column">
-                    <div layout="row">
-                        <md-input-container flex="50">
-                            <label>Title of Song</label>
-                            <input ng-model="sc.songTitle.data" md-select-on-focus>
+                    <div layout="row" layout-align="space-between center">
+                        <md-input-container flex="40">
+                            <label class="admin-label" >Title of Song</label>
+                            <input ng-model="sc.songTitle.data" md-select-on-focus autofocus>
                         </md-input-container>
-                        <md-input-container flex="50">
+                        <md-input-container flex="40" flex-offset="10">
                             <label>Title of Album</label>
                             <input ng-model="sc.songAlbum.data" md-select-on-focus>
                         </md-input-container>
                     </div>
-                    <div layout="row">
-                        <md-input-container flex="50">
+                    <div layout="row" layout-align="start center">
+                        <md-input-container flex="40">
                             <label>Artist</label>
                             <input ng-model="sc.songArtist.data" md-select-on-focus>
                         </md-input-container>
-                        <md-input-container flex="50">
+                        <md-input-container flex="10" flex-offset="20">
                             <label>Year</label>
-                            <input ng-model="sc.songYear.data" md-select-on-focus>
+                            <input ng-model="sc.songYear.data" md-select-on-focus maxlength="4">
                         </md-input-container>
                     </div>
-                    <div layout="row">
-                        <md-input-container flex="100">
+                    <div layout="row" layout-align="space-between center">
+                        <md-input-container flex="40">
                             <label>Album Art URL</label>
                             <input ng-model="sc.songArt.data" md-select-on-focus>
                         </md-input-container>
+                        <md-input-container flex="40">
+                                <label>Youtube Video URL</label>
+                                <input ng-model="sc.songURL.data" md-select-on-focus>
+                            </md-input-container>
                     </div>
-                    <div layout="row">
-                        <md-input-container flex="100">
-                            <label>Youtube Video URL</label>
-                            <input ng-model="sc.songURL.data" md-select-on-focus>
-                        </md-input-container>
-                    </div>
-                    <div layout="row">
-                        <md-input-container flex="100">
+                    <!-- <div layout="row" layout-align="space-between center">
+
+                    </div> -->
+                    <div layout="row" layout-align="space-between center">
+                        <md-input-container flex="100" class="admin-largelabel">
                             <label>Description</label>
                             <pre>
-                    <textarea ng-model="sc.songDesc.data" rows="4" md-select-on-focus></textarea>
+                    <textarea ng-model="sc.songDesc.data" rows="7" md-select-on-focus></textarea>
                 </pre>
                         </md-input-container>
                     </div>
-                    <div layout="row">
-                        <md-input-container flex="100">
+                    <div layout="row" layout-align="space-between center">
+                        <md-input-container flex="100" class="admin-largelabel">
                             <label>Lyrics</label>
                             <pre>
-                    <textarea ng-model="sc.songLyrics.data" rows="10" md-select-on-focus></textarea>
+                    <textarea ng-model="sc.songLyrics.data" rows="7" md-select-on-focus></textarea>
                     </pre>
                         </md-input-container>
                     </div>

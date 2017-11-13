@@ -2,13 +2,13 @@
     <div ng-include="'views/partials/admin_nav.html'" ng-init="ec.getEvents()"></div>
     <div class="md-padding">
         <md-card>
-            <md-card-title>
+            <md-card-title class="admin-title">
                 <md-card-title-text class="md-headline">
                     Module Creation - Step 2: Add and Associate Historic Events
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
-                <form id="eventSearchForm" class="md-padding" class="md-padding">
+                <form id="eventSearchForm" class="md-padding" class="md-padding admin-form">
                     <md-autocomplete ng-disabled="ec.isDisabled" md-no-cache="ec.noCache" md-selected-item="ec.selectedEvent" md-search-text-change="ec.searchEventTextChange(ec.searchEventText)"
                         md-search-text="ec.searchEventText" md-selected-item-change="ec.selectedEventChange(event)" md-items="event in ec.eventQuerySearch(ec.searchEventText)"
                         md-item-text="event.title" md-min-length="0" placeholder="Historical Event to Associate to Song">
