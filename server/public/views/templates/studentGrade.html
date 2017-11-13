@@ -1,35 +1,21 @@
 <div ng-include="'views/partials/nav.html'"></div>
 <section class="sizeLg gradeMarg">
-    <h3 class="orange">{{sgc.studGrades.data[0].first}} {{sgc.studGrades.data[0].last}}</h3>
-    <div layout="row">
-        <div flex>
-            Total Lessons Completed:
-            <br> 25
-        </div>
-        <div flex>
-            Average Grade:
-            <br> 90%
-        </div>
-    </div>
-
+    <h2 class="orange">{{sgc.studGrades.data[0].first}} {{sgc.studGrades.data[0].last}}</h2>
+ 
     <ang-accordion >
-        <collapsible-item item-title="Lesson One">
+        <collapsible-item ng-repeat="sa in sgc.studGrades.data" item-title="Lesson {{sa.modules_id}}" >
           
             <div layout="row" class="gradeMarg sizeLg">
             <div flex>
                 Grade:<br>
-                <strong>{{sgc.studGrades.data[0].final_grade}}</strong>
+                <strong class="uppercase">{{sgc.studGrades.data[0].final_grade}}</strong>
             </div>
             <div flex>
                 Correct Answers:<br>
                 <strong>12/15</strong>
             </div>
-            <div flex>
-                Date Completed:<br>
-                <strong>October 22 2018</strong>
             </div>
-            </div>
-            <div class="gradeMarg" ng-repeat="sa in sgc.studGrades.data">
+            <div class="gradeMarg">
                  {{sa.question}}
                 <p>
                      {{sa.response}}
@@ -39,82 +25,6 @@
                      {{sa.teacher_comments}}
                 </p>
                 <hr>
-            </div>
-        </collapsible-item>
-
-        <collapsible-item item-title="Lesson Two">
-            <div layout="row" class="gradeMarg">
-                <div flex>
-                    A-
-                </div>
-                <div flex>
-                     12/15
-                </div>
-                <div flex>
-                    October 22 2018
-                </div>
-            </div>
-            <div class="gradeMarg">
-                1. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis?
-                <p>
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
-                </p>
-                <h4>Teacher Response:</h4>
-                <p>
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
-                </p>
-                <hr> 2. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis?
-                <p>
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
-                </p>
-                <h4>Teacher Response:</h4>
-                <p>
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
-                </p>
-            </div>
-        </collapsible-item>
-        
-        <collapsible-item item-title="Lesson Three">
-            <div layout="row" class="gradeMarg">
-            <div flex>
-                A-
-            </div>
-            <div flex>
-                12/15
-            </div>
-            <div flex>
-                October 22 2018
-            </div>
-            </div>
-            <div class="gradeMarg">
-                1. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis?
-                <p>
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
-                </p>
-                <h4>Teacher Response:</h4>
-                <p>
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
-                </p>
-                <hr> 2. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
-                natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis?
-                <p>
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
-                </p>
-                <h4>Teacher Response:</h4>
-                <p>
-                    Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
-                    justo.
-                </p>
             </div>
         </collapsible-item>
     </ang-accordion>

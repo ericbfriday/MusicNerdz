@@ -142,3 +142,7 @@ md-card-title {
 .orange {
   color: #fca311
 }
+
+.uppercase {
+    text-transform: uppercase;
+}
