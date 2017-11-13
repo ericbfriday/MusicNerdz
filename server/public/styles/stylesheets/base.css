@@ -526,7 +526,7 @@ input {
 .admin .container {
   height: 75px;
 }
-/* line 8, ../sass/_musicnerdz_adminnav.scss */
+/* line 10, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-nav a:before {
   content: "\A";
   width: 10px;
@@ -536,59 +536,75 @@ input {
   display: inline-block;
   margin: 0 10px;
 }
-/* line 17, ../sass/_musicnerdz_adminnav.scss */
+/* line 19, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-nav a:hover {
   text-decoration: underline;
 }
-/* line 22, ../sass/_musicnerdz_adminnav.scss */
+/* line 24, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-title {
   background: #fca311;
   text-align: center;
   -webkit-box-shadow: 0px 3px 3px grey;
   box-shadow: 0px 3px 3px grey;
 }
-/* line 27, ../sass/_musicnerdz_adminnav.scss */
+/* line 30, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-title .md-headline {
   color: white;
   font-weight: 300;
 }
-/* line 32, ../sass/_musicnerdz_adminnav.scss */
+/* line 35, ../sass/_musicnerdz_adminnav.scss */
 .admin form {
   font-size: 2rem;
 }
-/* line 35, ../sass/_musicnerdz_adminnav.scss */
-.admin input {
-  font-size: .7em;
-}
 /* line 38, ../sass/_musicnerdz_adminnav.scss */
+.admin input {
+  font-size: 2rem;
+}
+/* line 41, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-container {
   width: 1200px;
   margin: 0 auto;
 }
-/* line 42, ../sass/_musicnerdz_adminnav.scss */
+/* line 44, ../sass/_musicnerdz_adminnav.scss */
+.admin .admin-container .btn1 {
+  -webkit-box-shadow: 0px 3px 3px grey;
+  box-shadow: 0px 3px 3px grey;
+}
+/* line 50, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form {
   width: 75%;
   margin: 0 auto;
   padding: 30px;
-  overflow: hidden;
-  height: 70vh;
+  overflow: scroll;
+  height: calc(80vh - 75px);
 }
-/* line 48, ../sass/_musicnerdz_adminnav.scss */
+/* line 56, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form .admin-largelabel {
+  margin: 15px 0;
+  font-size: 1.4rem;
+}
+/* line 59, ../sass/_musicnerdz_adminnav.scss */
+.admin .admin-form .admin-largelabel label {
   -webkit-transform: none !important;
   -ms-transform: none !important;
   transform: none !important;
+  font-size: 1.7rem;
 }
-/* line 52, ../sass/_musicnerdz_adminnav.scss */
-.admin .admin-form .admin-largelabel pre {
-  margin: 5px 0;
+/* line 65, ../sass/_musicnerdz_adminnav.scss */
+.admin .admin-form .admin-largelabel textarea {
+  margin: 0;
+  font-size: 1.4rem;
 }
-/* line 56, ../sass/_musicnerdz_adminnav.scss */
+/* line 69, ../sass/_musicnerdz_adminnav.scss */
+.admin .admin-form .admin-largelabel .md-resize-handle {
+  display: none;
+}
+/* line 73, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form md-input-container {
   margin-top: 0;
   margin-bottom: 0;
 }
-/* line 60, ../sass/_musicnerdz_adminnav.scss */
+/* line 77, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form input,
 .admin .admin-form textarea {
   font-family: Lato;
@@ -604,23 +620,41 @@ input {
   -webkit-box-shadow: 1px 1px 2px grey;
   box-shadow: 1px 1px 2px grey;
 }
-/* line 74, ../sass/_musicnerdz_adminnav.scss */
+/* line 91, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form input ::-webkit-input-placeholder,
 .admin .admin-form textarea ::-webkit-input-placeholder {
   color: white;
 }
-/* line 78, ../sass/_musicnerdz_adminnav.scss */
+/* line 95, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form input:focus ::-webkit-input-placeholder,
 .admin .admin-form textarea:focus ::-webkit-input-placeholder {
   color: white;
 }
-/* line 83, ../sass/_musicnerdz_adminnav.scss */
+/* line 100, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form textarea {
   padding: 15px;
+  overflow: scroll;
+  max-height: 125px;
 }
-/* line 86, ../sass/_musicnerdz_adminnav.scss */
+/* line 105, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form label {
   padding-left: 10px !important;
   -webkit-transform: translate3d(0, 40px, 0) scale(1);
   transform: translate3d(0, 40px, 0) scale(1);
+}
+
+/* line 112, ../sass/_musicnerdz_adminnav.scss */
+.small {
+  height: 30vh !important;
+}
+
+/* line 115, ../sass/_musicnerdz_adminnav.scss */
+#eventSearchForm {
+  width: 75%;
+  margin: 0 auto;
+}
+/* line 118, ../sass/_musicnerdz_adminnav.scss */
+#eventSearchForm .admin-label {
+  margin: 0 auto;
+  width: 50%;
 }

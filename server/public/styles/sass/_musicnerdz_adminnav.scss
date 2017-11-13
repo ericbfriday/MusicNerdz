@@ -2,7 +2,9 @@
     font-family: 'Lato';
     .container {
         height: 75px;
+
     }
+
     .admin-nav {
         a {
             &:before {
@@ -22,6 +24,7 @@
     .admin-title {
         background: $orange;
         text-align: center;
+
         -webkit-box-shadow: 0px 3px 3px grey;
                 box-shadow: 0px 3px 3px grey;
         .md-headline {
@@ -33,24 +36,38 @@
         font-size: 2rem;
     }
     input {
-        font-size: .7em;
+        font-size: 2rem;
     }
     .admin-container {
         width: 1200px;
         margin: 0 auto;
+        .btn1 {
+            -webkit-box-shadow: 0px 3px 3px grey;
+            box-shadow: 0px 3px 3px grey;
+        }
     }
+
     .admin-form {
         width: 75%;
         margin: 0 auto;
         padding: 30px;
-        overflow: hidden;
-        height: 70vh;
+        overflow: scroll;
+        height: calc(80vh - 75px);
         .admin-largelabel {
-            -webkit-transform: none!important;
+            margin: 15px 0;
+            font-size: 1.4rem;
+            label {
+                -webkit-transform: none!important;
                 -ms-transform: none!important;
                     transform: none!important;
-            pre {
-                margin: 5px 0;
+                    font-size: 1.7rem;
+            }
+            textarea {
+                margin:0;
+                font-size: 1.4rem;
+            }
+            .md-resize-handle {
+                display: none;
             }
         }
         md-input-container {
@@ -82,11 +99,24 @@
         }
         textarea {
             padding: 15px;
+            overflow: scroll;
+            max-height: 125px;
         }
         label {
             padding-left: 10px!important;
             -webkit-transform: translate3d(0, 40px, 0) scale(1);
                     transform: translate3d(0, 40px, 0) scale(1);
         }
+    }
+}
+.small {
+    height: 30vh!important;
+}
+#eventSearchForm {
+    width: 75%;
+    margin: 0 auto;
+    .admin-label {
+        margin: 0 auto;
+        width: 50%;
     }
 }
