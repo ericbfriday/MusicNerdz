@@ -35,17 +35,19 @@ router.post('/addStudent', function (req, res) {
     });
 });
 
-//get module info from database
-router.get('/getModule', function (req, res){
+//get all modules from database
+router.get('/getAllModules', function (req, res) {
   // connect to database
-  pool.connect(function (err, client, done){
+  pool.connect(function (err, client, done) {
+    // query 
+    let modQuery = 'SELECT * FROM modules'
     //error handling
     if (err) {
       console.log('Connection Error:', err);
       res.sendStatus(500);
     } //END if connection error
     else {
-      client.query('SELECT * FROM modules', function (quErr, resultObj) {
+      client.query(modQuery, function (quErr, resultObj) {
         done();
         //error handling
         if (quErr) {
@@ -56,8 +58,52 @@ router.get('/getModule', function (req, res){
           //send the list from the database to client side
           res.send(resultObj.rows);
         } //END else send
+      }) //END client.query
+    } //END else send query
+  })//END pool.connect
+})//END router GET
+
+//get module info from database
+router.get('/getModule', function (req, res){
+  // connect to database
+  pool.connect(function (err, client, done){
+    // query to get module based on id
+    let modQuery = 'SELECT questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description, modules.title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description, history.title FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id WHERE modules.id = $1 ORDER BY questions.question;'
+    // var to hold module id
+    let modID = 5;
+    //error handling
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } //END if connection error
+    else {
+      client.query(modQuery, [modID], function (quErr, resultObj) {
+        done();
+        //error handling
+        if (quErr) {
+          console.log('Query Error:', quErr);
+          res.sendStatus(500);
+        } //END if query error
+        else {
+          //send the list from the database to client side
+          res.send(resultObj.rows);
+          console.log('RESULT:', resultObj.rows );
+        } //END else send
       }); //END client.query
     } //END else send query
-  });//END pool.connect
-});//END router GET
+  })//END pool.connect
+})//END router GET
+
+// **********Modules queries*********
+// SELECT questions.question, questions.type, questions.a,
+//  questions.b, questions.c, questions.d, questions.correct, modules.description, 
+// modules.title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video,
+//  history.description, history.title FROM questions
+// JOIN modules ON questions.modules_id = modules.id
+// JOIN modules_history ON modules.id = modules_history.modules_id
+// JOIN history ON modules_history.history_id = history.id
+// WHERE modules.id = 5
+// ORDER BY questions.question;
+
+
 module.exports = router;
