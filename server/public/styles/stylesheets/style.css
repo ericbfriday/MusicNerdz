@@ -6,22 +6,22 @@ html {
 }
 
 .instructions .container h1 {
-  font-size: 32px;
-  font-weight: 600;
+    font-size: 32px;
+    font-weight: 600;
 }
 
 .instructions {
-  background-color: #333333;
-  color: #DDDDDD;
-  padding: 15px;
+    background-color: #333333;
+    color: #DDDDDD;
+    padding: 15px;
 }
 
 #entryForm {
-  margin-top: 14px;
+    margin-top: 14px;
 }
 
 #container {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .container p {
@@ -29,11 +29,11 @@ html {
 }
 
 .message {
-  padding: 10px 0;
+    padding: 10px 0;
 }
 
 .message p {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 
 .message:nth-child(odd) {
@@ -41,7 +41,7 @@ html {
 }
 
 .message:nth-child(even) {
-  background-color: #f8f8f8;
+    background-color: #f8f8f8;
 }
 
 .btn-danger {
@@ -49,44 +49,44 @@ html {
 }
 
 .navbar {
-  background-color: #333333;
-  width: 100%;
-  border-radius: 0px;
+    background-color: #333333;
+    width: 100%;
+    border-radius: 0px;
 }
 
 .addStudBtn {
-  background-color: hotpink;
+    background-color: hotpink;
 }
 
 .addClsBtn {
-  background-color: hotpink;
+    background-color: hotpink;
 }
 
 ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
 }
 
 li {
-  float: left;
+    float: left;
 }
 
 li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
 
 /* Change the link color to #111 (black) on hover */
 
 li a:hover {
-  text-decoration: underline;
-  color: #eee;
+    text-decoration: underline;
+    color: #eee;
 }
 
 
@@ -94,8 +94,9 @@ li a:hover {
 
 
 /* increase size of info in module */
+
 .sizeMd {
-  font-size: 2.2rem;
+    font-size: 2.2rem;
 }
 
 .sizeLg,
@@ -104,7 +105,7 @@ li a:hover {
 }
 
 .sameAsP {
-  font-size: 1.8rem;
+    font-size: 1.8rem;
 }
 
 

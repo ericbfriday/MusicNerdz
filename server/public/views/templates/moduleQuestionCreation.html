@@ -1,5 +1,6 @@
 <section>
-    <!-- See readability notes in controller for abbreviations -->
+        <div ng-include="'views/partials/admin_nav.html'"></div>
+        <!-- See readability notes in controller for abbreviations -->
     <md-content>
         <div layout="row">
             <div flex="66" layout-fill>
@@ -15,7 +16,7 @@
                     </md-input-container>
                 </md-card>
 
-                <form name="qc.newQuizForm">
+                <form id="addQuestionsForm">
 
                     <!-- Multiple Choice Template -->
                     <ng-form>

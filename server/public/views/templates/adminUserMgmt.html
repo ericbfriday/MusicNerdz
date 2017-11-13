@@ -1,4 +1,5 @@
 <section ng-init="auc.getSchools()">
+    <div ng-include="'views/partials/admin_nav.html'"></div>
     <div layout="column">
         <md-card>
             <md-card-title>
@@ -8,7 +9,7 @@
             </md-card-title>
             <md-card-content>
                 <h1 class="lead alert alert-danger" role="alert" ng-if="auc.message != ''">{{lc.message}}</h2>
-                    <form ng-submit="auc.addSchool(auc.schoolName)">
+                    <form id="addSchoolForm" ng-submit="auc.addSchool(auc.schoolName)">
                         <md-input-container flex="100">
                             <label for="name">Name</label>
                             <input ng-model="auc.schoolName" md-select-on-focus required>
@@ -30,7 +31,7 @@
             </md-card-title>
             <md-card-content>
                 <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-                    <form ng-submit="auc.addTeacher(auc.teacherFName, auc.teacherLName, auc.teacherEmail, auc.teacherSchool)">
+                    <form id="addTeacherForm" ng-submit="auc.addTeacher(auc.teacherFName, auc.teacherLName, auc.teacherEmail, auc.teacherSchool)">
                         <md-input-container>
                             <label for="schoolList">Existing Schools</label>
                             <md-select placeholder="School Name" ng-model="auc.teacherSchool" required>
@@ -43,9 +44,9 @@
                             <input ng-model="auc.teacherFName" md-select-on-focus required>
                         </md-input-container>
                         <md-input-container flex="100">
-                                <label for="teacherLName">Last Name:</label>
-                                <input ng-model="auc.teacherLName" md-select-on-focus required>
-                            </md-input-container>
+                            <label for="teacherLName">Last Name:</label>
+                            <input ng-model="auc.teacherLName" md-select-on-focus required>
+                        </md-input-container>
                         <md-input-container flex="100">
                             <label for="teacherEmail">Email:</label>
                             <input ng-model="auc.teacherEmail" md-select-on-focus required>
