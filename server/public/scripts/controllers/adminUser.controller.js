@@ -24,5 +24,5 @@ myApp.controller('AdminUserController', function(AdminUserService) {
     vm.getTeachers = AdminUserService.getTeachers;
     vm.teacherList = AdminUserService.teacherList;
     vm.deleteSchool = AdminUserService.deleteSchool;
-    // vm.deleteTeacher = AdminUserService.deleteTeacher;
+    vm.deleteTeacher = AdminUserService.deleteTeacher;
   });

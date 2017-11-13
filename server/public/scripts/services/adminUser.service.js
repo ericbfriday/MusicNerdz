@@ -41,12 +41,22 @@ myApp.service('AdminUserService', function ($http) {
         return $http.delete('/teacher/deleteSchool/' + school.id)
         .then((response)=>{
             console.log('logging response in deleteSchool -> ', response);
-        
         })
         .catch((err)=> {
             console.log('logging error in catch from deleteSchool -> ', err);
         });
-    }
+    };
+
+    sv.deleteTeacher = function (teacher) {
+        console.log('logging teacher.id to delete -> ', teacher.id);
+        return $http.delete('/teacher/deleteteacher/' + teacher.id)
+        .then((response)=>{
+            console.log('logging response in deleteTeacher -> ', response);
+        })
+        .catch((err)=> {
+            console.log('logging error in catch from deleteTeacher -> ', err);
+        });
+    };
 
     // creates brand new, non-existing teacher from name and e-mail
     sv.addTeacher = function (fname, lname, email, schoolID) {

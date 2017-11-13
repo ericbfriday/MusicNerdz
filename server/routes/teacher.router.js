@@ -153,7 +153,29 @@ router.delete('/deleteSchool/:id', (req, res) => {
         console.log("Error querying data in /deleteSchool DELETE route: ", err);
         res.sendStatus(500);
       } else {
-        res.send(result.rows);
+        res.send(result.rows).status(200);
+      }
+    });
+  });
+});
+
+router.delete('/deleteTeacher/:id', (req, res) => {
+  console.log('logging req.params.id in /deleteteacher -> ', req.params.id);
+  pool.connect(function (err, client, done) {
+    let query = "DELETE FROM teachers WHERE id = $1;";
+    let value = [req.params.id];
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(query, value, (err, result) => {
+      client.end();
+      if (err) {
+        console.log("Error querying data in /deleteteacher DELETE route: ", err);
+        res.sendStatus(500);
+      } else {
+        console.log('logging result.rows in /deleteteacher -> ', result.row);
+        res.send(result.rows).status(200);
       }
     });
   });
