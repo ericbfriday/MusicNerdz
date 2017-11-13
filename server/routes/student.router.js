@@ -68,7 +68,7 @@ router.get('/getModule', function (req, res){
   // connect to database
   pool.connect(function (err, client, done){
     // query to get module based on id
-    let modQuery = 'SELECT * FROM history JOIN modules_history ON history.id = modules_history.history_id JOIN modules ON modules_history.modules_id = modules.id JOIN questions ON modules.id = questions.modules_id WHERE modules.id = $1;'
+    let modQuery = 'SELECT questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description, modules.title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description, history.title FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id WHERE modules.id = $1 ORDER BY questions.question;'
     // var to hold module id
     let modID = 5;
     //error handling
@@ -95,12 +95,15 @@ router.get('/getModule', function (req, res){
 })//END router GET
 
 // **********Modules queries*********
-// SELECT * FROM modules WHERE modules.id = 5;
-// SELECT * FROM questions WHERE modules_id = 5;
-// SELECT * FROM history
-// JOIN modules_history ON history.id = modules_history.history_id
-// JOIN modules ON modules_history.modules_id = modules.id
-// WHERE modules.id = 5;
+// SELECT questions.question, questions.type, questions.a,
+//  questions.b, questions.c, questions.d, questions.correct, modules.description, 
+// modules.title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video,
+//  history.description, history.title FROM questions
+// JOIN modules ON questions.modules_id = modules.id
+// JOIN modules_history ON modules.id = modules_history.modules_id
+// JOIN history ON modules_history.history_id = history.id
+// WHERE modules.id = 5
+// ORDER BY questions.question;
 
 
 module.exports = router;
