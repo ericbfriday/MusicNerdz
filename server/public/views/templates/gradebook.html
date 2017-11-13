@@ -22,7 +22,9 @@
                     <tr ng-repeat="student in class.students | orderBy: name">
                         <td md-cell>{{student.last}}, {{student.first}}</td>
                         <div ng-virtual-repeat="response in vc.responses">
+                            <td md-cell><a icon>{{module.grade}}</td>
                             <td md-cell><a icon>{{module.grade}}</td>                        
+                                    
                         </div>                                    
                     </tr>
                 </tbody>
