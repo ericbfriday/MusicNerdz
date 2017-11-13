@@ -1,12 +1,15 @@
 <section>
-        <div ng-include="'views/partials/admin_nav.html'"></div>
-        <!-- See readability notes in controller for abbreviations -->
+    <div ng-include="'views/partials/admin_nav.html'"></div>
     <md-content>
         <div layout="row">
-            <div flex="66" layout-fill>
-
+            <div flex="66" layout-fill style="padding: 20px 0px 20px 20px">
                 <md-card>
-                    <md-input-container flex="50">
+                    <md-card-title>
+                        <md-card-title-text class="md-headline">
+                            Module Creation - Step 4: Create Quiz Questions
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-input-container flex="50" class="md-padding">
                         <label>Type of Question to Add</label>
                         <md-select name="correctAnswer" ng-model="qc.currentQType">
                             <md-option value="mc" selected>Multiple Choice</md-option>
@@ -17,7 +20,6 @@
                 </md-card>
 
                 <form id="addQuestionsForm">
-
                     <!-- Multiple Choice Template -->
                     <ng-form>
                         <md-card ng-show="qc.currentQType=='mc'">
@@ -119,13 +121,13 @@
 
                     <!-- Final submit button -->
                     <md-card>
-                        <md-button class="md-warn md-raised" ng-click="qc.showConfirm($event)">Finish & Submit Module</md-button>
+                        <md-button class="btn1" ng-click="qc.showConfirm($event)" ng-href="#/admin/home">Finish & Submit Module</md-button>
                     </md-card>
 
                 </form>
             </div>
             <!-- Quiz summary for admins to track their progress in adding quiz questions. -->
-            <div flex="33" layout-fill>
+            <div flex="33" layout-fill style="padding: 20px 20px 20px 0px">
                 <div class="quizSummary">
                     <md-card>
                         <md-card-title>
@@ -141,6 +143,4 @@
             </div>
         </div>
     </md-content>
-
-
 </section>

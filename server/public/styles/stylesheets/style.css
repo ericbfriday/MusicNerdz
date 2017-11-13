@@ -142,3 +142,8 @@ md-card-title {
 .orange {
   color: #fca311
 }
+
+/** Admin */
+.btn1 {
+    background-color: #fca311;
+}
