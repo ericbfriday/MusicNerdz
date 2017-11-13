@@ -117,4 +117,46 @@ router.get('/schools', (req, res) => {
   });
 }); // end /schools
 
+// gets list of schools to associate to teacher upon teacher creation
+router.get('/teachers', (req, res) => {
+  // console.log('Inside schools of teacher.router.js');
+  pool.connect(function (err, client, done) {
+    let queryString = "SELECT * FROM teachers;";
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(queryString, (err, result) => {
+      client.end();
+      if (err) {
+        console.log("Error querying data in /teachers GET route: ", err);
+        res.sendStatus(500);
+      } else {
+        res.send(result).status(200);
+      }
+    });
+  });
+}); // end /teachers
+
+router.delete('/deleteSchool/:id', (req, res) => {
+  console.log('logging req.params.id in /deleteSchool -> ', req.params.id);
+  pool.connect(function (err, client, done) {
+    let query = "DELETE FROM schools WHERE id = $1;";
+    let value = [req.params.id];
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(query, value, (err, result) => {
+      client.end();
+      if (err) {
+        console.log("Error querying data in /deleteSchool DELETE route: ", err);
+        res.sendStatus(500);
+      } else {
+        res.send(result.rows);
+      }
+    });
+  });
+});
+
 module.exports = router;
