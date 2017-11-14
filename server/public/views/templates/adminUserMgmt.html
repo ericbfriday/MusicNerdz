@@ -1,16 +1,16 @@
-<section ng-init="auc.getSchools()">
+<section ng-init="auc.getSchools()" class="admin">
     <div ng-include="'views/partials/admin_nav.html'"></div>
-    <div layout="column" class="md-padding">
+    <div layout="column" class="md-padding admin-container">
         <md-card>
-            <md-card-title>
+            <md-card-title class="admin-title">
                 <md-card-title-text>
                     <span class="md-headline">Create School:</span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
                 <h1 class="lead alert alert-danger" role="alert" ng-if="auc.message != ''">{{lc.message}}</h2>
-                    <form id="addSchoolForm" ng-submit="auc.addSchool(auc.schoolName)">
-                        <md-input-container flex="100">
+                    <form id="addSchoolForm" ng-submit="auc.addSchool(auc.schoolName)" class="admin-form small" layout="row" layout-align="center center">
+                        <md-input-container flex="45">
                             <label for="name">Name</label>
                             <input ng-model="auc.schoolName" md-select-on-focus required>
                         </md-input-container>
@@ -20,14 +20,14 @@
         </md-card>
 
         <md-card>
-            <md-card-title>
+            <md-card-title class="admin-title">
                 <md-card-title-text>
                     <span class="md-headline">Create Teacher:</span>
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
                 <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-                    <form id="addTeacherForm" ng-submit="auc.addTeacher(auc.teacherFName, auc.teacherLName, auc.teacherEmail, auc.teacherSchool)">
+                    <form id="addTeacherForm" ng-submit="auc.addTeacher(auc.teacherFName, auc.teacherLName, auc.teacherEmail, auc.teacherSchool)" class="admin-form small">
                         <md-input-container>
                             <label for="schoolList">Existing Schools</label>
                             <md-select placeholder="School Name" ng-model="auc.teacherSchool" required>

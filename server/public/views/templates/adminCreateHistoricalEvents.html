@@ -1,14 +1,14 @@
-<section ng-init="ec.getHistoricalInfo()">
+<section ng-init="ec.getHistoricalInfo()" class="admin">
     <div ng-include="'views/partials/admin_nav.html'"></div>
-    <div class="md-padding">
-        <form name="externalEventCreation" id="externalEventCreation">
+    <div class="md-padding admin-container">
+        <form name="externalEventCreation" id="externalEventCreation" class="admin-form">
             <md-card>
-                <md-card-title>
+                <md-card-title class="admin-title">
                     <md-card-title-text class="md-headline">
                         Create Historical Event:
                     </md-card-title-text>
                 </md-card-title>
-                <md-card-content layout="column">
+                <md-card-content layout="column" class="admin-multiple-choice">
                     <div layout="row" layout-fill>
                         <md-input-container flex="75">
                             <label>Title of Event</label>
@@ -20,7 +20,7 @@
                         </md-input-container>
                     </div>
                     <div layout="row">
-                        <md-input-container flex="100">
+                        <md-input-container flex="100" class = "admin-largelabel">
                             <label>Description of Event</label>
                             <pre><textarea rows="4" ng-model="ec.desc"></textarea></pre>
                         </md-input-container>
