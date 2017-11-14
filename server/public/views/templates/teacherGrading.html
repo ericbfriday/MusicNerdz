@@ -1,0 +1,68 @@
+<div ng-include="'views/partials/teacher_nav.html'"></div>
+<div class="container" layout="column" layout-align="start stretch">
+    <div class="teacher-grading" layout="column" layout-align="start stretch">
+        <div class="teacher-grade-info" layout="row" layout-align="start stretch">
+            <div class="teacher-grading-student" flex layout="column" layout-align="center center">
+                <div>James Smith</div>
+                <div>Class 2</div>
+                
+            </div>
+            <div class="teacher-grading-song" flex layout="column" layout-align="center center">
+                <div>Map Change</div>
+            </div>
+        </div>
+        <div class="teacher-grade-questions" flex layout="column" layout-align="start stretch">
+            <div class="teacher-grade-mc">
+                <p layout="row" layout-align="space-between center">1) What is the meaning of life?
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                </p>
+                <span class="teacher-grade-mc-wrong">a. Yes</span>
+                <span>b. Maybe</span>
+                <span class="teacher-grade-mc-right">c. What</span>
+                <span>d. Who knows</span>
+            </div>
+            <div class="teacher-grade-mc">
+                <p layout="row" layout-align="space-between center">2) What is the not meaning of not life?
+                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                </p>
+                <span>a. Yes</span>
+                <span>b. I like stuff</span>
+                <span class="teacher-grade-mc-right">c. Red</span>
+                <span>d. Hello</span>
+            </div>
+            <div class="teacher-grade-tf">
+                <p layout="row" layout-align="space-between center">3) Do you like cake?
+                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                </p>
+                <span>a. Yes</span>
+                <span>b. I like stuff</span>
+                <span class="teacher-grade-mc-right">c. Red</span>
+                <span>d. Hello</span>
+            </div>
+            <div class="teacher-grade-results" layout="row" layout-align="center center">
+                <span>2 / 3 Correct - 66%</span>
+            </div>
+            <div class="teacher-grade-sa">
+                <p layout="row" layout-align="space-between center">4) Do you like short answer questions?</p>
+                <div>
+                    <span>Imagine a long short answer here. Imagine a long short answer here. Imagine a long short answer here.
+                        Imagine a long short answer here. </span>
+                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..."></textarea>
+                </div>
+            </div>
+            <div class="teacher-grade-sa">
+                <p layout="row" layout-align="space-between center">5) Do you really like short answer questions?</p>
+                <div>
+                    <span>Imagine a long short answer here. Imagine a long short answer here. Imagine a long short answer here.
+                        Imagine a long short answer here. </span>
+                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..."></textarea>
+                </div>
+            </div>
+            <div class="teacher-grade-entry">
+                <span>Enter Grade:</span>
+                <input type="text">
+                <button class="btn btn-default">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>

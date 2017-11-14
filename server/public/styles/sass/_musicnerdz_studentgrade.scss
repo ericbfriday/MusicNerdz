@@ -1,0 +1,116 @@
+.teacher-grading {
+    width: 1000px;
+    margin: 25px auto;
+    font-size: 3rem;
+    border: 1px solid $black;
+    background: $orange;
+    .teacher-grade-info {
+        .teacher-grading-student {
+            font-weight: 300;
+            height: 100px;
+            margin: 15px;
+        }
+        .teacher-grading-song {
+            font-weight: 300;
+            height: 100px;
+            margin: 15px;
+        }
+    }
+    .teacher-grade-questions {
+        margin: 35px auto;
+        border: 1px solid black;
+        width: 600px;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+        padding: 10px;
+        textarea {
+            resize: none;
+            font-size: 1.5rem;
+            display: block;
+            width: 100%;
+            height: 100px;
+            margin-top: 40px;
+            box-sizing: border-box;
+            border: 1px solid $grey;
+        }
+        .fa-exclamation-circle,
+        .fa-check-square-o {
+            font-size: 2.5rem;
+            margin: 0 25px;
+            text-align: right;
+        }
+        .fa-check-square-o {
+            color: green;
+        }
+        .fa-exclamation-circle {
+            color: red;
+        }
+        .teacher-grade-results {
+            margin: 10px 0;
+            span {
+                text-align: center;
+                border-top: 1px solid $blue;
+                border-bottom: 1px solid $blue;
+            }
+        }
+        .teacher-grade-entry {
+            input {
+                width: 25%;
+                font-size: 3rem;
+                text-align: center;
+                border: 1px solid $grey;
+                text-transform: uppercase;
+            }
+            span {
+                display: block;
+            }
+            button {
+                background: $orange;
+                border: 0;
+                width: 100%;
+                height: 40px;
+                border-radius: 3px;
+                margin: 20px 0;
+                color: $white;
+                cursor: pointer;
+                -webkit-transition: background 0.3s ease-in-out;
+                transition: background 0.3s ease-in-out;
+                &:hover {
+                    background-color: lighten($orange, 10%);
+                }
+                &:active {
+                    background-color: darken($orange, 10%);
+                }
+            }
+        }
+        .teacher-grade-mc,
+        .teacher-grade-tf,
+        .teacher-grade-sa {
+            span {
+                margin: 0;
+                font-size: 1.2rem;
+            }
+            div {
+                width: 100%;
+                span {
+                    width: 40%;
+                    line-height: 0;
+                }
+            }
+            p {
+                font-weight: 800;
+                font-size: 1.5rem;
+                margin: 0;
+            }
+            margin-bottom: 15px;
+            line-height: 20px;
+            .teacher-grade-mc-wrong {
+                text-decoration: line-through;
+                color: red;
+            }
+            .teacher-grade-mc-right {
+                color: green;
+            }
+        }
+    }
+}
