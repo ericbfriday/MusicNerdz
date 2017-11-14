@@ -1,16 +1,17 @@
-<section>
+<section class="admin">
     <div ng-include="'views/partials/admin_nav.html'"></div>
     <md-content>
-        <div layout="row">
-            <div layout-fill style="padding: 20px 20px 20px 20px"> <!-- flex=66 -->
+        <div layout="row" class="admin-container">
+            <div layout-fill style="padding: 20px 20px 20px 20px">
+                <!-- flex=66 -->
                 <md-card>
-                    <md-card-title class="md-padding">
+                    <md-card-title class="md-padding admin-title">
                         <md-card-title-text class="md-headline">
                             Module Creation - Step 3: Add Additional Resources
                         </md-card-title-text>
                     </md-card-title>
-                    <md-input-container flex="50" class="md-padding">
-                        <label>Type of Resource to Add</label>
+                    <md-input-container flex="20" class="md-padding" class="admin-form">
+                        <label class="admin-label">Type of Resource to Add</label>
                         <md-select name="resourceType" ng-model="rc.resourceType">
                             <md-option value="ytv" selected>YouTube Video</md-option>
                             <md-option value="na">News Article</md-option>
@@ -20,125 +21,125 @@
                     </md-input-container>
                 </md-card>
 
-                <form id="addResourcesForm">
-                    <!-- Add video section of form -->
-                    <md-card ng-show="rc.resourceType=='ytv'">
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">Add YouTube Video:</span>
-                            </md-card-title-text>
-                        </md-card-title>
-                        <md-card-content class="md-padding">
-                            <div layout="row" layout-align="center center" flex layout-fill>
-                                <md-input-container flex="50">
-                                    <label>Video Title</label>
-                                    <input ng-model="rc.vTitle">
-                                </md-input-container>
-                                <md-input-container flex="50">
-                                    <label>YouTube URL:</label>
-                                    <input ng-model="rc.vURL">
-                                </md-input-container>
-                            </div>
-                            <div layout="row" layout-align="center center" flex layout-fill>
-                                <md-input-container flex="100">
-                                    <label>Description & Notes</label>
-                                    <textarea ng-model="rc.vDesc" rows="6" md-select-on-focus></textarea>
-                                </md-input-container>
-                            </div>
-                        </md-card-content>
-                        <md-button class="md-primary" ng-submit ng-click="rc.pushV(rc.vTitle, rc.vURL, rc.vDesc)">Add New YouTube Video</md-button>
-                    </md-card>
+                <div>
+                    <form id="addResourcesForm" class="admin-youtube">
+                        <!-- Add video section of form -->
+                        <md-card ng-show="rc.resourceType=='ytv'">
+                            <md-card-title class="admin-title">
+                                <md-card-title-text>
+                                    <span class="md-headline">Add YouTube Video:</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content class="md-padding">
+                                <div layout="row" layout-align="center center" flex layout-fill>
+                                    <md-input-container flex="50">
+                                        <label>Video Title</label>
+                                        <input ng-model="rc.vTitle">
+                                    </md-input-container>
+                                    <md-input-container flex="50">
+                                        <label>YouTube URL</label>
+                                        <input ng-model="rc.vURL">
+                                    </md-input-container>
+                                </div>
+                                <div layout="row" layout-align="center center" flex layout-fill>
+                                    <md-input-container flex="100" class="admin-largelabel">
+                                        <label>Description & Notes</label>
+                                        <textarea ng-model="rc.vDesc" rows="6" md-select-on-focus></textarea>
+                                    </md-input-container>
+                                </div>
+                                <md-button class="btn1" ng-submit ng-click="rc.pushV(rc.vTitle, rc.vURL, rc.vDesc)">Add New YouTube Video</md-button>
+                                
+                            </md-card-content>
+                        </md-card>
 
-                    <!-- News Article Tempalte -->
-                    <md-card ng-show="rc.resourceType=='na'">
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">News Article</span>
-                            </md-card-title-text>
-                        </md-card-title>
-                        <md-card-content class="md-padding">
-                            <div layout="row" layout-align="center center" flex layout-fill>
-                                <md-input-container flex="50">
-                                    <label>Article Title:</label>
-                                    <textarea ng-model="rc.naTitle" rows="1" md-select-on-focus></textarea>
-                                </md-input-container>
-                                <md-input-container flex="50">
-                                    <label>URL</label>
-                                    <textarea ng-model="rc.naURL" rows="1" md-select-on-focus></textarea>
-                                </md-input-container>
-                            </div>
-                            <div layout="row" layout-align="center center" flex layout-fill>
-                                <md-input-container flex=100>
-                                    <label>Description & Notes</label>
-                                    <textarea ng-model="rc.naDescription" rows="6" md-select-on-focus></textarea>
-                                </md-input-container>
-                            </div>
-                            <br/>
-                            <md-button class="md-primary" ng-click="rc.pushNA(rc.naTitle, rc.naURL, rc.naDesc)">Add New Article</md-button>
-                        </md-card-content>
-                    </md-card>
+                        <!-- News Article Tempalte -->
+                        <md-card ng-show="rc.resourceType=='na'">
+                            <md-card-title class="admin-title">
+                                <md-card-title-text>
+                                    <span class="md-headline">News Article</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content class="md-padding">
+                                <div layout="row" layout-align="center center" flex layout-fill>
+                                    <md-input-container flex="50">
+                                        <label>Article Title</label>
+                                        <input ng-model="rc.naTitle" md-select-on-focus></textarea>
+                                    </md-input-container>
+                                    <md-input-container flex="50">
+                                        <label>URL</label>
+                                        <input ng-model="rc.naURL"  md-select-on-focus></textarea>
+                                    </md-input-container>
+                                </div>
+                                <div layout="row" layout-align="center center" flex layout-fill>
+                                    <md-input-container flex=100 class="admin-largelabel">
+                                        <label>Description & Notes</label>
+                                        <textarea ng-model="rc.naDescription" rows="5" md-select-on-focus class="admin-form-desc"></textarea>
+                                    </md-input-container>
+                                </div>
+                                <md-button class="btn1" ng-click="rc.pushNA(rc.naTitle, rc.naURL, rc.naDesc)">Add New Article</md-button>
+                            </md-card-content>
+                        </md-card>
 
-                    <!-- Blog Post template below -->
-                    <md-card ng-show="rc.resourceType=='bp'">
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">Blog Post</span>
-                            </md-card-title-text>
-                        </md-card-title>
-                        <md-card-content class="md-padding">
-                            <div layout="row" layout-align="center center" flex layout-fill>
-                                <md-input-container flex="50">
-                                    <label>Blog Title</label>
-                                    <textarea ng-model="rc.bpTitle" rows="1" md-select-on-focus></textarea>
-                                </md-input-container>
-                                <md-input-container flex="50">
-                                    <label>URL</label>
-                                    <textarea ng-model="rc.bpURL" rows="1" md-select-on-focus></textarea>
-                                </md-input-container>
-                            </div>
-                            <div layout="row" layout-align="center center" flex layout-fill>
-                                <md-input-container flex=100>
-                                    <label>Description & Notes</label>
-                                    <textarea ng-model="rc.bpDesc" rows="6" md-select-on-focus></textarea>
-                                </md-input-container>
-                            </div>
-                            <br>
-                            <md-button class="md-primary" ng-click="rc.pushBP(rc.bpTitle, rc.bpURL, rc.bpDesc)">Add New Blog Post</md-button>
-                        </md-card-content>
-                    </md-card>
+                        <!-- Blog Post template below -->
+                        <md-card ng-show="rc.resourceType=='bp'">
+                            <md-card-title class="admin-title">
+                                <md-card-title-text>
+                                    <span class="md-headline">Blog Post</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content class="md-padding">
+                                <div layout="row" layout-align="center center" flex layout-fill>
+                                    <md-input-container flex="50">
+                                        <label>Blog Title</label>
+                                        <input ng-model="rc.bpTitle" rows="1" md-select-on-focus></textarea>
+                                    </md-input-container>
+                                    <md-input-container flex="50">
+                                        <label>URL</label>
+                                        <input ng-model="rc.bpURL" rows="1" md-select-on-focus></textarea>
+                                    </md-input-container>
+                                </div>
+                                <div layout="row" layout-align="center center" flex layout-fill>
+                                    <md-input-container flex=100>
+                                        <label>Description & Notes</label>
+                                        <textarea ng-model="rc.bpDesc" rows="6" md-select-on-focus class="admin-form-desc"></textarea>
+                                    </md-input-container>
+                                </div>
+                                <md-button class="btn1" ng-click="rc.pushBP(rc.bpTitle, rc.bpURL, rc.bpDesc)">Add New Blog Post</md-button>
+                            </md-card-content>
+                        </md-card>
 
-                    <md-card ng-show="rc.resourceType=='o'">
-                        <md-card-title>
-                            <md-card-title-text>
-                                <span class="md-headline">Other Resource</span>
-                            </md-card-title-text>
-                        </md-card-title>
-                        <md-card-content class="md-padding">
-                            <div layout="row" layout-align="center center" flex layout-fill>
-                                <md-input-container flex="50">
-                                    <label>Title</label>
-                                    <textarea ng-model="rc.oTitle" rows="1" md-select-on-focus></textarea>
-                                </md-input-container>
-                                <md-input-container flex="50">
-                                    <label>URL</label>
-                                    <textarea ng-model="rc.oURL" rows="1" md-select-on-focus></textarea>
-                                </md-input-container>
-                            </div>
-                            <div layout="row" layout-align="center center" flex layout-fill>
-                                <md-input-container flex=100>
-                                    <label>Description & Notes</label>
-                                    <textarea ng-model="rc.oDesc" rows="6" md-select-on-focus></textarea>
-                                </md-input-container>
-                            </div>
-                            <br>
-                            <md-button class="md-primary" ng-click="rc.pushO(rc.oTitle, rc.oURL, rc.oDesc)">Add Resource</md-button>
-                        </md-card-content>
-                    </md-card>
+                        <md-card ng-show="rc.resourceType=='o'">
+                            <md-card-title class="admin-title">
+                                <md-card-title-text>
+                                    <span class="md-headline">Other Resource</span>
+                                </md-card-title-text>
+                            </md-card-title>
+                            <md-card-content class="md-padding">
+                                <div layout="row" layout-align="center center" flex layout-fill>
+                                    <md-input-container flex="50">
+                                        <label>Title</label>
+                                        <input ng-model="rc.oTitle" rows="1" md-select-on-focus></textarea>
+                                    </md-input-container>
+                                    <md-input-container flex="50">
+                                        <label>URL</label>
+                                        <input ng-model="rc.oURL" rows="1" md-select-on-focus></textarea>
+                                    </md-input-container>
+                                </div>
+                                <div layout="row" layout-align="center center" flex layout-fill>
+                                    <md-input-container flex=100>
+                                        <label>Description & Notes</label>
+                                        <textarea ng-model="rc.oDesc" rows="6" md-select-on-focus class="admin-form-desc"></textarea>
+                                    </md-input-container>
+                                </div>
+                                <md-button class="btn1" ng-click="rc.pushO(rc.oTitle, rc.oURL, rc.oDesc)">Add Resource</md-button>
+                            </md-card-content>
+                        </md-card>
 
-                    <md-card>
-                        <md-button class="btn1" ng-click="rc.pushResources()" ng-href="#/admin/quizCreation">Submit Resources & Continue</md-button>
-                    </md-card>
-                </form>
+                        <md-card>
+                            <md-button class="btn1" ng-click="rc.pushResources()" ng-href="#/admin/quizCreation">Submit Resources & Continue</md-button>
+                        </md-card>
+                    </form>
+                </div>
             </div>
         </div>
     </md-content>
