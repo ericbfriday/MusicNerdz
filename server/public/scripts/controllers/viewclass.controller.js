@@ -14,15 +14,23 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         this.students = [];
     };
 
-    function Student (first, last, email) {
+    function Student (studId, first, last, email) {
+        this.studId = studId;
         this.first = first;
         this.last = last;
         this.email = email;
     };
 
+    function StudentGrade (studentId, final, response) {
+        this.studId = studentId;
+        this.final = final;
+        this.response = response;
+    }
+
     function ModTitleId (id, title) {
         this.id = id;
         this.title = title;
+        this.studGrades = [];
     };
 
     //create new class data
@@ -86,14 +94,15 @@ myApp.controller('ViewController', function ($http, TeacherService) {
             var classMap = {};
 
             for (var i = 0; i < vm.returnedClasses.length; i++) {
-                var classId = vm.returnedClasses[i].id;
+                var classId = vm.returnedClasses[i].classid;
                 var title = vm.returnedClasses[i].title;
                 var code = vm.returnedClasses[i].code;
                 var first = vm.returnedClasses[i].first;
                 var last = vm.returnedClasses[i].last;
                 var email = vm.returnedClasses[i].email;
+                var studId = vm.returnedClasses[i].studid;
 
-                var newStudent = new Student(first, last, email);
+                var newStudent = new Student(studId, first, last, email);
                 
                 var classObj = classMap[classId];
 
@@ -117,22 +126,36 @@ myApp.controller('ViewController', function ($http, TeacherService) {
             console.log('back from service with', vm.teacherService.assigned);
             vm.returnedAssigned = vm.teacherService.assigned;
             var assignedMap = {};
+            var studentMap = {};
 
             for (var i = 0; i < vm.returnedAssigned.length; i++) {
-                var moduleId = vm.returnedAssigned[i].id;
+                var moduleId = vm.returnedAssigned[i].mod_id;
                 var title = vm.returnedAssigned[i].title;
-                var studentId = vm.returnedAssigned[i].students_id;
+                var studentId = vm.returnedAssigned[i].stud_id;
                 var final = vm.returnedAssigned[i].final_grade;
-                var resonse = vm.returnedAssigned[i].response;
+                var response = vm.returnedAssigned[i].response;
 
                 var assignedObj = assignedMap[moduleId];
+                var studObj = studentMap[final];
                 
                 if (assignedObj == null) {
                     var newMod = new ModTitleId (moduleId, title);                    
                     assignedMap[moduleId] = moduleId;
                     vm.modules.push(newMod);
-                }
-            }
+                    if (studObj == null) {
+                        var newStud = new StudentGrade (studentId, final, response);
+                        studentMap[final] = newStud;
+                        newMod.studGrades.push(newStud);
+                    } ;  
+                } else {
+                    if (studObj == null) {
+                        var newStud = new StudentGrade (studentId, final, response);
+                        studentMap[final] = newStud;
+                        newMod.studGrades.push(newStud);
+                    };
+                };
+            };
+            console.log('modules and grades after selecting class with', vm.modules);
         });
     }
     //connect to service to make http call to get students by class

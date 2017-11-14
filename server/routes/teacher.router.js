@@ -54,7 +54,7 @@ router.post('/addTeacher', function (req, res) {
 router.get('/assigned/:classIdParam', function (req, res) {
   console.log('getting assigned module info with', req.params.classIdParam);
   pool.connect(function (err, client, done) {
-    let queryString = "SELECT responses.response, responses.final_grade, responses.students_id, modules.id, modules.title FROM students JOIN responses ON students.id = responses.students_id JOIN questions ON responses.questions_id = questions.id JOIN modules ON questions.modules_id = modules.id WHERE students.classes_id = $1;";
+    let queryString = "SELECT responses.response, responses.final_grade, responses.students_id AS stud_id, modules.id AS mod_id, modules.title FROM students JOIN responses ON students.id = responses.students_id JOIN questions ON responses.questions_id = questions.id JOIN modules ON questions.modules_id = modules.id WHERE students.classes_id = $1;";
     let value = [req.params.classIdParam];
 
     if (err) {
@@ -100,7 +100,7 @@ router.get('/students/:classParam', (req, res) => {
 router.get('/classes/:teacherParam', (req, res) => {
   console.log('in get classes teacher route with', req.params.teacherParam);
   pool.connect(function (err, client, done) {
-    let queryString = "SELECT * FROM students FULL OUTER JOIN classes ON students.classes_id = classes.id WHERE classes.teachers_id = $1;";
+    let queryString = "SELECT students.id AS studId, students.first, students.last, students.email, students.classes_id, classes.id AS classId, classes.title, classes.code, classes.teachers_id FROM students FULL OUTER JOIN classes ON students.classes_id = classes.id WHERE classes.teachers_id = $1;";
     let value = [req.params.teacherParam];
 
     if (err) {
