@@ -108,6 +108,15 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         }
       }
     })
+    .when('/teacher/grading', {
+      templateUrl: '/views/templates/gradebook.html',
+      controller: 'ViewController as vc',
+      resolve: {
+        getteacher: function (UserService) {
+          return UserService.getteacher();
+        }
+      }
+    })
     .otherwise({redirectTo: 'user'});
   $mdThemingProvider
     .theme('default')
