@@ -194,7 +194,8 @@
         width: 35%;
     }
     .md-chips {
-        box-shadow: none;
+        -webkit-box-shadow: none;
+                box-shadow: none;
     }
     .btn1 {
         margin: 0 3px;
@@ -234,4 +235,3 @@
         margin: 0;
     }
 }
-
