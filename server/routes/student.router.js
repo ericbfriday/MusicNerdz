@@ -87,7 +87,7 @@ router.get('/getModule', function (req, res) {
         else {
           //send the list from the database to client side
           res.send(resultObj.rows);
-          console.log('RESULT:', resultObj.rows);
+          // console.log('RESULT:', resultObj.rows);
         } //END else send
       }); //END client.query
     } //END else send query

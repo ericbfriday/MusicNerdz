@@ -28,7 +28,7 @@
             <div class="main-completed">Completed</div>
             <div class="main-display" layout-wrap layout="row" layout-align="space-between">
                 <!-- Repeated COMPLETED modules here -->
-                <div class="tile" layout="column" flex=30 ng-repeat="i in uc.studentService.mods | filter: uc.search" ng-click="uc.userService.loadmodule(i.id, $event)">
+                <div class="tile" layout="column" flex=30 ng-repeat="i in uc.shownItems | filter: uc.search" ng-click="uc.userService.loadmodule(i.id, $event)">
                     <div class="tile-art" flex=none ng-style="{'background-image':'url({{i.art}})'}">
                     </div>
                     <div class="tile-details" flex=60 layout="row" layout-align="center center">
@@ -47,5 +47,5 @@
         </div>
     </div>
 </div>
-<!-- <h1 id="welcome" class="lead">Welcome, {{uc.userObject.userName}}!</h1> -->
+<md-collection-pagination class="md-padding" collection="uc.studentService.mods" paginated-collection="uc.shownItems" per-page="6"></md-collection-pagination>
 </div>

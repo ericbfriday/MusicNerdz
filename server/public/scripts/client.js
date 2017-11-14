@@ -6,7 +6,8 @@ var myApp = angular.module('myApp', [
   'angAccordion',
   'ngYoutubeEmbed',
   'md.data.table',
-  'ui.carousel'
+  'ui.carousel',
+  'mdCollectionPagination'
 ]);
 
 /// Routes ///
