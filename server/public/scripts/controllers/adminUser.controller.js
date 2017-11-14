@@ -1,3 +1,5 @@
+'use strict';
+
 myApp.controller('AdminUserController', function(AdminUserService) {
     // console.log('AdminUserController created');
     const vm = this;
@@ -19,10 +21,11 @@ myApp.controller('AdminUserController', function(AdminUserService) {
     // Function that creates shools to populate drop down menu & table
     vm.getSchools = AdminUserService.getSchools;
 
-        /** School & Teacher Functions Below */
+    /** School & Teacher Functions Below */
     /** Get Schools & Teachers Functions Below */
     vm.getTeachers = AdminUserService.getTeachers;
     vm.teacherList = AdminUserService.teacherList;
     vm.deleteSchool = AdminUserService.deleteSchool;
     vm.deleteTeacher = AdminUserService.deleteTeacher;
+    vm.teacherSchoolID = AdminUserService.teacherSchoolID;
   });

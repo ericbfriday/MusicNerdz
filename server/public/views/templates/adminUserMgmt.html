@@ -72,7 +72,7 @@
                             <md-table-container>
                                 <table md-table>
                                     <thead md-head md-row-select multiple>
-                                        <th md-column md-order-by="auc.schoolList.data.name">School Name</th>
+                                        <th md-column>School Name</th>
                                         <th md-column>School ID</th>
                                         <th md-column>Delete School</th>
                                     </thead>
@@ -101,7 +101,7 @@
                         <md-card-content>
                             <md-input-container>
                                 <label for="schoolList">Select Teacher's School</label>
-                                <md-select placeholder="School Name" ng-model="auc.teacherSchool" required>
+                                <md-select placeholder="School Name" ng-model="auc.teacherSchoolId" required>
                                     <md-option ng-repeat="school in auc.schoolList.data" ng-value="school.id">{{school.name}}</md-option>
                                 </md-select>
                             </md-input-container>
@@ -115,15 +115,17 @@
                                         <th md-column>Delete</th>
                                     </thead>
                                     <tbody md-body>
-                                        <tr ng-repeat="teacher in auc.teacherList.data | orderBy: teacher.name">
-                                            <td md-cell>{{teacher.id}}</td>
-                                            <td md-cell>{{teacher.last}}</td>
-                                            <td md-cell>{{teacher.first}}</td>
-                                            <td md-cell>{{teacher.email}}</td>
-                                            <td md-cell>
-                                                <md-button class="md-warn" ng-click="auc.deleteTeacher(teacher);auc.getSchools(); auc.getTeachers()">Delete</md-button>
-                                            </td>
-                                        </tr>
+                                        <div ng-repeat="teacher in auc.teacherList.data | orderBy: teacher.name" ng-if="teacher.schools_id == auc.teacherSchoolID">
+                                            <tr>
+                                                <td md-cell>{{teacher.id}}</td>
+                                                <td md-cell>{{teacher.last}}</td>
+                                                <td md-cell>{{teacher.first}}</td>
+                                                <td md-cell>{{teacher.email}}</td>
+                                                <td md-cell>
+                                                    <md-button class="md-warn" ng-click="auc.deleteTeacher(teacher);auc.getSchools(); auc.getTeachers()">Delete</md-button>
+                                                </td>
+                                            </tr>
+                                        </div>
                                     </tbody>
                                 </table>
                             </md-table-container>

@@ -1,5 +1,7 @@
+'use strict';
+
 myApp.service('AdminUserService', function ($http) {
-    var sv = this;
+    let sv = this;
 
     sv.schoolList = {data: []};
     sv.schoolName = '';
@@ -8,6 +10,7 @@ myApp.service('AdminUserService', function ($http) {
     sv.teacherFName = '';
     sv.teacherLName = '';
     sv.teacherSchool = '';
+    sv.teacherSchoolID = null;
     sv.teacherList = {data: []};
 
     // establishes structure of teacher object to be sent to router.
@@ -101,7 +104,7 @@ myApp.service('AdminUserService', function ($http) {
         let length = 12,
         charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
         retVal = "";
-        for (var i = 0, n = charset.length; i < length; ++i) {
+        for (let i = 0, n = charset.length; i < length; ++i) {
             retVal += charset.charAt(Math.floor(Math.random() * n));
         }
         console.log('retVal => ', retVal);
