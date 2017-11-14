@@ -2,9 +2,7 @@
     font-family: 'Lato';
     .container {
         height: 75px;
-
     }
-
     .admin-nav {
         a {
             &:before {
@@ -24,9 +22,8 @@
     .admin-title {
         background: $orange;
         text-align: center;
-
         -webkit-box-shadow: 0px 3px 3px grey;
-                box-shadow: 0px 3px 3px grey;
+        box-shadow: 0px 3px 3px grey;
         .md-headline {
             color: white;
             font-weight: 300;
@@ -37,33 +34,100 @@
     }
     input {
         font-size: 2rem;
+        font-family: Lato;
+        background-color: #e9e9e9;
+        border-radius: 3px 3px 3px 3px;
+        color: #000000;
+        margin-bottom: 1em;
+        height: 30px;
+        border: none;
+        resize: none;
+        overflow-y: hidden;
+        -webkit-box-shadow: 1px 1px 2px grey;
+        box-shadow: 1px 1px 2px grey;
+        padding: 15px;
+        overflow: scroll;
+        max-height: 125px;
+         ::-webkit-input-placeholder {
+            color: white;
+        }
+        &:focus {
+             ::-webkit-input-placeholder {
+                color: white;
+            }
+        }
     }
     .admin-container {
         width: 1200px;
         margin: 0 auto;
+        .quizSummary {
+            margin: 38px 0;
+        }
+        .admin-label {
+            margin: 0px;
+            position: initial;
+            font-size: 2rem;
+        }
         .btn1 {
             -webkit-box-shadow: 0px 3px 3px grey;
             box-shadow: 0px 3px 3px grey;
         }
+        md-select {
+            font-size: 2rem;
+        }
+        .admin-youtube {
+            button {
+                width: 300px;
+                margin: 20px auto;
+            }
+            input,
+            textarea {
+                font-family: Lato;
+                background-color: #e9e9e9;
+                border-radius: 3px 3px 3px 3px;
+                color: #000000;
+                margin-bottom: 1em;
+                height: 30px;
+                border: none;
+                resize: none;
+                overflow-y: hidden;
+                -webkit-box-shadow: 1px 1px 2px grey;
+                box-shadow: 1px 1px 2px grey;
+                padding: 15px;
+                overflow: scroll;
+                max-height: 125px;
+                 ::-webkit-input-placeholder {
+                    color: white;
+                }
+                &:focus {
+                     ::-webkit-input-placeholder {
+                        color: white;
+                    }
+                }
+            }
+        }
     }
-
     .admin-form {
         width: 75%;
         margin: 0 auto;
         padding: 30px;
         overflow: scroll;
         height: calc(80vh - 75px);
-        .admin-largelabel {
+        .md-errors-spacer {
+            float: none;
+        }
+        .admin-largelabel,
+        .admin-youtube {
             margin: 15px 0;
             font-size: 1.4rem;
             label {
                 -webkit-transform: none!important;
                 -ms-transform: none!important;
-                    transform: none!important;
-                    font-size: 1.7rem;
+                transform: none!important;
+                font-size: 1.7rem;
             }
             textarea {
-                margin:0;
+                margin: 0;
                 font-size: 1.4rem;
             }
             .md-resize-handle {
@@ -72,7 +136,7 @@
         }
         md-input-container {
             margin-top: 0;
-            margin-bottom:0;
+            margin-bottom: 0;
         }
         input,
         textarea {
@@ -87,13 +151,13 @@
             padding: 0 10px;
             overflow-y: hidden;
             -webkit-box-shadow: 1px 1px 2px grey;
-                    box-shadow: 1px 1px 2px grey;
+            box-shadow: 1px 1px 2px grey;
              ::-webkit-input-placeholder {
                 color: white;
             }
             &:focus {
-                ::-webkit-input-placeholder {
-                    color:white;
+                 ::-webkit-input-placeholder {
+                    color: white;
                 }
             }
         }
@@ -101,17 +165,20 @@
             padding: 15px;
             overflow: scroll;
             max-height: 125px;
+            min-height: 125px;
         }
         label {
             padding-left: 10px!important;
             -webkit-transform: translate3d(0, 40px, 0) scale(1);
-                    transform: translate3d(0, 40px, 0) scale(1);
+            transform: translate3d(0, 40px, 0) scale(1);
         }
     }
 }
+
 .small {
-    height: 30vh!important;
+    height: auto!important;
 }
+
 #eventSearchForm {
     width: 75%;
     margin: 0 auto;
@@ -120,3 +187,51 @@
         width: 50%;
     }
 }
+
+#eventCreationForm {
+    height: auto;
+    .md-chips .md-chip-input-container {
+        width: 35%;
+    }
+    .md-chips {
+        box-shadow: none;
+    }
+    .btn1 {
+        margin: 0 3px;
+        width: 200px;
+    }
+}
+
+#addResourcesForm {
+    md-card:last-child {
+        margin-top: 30px;
+        padding: 15px;
+    }
+    a {
+        width: 300px;
+        margin: 0 auto;
+    }
+}
+
+#addQuestionsForm, #externalEventCreation {
+    .admin-multiple-choice {
+        padding: 25px;
+        md-autocomplete {
+            width: 350px;
+        }
+        .btn1 {
+            width: 250px;
+        }
+    }
+}
+
+.admin-form-desc {
+    min-height: 125px!important;
+}
+
+#addSchoolForm, #addTeacherForm {
+    input {
+        margin: 0;
+    }
+}
+
