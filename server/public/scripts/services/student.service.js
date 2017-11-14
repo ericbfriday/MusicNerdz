@@ -1,9 +1,9 @@
 myApp.service('StudentService', function ($http) {
     //GLOBALS
-    const sv = this
+    const sv = this;
     sv.mods = {
         data: []
-    }
+    };
     sv.saQuestions = {
         data: []
     };
@@ -24,6 +24,12 @@ myApp.service('StudentService', function ($http) {
         this.d = d;
         this.correct = correct;
     } //END constructor 
+
+    sv.getAllModules = function () {
+        $http.get('/student/getAllModules').then(function(res){
+            sv.mods = res.data;
+        });
+    };
 
     //Function to get modules form server
     sv.getMod = function () {
@@ -54,12 +60,12 @@ myApp.service('StudentService', function ($http) {
             let questions_without_duplicates = Array.from(new Set(tempSA));
             // set globals to new arrays without duplicates
             sv.saQuestions.data = questions_without_duplicates;
-            sv.mcQuestions.data = tempMC
+            sv.mcQuestions.data = tempMC;
             console.log('saQs:', sv.saQuestions);
             console.log('mcQs:', sv.mcQuestions);
             console.log('Filtered:', questions_without_duplicates);
-        }) //END $http GET
-    } //END getMod
+        }); //END $http GET
+    }; //END getMod
 
     // function to get student grade info back from router
     sv.getGrades = function () {
@@ -79,10 +85,9 @@ myApp.service('StudentService', function ($http) {
                     tempLesson2.push(resp.data[i]);
                 } //END else if
             } //END for loop
-        }) //END $http GET
+        }); //END $http GET
         sv.studGrades.lesson5 = tempLesson5;
         sv.studGrades.lesson2 = tempLesson2;
         console.log('studGRADES:', sv.studGrades);
-    } //END getGrades
-
+    }; //END getGrades
 }); //END
