@@ -24,9 +24,7 @@
                         <td md-cell ng-repeat="modAssigned in vc.modules">
                             <div ng-repeat="studentGrade in modAssigned.studGrades">
                                 <span ng-show="studentGrade.studId == student.studId">{{studentGrade.final}}</span>
-                            </div>
-                            <div ng-repeat="studentGrade in modAssigned.studGrades">
-                                <i ng-hide="studentGrade.studId == student.studId" class="fa fa-pencil-square-o" aria-hidden="true"></i>                                    
+                                <i ng-show="studentGrade.studId !== student.studId" class="fa fa-pencil-square-o" aria-hidden="true"></i>                                
                             </div>
                         </td>                                    
                     </tr>
