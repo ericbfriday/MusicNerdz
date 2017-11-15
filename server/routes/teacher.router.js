@@ -68,6 +68,7 @@ router.get('/students/:classParam', (req, res) => {
         res.sendStatus(500);
       } else {
         res.send(result.rows);
+        console.log('ef testing -> ', result.rows);
       }
     });
   });
@@ -77,7 +78,7 @@ router.get('/students/:classParam', (req, res) => {
 router.get('/classes/:teacherParam', (req, res) => {
   console.log('in get classes teacher route with', req.params.teacherParam);
   pool.connect(function (err, client, done) {
-    let queryString = "SELECT * FROM students FULL OUTER JOIN classes ON students.classes_id = classes.id WHERE classes.teachers_id = $1;";
+    let queryString = "SELECT students.id AS stud_id, students.first, students.last, students.email, classes.id AS class_id, classes.title, classes.code, classes.teachers_id FROM students FULL OUTER JOIN classes ON students.classes_id = classes.id WHERE classes.teachers_id = $1;";
     let value = [req.params.teacherParam];
 
     if (err) {
@@ -116,5 +117,27 @@ router.get('/schools', (req, res) => {
     });
   });
 }); // end /schools
+
+router.delete('/deleteStudent/:id', function (req, res) {
+  console.log('logging req.params.id in /deleteStudent:', req.params.id);
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } else {
+      console.log('DELETE:, req.params.id');
+      var studId = [req.params.id];
+      client.query('DELETE from students WHERE id = $1', studId, function (err, obj) {
+        done();
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+        } else {
+          res.send(obj)
+        }
+      })
+    }
+  }) //end pool.connect
+}) //end router.delete
 
 module.exports = router;

@@ -13,9 +13,9 @@ router.post('/addStudent', function (req, res) {
             email: req.body.email,
             number: encryptLib.encryptPassword(req.body.number),
             classId: req.body.classId,
-            teachersId: req.body.teachersId,
+            teachersId: req.body.teachersId
         };
-        let values = [saveStudent.fName, saveStudent.lName, saveStudent.email, saveStudent.number, saveStudent.classId, saveStudent.email, saveStudent.number];
+      let values = [saveStudent.fName, saveStudent.lName, saveStudent.email, saveStudent.number, saveStudent.classId, saveStudent.email, saveStudent.number];
         console.log(saveStudent);
         
         if(err) {
@@ -60,4 +60,5 @@ router.get('/getModule', function (req, res){
     } //END else send query
   });//END pool.connect
 });//END router GET
+
 module.exports = router;

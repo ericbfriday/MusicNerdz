@@ -14,10 +14,11 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         this.students = [];
     };
 
-    function Student (first, last, email) {
+    function Student (first, last, email, id) {
         this.first = first;
         this.last = last;
         this.email = email;
+        this.id = id;
     };
 
     //create new class data
@@ -35,7 +36,8 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         email: '',
         number: '',
         classesId: '',
-        teachersId: vm.teacher
+        teachersId: vm.teacher,
+        // studentId: vm.student //?
     }
 
     vm.classes = [];
@@ -79,14 +81,15 @@ myApp.controller('ViewController', function ($http, TeacherService) {
             vm.returnedClasses = vm.teacherService.classes;
             var classMap = {};
             for (var i = 0; i < vm.returnedClasses.length; i++) {
-                var classId = vm.returnedClasses[i].id;
+                var classId = vm.returnedClasses[i].class_id;
                 var title = vm.returnedClasses[i].title;
                 var code = vm.returnedClasses[i].code;
                 var first = vm.returnedClasses[i].first;
                 var last = vm.returnedClasses[i].last;
                 var email = vm.returnedClasses[i].email;
+                var stud_id = vm.returnedClasses[i].stud_id;
 
-                var newStudent = new Student(first, last, email);
+                var newStudent = new Student(first, last, email, stud_id);
                 
                 var classObj = classMap[classId];
 
@@ -113,6 +116,8 @@ myApp.controller('ViewController', function ($http, TeacherService) {
     };
 
     vm.getClasses(vm.teacher);
+
+    vm.deleteStudent = TeacherService.deleteStudent;
 
     console.log("vm.student", vm.student);
 });
