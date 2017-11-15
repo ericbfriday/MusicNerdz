@@ -17,9 +17,11 @@
                 <md-button ng-click="reset=true">
                     Forgot password?
                 </md-button>
+            </form>
+            <form ng-submit="lc.passwordReset(lc.email)">
                 <div ng-show="reset" layout="row" layout-align="center center">                        
                     <input placeholder="E-Mail" ng-model="lc.email" type="email" flex="grow"  autocomplete="off" autocapitalize="off">
-                    <md-button ng-click="lc.passwordReset(lc.email)">
+                    <md-button type="submit"  value="reset">
                         Submit
                     </md-button>
                 </div>

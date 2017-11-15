@@ -62,6 +62,6 @@ myApp
         console.log(response);
       });
       vm.email = '';
-      vm.message = 'An email has been sent with instructions on how to reset your password.'
+      vm.message = 'An email has been sent to ' +  vm.email + ' with instructions on how to reset your password.'
     };
   });
