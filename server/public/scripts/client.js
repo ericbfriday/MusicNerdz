@@ -94,11 +94,11 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     .when('/teacher/gradingform/', {
       templateUrl: '/views/templates/teacherGrading.html',
       controller: 'TeachergradeController as tgc',
-      // resolve: {
-      //   getteacher: function (UserService) {
-      //     return UserService.getteacher();
-      //   }
-      // }
+      resolve: {
+        getteacher: function (UserService) {
+          return UserService.getteacher();
+        }
+      }
     })
     .when('/viewclass', {
       templateUrl: '/views/templates/viewclass.html',
