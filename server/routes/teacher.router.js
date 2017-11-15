@@ -50,6 +50,29 @@ router.post('/addTeacher', function (req, res) {
   });
 }); // end /addTeacher
 
+//get all assigned module info that matches class Id
+router.get('/assigned/:classIdParam', function (req, res) {
+  console.log('getting assigned module info with', req.params.classIdParam);
+  pool.connect(function (err, client, done) {
+    let queryString = "SELECT responses.response, responses.final_grade, responses.students_id AS stud_id, modules.id AS mod_id, modules.title FROM students JOIN responses ON students.id = responses.students_id JOIN questions ON responses.questions_id = questions.id JOIN modules ON questions.modules_id = modules.id WHERE students.classes_id = $1;";
+    let value = [req.params.classIdParam];
+
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(queryString, value, function (err, result) {
+      client.end();
+      if (err) {
+        console.log("Error querying data in /assigned GET route: ", err);
+        res.sendStatus(500);
+      } else {
+        res.send(result.rows);
+      }
+    });
+  });
+})
+
 //get list of students by class
 router.get('/students/:classParam', (req, res) => {
   console.log('in get students teacher route with', req.params.classParam);
@@ -78,7 +101,7 @@ router.get('/students/:classParam', (req, res) => {
 router.get('/classes/:teacherParam', (req, res) => {
   console.log('in get classes teacher route with', req.params.teacherParam);
   pool.connect(function (err, client, done) {
-    let queryString = "SELECT students.id AS stud_id, students.first, students.last, students.email, classes.id AS class_id, classes.title, classes.code, classes.teachers_id FROM students FULL OUTER JOIN classes ON students.classes_id = classes.id WHERE classes.teachers_id = $1;";
+    let queryString = "SELECT students.id AS studId, students.first, students.last, students.email, students.classes_id, classes.id AS classId, classes.title, classes.code, classes.teachers_id FROM students FULL OUTER JOIN classes ON students.classes_id = classes.id WHERE classes.teachers_id = $1;";
     let value = [req.params.teacherParam];
 
     if (err) {

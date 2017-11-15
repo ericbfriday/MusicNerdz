@@ -10,7 +10,7 @@
         background-color: $white;
         -webkit-box-shadow: 0px 0px 10px black;
         box-shadow: 0px 0px 10px black;
-        height: auto;
+        height: 75px;
         a {
             @include font-medium;
             color: $black;
@@ -36,18 +36,24 @@
             background-color: $white;
             font-size: 3rem;
             padding: 0;
-            border-bottom-left-radius: 0;
-            border-top-left-radius: 0;
+            border-radius: 0;
+            cursor: default;
+            &:active,
+            &:focus {
+                outline: none;
+            }
             i {
                 text-align: center;
             }
         }
         .student-nav {
             a {
-                font-size: 2rem;
-                margin: 0 15px;
-                box-shadow: 2px 2px 3px rgba(0,0,0,0.5);
-                background:$orange;
+                font-size: 1.6rem;
+                margin: 0 35px;
+                padding: 5px;
+                box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+                background: $orange;
+                height: 55px;
                 .fa-line-chart {
                     margin: 5px;
                 }
@@ -57,6 +63,9 @@
             color: $black;
             margin: 0px 30px;
             font-size: 3rem;
+            img {
+                width: 150px;
+            }
         }
     }
 }
@@ -80,7 +89,8 @@
         padding: 0 0;
         margin: 25px 0;
     }
-    .main-container, .main-assigned {
+    .main-container,
+    .main-assigned {
         overflow: visible;
         padding: 0 50px;
         h1 {
@@ -158,8 +168,7 @@
         height: 235px;
     }
     .main-display {
-        color:$white;
-        
+        color: $white;
         .tile {
             margin: 0;
             height: auto;
@@ -170,7 +179,8 @@
         .tile-record {
             font-weight: 300;
         }
-        .tile-artist, .tile-record {
+        .tile-artist,
+        .tile-record {
             font-size: 4.5rem;
             line-height: normal;
             margin: 0;
@@ -225,8 +235,19 @@
             }
         }
     }
-    .navbar .container a {
-        font-size: 2.5rem;
-        color: $black;
+    .navbar {
+        .container {
+            .search-form {
+                margin: 0 15px;
+            }
+            .student-nav {
+                a {
+                    font-size: 2rem;
+                    color: $black;
+                    margin: 0 5px;
+                }
+            }
+        }
     }
+    
 }

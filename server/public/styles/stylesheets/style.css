@@ -1,8 +1,8 @@
 body,
 html {
-  margin: 0;
-  padding: 0;
-  font-family: 'Lato';
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato';
 }
 
 .instructions .container h1 {
@@ -25,7 +25,7 @@ html {
 }
 
 .container p {
-  margin-top: 14px;
+    margin-top: 14px;
 }
 
 .message {
@@ -37,7 +37,7 @@ html {
 }
 
 .message:nth-child(odd) {
-  background-color: #eeeeee;
+    background-color: #eeeeee;
 }
 
 .message:nth-child(even) {
@@ -45,7 +45,7 @@ html {
 }
 
 .btn-danger {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 
 .navbar {
@@ -101,7 +101,7 @@ li a:hover {
 
 .sizeLg,
 .md-tab {
-  font-size: 2.5rem;
+    font-size: 2.5rem;
 }
 
 .sameAsP {
@@ -110,16 +110,18 @@ li a:hover {
 
 
 /* set bg and text color for song info in module */
+
 .fixed {
-  background-color: #afafaf;
-  color: white;
+    background-color: #afafaf;
+    color: white;
 }
 
 
 /* fix tabs on scroll in module */
+
 md-tabs.md-dynamic-height md-tabs-content-wrapper {
-  overflow: scroll;
-  height: 700px;
+    overflow: scroll;
+    height: 700px;
 }
 
 
@@ -127,18 +129,28 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
 
 
 /* add margins to student grading view */
+
 .gradeMarg {
-  margin: 15px;
-  padding: 10px;
-  /* text-align: center; */
+    margin: 15px;
+    padding: 10px;
+    /* text-align: center; */
 }
 
 md-card-title {
-  background: linear-gradient( rgb(255, 247, 233), white, rgb(255, 247, 233))
-  ;
-  color: #535250;
+    background: linear-gradient( rgb(255, 247, 233), white, rgb(255, 247, 233));
+    color: #535250;
 }
 
 .orange {
+    color: #fca311
+}
+
+.uppercase {
+    text-transform: uppercase;
   color: #fca311
+}
+
+/** Admin */
+.btn1 {
+    background-color: #fca311;
 }

@@ -1,5 +1,5 @@
 myApp
-  .factory('UserService', function ($http, $location, $mdDialog) {
+  .factory('UserService', function ($http, $location, $mdDialog, $window) {
     console.log('UserService Loaded');
 
     var userObject = {};
@@ -14,12 +14,34 @@ myApp
           .then(function (response) {
             if (response.data.username) {
               // user has a curret session on the server
-              userObject.userName = response.data.username;
-              console.log('UserService -- getuser -- User Data: ', userObject.userName);
+              userObject.user = response.data;
+              console.log('UserService -- getuser -- User Data: ', userObject.user);
             } else {
               console.log('UserService -- getuser -- failure');
               // user has no session, bounce them back to the login page
-              $location.path("/home");
+              // $location.path("/home");
+            }
+          }, function (response) {
+            console.log('UserService -- getuser -- failure: ', response);
+            $location.path("/home");
+          });
+      },
+      getteacher: function () {
+        console.log('UserService -- getteacher');
+        $http
+          .get('/user')
+          .then(function (response) {
+            if (response.data.username) {
+              // user has a curret session on the server
+              userObject.user = response.data;
+              if ( !response.data.username.teachers_id ) {
+                $location.path("/home");
+              }
+              console.log('UserService -- getuser -- User Data: ', userObject.user);
+            } else {
+              console.log('UserService -- getuser -- failure');
+              // user has no session, bounce them back to the login page
+              // $location.path("/home");
             }
           }, function (response) {
             console.log('UserService -- getuser -- failure: ', response);
@@ -29,7 +51,7 @@ myApp
 
       getfeatured: function () {
         $http
-          .get('/student/getModule')
+          .get('/student/getAllModules')
           .then(function (resp) {
 
             for (var i = resp.data.length; i > 3; i--) {
@@ -70,6 +92,9 @@ myApp
           .get('/user/logout')
           .then(function (response) {
             console.log('UserService -- logout -- logged out');
+            $window
+              .location
+              .reload();
           });
       }
     };

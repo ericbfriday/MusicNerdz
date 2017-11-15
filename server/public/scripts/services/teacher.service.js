@@ -10,7 +10,15 @@ myApp.service('TeacherService', function ($http) {
             .then(function (response) {
                 console.log('back from addClass post response:', response);
             });
-    }
+    };
+
+    vm.getAssigned = function (classId) {
+        console.log('teacher service get assigned:', classId);
+        return $http.get('/teacher/assigned/' + classId).then(function(res) {
+            console.log('response from get assigned', res);
+            vm.assigned = res.data;
+        });
+    };
 
     vm.getClasses = function (teacherId) {
         console.log('teacher service get classes:', teacherId);

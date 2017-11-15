@@ -1,42 +1,70 @@
-<section ng-init="ec.getHistoricalInfo()">
-        <div ng-include="'views/partials/admin_nav.html'"></div>
+<section ng-init="ec.getHistoricalInfo()" class="admin">
+    <div ng-include="'views/partials/admin_nav.html'" ng-init="ec.getEvents()"></div>
+    <div class="md-padding admin-container">
         <md-card>
-        <md-card-title>
-            <md-card-title-text>
-                Historical Event:
-            </md-card-title-text>
-        </md-card-title>
-        <md-card-content layout="column">
-            <form name="eventCreation">
-                <div layout="row" layout-fill>
-                    <md-input-container flex="75">
-                        <label>Title of Event</label>
-                        <input ng-model="ec.title" md-select-on-focus>
-                    </md-input-container>
-                    <md-input-container flex="25">
-                        <label>Event Year</label>
-                        <input ng-model="ec.year" md-select-on-focus>
-                    </md-input-container>
-                </div>
-                <div layout="row">
-                    <md-input-container flex="100">
-                        <label>Description of Event</label>
-                        <pre><textarea rows="4" ng-model="ec.desc"></textarea></pre>
-                    </md-input-container>
-                </div>
-                <md-chips ng-model="ec.hTags" md-autocomplete-snap md-transform-chip="ec.transformChip($chip)" md-require-match="ec.requireMatch">
-                    <md-autocomplete md-selected-item="ec.selectedItem" md-search-text="ec.searchText" md-items="item in ec.querySearch(ec.searchText)"
-                        md-item-text="item.name" placeholder="Search for an Issue">
-                        <span md-highlight-text="ec.searchText">{{item.name}}</span>
+            <md-card-title class="admin-title">
+                <md-card-title-text class="md-headline">
+                    Step 2: Add and Associate Historic Events
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <form id="eventSearchForm" class="md-padding" class="md-padding admin-form" ng-submit="ec.associateEvent(ec.selectedEvent)">
+                    <md-autocomplete ng-disabled="ec.isDisabled" md-no-cache="ec.noCache" md-selected-item="ec.selectedEvent" md-search-text-change="ec.searchEventTextChange(ec.searchEventText)"
+                        md-search-text="ec.searchEventText" md-selected-item-change="ec.selectedEventChange(event)" md-items="event in ec.eventQuerySearch(ec.searchEventText)"
+                        md-item-text="event.title" md-min-length="0" placeholder="Historical Event to Associate to Song" class="admin-label">
+                        <md-item-template>
+                            <span md-highlight-text="ec.searchEventText" md-highlight-flags="^i">{{event.title}}</span>
+                        </md-item-template>
+                        <md-not-found>
+                            No events matching "{{ec.searchEventText}}" were found.
+                        </md-not-found>
                     </md-autocomplete>
-                    <md-chip-template>
-                        <span>
-                            <strong>{{$chip.name}}</strong>
-                        </span>
-                    </md-chip-template>
-                </md-chips>
-                <md-button class="md-primary md-raised" ng-submit ng-click="ec.makeEvent(ec.title, ec.desc, ec.year, ec.hTags)">Submit & Move On to Quiz Questions</md-button>
-            </form>
-        </md-card-content>
-    </md-card>
+                    <!-- <md-button class="btn1" ng-click="ec.associateEvent(ec.selectedEvent)">Associate Existing Event</md-button> -->
+                </form>
+            </md-card-content>
+        </md-card>
+
+        <md-card>
+            <md-card-title class="admin-title">
+                <md-card-title-text class="md-headline">
+                    Create Historical Event:
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content layout="column">
+                <form name="eventCreation" id="eventCreationForm" class="md-padding admin-form small">
+                    <div layout="row">
+                        <md-input-container flex="75">
+                            <label>Title of Event</label>
+                            <input ng-model="ec.title" md-select-on-focus>
+                        </md-input-container>
+                        <md-input-container flex="25">
+                            <label>Event Year</label>
+                            <input ng-model="ec.year" md-select-on-focus>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="100" class="admin-largelabel">
+                            <label>Description of Event:</label>
+                            <pre><textarea rows="4" ng-model="ec.desc"></textarea></pre>
+                        </md-input-container>
+                    </div>
+                    <md-chips ng-model="ec.hTags" md-autocomplete-snap md-transform-chip="ec.transformChip($chip)" md-require-match="ec.requireMatch">
+                        <md-autocomplete md-selected-item="ec.selectedItem" md-search-text="ec.searchText" md-items="item in ec.chipsQuerySearch(ec.searchText)"
+                            md-item-text="item.name" placeholder="Associate Historical Themes">
+                            <span md-highlight-text="ec.searchText">{{item.name}}</span>
+                        </md-autocomplete>
+                        <md-chip-template>
+                            <span>
+                                <strong>{{$chip.name}}</strong>
+                            </span>
+                        </md-chip-template>
+                    </md-chips>
+                    <md-button class="btn1" ng-click="ec.makeEvent(ec.title, ec.desc, ec.year, ec.hTags)">Create New Event</md-button>
+                </form>
+            </md-card-content>
+        </md-card>
+        <md-card class="md-padding" class="md-padding">
+            <md-button class="btn1" ng-submit ng-click="ec.finishEvents()" ng-href="#/admin/additionalResources">Submit & Move On to Quiz Questions</md-button>
+        </md-card>
+    </div>
 </section>

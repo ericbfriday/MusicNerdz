@@ -1,0 +1,45 @@
+<section ng-init="ec.getHistoricalInfo()" class="admin">
+    <div ng-include="'views/partials/admin_nav.html'"></div>
+    <div class="md-padding admin-container">
+        <form name="externalEventCreation" id="externalEventCreation" class="admin-form">
+            <md-card>
+                <md-card-title class="admin-title">
+                    <md-card-title-text class="md-headline">
+                        Create Historical Event:
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content layout="column" class="admin-multiple-choice">
+                    <div layout="row" layout-fill>
+                        <md-input-container flex="75">
+                            <label>Title of Event</label>
+                            <input ng-model="ec.title" md-select-on-focus>
+                        </md-input-container>
+                        <md-input-container flex="25">
+                            <label>Event Year</label>
+                            <input ng-model="ec.year" md-select-on-focus>
+                        </md-input-container>
+                    </div>
+                    <div layout="row">
+                        <md-input-container flex="100" class = "admin-largelabel">
+                            <label>Description of Event</label>
+                            <pre><textarea rows="4" ng-model="ec.desc"></textarea></pre>
+                        </md-input-container>
+                    </div>
+                    <md-chips ng-model="ec.hTags" md-autocomplete-snap md-transform-chip="ec.transformChip($chip)" md-require-match="ec.requireMatch">
+                        <md-autocomplete md-selected-item="ec.selectedItem" md-search-text="ec.searchText" md-items="item in ec.chipsQuerySearch(ec.searchText)"
+                            md-item-text="item.name" placeholder="Associate Historical Themes">
+                            <span md-highlight-text="ec.searchText">{{item.name}}</span>
+                        </md-autocomplete>
+                        <md-chip-template>
+                            <span>
+                                <strong>{{$chip.name}}</strong>
+                            </span>
+                        </md-chip-template>
+                    </md-chips>
+                    <md-button class="btn1" ng-click="ec.makeEvent(ec.title, ec.desc, ec.year, ec.hTags)">Create New Event</md-button>
+                </md-card-content>
+            </md-card>
+
+        </form>
+    </div>
+</section>

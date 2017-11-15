@@ -1,13 +1,16 @@
 <section>
-        <div ng-include="'views/partials/admin_nav.html'"></div>
-        <!-- See readability notes in controller for abbreviations -->
-    <md-content>
-        <div layout="row">
-            <div flex="66" layout-fill>
-
+    <div ng-include="'views/partials/admin_nav.html'"></div>
+    <md-content class="admin">
+        <div layout="row" class="admin-container">
+            <div flex="66" layout-fill class="admin-form small">
                 <md-card>
-                    <md-input-container flex="50">
-                        <label>Type of Question to Add</label>
+                    <md-card-title class="admin-title">
+                        <md-card-title-text class="md-headline ">
+                            Module Creation - Step 4: Create Quiz Questions
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-input-container flex="50" class="md-padding ">
+                        <label class="admin-label">Type of Question to Add</label>
                         <md-select name="correctAnswer" ng-model="qc.currentQType">
                             <md-option value="mc" selected>Multiple Choice</md-option>
                             <md-option value="sa">Short Answer</md-option>
@@ -17,20 +20,19 @@
                 </md-card>
 
                 <form id="addQuestionsForm">
-
                     <!-- Multiple Choice Template -->
-                    <ng-form>
+                    <ng-form class="admin-multiple-choice">
                         <md-card ng-show="qc.currentQType=='mc'">
-                            <md-card-title>
+                            <md-card-title class="admin-title">
                                 <md-card-title-text>
                                     <span class="md-headline">Multiple Choice:</span>
                                 </md-card-title-text>
                             </md-card-title>
-                            <md-card-content>
+                            <md-card-content class="admin-multiple-choice">
                                 <div layout="row" layout-align="center center" flex layout-fill>
                                     <md-input-container flex="100">
                                         <label>Question:</label>
-                                        <textarea ng-model="qc.currentMCQ" rows="2" md-select-on-focus></textarea>
+                                        <textarea ng-model="qc.currentMCQ" rows="3" md-select-on-focus></textarea>
                                     </md-input-container>
                                 </div>
                                 <div layout="row" layout-align="center center" flex layout-fill>
@@ -54,7 +56,7 @@
                                     </md-input-container>
                                 </div>
                                 <div layout="row" layout-align="left center" flex layout-fill>
-                                    <md-input-container flex="50">
+                                    <md-input-container flex="30">
                                         <label>Correct Answer</label>
                                         <md-select name="correctAnswer" ng-model="qc.currentMCCA" required>
                                             <md-option value="a">A</md-option>
@@ -65,39 +67,42 @@
                                     </md-input-container>
                                 </div>
                             </md-card-content>
-                            <md-button class="md-primary" ng-submit ng-click="qc.pushMCQ(qc.currentMCQ, qc.currentMCA1, qc.currentMCA2, qc.currentMCA3, qc.currentMCA4, qc.currentMCCA)">Make New Multiple Choice Question</md-button>
+                            <md-button class="btn1" ng-submit ng-click="qc.pushMCQ(qc.currentMCQ, qc.currentMCA1, qc.currentMCA2, qc.currentMCA3, qc.currentMCA4, qc.currentMCCA)">Make New Multiple Choice Question</md-button>
                         </md-card>
                     </ng-form>
 
                     <!-- Short Answer Tempalte -->
                     <ng-form>
                         <md-card ng-show="qc.currentQType=='sa'">
-                            <md-card-title>
+                            <md-card-title class="admin-title">
                                 <md-card-title-text>
                                     <span class="md-headline">Short Answer:</span>
                                 </md-card-title-text>
                             </md-card-title>
-                            <md-input-container>
-                                <label>Question:</label>
-                                <textarea ng-model="qc.currentSAQ" rows="2" md-select-on-focus></textarea>
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Notes or Answer</label>
-                                <textarea ng-model="qc.currentSAA" rows="2" md-select-on-focus></textarea>
-                            </md-input-container>
-                            <br/>
-                            <md-button class="md-primary" ng-click="qc.pushSAQ(qc.currentSAQ, qc.currentSAA)">Make New Short Answer Question</md-button>
+                            <div class="admin-form small">
+                                <md-input-container>
+                                    <label>Question:</label>
+                                    <textarea ng-model="qc.currentSAQ" rows="4" md-select-on-focus></textarea>
+                                </md-input-container>
+                                <md-input-container>
+                                    <label>Notes or Answer</label>
+                                    <textarea ng-model="qc.currentSAA" rows="4" md-select-on-focus></textarea>
+                                </md-input-container>
+                            </div>
+                            <md-button class="btn1" ng-click="qc.pushSAQ(qc.currentSAQ, qc.currentSAA)">Make New Short Answer Question</md-button>
                         </md-card>
                     </ng-form>
 
                     <!-- Essay template below -->
                     <ng-form>
                         <md-card ng-show="qc.currentQType=='e'">
-                            <md-card-title>
+                            <md-card-title class="admin-title">
                                 <md-card-title-text>
                                     <span class="md-headline">Essay:</span>
                                 </md-card-title-text>
                             </md-card-title>
+                            <div class="admin-form small">
+                                    
                             <md-input-container>
                                 <label>Essay Title/Question</label>
                                 <textarea ng-model="qc.currentEQ" rows="2" md-select-on-focus></textarea>
@@ -106,8 +111,8 @@
                                 <label>Essay Notes & Answers</label>
                                 <textarea ng-model="qc.currentEA" rows="4" md-select-on-focus></textarea>
                             </md-input-container>
-                            <br>
-                            <md-button class="md-primary" ng-click="qc.pushEssayQ(qc.currentEQ, qc.currentEA)">Make New Essay Topic</md-button>
+                        </div>
+                        <md-button class="btn1" ng-click="qc.pushEssayQ(qc.currentEQ, qc.currentEA)">Make New Essay Topic</md-button>
                         </md-card>
                     </ng-form>
 
@@ -119,16 +124,16 @@
 
                     <!-- Final submit button -->
                     <md-card>
-                        <md-button class="md-warn md-raised" ng-click="qc.showConfirm($event)">Finish & Submit Module</md-button>
+                        <md-button class="btn1" ng-click="qc.showConfirm($event)" ng-href="#/admin/home">Finish & Submit Module</md-button>
                     </md-card>
 
                 </form>
             </div>
             <!-- Quiz summary for admins to track their progress in adding quiz questions. -->
-            <div flex="33" layout-fill>
+            <div flex="33">
                 <div class="quizSummary">
                     <md-card>
-                        <md-card-title>
+                        <md-card-title class="admin-title">
                             <md-card-title-text>
                                 <span class="md-headline">Summary of Quiz Questions</span>
                             </md-card-title-text>
@@ -141,6 +146,4 @@
             </div>
         </div>
     </md-content>
-
-
 </section>

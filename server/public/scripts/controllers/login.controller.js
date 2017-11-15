@@ -10,13 +10,14 @@ myApp
     vm.message = '';
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
+    vm.path = $location.path();
+    console.log(vm.path);
 
     vm.login = function () {
       console.log('LoginController -- login');
       if (vm.user.username === '' || vm.user.password === '') {
         vm.message = "Enter your username and password!";
       } else {
-        console.log('LoginController -- login -- sending to server...', vm.user);
         $http
           .post('/', vm.user)
           .then(function (response) {
