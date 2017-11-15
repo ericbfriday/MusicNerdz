@@ -34,7 +34,7 @@ myApp.service('TeacherService', function ($http) {
             console.log('response from get students', res);
             vm.students = res.data;
         });
-    }
+    };
 
     vm.deleteStudent = function (student) {
         console.log('teacher service delete student:', student);
