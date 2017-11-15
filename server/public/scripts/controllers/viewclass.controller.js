@@ -1,4 +1,3 @@
-'use strict';
 myApp.controller('ViewController', function ($http, TeacherService) {
     console.log('ViewController created');
     var vm = this;

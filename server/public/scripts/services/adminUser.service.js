@@ -10,7 +10,7 @@ myApp.service('AdminUserService', function ($http) {
     sv.teacherFName = '';
     sv.teacherLName = '';
     sv.teacherSchool = '';
-    sv.teacherSchoolID = null;
+    sv.teacherSchoolID = {data: 0};
     sv.teacherList = {data: []};
 
     // establishes structure of teacher object to be sent to router.
@@ -78,7 +78,7 @@ myApp.service('AdminUserService', function ($http) {
         return $http.get('/teacher/schools')
         .then((res) => {
             sv.schoolList.data = res.data.rows;
-            // console.log('logging sv.schoolList -> ', sv.schoolList);
+            console.log('logging sv.schoolList -> ', sv.schoolList);
         }, (err) => {
             console.log('logging err in getSchools -> ', err);
         })

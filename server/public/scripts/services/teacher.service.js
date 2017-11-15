@@ -1,4 +1,3 @@
-'use strict';
 myApp.service('TeacherService', function ($http) {
     var vm = this;
 

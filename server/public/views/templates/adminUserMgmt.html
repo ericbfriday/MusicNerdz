@@ -62,7 +62,7 @@
 
             <md-tab label="Delete School">
                 <md-card>
-                    <md-card-title>
+                    <md-card-title class="admin-title">
                         <md-card-title-text>
                             <span class="md-headline">Delete School</span>
                         </md-card-title-text>
@@ -92,7 +92,7 @@
 
             <md-tab label="Delete Teacher">
                 <md-card>
-                    <md-card-title>
+                    <md-card-title class="admin-title">
                         <md-card-title-text>
                             <span class="md-headline">Delete Teacher</span>
                         </md-card-title-text>
@@ -114,8 +114,8 @@
                                     <th md-column>Delete</th>
                                 </thead>
                                 <tbody md-body>
-                                    <div ng-repeat="teacher in auc.teacherList.data | orderBy: teacher.name" ng-if="teacher.schools_id == auc.teacherSchoolID">
-                                        <tr>
+                                    <div ng-repeat="teacher in auc.teacherList.data | orderBy: teacher.name">
+                                        <tr ng-if="teacher.schools_id == auc.teacherSchoolID">
                                             <td md-cell>{{teacher.id}}</td>
                                             <td md-cell>{{teacher.last}}</td>
                                             <td md-cell>{{teacher.first}}</td>
