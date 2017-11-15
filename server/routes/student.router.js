@@ -40,7 +40,9 @@ router.get('/getAllModules', function (req, res) {
   // connect to database
   pool.connect(function (err, client, done) {
     // query 
-    let modQuery = 'SELECT * FROM modules'
+
+    let modQuery = 'SELECT * FROM modules';
+
     //error handling
     if (err) {
       console.log('Connection Error:', err);
@@ -58,10 +60,12 @@ router.get('/getAllModules', function (req, res) {
           //send the list from the database to client side
           res.send(resultObj.rows);
         } //END else send
-      }) //END client.query
+
+      }); //END client.query
     } //END else send query
-  }) //END pool.connect
-}) //END router GET
+  }); //END pool.connect
+}); //END router GET
+
 
 //get module info from database
 router.get('/getModule', function (req, res) {
@@ -91,15 +95,19 @@ router.get('/getModule', function (req, res) {
         } //END else send
       }); //END client.query
     } //END else send query
-  }) //END pool.connect
-}) //END router GET
+
+  }); //END pool.connect
+}); //END router GET
+
 
 //get student grades info from database
 router.get('/getGrades', function (req, res) {
   // connect to database
   pool.connect(function (err, client, done) {
     // query to get grades based on student's id
-    let modQuery = 'SELECT questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, responses.final_grade, students.first, students.last FROM questions JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1'
+
+    let modQuery = 'SELECT questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, responses.final_grade, students.first, students.last FROM questions JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1';
+
     // var to hold student id
     let studID = 5;
     //error handling
@@ -122,29 +130,8 @@ router.get('/getGrades', function (req, res) {
         } //END else send
       }); //END client.query
     } //END else send query
-  }) //END pool.connect
-}) //END router GET
 
-// **********Modules queries*********
-// SELECT questions.question, questions.type, questions.a,
-//  questions.b, questions.c, questions.d, questions.correct, modules.description, 
-// modules.title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video,
-//  history.description, history.title FROM questions
-// JOIN modules ON questions.modules_id = modules.id
-// JOIN modules_history ON modules.id = modules_history.modules_id
-// JOIN history ON modules_history.history_id = history.id
-// WHERE modules.id = 5
-// ORDER BY questions.question;
-
-// SELECT questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, students.first, students.last FROM questions 
-// JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id
-// WHERE students.id = 5
-
-// SELECT questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description, modules.title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description, history.title FROM questions
-// JOIN modules ON questions.modules_id = modules.id
-// JOIN modules_history ON modules.id = modules_history.modules_id
-// JOIN history ON modules_history.history_id = history.id
-// WHERE modules.id = 5
-// ORDER BY questions.question;
+  }); //END pool.connect
+}); //END router GET
 
 module.exports = router;

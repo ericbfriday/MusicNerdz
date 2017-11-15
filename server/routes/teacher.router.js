@@ -50,6 +50,29 @@ router.post('/addTeacher', function (req, res) {
   });
 }); // end /addTeacher
 
+//get all assigned module info that matches class Id
+router.get('/assigned/:classIdParam', function (req, res) {
+  console.log('getting assigned module info with', req.params.classIdParam);
+  pool.connect(function (err, client, done) {
+    let queryString = "SELECT responses.response, responses.final_grade, responses.students_id AS stud_id, modules.id AS mod_id, modules.title FROM students JOIN responses ON students.id = responses.students_id JOIN questions ON responses.questions_id = questions.id JOIN modules ON questions.modules_id = modules.id WHERE students.classes_id = $1;";
+    let value = [req.params.classIdParam];
+
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(queryString, value, function (err, result) {
+      client.end();
+      if (err) {
+        console.log("Error querying data in /assigned GET route: ", err);
+        res.sendStatus(500);
+      } else {
+        res.send(result.rows);
+      }
+    });
+  });
+})
+
 //get list of students by class
 router.get('/students/:classParam', (req, res) => {
   console.log('in get students teacher route with', req.params.classParam);
@@ -68,6 +91,7 @@ router.get('/students/:classParam', (req, res) => {
         res.sendStatus(500);
       } else {
         res.send(result.rows);
+        console.log('ef testing -> ', result.rows);
       }
     });
   });
@@ -77,7 +101,7 @@ router.get('/students/:classParam', (req, res) => {
 router.get('/classes/:teacherParam', (req, res) => {
   console.log('in get classes teacher route with', req.params.teacherParam);
   pool.connect(function (err, client, done) {
-    let queryString = "SELECT * FROM students FULL OUTER JOIN classes ON students.classes_id = classes.id WHERE classes.teachers_id = $1;";
+    let queryString = "SELECT students.id AS studId, students.first, students.last, students.email, students.classes_id, classes.id AS classId, classes.title, classes.code, classes.teachers_id FROM students FULL OUTER JOIN classes ON students.classes_id = classes.id WHERE classes.teachers_id = $1;";
     let value = [req.params.teacherParam];
 
     if (err) {
@@ -116,5 +140,27 @@ router.get('/schools', (req, res) => {
     });
   });
 }); // end /schools
+
+router.delete('/deleteStudent/:id', function (req, res) {
+  console.log('logging req.params.id in /deleteStudent:', req.params.id);
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } else {
+      console.log('DELETE:, req.params.id');
+      var studId = [req.params.id];
+      client.query('DELETE from students WHERE id = $1', studId, function (err, obj) {
+        done();
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+        } else {
+          res.send(obj)
+        }
+      })
+    }
+  }) //end pool.connect
+}) //end router.delete
 
 module.exports = router;

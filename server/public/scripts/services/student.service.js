@@ -1,9 +1,11 @@
 myApp.service('StudentService', function ($http) {
     //GLOBALS
-    const sv = this
+
+    const sv = this;
     sv.mods = {
         data: []
-    }
+    };
+
     sv.saQuestions = {
         data: []
     };
@@ -61,6 +63,12 @@ myApp.service('StudentService', function ($http) {
         // return array without duplicates
         return trimmedArray;
     } //END removeDuplicates
+
+    sv.getAllModules = function () {
+        $http.get('/student/getAllModules').then(function(res){
+            sv.mods = res.data;
+        });
+    };
 
     //Function to get modules form server
     sv.getMod = function () {
@@ -123,6 +131,6 @@ myApp.service('StudentService', function ($http) {
         sv.studGrades.lesson5 = tempLesson5;
         sv.studGrades.lesson2 = tempLesson2;
         console.log('studGRADES:', sv.studGrades);
-    } //END getGrades
+    }; //END getGrades
 
 }); //END service

@@ -6,7 +6,8 @@ var myApp = angular.module('myApp', [
   'angAccordion',
   'ngYoutubeEmbed',
   'md.data.table',
-  'ui.carousel'
+  'ui.carousel',
+  'mdCollectionPagination'
 ]);
 
 /// Routes ///
@@ -63,9 +64,9 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
           console.log('resolve featured modules');
           return UserService.getfeatured();
         },
-        getMod: function (StudentService) {
+        getAllModules: function (StudentService) {
           console.log('resolve all modules');
-          return StudentService.getMod();
+          return StudentService.getAllModules();
         },
         getuser: function (UserService) {
           return UserService.getuser();
@@ -90,8 +91,26 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       // resolve: {   getuser : function(UserService){     return
       // UserService.getuser();   } }
     })
+    .when('/teacher/gradingform/', {
+      templateUrl: '/views/templates/teacherGrading.html',
+      controller: 'TeachergradeController as tgc',
+      // resolve: {
+      //   getteacher: function (UserService) {
+      //     return UserService.getteacher();
+      //   }
+      // }
+    })
     .when('/viewclass', {
       templateUrl: '/views/templates/viewclass.html',
+      controller: 'ViewController as vc',
+      resolve: {
+        getteacher: function (UserService) {
+          return UserService.getteacher();
+        }
+      }
+    })
+    .when('/teacher/grading', {
+      templateUrl: '/views/templates/gradebook.html',
       controller: 'ViewController as vc',
       resolve: {
         getteacher: function (UserService) {
