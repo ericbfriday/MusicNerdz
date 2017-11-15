@@ -79,7 +79,7 @@
                                     <span class="md-headline">Short Answer:</span>
                                 </md-card-title-text>
                             </md-card-title>
-                            <div class="admin-form small">
+                            <div class="admin-form small" layout="column" layout-align="start stretch">
                                 <md-input-container>
                                     <label>Question:</label>
                                     <textarea ng-model="qc.currentSAQ" rows="4" md-select-on-focus></textarea>
@@ -101,29 +101,26 @@
                                     <span class="md-headline">Essay:</span>
                                 </md-card-title-text>
                             </md-card-title>
-                            <div class="admin-form small">
-                                    
-                            <md-input-container>
-                                <label>Essay Title/Question</label>
-                                <textarea ng-model="qc.currentEQ" rows="2" md-select-on-focus></textarea>
-                            </md-input-container>
-                            <md-input-container>
-                                <label>Essay Notes & Answers</label>
-                                <textarea ng-model="qc.currentEA" rows="4" md-select-on-focus></textarea>
-                            </md-input-container>
-                        </div>
-                        <md-button class="btn1" ng-click="qc.pushEssayQ(qc.currentEQ, qc.currentEA)">Make New Essay Topic</md-button>
+                            <div class="admin-form small" layout="column" layout-align="start stretch">
+
+                                <md-input-container>
+                                    <label>Essay Title/Question</label>
+                                    <textarea ng-model="qc.currentEQ" rows="2" md-select-on-focus></textarea>
+                                </md-input-container>
+                                <md-input-container>
+                                    <label>Essay Notes & Answers</label>
+                                    <textarea ng-model="qc.currentEA" rows="4" md-select-on-focus></textarea>
+                                </md-input-container>
+                            </div>
+                            <md-button class="btn1" ng-click="qc.pushEssayQ(qc.currentEQ, qc.currentEA)">Make New Essay Topic</md-button>
                         </md-card>
                     </ng-form>
 
                     <!-- Preview quiz button -  Currently not hooked up to a function. Waiting for teacher/student view of quiz to be written and then
                     we will base new code off of that. -->
                     <md-card>
-                        <md-button class="md-primary md-raised" ng-click="">Preview Quiz</md-button>
-                    </md-card>
+                        <md-button class="btn1" ng-click="">Preview Quiz</md-button>
 
-                    <!-- Final submit button -->
-                    <md-card>
                         <md-button class="btn1" ng-click="qc.showConfirm($event)" ng-href="#/admin/home">Finish & Submit Module</md-button>
                     </md-card>
 
