@@ -825,7 +825,7 @@ input {
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
   padding: 10px;
 }
-/* line 30, ../sass/_musicnerdz_studentgrade.scss */
+/* line 29, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions textarea, .teacher-grading .teacher-grade-info textarea {
   resize: none;
   font-size: 1.5rem;
@@ -837,7 +837,7 @@ input {
   box-sizing: border-box;
   border: 1px solid #e5e5e5;
 }
-/* line 41, ../sass/_musicnerdz_studentgrade.scss */
+/* line 40, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .fa-exclamation-circle, .teacher-grading .teacher-grade-info .fa-exclamation-circle,
 .teacher-grading .teacher-grade-questions .fa-check-square-o,
 .teacher-grading .teacher-grade-info .fa-check-square-o {
@@ -845,25 +845,25 @@ input {
   margin: 0 25px;
   text-align: right;
 }
-/* line 47, ../sass/_musicnerdz_studentgrade.scss */
+/* line 46, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .fa-check-square-o, .teacher-grading .teacher-grade-info .fa-check-square-o {
   color: green;
 }
-/* line 50, ../sass/_musicnerdz_studentgrade.scss */
+/* line 49, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .fa-exclamation-circle, .teacher-grading .teacher-grade-info .fa-exclamation-circle {
   color: red;
 }
-/* line 53, ../sass/_musicnerdz_studentgrade.scss */
+/* line 52, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-results, .teacher-grading .teacher-grade-info .teacher-grade-results {
   margin: 10px 0 25px;
 }
-/* line 55, ../sass/_musicnerdz_studentgrade.scss */
+/* line 54, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-results span, .teacher-grading .teacher-grade-info .teacher-grade-results span {
   text-align: center;
   border-top: 1px solid #14213d;
   border-bottom: 1px solid #14213d;
 }
-/* line 62, ../sass/_musicnerdz_studentgrade.scss */
+/* line 61, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-entry input, .teacher-grading .teacher-grade-info .teacher-grade-entry input {
   width: 25%;
   font-size: 3rem;
@@ -871,11 +871,11 @@ input {
   border: 1px solid #e5e5e5;
   text-transform: uppercase;
 }
-/* line 69, ../sass/_musicnerdz_studentgrade.scss */
+/* line 68, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-entry span, .teacher-grading .teacher-grade-info .teacher-grade-entry span {
   display: block;
 }
-/* line 72, ../sass/_musicnerdz_studentgrade.scss */
+/* line 71, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-entry button, .teacher-grading .teacher-grade-info .teacher-grade-entry button {
   background: #fca311;
   border: 0;
@@ -889,42 +889,42 @@ input {
   -o-transition: background 0.3s ease-in-out;
   transition: background 0.3s ease-in-out;
 }
-/* line 84, ../sass/_musicnerdz_studentgrade.scss */
+/* line 83, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-entry button:hover, .teacher-grading .teacher-grade-info .teacher-grade-entry button:hover {
   background-color: #fdb643;
 }
-/* line 87, ../sass/_musicnerdz_studentgrade.scss */
+/* line 86, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-entry button:active, .teacher-grading .teacher-grade-info .teacher-grade-entry button:active {
   background-color: #d78703;
 }
-/* line 92, ../sass/_musicnerdz_studentgrade.scss */
+/* line 91, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-sa, .teacher-grading .teacher-grade-info .teacher-grade-sa, .teacher-grading .teacher-grade-questions .teacher-grade-mc, .teacher-grading .teacher-grade-info .teacher-grade-mc,
 .teacher-grading .teacher-grade-questions .teacher-grade-tf,
 .teacher-grading .teacher-grade-info .teacher-grade-tf {
   margin-bottom: 15px;
   line-height: 20px;
 }
-/* line 93, ../sass/_musicnerdz_studentgrade.scss */
+/* line 92, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-sa span, .teacher-grading .teacher-grade-info .teacher-grade-sa span, .teacher-grading .teacher-grade-questions .teacher-grade-mc span, .teacher-grading .teacher-grade-info .teacher-grade-mc span,
 .teacher-grading .teacher-grade-questions .teacher-grade-tf span,
 .teacher-grading .teacher-grade-info .teacher-grade-tf span {
   margin: 0;
   font-size: 1.6rem;
 }
-/* line 97, ../sass/_musicnerdz_studentgrade.scss */
+/* line 96, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-sa div, .teacher-grading .teacher-grade-info .teacher-grade-sa div, .teacher-grading .teacher-grade-questions .teacher-grade-mc div, .teacher-grading .teacher-grade-info .teacher-grade-mc div,
 .teacher-grading .teacher-grade-questions .teacher-grade-tf div,
 .teacher-grading .teacher-grade-info .teacher-grade-tf div {
   width: 100%;
 }
-/* line 99, ../sass/_musicnerdz_studentgrade.scss */
+/* line 98, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-sa div span, .teacher-grading .teacher-grade-info .teacher-grade-sa div span, .teacher-grading .teacher-grade-questions .teacher-grade-mc div span, .teacher-grading .teacher-grade-info .teacher-grade-mc div span,
 .teacher-grading .teacher-grade-questions .teacher-grade-tf div span,
 .teacher-grading .teacher-grade-info .teacher-grade-tf div span {
   width: 40%;
   line-height: 0;
 }
-/* line 104, ../sass/_musicnerdz_studentgrade.scss */
+/* line 103, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-sa p, .teacher-grading .teacher-grade-info .teacher-grade-sa p, .teacher-grading .teacher-grade-questions .teacher-grade-mc p, .teacher-grading .teacher-grade-info .teacher-grade-mc p,
 .teacher-grading .teacher-grade-questions .teacher-grade-tf p,
 .teacher-grading .teacher-grade-info .teacher-grade-tf p {
@@ -932,20 +932,20 @@ input {
   font-size: 1.5rem;
   margin: 0;
 }
-/* line 111, ../sass/_musicnerdz_studentgrade.scss */
+/* line 110, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-sa .teacher-grade-mc-wrong, .teacher-grading .teacher-grade-info .teacher-grade-sa .teacher-grade-mc-wrong, .teacher-grading .teacher-grade-questions .teacher-grade-mc .teacher-grade-mc-wrong, .teacher-grading .teacher-grade-info .teacher-grade-mc .teacher-grade-mc-wrong,
 .teacher-grading .teacher-grade-questions .teacher-grade-tf .teacher-grade-mc-wrong,
 .teacher-grading .teacher-grade-info .teacher-grade-tf .teacher-grade-mc-wrong {
   text-decoration: line-through;
   color: red;
 }
-/* line 115, ../sass/_musicnerdz_studentgrade.scss */
+/* line 114, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-sa .teacher-grade-mc-right, .teacher-grading .teacher-grade-info .teacher-grade-sa .teacher-grade-mc-right, .teacher-grading .teacher-grade-questions .teacher-grade-mc .teacher-grade-mc-right, .teacher-grading .teacher-grade-info .teacher-grade-mc .teacher-grade-mc-right,
 .teacher-grading .teacher-grade-questions .teacher-grade-tf .teacher-grade-mc-right,
 .teacher-grading .teacher-grade-info .teacher-grade-tf .teacher-grade-mc-right {
   color: green;
 }
-/* line 123, ../sass/_musicnerdz_studentgrade.scss */
+/* line 122, ../sass/_musicnerdz_studentgrade.scss */
 .teacher-grading .teacher-grade-questions .teacher-grade-mc span, .teacher-grading .teacher-grade-info .teacher-grade-mc span,
 .teacher-grading .teacher-grade-questions .teacher-grade-tf span,
 .teacher-grading .teacher-grade-info .teacher-grade-tf span {
