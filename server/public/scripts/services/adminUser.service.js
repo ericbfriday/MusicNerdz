@@ -10,7 +10,7 @@ myApp.service('AdminUserService', function ($http) {
     sv.teacherFName = '';
     sv.teacherLName = '';
     sv.teacherSchool = '';
-    sv.teacherSchoolID = {data: 0};
+    sv.teacherSchoolID = {data: null};
     sv.teacherList = {data: []};
 
     // establishes structure of teacher object to be sent to router.
@@ -44,6 +44,7 @@ myApp.service('AdminUserService', function ($http) {
         return $http.delete('/teacher/deleteSchool/' + school.id)
         .then((response)=>{
             console.log('logging response in deleteSchool -> ', response);
+            sv.getSchools();
         })
         .catch((err)=> {
             console.log('logging error in catch from deleteSchool -> ', err);
@@ -55,6 +56,7 @@ myApp.service('AdminUserService', function ($http) {
         return $http.delete('/teacher/deleteteacher/' + teacher.id)
         .then((response)=>{
             console.log('logging response in deleteTeacher -> ', response);
+            sv.getTeachers();
         })
         .catch((err)=> {
             console.log('logging error in catch from deleteTeacher -> ', err);
