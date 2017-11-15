@@ -770,37 +770,36 @@ input {
 
 /* line 217, ../sass/_musicnerdz_adminnav.scss */
 #addResourcesForm md-card:last-child {
-  margin-top: 30px;
   padding: 15px;
 }
-/* line 221, ../sass/_musicnerdz_adminnav.scss */
+/* line 220, ../sass/_musicnerdz_adminnav.scss */
 #addResourcesForm a {
   width: 300px;
   margin: 0 auto;
 }
 
-/* line 229, ../sass/_musicnerdz_adminnav.scss */
+/* line 228, ../sass/_musicnerdz_adminnav.scss */
 #addQuestionsForm .admin-multiple-choice,
 #externalEventCreation .admin-multiple-choice {
   padding: 25px;
 }
-/* line 231, ../sass/_musicnerdz_adminnav.scss */
+/* line 230, ../sass/_musicnerdz_adminnav.scss */
 #addQuestionsForm .admin-multiple-choice md-autocomplete,
 #externalEventCreation .admin-multiple-choice md-autocomplete {
   width: 350px;
 }
 
-/* line 237, ../sass/_musicnerdz_adminnav.scss */
+/* line 236, ../sass/_musicnerdz_adminnav.scss */
 .md-resize-handle {
   display: none;
 }
 
-/* line 241, ../sass/_musicnerdz_adminnav.scss */
+/* line 240, ../sass/_musicnerdz_adminnav.scss */
 .admin-form-desc {
   min-height: 125px !important;
 }
 
-/* line 247, ../sass/_musicnerdz_adminnav.scss */
+/* line 246, ../sass/_musicnerdz_adminnav.scss */
 #addSchoolForm input,
 #addTeacherForm input {
   margin: 0;
