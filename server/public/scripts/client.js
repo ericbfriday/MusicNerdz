@@ -21,31 +21,66 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     })
     .when('/admin/additionalResources', {
       templateUrl: '/views/templates/moduleAdditionalResources.html',
-      controller: 'ResourcesController as rc'
+      controller: 'ResourcesController as rc',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/home', {
       templateUrl: '/views/templates/adminLandingPage.html',
-      controller: 'AdminUserController as auc'
+      controller: 'AdminUserController as auc',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/songCreation', {
       templateUrl: '/views/templates/moduleSongCreation.html',
-      controller: 'SongCreation as sc'
+      controller: 'SongCreation as sc',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/quizCreation', {
       templateUrl: '/views/templates/moduleQuestionCreation.html',
-      controller: 'QuizCreation as qc'
+      controller: 'QuizCreation as qc',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/eventCreation', {
       templateUrl: '/views/templates/moduleHistoricalEvents.html',
-      controller: 'EventCreation as ec'
+      controller: 'EventCreation as ec',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/externalEventCreation', {
       templateUrl: '/views/templates/adminCreateHistoricalEvents.html',
-      controller: 'EventCreation as ec'
+      controller: 'EventCreation as ec',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/userMgmt', {
       templateUrl: '/views/templates/adminUserMgmt.html',
-      controller: 'AdminUserController as auc'
+      controller: 'AdminUserController as auc',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/home', {
       templateUrl: '/views/templates/home.html',

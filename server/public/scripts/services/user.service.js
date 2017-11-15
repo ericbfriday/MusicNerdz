@@ -48,6 +48,28 @@ myApp
             $location.path("/home");
           });
       },
+      getadmin: function () {
+        console.log('UserService -- get admin');
+        $http
+          .get('/user')
+          .then(function (response) {
+            if (response.data.username) {
+              // user has a curret session on the server
+              userObject.user = response.data;
+              if ( !(response.data.username.teachers_id === null && response.data.username.students_id ===null) ) {
+                $location.path("/home");
+              }
+              console.log('UserService -- getuser -- User Data: ', userObject.user);
+            } else {
+              console.log('UserService -- getuser -- failure');
+              // user has no session, bounce them back to the login page
+              $location.path("/home");
+            }
+          }, function (response) {
+            console.log('UserService -- getuser -- failure: ', response);
+            $location.path("/home");
+          });
+      },
 
       getfeatured: function () {
         $http

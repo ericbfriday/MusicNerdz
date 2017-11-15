@@ -87,7 +87,7 @@
         position: relative;
         z-index: 1;
         padding: 0 0;
-        margin: 25px 0;
+        margin: 10px 0;
     }
     .main-container,
     .main-assigned {
@@ -101,7 +101,7 @@
     }
     .main-completed {
         line-height: normal;
-        margin: 20px;
+        margin: 5px;
         font-size: 3rem;
     }
     .container {
@@ -136,6 +136,19 @@
         background-size: cover;
         background-position: 100% 25%;
         height: 200px;
+        span {
+            float: right;
+            height: 40px;
+            margin: 3px;
+            width: 40px;
+            background-color: white;
+            box-shadow: 1px 1px 3px black;
+            i {
+                font-size: 4rem;
+                color: $orange;
+                -webkit-text-stroke: 1px black;
+            }
+        }
         img {
             max-width: 100px;
         }
@@ -220,7 +233,18 @@
     }
 }
 
+.md-button.md-raised:not([disabled]) {
+    font-size: 2rem;
+}
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .tile {
+        .tile-details {
+            .tile-name {
+                font-size: 2rem;
+            }
+        }
+    }
     .main {
         width: 100%;
         .main-container {
@@ -229,6 +253,9 @@
         }
         .main-carousel {
             width: 100%;
+        }
+        .main-display {
+            margin: 10px 20px;
         }
         .carousel-item {
             .main-display {
@@ -250,5 +277,4 @@
             }
         }
     }
-    
 }
