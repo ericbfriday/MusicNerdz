@@ -14,16 +14,12 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         this.students = [];
     };
 
-<<<<<<< HEAD
-    function Student (first, last, email, id) {
-=======
     function Student (studId, first, last, email) {
         this.studId = studId;
->>>>>>> master
         this.first = first;
         this.last = last;
         this.email = email;
-        this.id = id;
+        this.id = studId;
     };
 
     function StudentGrade (studentId, final, response) {
@@ -172,14 +168,8 @@ myApp.controller('ViewController', function ($http, TeacherService) {
             console.log('students array after GET', vm.students);            
         })
     };
-<<<<<<< HEAD
-
-    vm.getClasses(vm.teacher);
 
     vm.deleteStudent = TeacherService.deleteStudent;
 
-=======
-    
->>>>>>> master
     console.log("vm.student", vm.student);
 });

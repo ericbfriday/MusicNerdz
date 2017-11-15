@@ -97,10 +97,6 @@ router.get('/getModule', function (req, res) {
         } //END else send
       }); //END client.query
     } //END else send query
-<<<<<<< HEAD
-  });//END pool.connect
-});//END router GET
-=======
 
   }); //END pool.connect
 }); //END router GET
@@ -162,6 +158,5 @@ router.get('/getGrades', function (req, res) {
 // JOIN history ON modules_history.history_id = history.id
 // WHERE modules.id = 5
 // ORDER BY questions.question;
->>>>>>> master
 
 module.exports = router;
