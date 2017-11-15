@@ -55,4 +55,13 @@ myApp
           });
       }
     };
+
+    vm.passwordReset = function(email) {
+      console.log('Send reset email');
+      $http.get('/resetRoute/' + email).then(function(response){
+        console.log(response);
+      });
+      vm.email = '';
+      vm.message = 'An email has been sent to ' +  vm.email + ' with instructions on how to reset your password.'
+    };
   });
