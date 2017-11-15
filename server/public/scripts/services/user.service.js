@@ -51,7 +51,7 @@ myApp
 
       getfeatured: function () {
         $http
-          .get('/student/getModule')
+          .get('/student/getAllModules')
           .then(function (resp) {
 
             for (var i = resp.data.length; i > 3; i--) {
