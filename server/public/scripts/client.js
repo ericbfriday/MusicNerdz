@@ -90,6 +90,15 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       // resolve: {   getuser : function(UserService){     return
       // UserService.getuser();   } }
     })
+    .when('/teacher/gradingform/', {
+      templateUrl: '/views/templates/teacherGrading.html',
+      controller: 'TeachergradeController as tgc',
+      // resolve: {
+      //   getteacher: function (UserService) {
+      //     return UserService.getteacher();
+      //   }
+      // }
+    })
     .when('/viewclass', {
       templateUrl: '/views/templates/viewclass.html',
       controller: 'ViewController as vc',
