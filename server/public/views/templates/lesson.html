@@ -47,7 +47,7 @@
                         <!-- multiple choice -->
                         <div ng-repeat="mcQuest in smc.mcQuestions.data">
                             {{mcQuest.question}}
-                            <md-radio-group ng-model="mcQuest.id">
+                            <md-radio-group ng-model="smc.McVal[$index]">
                                 <md-radio-button value="a">
                                     <strong>A</strong> {{mcQuest.a}}</md-radio-button>
                                 <md-radio-button value="b">
@@ -62,11 +62,12 @@
                         <div ng-repeat="saQuest in smc.saQuestions.data">
                             {{saQuest.question}}
                             <md-input-container class="md-block">
-                                <textarea ng-model="saQuest.id" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+                                <textarea ng-model="smc.SaVal[$index]" md-maxlength="500" rows="5" md-select-on-focus></textarea>
                             </md-input-container>
                         </div>
                         <!-- submit button -->
-                        <md-button class="sameAsP">Submit</md-button>
+                        <md-button class="sameAsP" ng-click="smc.submitQuiz
+                        ()">Submit</md-button>
                     </form>
                 </md-content>
             </md-tab>
