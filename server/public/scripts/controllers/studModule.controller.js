@@ -5,6 +5,13 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.mods = StudentService.mods;
     vm.saQuestions = StudentService.saQuestions;
     vm.mcQuestions = StudentService.mcQuestions;
+    vm.histEvents = StudentService.histEvents;
+
+    vm.submitQuiz = function () {
+     console.log(vm.McVal);
+     console.log(vm.SaVal);
+     
+    }//END submitQuiz
  
     StudentService.getMod();    
 });//END App Controller

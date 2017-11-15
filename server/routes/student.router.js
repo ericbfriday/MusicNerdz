@@ -72,9 +72,7 @@ router.get('/getModule', function (req, res) {
   // connect to database
   pool.connect(function (err, client, done) {
     // query to get module based on id
-
-    let modQuery = 'SELECT questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description, modules.title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description, history.title FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id WHERE modules.id = $1 ORDER BY questions.question;';
-
+    let modQuery = 'SELECT questions.id, questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description AS mod_desc, modules.title AS mod_title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description AS history_desc, history.title AS history_title FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id WHERE modules.id = $1 ORDER BY questions.question;'
     // var to hold module id
     let modID = 5;
     //error handling
@@ -135,28 +133,5 @@ router.get('/getGrades', function (req, res) {
 
   }); //END pool.connect
 }); //END router GET
-
-
-// **********Modules queries*********
-// SELECT questions.question, questions.type, questions.a,
-//  questions.b, questions.c, questions.d, questions.correct, modules.description, 
-// modules.title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video,
-//  history.description, history.title FROM questions
-// JOIN modules ON questions.modules_id = modules.id
-// JOIN modules_history ON modules.id = modules_history.modules_id
-// JOIN history ON modules_history.history_id = history.id
-// WHERE modules.id = 5
-// ORDER BY questions.question;
-
-// SELECT questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, students.first, students.last FROM questions 
-// JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id
-// WHERE students.id = 5
-
-// SELECT questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description, modules.title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description, history.title FROM questions
-// JOIN modules ON questions.modules_id = modules.id
-// JOIN modules_history ON modules.id = modules_history.modules_id
-// JOIN history ON modules_history.history_id = history.id
-// WHERE modules.id = 5
-// ORDER BY questions.question;
 
 module.exports = router;
