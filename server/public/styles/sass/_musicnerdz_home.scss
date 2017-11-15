@@ -165,10 +165,11 @@
         background-position: 100% 40%;
         -webkit-box-shadow: 0px 1px 5px #333333;
         box-shadow: 0px 1px 5px #333333;
-        height: 235px;
+        height: 100%;
     }
     .main-display {
         color: $white;
+        height: 225px;
         .tile {
             margin: 0;
             height: auto;
