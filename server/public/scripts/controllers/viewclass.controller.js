@@ -19,6 +19,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         this.first = first;
         this.last = last;
         this.email = email;
+        this.id = studId;
     };
 
     function StudentGrade (studentId, final, response) {
@@ -48,7 +49,8 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         email: '',
         number: '',
         classesId: '',
-        teachersId: vm.teacher
+        teachersId: vm.teacher,
+        // studentId: vm.student //?
     }
 
     vm.classes = [];
@@ -166,6 +168,8 @@ myApp.controller('ViewController', function ($http, TeacherService) {
             console.log('students array after GET', vm.students);            
         })
     };
-    
+
+    vm.deleteStudent = TeacherService.deleteStudent;
+
     console.log("vm.student", vm.student);
 });
