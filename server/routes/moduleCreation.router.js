@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
@@ -69,7 +70,7 @@ let moduleSong = {}; // new Song(title, album, artist, year, URL, desc, lyrics, 
 let moduleEventList = {}; // new EventList(events);
 let moduleResourceList = {}; // new ResourceList(resources);
 let moduleQuestionList = {}; // new QuestionList(questions);
-let finalModule = new Module(moduleSong, moduleEventList, moduleResourceList, moduleQuestionList);
+const finalModule = new Module(moduleSong, moduleEventList, moduleResourceList, moduleQuestionList);
 
 function initModule(res) {
   // console.log('createModule() activated & connected!');
@@ -77,7 +78,7 @@ function initModule(res) {
   res.sendStatus(201);
 }
 
-var insertSong = function (song, res) {
+const insertSong = function (song, res) {
   // console.log('song -> ', song);
   let songTitle = song.title;
   let songAlbum = song.album;
@@ -110,15 +111,14 @@ var insertSong = function (song, res) {
   });
 };
 
-var insertAssociatedEvents = function (events, client, res) {
-  // console.log('loggin events.events -> ', events.events);
+const insertAssociatedEvents = function (events, client, res) {
+  // console.log('logging events.events -> ', events.events);
 
   // Query that works in pSQL, but fails due to 'cannot insert multiple commands into a prepared statement' error.
   //let query = "INSERT INTO modules_history (modules_id, history_id) VALUES ($1, $2) RETURNING id; INSERT INTO modules_tags (modules_id, tags_id) VALUES ($3, (SELECT tags_id FROM history_tags WHERE history_id = $4));";
   //let values = [moduleID.id, ev[i].id, moduleID.id, ev[i]];
 
-
-  ev = events.events;
+  const ev = events.events;
   for (let i = 0; i < ev.length; i++) {
     let query = "INSERT INTO modules_history (modules_id, history_id) VALUES ($1, $2) RETURNING id;";
     let values = [moduleID.id, ev[i].id];
@@ -147,8 +147,8 @@ var insertAssociatedEvents = function (events, client, res) {
   insertResources(moduleResourceList, client, res);
 };
 
-var insertResources = function (resources, client, res) {
-  resource = resources.resources;
+const insertResources = function (resources, client, res) {
+  let resource = resources.resources;
   // console.log('loggin resource -> ', resource);
   for (let i = 0; i < resource.length; i++) {
     let query = 'INSERT INTO resources (description, type, link, modules_id, title) VALUES ($1, $2, $3, $4, $5);';
@@ -167,7 +167,7 @@ var insertResources = function (resources, client, res) {
   insertQuestions(moduleQuestionList, client, res);
 };
 
-var insertQuestions = function (questions, client, res) {
+const insertQuestions = function (questions, client, res) {
   let que = questions.questions.questions[0].questions;
   // console.log('logging que -> ', que);
   for (let i = 0; i < que.length; i++) {
@@ -203,7 +203,7 @@ var insertQuestions = function (questions, client, res) {
 //     });
 // };
 
-var tagSorter = function (tags) {
+const tagSorter = function (tags) {
   tags.forEach(function (tag, i) {
     if (tags[i].type == 'new') {
       newTags.push(tags[i].name);
