@@ -11,7 +11,7 @@
                 <div layout="column">
                     <div layout="row" layout-align="space-between center">
                         <md-input-container flex="40">
-                            <label class="admin-label">Title of Song</label>
+                            <label>Title of Song</label>
                             <input ng-model="sc.songTitle.data" md-select-on-focus autofocus>
                         </md-input-container>
                         <md-input-container flex="40" flex-offset="10">
@@ -59,9 +59,12 @@
                         </md-input-container>
                     </div>
                 </div>
-                <md-button class="btn1" ng-submit ng-click="sc.makeSong(sc.songTitle, sc.songAlbum, sc.songArtist, sc.songYear, sc.songURL, sc.songArt, sc.songDesc, sc.songLyrics)"
-                    ng-href="#/admin/eventCreation">Submit</md-button>
+
             </form>
         </md-card>
+        <md-card>
+                <md-button class="btn1" ng-submit ng-click="sc.makeSong(sc.songTitle, sc.songAlbum, sc.songArtist, sc.songYear, sc.songURL, sc.songArt, sc.songDesc, sc.songLyrics)"
+                    ng-href="#/admin/eventCreation">Submit</md-button>
+                </md-card>
     </div>
 </section>

@@ -1,5 +1,3 @@
-
-
 // login page
 [class*="fa "]:before {
     font-family: 'FontAwesome', sans-serif;
@@ -40,10 +38,8 @@ input {
     }
 }
 
-
-
 .loginControls {
-    width:625px;
+    width: 625px;
     padding: 0 22px;
 }
 
@@ -149,7 +145,7 @@ input {
             border-radius: 5px;
             padding: 1rem;
             background: $white;
-            box-shadow: 2px 2px 5px grey;            
+            box-shadow: 2px 2px 5px grey;
             -webkit-transition: -webkit-transform 300ms ease;
             transition: -webkit-transform 300ms ease;
             -o-transition: transform 300ms ease;
