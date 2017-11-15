@@ -20,13 +20,19 @@
         }
     }
     .admin-title {
-        background: $orange;
+        background: $blue;
         text-align: center;
         -webkit-box-shadow: 0px 3px 3px grey;
         box-shadow: 0px 3px 3px grey;
         .md-headline {
             color: white;
             font-weight: 300;
+        }
+    }
+    .centerbutton {
+        .btn1 {
+            width: 300px;
+            margin: 0 auto;
         }
     }
     form {
@@ -71,6 +77,9 @@
         .btn1 {
             -webkit-box-shadow: 0px 3px 3px grey;
             box-shadow: 0px 3px 3px grey;
+            width: 300px;
+            margin: 10px auto;
+            border-radius: 10px;
         }
         md-select {
             font-size: 2rem;
@@ -78,7 +87,7 @@
         .admin-youtube {
             button {
                 width: 300px;
-                margin: 20px auto;
+                margin: 0px auto;
             }
             input,
             textarea {
@@ -96,6 +105,7 @@
                 padding: 15px;
                 overflow: scroll;
                 max-height: 125px;
+                min-height: 125px;
                  ::-webkit-input-placeholder {
                     color: white;
                 }
@@ -113,6 +123,9 @@
         padding: 30px;
         overflow: scroll;
         height: calc(80vh - 75px);
+        md-chips .md-chips.md-focused, md-chips .md-chips {
+            box-shadow: none;
+        }
         .md-errors-spacer {
             float: none;
         }
@@ -129,9 +142,6 @@
             textarea {
                 margin: 0;
                 font-size: 1.4rem;
-            }
-            .md-resize-handle {
-                display: none;
             }
         }
         md-input-container {
@@ -183,8 +193,8 @@
     width: 75%;
     margin: 0 auto;
     .admin-label {
-        margin: 0 auto;
         width: 50%;
+        display: inline-block;
     }
 }
 
@@ -195,7 +205,7 @@
     }
     .md-chips {
         -webkit-box-shadow: none;
-                box-shadow: none;
+        box-shadow: none;
     }
     .btn1 {
         margin: 0 3px;
@@ -205,7 +215,6 @@
 
 #addResourcesForm {
     md-card:last-child {
-        margin-top: 30px;
         padding: 15px;
     }
     a {
@@ -214,23 +223,26 @@
     }
 }
 
-#addQuestionsForm, #externalEventCreation {
+#addQuestionsForm,
+#externalEventCreation {
     .admin-multiple-choice {
         padding: 25px;
         md-autocomplete {
             width: 350px;
         }
-        .btn1 {
-            width: 250px;
-        }
     }
+}
+
+.md-resize-handle {
+    display: none;
 }
 
 .admin-form-desc {
     min-height: 125px!important;
 }
 
-#addSchoolForm, #addTeacherForm {
+#addSchoolForm,
+#addTeacherForm {
     input {
         margin: 0;
     }

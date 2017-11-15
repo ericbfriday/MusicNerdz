@@ -91,6 +91,7 @@ router.get('/students/:classParam', (req, res) => {
         res.sendStatus(500);
       } else {
         res.send(result.rows);
+        console.log('ef testing -> ', result.rows);
       }
     });
   });
@@ -203,5 +204,27 @@ router.delete('/deleteTeacher/:id', (req, res) => {
     });
   });
 });
+
+router.delete('/deleteStudent/:id', function (req, res) {
+  console.log('logging req.params.id in /deleteStudent:', req.params.id);
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } else {
+      console.log('DELETE:, req.params.id');
+      var studId = [req.params.id];
+      client.query('DELETE from students WHERE id = $1', studId, function (err, obj) {
+        done();
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+        } else {
+          res.send(obj)
+        }
+      })
+    }
+  }) //end pool.connect
+}) //end router.delete
 
 module.exports = router;
