@@ -23,8 +23,8 @@
                         <td md-cell>{{student.last}}, {{student.first}}</td>
                         <td md-cell ng-repeat="modAssigned in vc.modules">
                             <div ng-repeat="studentGrade in modAssigned.studGrades">
-                                <span ng-show="studentGrade.studId == student.studId">{{studentGrade.final}}</span>
-                                <i ng-show="studentGrade.final == null" class="fa fa-pencil-square-o" aria-hidden="true"></i>                                
+                                <span style="text-transform: uppercase;" ng-show="studentGrade.studId == student.studId">{{studentGrade.final}}</span>
+                                <i ng-show="studentGrade.studId == student.studId && !studentGrade.final" class="fa fa-pencil-square-o" aria-hidden="true"></i>                                
                             </div>
                         </td>                                    
                     </tr>
