@@ -58,42 +58,150 @@ class QuestionList {
 let questions = []; // questions for `questions` table
 let newTags = []; // all 'new' tags for insertion into `tags` table & `oldTags` variable
 let oldTags = []; // all 'old' tags for insertion into `allTags` variable
-let moduleID = {id: 0};
-let associatedEvents = {data: null};
+let moduleID = {
+  id: 0
+};
+let associatedEvents = {
+  data: null
+};
 
 let moduleSong = {}; // new Song(title, album, artist, year, URL, desc, lyrics, art);
 let moduleEventList = {}; // new EventList(events);
 let moduleResourceList = {}; // new ResourceList(resources);
 let moduleQuestionList = {}; // new QuestionList(questions);
+let finalModule = new Module(moduleSong, moduleEventList, moduleResourceList, moduleQuestionList);
 
 function initModule(res) {
-  let finalModule = new Module(moduleSong, moduleEventList, moduleResourceList, moduleQuestionList);
-  console.log('logging finalModule', finalModule);
+  // console.log('createModule() activated & connected!');
+  insertSong(moduleSong, res);
+  res.sendStatus(201);
+}
+
+var insertSong = function (song, res) {
+  // console.log('song -> ', song);
+  let songTitle = song.title;
+  let songAlbum = song.album;
+  let songArtist = song.artist;
+  let songYear = song.year;
+  let songURL = song.URL;
+  let songDesc = song.desc;
+  let songLyrics = song.lyrics;
+  let songArt = song.art;
+  let values = [songDesc, songTitle, songAlbum, songArtist, songYear, songArt, songLyrics, songURL];
+  let query = "INSERT INTO modules (description, title, album, artist, year, art, lyrics, video) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;";
+  // console.log('insertSong values -> ', values);
   pool.connect(function (err, client, done) {
     if (err) {
-      console.log("Error connecting in initModule: ", err);
+      console.log("Error connecting: ", err);
       res.sendStatus(500);
     } else {
-      console.log('createModule() activated & connected!');
-      let query = "";
-      let values = [];
-      console.log('initModule() query -> ', query);
       client.query(query, values,
         function (err, result) {
           if (err) {
             console.log("Error inserting data: ", err);
             res.sendStatus(500);
           } else {
-            console.log('Result in event insert statement-> ', result);
-            // send result of insert here.
+            moduleID.id = result.rows[0].id;
+            // console.log('logging moduleID.id in insertSong() -> ', moduleID.id);
+            insertAssociatedEvents(moduleEventList, client);
           }
         });
     }
-    done();
   });
-}
+};
 
-// /quiz will have to handle creating new module right after creating new moduleQuestionList.
+var insertAssociatedEvents = function (events, client, res) {
+  // console.log('loggin events.events -> ', events.events);
+
+  // Query that works in pSQL, but fails due to 'cannot insert multiple commands into a prepared statement' error.
+  //let query = "INSERT INTO modules_history (modules_id, history_id) VALUES ($1, $2) RETURNING id; INSERT INTO modules_tags (modules_id, tags_id) VALUES ($3, (SELECT tags_id FROM history_tags WHERE history_id = $4));";
+  //let values = [moduleID.id, ev[i].id, moduleID.id, ev[i]];
+
+
+  ev = events.events;
+  for (let i = 0; i < ev.length; i++) {
+    let query = "INSERT INTO modules_history (modules_id, history_id) VALUES ($1, $2) RETURNING id;";
+    let values = [moduleID.id, ev[i].id];
+    // console.log('insertAssociatedEvents() values -> ', values);
+    client.query(query, values,
+      function (err, result) {
+        if (err) {
+          console.log("Error inserting data: ", err);
+          res.sendStatus(500); // currently erroring with 'Cannot read property 'sendStatus' of undefined.
+        } else {
+          // console.log('Result in event insert statement-> ', result);
+        }
+      });
+      let query2 = "INSERT INTO modules_tags (modules_id, tags_id) VALUES ($1, (SELECT tags_id FROM history_tags WHERE history_id = $2));";
+      let values2 = [moduleID.id, ev[i].id];
+      client.query(query2, values2,
+        function (err, result) {
+          if (err) {
+            console.log("Error inserting data: ", err);
+            res.sendStatus(500);
+          } else {
+            // console.log('Result in event insert statement-> ', result);
+          }
+        });
+  }
+  insertResources(moduleResourceList, client, res);
+};
+
+var insertResources = function (resources, client, res) {
+  resource = resources.resources;
+  // console.log('loggin resource -> ', resource);
+  for (let i = 0; i < resource.length; i++) {
+    let query = 'INSERT INTO resources (description, type, link, modules_id, title) VALUES ($1, $2, $3, $4, $5);';
+    let values = [resource[i].desc, resource[i].type, resource[i].url, moduleID.id, resource[i].title];
+    // console.log('loggin values -> ', values);
+    client.query(query, values,
+      function (err, result) {
+        if (err) {
+          console.log("Error inserting data: ", err);
+          res.sendStatus(500);
+        } else {
+          // console.log('log result in insertResources-> ', result);
+        }
+      });
+  }
+  insertQuestions(moduleQuestionList, client, res);
+};
+
+var insertQuestions = function (questions, client, res) {
+  let que = questions.questions.questions[0].questions;
+  // console.log('logging que -> ', que);
+  for (let i = 0; i < que.length; i++) {
+    let query = "INSERT INTO questions (question, type, a, b, c, d, correct, modules_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)";
+    let values = [que[i].q, que[i].type, que[i].a1, que[i].a2, que[i].a3, que[i].a4, que[i].ca, moduleID.id];
+    // console.log('insertQuestions() values -> ', values);
+    client.query(query, values,
+      function (err, result) {
+        if (err) {
+          console.log("Error inserting data: ", err);
+          res.sendStatus(500);
+        } else {
+          // console.log('Result in question insert statement-> ', result);
+        }
+      });
+  }
+  // insertModuleTags(client, res);
+};
+
+// var insertModuleTags = function (client, res) {
+// // INSERT INTO modules_tags (modules_id, tags_id) VALUES (moduleID/$1, (SELECT tags_id FROM history_tags WHERE history_id = ev[i] ))
+//   let query = "";
+//   let values = [moduleID.id];
+//   console.log('insertModuleTags() values -> ', values);
+//   client.query(query, values,
+//     function (err, result) {
+//       if (err) {
+//         console.log("Error inserting data: ", err);
+//         res.sendStatus(500);
+//       } else {
+//         // console.log('Result in question insert statement-> ', result);
+//       }
+//     });
+// };
 
 var tagSorter = function (tags) {
   tags.forEach(function (tag, i) {
@@ -107,9 +215,6 @@ var tagSorter = function (tags) {
   });
 };
 
-// Original queryString and values -> let queryString = "WITH new_event AS (INSERT INTO history (title, description, year) VALUES($1, $2, $3) RETURNING id), new_tag AS (INSERT INTO tags (type) VALUES ($4) RETURNING id) INSERT INTO history_tags (history_id, tags_id) VALUES ((SELECT id FROM new_event), (SELECT id FROM new_tag));";
-// Original queryString and values -> let values = [nEvent.title, nEvent.desc, nEvent.year, newTags[i]];
-
 // The below function inserts a new historical event into the db. It also adds historical tags (old and new), and associates those tags to the event.
 router.post('/newHistoricalEvent', function (req, res, next) {
   let nEventID = 0;
@@ -122,7 +227,7 @@ router.post('/newHistoricalEvent', function (req, res, next) {
   // console.log('newTags ', newTags);
   // console.log('oldTags', oldTags);
   pool.connect(function (err, client, done) {
-    let firstInsert = function (client) { 
+    let firstInsert = function (client) {
       //FIRST QUERY INSERTS HISOTRICAL EVENT AND RETURNS ID
       let initialQueryString = "INSERT INTO history (title, description, year) VALUES($1, $2, $3) RETURNING id;";
       let initialQueryValues = [nEvent.title, nEvent.desc, nEvent.year];
@@ -182,7 +287,7 @@ router.post('/newHistoricalEvent', function (req, res, next) {
     let fourthInsert = function (client, nEventID, newTagsID) {
       // FOURTH QUERY ASSOCIATES NEW HISTORICAL EVENTS TO NEW HISTORICAL EVENT
       // console.log('Activated fourthInsert -> newTagsId -> ', newTagsID);
-      if (newTagsID != null){
+      if (newTagsID != null) {
         let newTagsInsertQueryString = "INSERT INTO history_tags (history_id, tags_id) VALUES ($1, $2)";
         let newTagsInsertQueryValues = [nEventID, newTagsID];
         // console.log('fourthInsert: logging values in new tags history_tags insert statement -> ', newTagsInsertQueryValues);
@@ -192,18 +297,18 @@ router.post('/newHistoricalEvent', function (req, res, next) {
               console.log("Error inserting data: ", err);
               res.sendStatus(500);
             } else {
-              console.log('Result in new tags history_tags insert statemet -> completed');
+              // console.log('Result in new tags history_tags insert statemet -> completed');
             }
           });
-      done();
-        }
+        done();
+      }
     };
     if (err) {
       console.log("Error connecting: ", err);
       res.sendStatus(500);
     } else {
       // EXECUTES FIRST INSERT, WHICH CALLS SECOND INSERT, WHICH CALLS THIRD INSERT, WHICH CALLS FOURTH INSERT.
-    firstInsert(client);
+      firstInsert(client);
     }
     res.sendStatus(201);
   });
@@ -218,25 +323,9 @@ router.post('/resources', function (req, res, next) {
       res.sendStatus(500);
     } else {
       moduleResourceList = new ResourceList(resources);
-      console.log('logging moduleResourceList -> ', moduleResourceList);
+      // console.log('logging moduleResourceList -> ', moduleResourceList);
       res.sendStatus(200);
-      // for (let i = 0; i < resources.length; i++) {
-      //   let query = 'INSERT INTO resources (description, type, link, modules_id, title) VALUES ($1, $2, $3, $4, $5);';
-      //   let values = [resources[i].desc, resources[i].type, resources[i].url, moduleID.id, resources[i].title];
-      //   // console.log('loggin values -> ', values);
-      //   client.query(query, values,
-      //     function (err, result) {
-      //       if (err) {
-      //         console.log("Error inserting data: ", err);
-      //         res.sendStatus(500);
-      //       } else {
-      //         // console.log('log result -> ', result.rows);
-      //       }
-      //     });
-      // }
     }
-    // done();
-    // res.sendStatus(201);
   });
 });
 
@@ -251,74 +340,26 @@ router.post('/songCreation', function (req, res, next) {
   let songLyrics = req.body.songLyrics;
   let songArt = req.body.songArt;
   moduleSong = new Song(songTitle, songAlbum, songArtist, songYear, songURL, songDesc, songLyrics, songArt);
-  console.log('logging moduleSong => ', moduleSong);
+  // console.log('logging moduleSong => ', moduleSong);
   res.sendStatus(200);
-
-  // let values = [songDesc, songTitle, songAlbum, songArtist, songYear, songArt, songLyrics, songURL];
-  // let insertQuery = "INSERT INTO modules (description, title, album, artist, year, art, lyrics, video) VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING id;";
-
-  // pool.connect(function (err, client, done) {
-  //   if (err) {
-  //     console.log("Error connecting: ", err);
-  //     res.sendStatus(500);
-  //   }
-  //   client.query(insertQuery, values,
-  //     function (err, result) {
-  //       client.end();
-  //       if (err) {
-  //         console.log("Error inserting data: ", err);
-  //         res.sendStatus(500);
-  //       } else {
-  //         moduleID.id = result.rows[0].id;
-  //         // sets router variable moduleId to ID of last inserted mosule for association to other insert statements.
-  //         console.log('moduleID -> ', moduleID.id);
-  //         res.status(203).send(result);
-  //       }
-  //     });
-  // });
 });
 
 router.post('/associatedEvents', function (req, res, next) {
   associatedEvents.data = req.body.data;
   moduleEventList = new EventList(associatedEvents.data);
-  console.log('logging moduleEventList in associatedEvents -> ', moduleEventList);
+  // console.log('logging moduleEventList in associatedEvents -> ', moduleEventList);
   res.sendStatus(200);
 });
 
 router.post('/quiz', function (req, res, next) {
   questions = req.body.data;
   moduleQuestionList.questions = new QuestionList(questions);
-  console.log('logging moduleQuestionList in associatedEvents -> ', moduleQuestionList);
+  // console.log('logging moduleQuestionList in associatedEvents -> ', moduleQuestionList);
   initModule(res);
-  // let q = questions.q;
-  // let a1 = questions.a1;
-  // let a2 = questions.a2;
-  // let a3 = questions.a3;
-  // let a4 = questions.a4;
-  // let ca = questions.ca;
-  // let modules_id = req.body.data[0].modulesID;
-  // let values = [q, a1, a2, a3, a4, ca, modules_id];
-  // pool.connect(function (err, client, done) {
-  //   if (err) {
-  //     console.log("Error connecting: ", err);
-  //     res.sendStatus(500);
-  //   }
-  //   client.query("INSERT INTO questions (question_text, type, a, b, c, d, correct, modules_id) VALUES ($1, $2, $3, $4, $5, $6, $7)",
-  //     values,
-  //     function (err, result) {
-  //       client.end();
-  //       if (err) {
-  //         console.log("Error inserting data: ", err);
-  //         res.sendStatus(500);
-  //       } else {
-  //         res.sendStatus(201);
-  //       }
-  //     });
-  // });
 });
 
 router.get('/getEvents', function (req, res, next) {
-  console.log('Inside /getEvents in moduleCreation route');
+  // console.log('Inside /getEvents in moduleCreation route');
   pool.connect(function (err, client, done) {
     if (err) {
       console.log('Logging error inside /getEvents -> ', err);
@@ -338,7 +379,7 @@ router.get('/getEvents', function (req, res, next) {
 });
 
 router.get('/existingHistoricalInfo', function (req, res, next) {
-  console.log('inside /existingHistoricalInfo in moduleCreation route');
+  // console.log('inside /existingHistoricalInfo in moduleCreation route');
   pool.connect(function (err, client, done) {
     if (err) {
       console.log("Error connecting in /existingHistoricalInfo: ", err);
