@@ -70,7 +70,8 @@ myApp
               // user has no session, bounce them back to the login page
               $location.path("/home");
             }
-          }, function (response) {
+          }, 
+          function (response) {
             console.log('UserService -- getuser -- failure: ', response);
             $location.path("/home");
           });
