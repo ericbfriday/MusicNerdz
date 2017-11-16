@@ -4,7 +4,7 @@
         In viewclass
     </p>
     <ang-accordion ng-repeat="class in vc.classes">
-        <collapsible-item item-title={{class.title}}>
+        <collapsible-item item-title={{class.title}} ng-model="class.id">
             <div>
                 <md-table-container>
                     <table md-table>

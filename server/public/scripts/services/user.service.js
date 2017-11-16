@@ -17,27 +17,13 @@ myApp
             if (response.data.username) {
               // user has a curret session on the server
               userObject.user = response.data;
-              $http
-                .get('/student/modules/' + 7)
-                .then(function (res) {
-                  userObject.assigned = res.data;
-                  console.log(userObject.assigned);
-                  
-                })
-                .then(function (res) {
-                  $http
-                    .get('/student/getAllModules')
-                    // use Lodash to compare all modules to assigned, and return the difference.
-                    .then(function (res) {
-                      userObject.allMods = res.data;
-                      console.log(userObject.allMods);
-                      userObject.new = _(userObject.allMods)
-                        .differenceBy(userObject.assigned, 'id')
-                        .value();
-                        console.log('diff', userObject.new);
-                        
-                    });
-                });
+              console.log('UserService -- getuser -- User Data: ', userObject.user);
+              if( (response.data.teachers_id === null && response.data.students_id ===null) ) {
+                // if the user is logged in, and is admin, their home page is the admin panel
+                $location.path("/admin/home");
+              }
+              $location.path("/user");
+              // send students/teachers to /user, who are logged in
             } else {
               console.log('UserService -- getuser -- failure');
               $http
@@ -61,8 +47,9 @@ myApp
             if (response.data.username) {
               // user has a curret session on the server
               userObject.user = response.data;
-              if (!response.data.username.teachers_id) {
+              if ( !response.data.teachers_id ) {
                 $location.path("/home");
+                console.log("logged in as student");
               }
               console.log('UserService -- getuser -- User Data: ', userObject.user);
             } else {
@@ -84,9 +71,8 @@ myApp
             if (response.data.username) {
               // user has a curret session on the server
               userObject.user = response.data;
-              if (!(response.data.username.teachers_id === null && response.data.username.students_id === null)) {
-                // if the user has type student/teacher that is null, they are admin
-                $location.path("/admin/home");
+              if ( !(response.data.teachers_id === null && response.data.students_id ===null) ) {
+                $location.path("/home");
               }
               console.log('UserService -- getuser -- User Data: ', userObject.user);
             } else {
@@ -150,11 +136,5 @@ myApp
               .reload();
           });
       },
-
-      // getAllAssigned: function () {   console.log('userobject', userObject);   if
-      // (userObject.user) {     $http       .get('/student/modules/' + 7)
-      // .then(function (res) {         userObject.assigned = res.data;
-      // console.log('logged in, showing assigned modules: ', userObject.assigned);
-      // });   } else {   } }
     };
   });
