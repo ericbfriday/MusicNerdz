@@ -70,6 +70,7 @@ myApp.service('AdminUserService', function ($http) {
         .then((response)=>{
             console.log('Logging response from addTeacher -> ', response);
             document.getElementById("addTeacherForm").reset();
+            sv.getTeachers();
         })
         .catch((err)=>{
             console.log('Logging error in addTeacher catch -> ', err);
