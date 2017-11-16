@@ -1,10 +1,7 @@
 <div ng-include="'views/partials/teacher_nav.html'"></div>
 <div class="container" ng-init=vc.getClasses(vc.teacher)>
-    <p>
-        In viewclass
-    </p>
     <ang-accordion ng-repeat="class in vc.classes">
-        <collapsible-item item-title={{class.title}} ng-model="class.id">
+        <collapsible-item item-title={{class.title}} ng-model="class.id"><md-button class="md-warn" class="deleteClassBtn" ng-click="vc.deleteClass(class.id)">Delete Class</md-button>
             <div>
                 <md-table-container>
                     <table md-table>
@@ -18,7 +15,7 @@
                                 <td md-cell>{{student.last}}</td>                                    
                                 <td md-cell>{{student.first}}</td>
                                 <td md-cell>{{student.email}}</td>
-                                <td md-cell><md-button class="md-warn" class="deleteStudBtn" ng-click="vc.deleteStudent(student.id)">Delete Student</md-button></td>
+                                <td md-cell><md-button class="md-warn" class="deleteStudBtn" ng-click="vc.deleteStudent(class.id, student.id)">Delete Student</md-button></td>
                             </tr>
                         </tbody>
                     </table>
@@ -39,6 +36,6 @@
         <input type="text" ng-model="vc.class.title" placeholder="Class Title" ng-required="true" flex="grow" />
         <input type="text" ng-model="vc.class.code" placeholder="Class Code" flex="grow" />
         <md-button class="addClsBtn" ng-click="vc.addClass()">+ Add Class</md-button>
-        <md-button>Delete Class</md-button>
     </div>
 </div>
+ 

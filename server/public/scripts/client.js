@@ -18,7 +18,7 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     .when('/register', {
     templateUrl: '/views/templates/register.html',
     controller: 'LoginController as lc'
-    })
+  })
     .when('/admin/additionalResources', {
       templateUrl: '/views/templates/moduleAdditionalResources.html',
       controller: 'ResourcesController as rc',
@@ -95,24 +95,24 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
       resolve: {
-        getfeatured: function (UserService) {
-          console.log('resolve featured modules');
-          return UserService.getfeatured();
-        },
-        getAllModules: function (StudentService) {
-          console.log('resolve all modules');
-          return StudentService.getAllModules();
-        },
         getuser: function (UserService) {
           return UserService.getuser();
-        }
+        },
+        getfeatured: function (UserService) {
+          return UserService.getfeatured();
+        },
+        // getAllAssigned: function (UserService) {   return
+        // UserService.getAllAssigned(); }
       }
     })
-    .when('/student/module', {
+    .when('/student/mod/:id', {
       templateUrl: '/views/templates/lesson.html',
       controller: 'StudentModuleController as smc',
-      // resolve: {   getuser: function (UserService) {     return
-      // UserService.getuser();   } }
+      resolve: {
+        getmod: function ($route, StudentService) {
+          return StudentService.getMod($route.current.params.id);
+        }
+      }
     })
     .when('/student/grades', {
       templateUrl: '/views/templates/studentGrade.html',
@@ -126,12 +126,12 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       // resolve: {   getuser : function(UserService){     return
       // UserService.getuser();   } }
     })
-    .when('/teacher/gradingform/', {
+    .when('/teacher/gradingform/module/:module/student/:student', {
       templateUrl: '/views/templates/teacherGrading.html',
       controller: 'TeachergradeController as tgc',
       resolve: {
-        getteacher: function (UserService) {
-          return UserService.getteacher();
+        getgradeform: function ($route, UserService) {
+          return UserService.getgradeform($route.current.params.module, $route.current.params.student);
         }
       }
     })
