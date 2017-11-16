@@ -35,7 +35,9 @@ CREATE TABLE "users" (
 	"username" text UNIQUE NOT NULL,
 	"password" text NOT NULL,
 	"students_id" INT REFERENCES students(id),
-    "teachers_id" INT REFERENCES teachers(id)
+    "teachers_id" INT REFERENCES teachers(id),
+	"reset_token" varchar(40),
+	"reset_token_expires" timestamp
 );
 
 CREATE TABLE "modules" (

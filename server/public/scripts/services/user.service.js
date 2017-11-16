@@ -16,6 +16,12 @@ myApp
               // user has a curret session on the server
               userObject.user = response.data;
               console.log('UserService -- getuser -- User Data: ', userObject.user);
+              if( (response.data.teachers_id === null && response.data.students_id ===null) ) {
+                // if the user is logged in, and is admin, their home page is the admin panel
+                $location.path("/admin/home");
+              }
+              $location.path("/user");
+              // send students/teachers to /user, who are logged in
             } else {
               console.log('UserService -- getuser -- failure');
               // user has no session, bounce them back to the login page
@@ -34,14 +40,39 @@ myApp
             if (response.data.username) {
               // user has a curret session on the server
               userObject.user = response.data;
-              if ( !response.data.username.teachers_id ) {
+              if ( !response.data.teachers_id ) {
+                $location.path("/home");
+                console.log("logged in as student");
+              }
+
+              console.log('UserService -- getuser -- User Data: ', userObject.user);
+            } else {
+              console.log('UserService -- getuser -- failure');
+              // user has no session, bounce them back to the login page
+              $location.path("/home");
+            }
+          }, 
+          function (response) {
+            console.log('UserService -- getuser -- failure: ', response);
+            $location.path("/home");
+          });
+      },
+      getadmin: function () {
+        console.log('UserService -- get admin');
+        $http
+          .get('/user')
+          .then(function (response) {
+            if (response.data.username) {
+              // user has a curret session on the server
+              userObject.user = response.data;
+              if ( !(response.data.teachers_id === null && response.data.students_id ===null) ) {
                 $location.path("/home");
               }
               console.log('UserService -- getuser -- User Data: ', userObject.user);
             } else {
               console.log('UserService -- getuser -- failure');
               // user has no session, bounce them back to the login page
-              // $location.path("/home");
+              $location.path("/home");
             }
           }, function (response) {
             console.log('UserService -- getuser -- failure: ', response);

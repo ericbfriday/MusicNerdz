@@ -4,11 +4,11 @@
         <md-card>
             <md-card-title class="admin-title">
                 <md-card-title-text class="md-headline">
-                    Step 2: Add and Associate Historic Events
+                    Step 2: Add an Associate Historic Events
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
-                <form id="eventSearchForm" class="md-padding" class="md-padding admin-form" ng-submit="ec.associateEvent(ec.selectedEvent)">
+                <form id="eventSearchForm" class="md-padding" class="md-padding admin-form" layout="row" layout-align="center center">
                     <md-autocomplete ng-disabled="ec.isDisabled" md-no-cache="ec.noCache" md-selected-item="ec.selectedEvent" md-search-text-change="ec.searchEventTextChange(ec.searchEventText)"
                         md-search-text="ec.searchEventText" md-selected-item-change="ec.selectedEventChange(event)" md-items="event in ec.eventQuerySearch(ec.searchEventText)"
                         md-item-text="event.title" md-min-length="0" placeholder="Historical Event to Associate to Song" class="admin-label">
@@ -19,7 +19,7 @@
                             No events matching "{{ec.searchEventText}}" were found.
                         </md-not-found>
                     </md-autocomplete>
-                    <!-- <md-button class="btn1" ng-click="ec.associateEvent(ec.selectedEvent)">Associate Existing Event</md-button> -->
+                    <md-button class="btn1" ng-click="ec.associateEvent(ec.selectedEvent)">Associate Existing Event</md-button>
                 </form>
             </md-card-content>
         </md-card>
@@ -63,8 +63,8 @@
                 </form>
             </md-card-content>
         </md-card>
-        <md-card class="md-padding" class="md-padding">
-            <md-button class="btn1" ng-submit ng-click="ec.finishEvents()" ng-href="#/admin/additionalResources">Submit & Move On to Quiz Questions</md-button>
+        <md-card class="centerbutton">
+            <md-button class="btn1" ng-submit ng-click="ec.finishEvents()" ng-href="#/admin/additionalResources">Submit</md-button>
         </md-card>
     </div>
 </section>

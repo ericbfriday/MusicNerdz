@@ -70,3 +70,6 @@ tmp
 
 #VS Code ignores
 .vscode/
+
+#jshintrc
+.jshintrc

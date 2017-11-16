@@ -1,7 +1,7 @@
 <div ng-include="'views/partials/teacher_nav.html'"></div>
 <div class="container" ng-init=vc.getClasses(vc.teacher)>
     <ang-accordion ng-repeat="class in vc.classes">
-        <collapsible-item item-title={{class.title}}><md-button class="md-warn" class="deleteClassBtn" ng-click="vc.deleteClass(class.id)">Delete Class</md-button>
+        <collapsible-item item-title={{class.title}} ng-model="class.id"><md-button class="md-warn" class="deleteClassBtn" ng-click="vc.deleteClass(class.id)">Delete Class</md-button>
             <div>
                 <md-table-container>
                     <table md-table>
