@@ -44,6 +44,7 @@ myApp
                 $location.path("/home");
                 console.log("logged in as student");
               }
+
               console.log('UserService -- getuser -- User Data: ', userObject.user);
             } else {
               console.log('UserService -- getuser -- failure');
