@@ -16,6 +16,10 @@ myApp
               // user has a curret session on the server
               userObject.user = response.data;
               console.log('UserService -- getuser -- User Data: ', userObject.user);
+              if( (response.data.teachers_id === null && response.data.students_id ===null) ) {
+                $location.path("/admin/home");
+              }
+              $location.path("/user");
             } else {
               console.log('UserService -- getuser -- failure');
               // user has no session, bounce them back to the login page
@@ -34,8 +38,9 @@ myApp
             if (response.data.username) {
               // user has a curret session on the server
               userObject.user = response.data;
-              if ( !response.data.username.teachers_id ) {
+              if ( !response.data.teachers_id ) {
                 $location.path("/home");
+                console.log("logged in as student");
               }
               console.log('UserService -- getuser -- User Data: ', userObject.user);
             } else {
@@ -57,7 +62,7 @@ myApp
             if (response.data.username) {
               // user has a curret session on the server
               userObject.user = response.data;
-              if ( !(response.data.username.teachers_id === null && response.data.username.students_id ===null) ) {
+              if ( !(response.data.teachers_id === null && response.data.students_id ===null) ) {
                 $location.path("/home");
               }
               console.log('UserService -- getuser -- User Data: ', userObject.user);
