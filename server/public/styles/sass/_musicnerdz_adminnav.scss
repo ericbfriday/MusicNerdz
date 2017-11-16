@@ -124,7 +124,8 @@
         overflow: scroll;
         height: calc(80vh - 75px);
         md-chips .md-chips.md-focused, md-chips .md-chips {
-            box-shadow: none;
+            -webkit-box-shadow: none;
+                    box-shadow: none;
         }
         .md-errors-spacer {
             float: none;
