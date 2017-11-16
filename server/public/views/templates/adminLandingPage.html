@@ -8,7 +8,30 @@
         </md-card-title-text>
         <md-card-content>
             <div class="admin-landing-page">
-
+                <md-table-container>
+                    <table md-table>
+                        <thead md-head md-row-select multiple>
+                            <th md-column>Module ID</th>
+                            <th md-column>Song Name</th>
+                            <th md-column>Song Album</th>
+                            <th md-column>Song Artist</th>
+                            <th md-column>Delete Module</th>
+                        </thead>
+                        <tbody md-body>
+                            <div>
+                                <tr ng-repeat="teacher in auc.teacherList.data | orderBy: teacher.last" ng-show="teacher.schools_id == auc.teacherSchoolID">
+                                    <td md-cell></td>
+                                    <td md-cell></td>
+                                    <td md-cell></td>
+                                    <td md-cell></td>
+                                    <td md-cell>
+                                        <md-button class="md-warn" ng-click="">Delete</md-button>
+                                    </td>
+                                </tr>
+                            </div>
+                        </tbody>
+                    </table>
+                </md-table-container>
 
             </div>
         </md-card-content>
