@@ -30,12 +30,22 @@
                 </md-content>
             </md-tab>
             <!-- history view -->
-            <md-tab label="Historical References">
+            <md-tab label="Historical Events">
                 <md-content class="md-padding">
-                    <h1 class="md-display-2">Historical References</h1>
+                    <h1 class="md-display-2">Historical Events</h1>
                     <p class="sameAsP" ng-repeat="event in smc.histEvents.data">
                         <strong>{{event.title}}</strong><br>
                         {{event.desc}}
+                    </p>
+                </md-content>
+            </md-tab>
+            <!-- Additional resources view -->
+            <md-tab label="Additional Resources">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Additional Resources</h1>
+                    <p class="sameAsP">
+                        <strong>beep</strong>
+                        <br> boop
                     </p>
                 </md-content>
             </md-tab>
@@ -46,8 +56,8 @@
                     <form name="userForm">
                         <!-- multiple choice -->
                         <div ng-repeat="mcQuest in smc.mcQuestions.data">
-                            {{mcQuest.question}}
-                            <md-radio-group ng-model="smc.McVal[$index]">
+                           <strong>{{$index + 1}})</strong> {{mcQuest.question}}
+                            <md-radio-group ng-model="scm.McVal[$index]">
                                 <md-radio-button value="a">
                                     <strong>A</strong> {{mcQuest.a}}</md-radio-button>
                                 <md-radio-button value="b">

@@ -1,6 +1,5 @@
 myApp.service('StudentService', function ($http) {
     //GLOBALS
-
     const sv = this;
     sv.mods = {
         data: []
@@ -31,7 +30,7 @@ myApp.service('StudentService', function ($http) {
             this.id = id
     } //END constructor
 
-    //constructor to store sort answer questions
+    //constructor to store short answer questions
     function SaQs(question, id) {
         this.question = question,
             this.id = id
@@ -88,6 +87,7 @@ myApp.service('StudentService', function ($http) {
                 tempHist.push(event);
                 // if the question is Short Answer
                 if (resp.data[i].type === 'sa') {
+                    // Make new SaQ object from response data for sas
                     let saQuestion = new SaQs(resp.data[i].question, resp.data[i].id)
                     //push it to the temp array
                     tempSA.push(saQuestion);
@@ -104,12 +104,10 @@ myApp.service('StudentService', function ($http) {
             sv.mcQuestions.data = removeDupes(tempMC, 'question');
             sv.histEvents.data = removeDupes(tempHist, 'title');
             sv.saQuestions.data = removeDupes(tempSA, 'question')
-            console.log(sv.histEvents.data);
-            console.log(sv.saQuestions.data);
         }) //END $http.then
     } //END getMod
 
-    // function to get student grade info back from router
+    // function to get student grades info back from router
     sv.getGrades = function () {
         //temp arrays to hold grades for each module
         let tempLesson5 = [];
@@ -117,7 +115,6 @@ myApp.service('StudentService', function ($http) {
         // GET request
         $http.get('/student/getGrades').then(function (resp) {
             console.log('response in service:', resp);
-            // sv.studGrades.data = resp.data
             // loop though response
             for (let i = 0; i < resp.data.length; i++) {
                 if (resp.data[i].modules_id === 5) {
@@ -132,5 +129,18 @@ myApp.service('StudentService', function ($http) {
         sv.studGrades.lesson2 = tempLesson2;
         console.log('studGRADES:', sv.studGrades);
     }; //END getGrades
+
+    // function to send quiz responses to server -> DB
+    sv.submitQuiz = function ( resps ) {
+        console.log(resps );
+        // POST request
+        $http({
+            method: 'POST',
+            url: '/student/quiz',
+            data: resps
+        }).then(function (response) {
+            console.log('GET response:', response);
+        })//END $http.then
+    }//END submitQuiz
 
 }); //END service
