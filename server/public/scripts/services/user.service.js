@@ -18,31 +18,42 @@ myApp
               // user has a curret session on the server
               userObject.user = response.data;
               console.log('UserService -- getuser -- User Data: ', userObject.user);
+
               if ((response.data.teachers_id === null && response.data.students_id === null)) {
                 // if the user is logged in, and is admin, their home page is the admin panel
                 $location.path("/admin/home");
-              }
-              $http
+              } else if (response.data.students_id) {
+                // user is a student
+                
+                $http
                 .get('/student/modules/' + 7)
+                // hard coded, use 'response.data.students_id'
                 .then(function (res) {
-                  console.log(res);
                   userObject.assigned = res.data;
-                  console.log('logged in, showing assigned modules: ', userObject.assigned);
+                  // get all songs assigned to students in the class
                 })
                 .then(function (res) {
                   $http
                     .get('/student/getAllModules')
                     .then(function (res) {
                       userObject.allMods = res.data;
-                      console.log('not logged in, showing all modules: ', userObject.allMods);
-
+                      // get all and split out the assigned modules
                       userObject.new = _(userObject.allMods)
                         .differenceBy(userObject.assigned, 'id')
                         .value();
-                      console.log('logged in, show diff: ', userObject.new);
+                    });
+                }).then(function (res) {
+                  console.log(userObject.user.students_id);
+                  $http
+                    .get('/student/id/'+userObject.user.students_id)
+                    .then(function (res) {
+                      userObject.student = res.data;
+                      console.log(userObject.student);
                     });
                 });
               $location.path("/user");
+              }
+              
 
               // send students/teachers to /user, who are logged in
             } else {
