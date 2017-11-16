@@ -110,7 +110,7 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       controller: 'StudentModuleController as smc',
       resolve: {
         getmod: function ($route, StudentService) {
-          return StudentService.getmod($route.current.params.id);
+          return StudentService.getMod($route.current.params.id);
         }
       }
     })
@@ -126,12 +126,12 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       // resolve: {   getuser : function(UserService){     return
       // UserService.getuser();   } }
     })
-    .when('/teacher/gradingform/', {
+    .when('/teacher/gradingform/module/:module/student/:student', {
       templateUrl: '/views/templates/teacherGrading.html',
       controller: 'TeachergradeController as tgc',
       resolve: {
-        getteacher: function (UserService) {
-          return UserService.getteacher();
+        getgradeform: function ($route, UserService) {
+          return UserService.getgradeform($route.current.params.module, $route.current.params.student);
         }
       }
     })

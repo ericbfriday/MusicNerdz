@@ -33,7 +33,7 @@ myApp
         //Function to get modules form server
         sv.getMod = function (id) {
             //Temp arrays to hold questions
-            console.log(id);
+            console.log("module ID: ", id);
             let tempSA = [];
             let tempMC = [];
             //$http get request
