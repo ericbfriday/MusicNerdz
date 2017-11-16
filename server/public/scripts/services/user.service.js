@@ -17,9 +17,11 @@ myApp
               userObject.user = response.data;
               console.log('UserService -- getuser -- User Data: ', userObject.user);
               if( (response.data.teachers_id === null && response.data.students_id ===null) ) {
+                // if the user is logged in, and is admin, their home page is the admin panel
                 $location.path("/admin/home");
               }
               $location.path("/user");
+              // send students/teachers to /user, who are logged in
             } else {
               console.log('UserService -- getuser -- failure');
               // user has no session, bounce them back to the login page
