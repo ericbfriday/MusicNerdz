@@ -212,7 +212,7 @@ router.delete('/deleteStudent/:id', function (req, res) {
       console.log('Connection Error:', err);
       res.sendStatus(500);
     } else {
-      console.log('DELETE:, req.params.id');
+      console.log('DELETE:', req.params.id);
       var studId = [req.params.id];
       client.query('DELETE from students WHERE id = $1', studId, function (err, obj) {
         done();
@@ -226,5 +226,27 @@ router.delete('/deleteStudent/:id', function (req, res) {
     }
   }); //end pool.connect
 }); //end router.delete
+
+router.delete('/deleteClass/:id', function (req, res) {
+  console.log('logging req.params.id in /deleteClass:', req.params.id);
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log('Connection Error', err);
+      res.sendStatus(500);
+    } else {
+      console.log('DELETE:', req.params.id);
+      var classId = [req.params.id];
+      client.query('DELETE from classes WHERE id = $1', classId, function (err, obj) {
+        done();
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+        } else {
+          res.send(obj)
+        }
+      })
+    }
+  }) //end pool.connect
+}) //end router.delete
 
 module.exports = router;
