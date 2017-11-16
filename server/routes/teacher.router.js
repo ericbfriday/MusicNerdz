@@ -71,7 +71,7 @@ router.get('/assigned/:classIdParam', function (req, res) {
       }
     });
   });
-})
+});
 
 //get list of students by class
 router.get('/students/:classParam', (req, res) => {
@@ -220,11 +220,11 @@ router.delete('/deleteStudent/:id', function (req, res) {
           console.log(err);
           res.sendStatus(500);
         } else {
-          res.send(obj)
+          res.send(obj);
         }
-      })
+      });
     }
-  }) //end pool.connect
-}) //end router.delete
+  }); //end pool.connect
+}); //end router.delete
 
 module.exports = router;

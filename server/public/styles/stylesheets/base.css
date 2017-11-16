@@ -307,9 +307,8 @@ input {
   margin: 0 auto;
   text-align: center;
   line-height: 200px;
-  overflow: hidden;
 }
-/* line 79, ../sass/_musicnerdz_home.scss */
+/* line 78, ../sass/_musicnerdz_home.scss */
 .main .main-carousel {
   -webkit-box-shadow: 0px 1px 5px black;
   box-shadow: 0px 1px 5px black;
@@ -317,46 +316,47 @@ input {
   z-index: 2;
   background-color: #a8a8a8;
 }
-/* line 86, ../sass/_musicnerdz_home.scss */
+/* line 85, ../sass/_musicnerdz_home.scss */
 .main .main-display {
   position: relative;
   z-index: 1;
   padding: 0 0;
   margin: 10px 0;
 }
-/* line 92, ../sass/_musicnerdz_home.scss */
+/* line 91, ../sass/_musicnerdz_home.scss */
 .main .main-container,
 .main .main-assigned {
   overflow: visible;
   padding: 0 50px;
 }
-/* line 96, ../sass/_musicnerdz_home.scss */
+/* line 95, ../sass/_musicnerdz_home.scss */
 .main .main-container h1,
 .main .main-assigned h1 {
   line-height: normal;
   margin: 20px;
   font-size: 3rem;
 }
-/* line 102, ../sass/_musicnerdz_home.scss */
+/* line 101, ../sass/_musicnerdz_home.scss */
 .main .main-completed {
   line-height: normal;
   margin: 5px;
   font-size: 3rem;
 }
-/* line 107, ../sass/_musicnerdz_home.scss */
+/* line 106, ../sass/_musicnerdz_home.scss */
 .main .container {
   height: auto;
 }
 
-/* line 112, ../sass/_musicnerdz_home.scss */
+/* line 111, ../sass/_musicnerdz_home.scss */
 .tile {
-  height: 275px;
+  height: 255px;
   width: 325px;
   background-color: white;
   line-height: normal;
   margin: 0 0 25px;
   -webkit-box-shadow: 0px 1px 5px #777777;
   box-shadow: 0px 1px 5px #777777;
+  cursor: pointer;
 }
 /* line 120, ../sass/_musicnerdz_home.scss */
 .tile p {
@@ -380,7 +380,7 @@ input {
   background-image: url("http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg");
   background-size: cover;
   background-position: 100% 25%;
-  height: 200px;
+  height: 180px;
 }
 /* line 139, ../sass/_musicnerdz_home.scss */
 .tile .tile-art span {
@@ -515,7 +515,7 @@ input {
   }
   /* line 257, ../sass/_musicnerdz_home.scss */
   .main .main-display {
-    margin: 10px 20px;
+    margin: 30px 20px;
   }
   /* line 261, ../sass/_musicnerdz_home.scss */
   .main .carousel-item .main-display {
