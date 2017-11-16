@@ -31,13 +31,14 @@ myApp
         } //END constructor
 
         //Function to get modules form server
-        sv.getMod = function () {
+        sv.getMod = function (id) {
             //Temp arrays to hold questions
+            console.log(id);
             let tempSA = [];
             let tempMC = [];
             //$http get request
             $http
-                .get('/student/getModule')
+                .get('/student/mod/'+id)
                 .then(function (resp) {
                     console.log('response in service:', resp);
                     // set data to global variable

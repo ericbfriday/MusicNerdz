@@ -8,7 +8,7 @@
 
         <!-- Repeated ASSIGNED modules here -->
         <div ng-hide="!uc.userObject.user" class="main-display" layout-wrap layout="row" layout-align="space-around center">
-            <div class="tile" layout="column" flex=30 ng-repeat="i in uc.userObject.assigned | filter: uc.search" ng-click="uc.userService.loadmodule(i.id, $event)">
+            <div class="tile" layout="column" flex=30 ng-repeat="i in uc.userObject.assigned | filter: uc.search" ng-click="uc.userService.loadmodule(i.id)">
                 <div class="tile-art" flex=none ng-style="{'background-image':'url({{i.art}})'}">
                     <span class="completed" layout="row" layout-align="center center">
                         <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
@@ -30,7 +30,7 @@
 
         <!-- Repeated DIFF modules here -->
         <div ng-hide="!uc.userObject.user" class="main-display" layout-wrap layout="row" layout-align="space-between">
-            <div class="tile" layout="column" flex=30 ng-repeat="i in vc.shownItems2" ng-click="uc.userService.loadmodule(i.id, $event)">
+            <div class="tile" layout="column" flex=30 ng-repeat="i in vc.shownItems2" ng-click="uc.userService.loadmodule(i.id)">
                 <div class="tile-art" flex=none ng-style="{'background-image':'url({{i.art}})'}">
                     <span class="completed" layout="row" layout-align="center center">
                     <!-- <i class="fa fa-check" aria-hidden="true"></i> -->

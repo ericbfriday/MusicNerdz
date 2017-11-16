@@ -18,7 +18,7 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     .when('/register', {
     templateUrl: '/views/templates/register.html',
     controller: 'LoginController as lc'
-    })
+  })
     .when('/admin/additionalResources', {
       templateUrl: '/views/templates/moduleAdditionalResources.html',
       controller: 'ResourcesController as rc',
@@ -101,16 +101,18 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         getfeatured: function (UserService) {
           return UserService.getfeatured();
         },
-        // getAllAssigned: function (UserService) {
-        //   return UserService.getAllAssigned();
-        // }
+        // getAllAssigned: function (UserService) {   return
+        // UserService.getAllAssigned(); }
       }
     })
-    .when('/student/module', {
+    .when('/student/mod/:id', {
       templateUrl: '/views/templates/lesson.html',
       controller: 'StudentModuleController as smc',
-      // resolve: {   getuser: function (UserService) {     return
-      // UserService.getuser();   } }
+      resolve: {
+        getmod: function ($route, StudentService) {
+          return StudentService.getmod($route.current.params.id);
+        }
+      }
     })
     .when('/student/grades', {
       templateUrl: '/views/templates/studentGrade.html',

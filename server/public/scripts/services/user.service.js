@@ -114,8 +114,9 @@ myApp
           }); //END $http GET
       },
 
-      loadmodule: function (id, ev) {
+      loadmodule: function (id) {
         // send user to module page from landing page
+        console.log("module: ", id);
         $http
           .get('/user')
           .then(function (response) {
@@ -123,7 +124,7 @@ myApp
               // user has a curret session on the server
               userObject.userName = response.data.username;
               console.log('UserService -- getuser -- User Data: ', userObject.userName, id);
-              $location.path("/student/module/");
+              $location.path("/student/mod/"+id);
 
             } else {
               // user has no session, bounce them back to the login page
