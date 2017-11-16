@@ -75,7 +75,6 @@ const finalModule = new Module(moduleSong, moduleEventList, moduleResourceList, 
 function initModule(res) {
   // console.log('createModule() activated & connected!');
   insertSong(moduleSong, res);
-  res.sendStatus(201);
 }
 
 const insertSong = function (song, res) {
@@ -104,7 +103,7 @@ const insertSong = function (song, res) {
           } else {
             moduleID.id = result.rows[0].id;
             // console.log('logging moduleID.id in insertSong() -> ', moduleID.id);
-            insertAssociatedEvents(moduleEventList, client);
+            insertAssociatedEvents(moduleEventList, client, res);
           }
         });
     }
@@ -116,12 +115,8 @@ const insertAssociatedEvents = function (events, client, res) {
   const ev = events.events;
   let tagsArray = [];
 
-  // Query that works in pSQL, but fails due to 'cannot insert multiple commands into a prepared statement' error.
-  //let query = "INSERT INTO modules_history (modules_id, history_id) VALUES ($1, $2) RETURNING id; INSERT INTO modules_tags (modules_id, tags_id) VALUES ($3, (SELECT tags_id FROM history_tags WHERE history_id = $4));";
-  //let values = [moduleID.id, ev[i].id, moduleID.id, ev[i]];
-
   // Query to find matching tags associated to the existing historical events that are assocaited with the new module.
-  const getHistoryTagsID = function () {
+  function getHistoryTagsID () {
     for (let i = 0; i < ev.length; i++) {
       let query = "SELECT tags_id FROM history_tags WHERE history_id = $1;";
       let values = [ev[i].id];
@@ -132,16 +127,28 @@ const insertAssociatedEvents = function (events, client, res) {
             res.sendStatus(500); // currently erroring with 'Cannot read property 'sendStatus' of undefined.
           } else {
             for (let l = 0; l < result.rows.length; l++) {
-              tagsArray.push(result.rows[l]);
+              // tagsArray.push(result.rows[l]);
+              let query = "INSERT INTO modules_tags (modules_id, tags_id) VALUES ($1, $2);";
+              let values = [moduleID.id, result.rows[l].tags_id];
+              client.query(query, values,
+                function (err, result) {
+                  if (err) {
+                    console.log("Error inserting data: ", err);
+                    res.sendStatus(500);
+                  } else {
+                    // console.log('Result in modules_tags insert statement-> ', result);
+                  }
+                });
             }
-            console.log('Logging result.rows in tagsArray former -> ', result.rows.tags_id);
-            console.log('Result in event insert statement (tagsArray) -> ', tagsArray);
+            // console.log('Logging result.rows in tagsArray former -> ', result.rows);
+            // console.log('Result in event insert statement (tagsArray) -> ', tagsArray);
           }
         });
     }
-  };
+    insertTagsModulesHistory();
+  }
 
-  const insertTagsModulesHistory = function () {
+  function  insertTagsModulesHistory () {
     for (let i = 0; i < ev.length; i++) {
       let query = "INSERT INTO modules_history (modules_id, history_id) VALUES ($1, $2) RETURNING id;";
       let values = [moduleID.id, ev[i].id];
@@ -156,25 +163,11 @@ const insertAssociatedEvents = function (events, client, res) {
           }
         });
     }
-  };
+    // modulesTagsInsert();
+  }
 
-  const modulesTagsInsert = function () {
-    console.log('Logging tagsArray prior to modules_tags insertion -> ', tagsArray);
-    for (let i = 0; i < tagsArray.length; i++) {
-      let query = "INSERT INTO modules_tags (modules_id, tags_id) VALUES ($1, $2);";
-      let values = [moduleID.id, tagsArray[i]];
-      client.query(query, values,
-        function (err, result) {
-          if (err) {
-            console.log("Error inserting data: ", err);
-            res.sendStatus(500);
-          } else {
-            console.log('Result in modules_tags insert statement-> ', result);
-          }
-        });
-    }
-    insertResources(moduleResourceList, client, res);
-  };
+  getHistoryTagsID();
+  insertResources(moduleResourceList, client, res);
 };
 
 const insertResources = function (resources, client, res) {
@@ -214,7 +207,7 @@ const insertQuestions = function (questions, client, res) {
         }
       });
   }
-  // insertModuleTags(client, res);
+  res.sendStatus(201);
 };
 
 const tagSorter = function (tags) {
