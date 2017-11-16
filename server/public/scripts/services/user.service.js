@@ -4,7 +4,7 @@ myApp
 
     var userObject = {};
     userObject.new = [];
-    userObject.allMods=[];
+    userObject.allMods = [];
 
     return {
       userObject: userObject,
@@ -18,11 +18,32 @@ myApp
               // user has a curret session on the server
               userObject.user = response.data;
               console.log('UserService -- getuser -- User Data: ', userObject.user);
-              if( (response.data.teachers_id === null && response.data.students_id ===null) ) {
+              if ((response.data.teachers_id === null && response.data.students_id === null)) {
                 // if the user is logged in, and is admin, their home page is the admin panel
                 $location.path("/admin/home");
               }
+              $http
+                .get('/student/modules/' + 7)
+                .then(function (res) {
+                  console.log(res);
+                  userObject.assigned = res.data;
+                  console.log('logged in, showing assigned modules: ', userObject.assigned);
+                })
+                .then(function (res) {
+                  $http
+                    .get('/student/getAllModules')
+                    .then(function (res) {
+                      userObject.allMods = res.data;
+                      console.log('not logged in, showing all modules: ', userObject.allMods);
+
+                      userObject.new = _(userObject.allMods)
+                        .differenceBy(userObject.assigned, 'id')
+                        .value();
+                      console.log('logged in, show diff: ', userObject.new);
+                    });
+                });
               $location.path("/user");
+
               // send students/teachers to /user, who are logged in
             } else {
               console.log('UserService -- getuser -- failure');
@@ -47,7 +68,7 @@ myApp
             if (response.data.username) {
               // user has a curret session on the server
               userObject.user = response.data;
-              if ( !response.data.teachers_id ) {
+              if (!response.data.teachers_id) {
                 $location.path("/home");
                 console.log("logged in as student");
               }
@@ -57,8 +78,7 @@ myApp
               // user has no session, bounce them back to the login page
               $location.path("/home");
             }
-          }, 
-          function (response) {
+          }, function (response) {
             console.log('UserService -- getuser -- failure: ', response);
             $location.path("/home");
           });
@@ -71,7 +91,7 @@ myApp
             if (response.data.username) {
               // user has a curret session on the server
               userObject.user = response.data;
-              if ( !(response.data.teachers_id === null && response.data.students_id ===null) ) {
+              if (!(response.data.teachers_id === null && response.data.students_id === null)) {
                 $location.path("/home");
               }
               console.log('UserService -- getuser -- User Data: ', userObject.user);
@@ -110,7 +130,7 @@ myApp
               // user has a curret session on the server
               userObject.userName = response.data.username;
               console.log('UserService -- getuser -- User Data: ', userObject.userName, id);
-              $location.path("/student/mod/"+id);
+              $location.path("/student/mod/" + id);
 
             } else {
               // user has no session, bounce them back to the login page
@@ -135,6 +155,6 @@ myApp
               .location
               .reload();
           });
-      },
+      }
     };
   });

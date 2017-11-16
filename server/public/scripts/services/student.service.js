@@ -48,7 +48,7 @@ myApp
                         // if the question is Short Answer
                         if (resp.data[i].type === 'sa') {
                             //push it to the temp array
-                            tempSA.push(resp.data[i].question) //END if
+                            tempSA.push(resp.data[i].question); //END if
                             // if the question is Multiple Choice;
                         } else if (resp.data[i].type === 'mc') {
                             // Make new McQ object from response data for mcs

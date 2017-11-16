@@ -51,7 +51,8 @@
                 font-size: 1.6rem;
                 margin: 0 35px;
                 padding: 5px;
-                box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+                -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+                        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
                 background: $orange;
                 height: 55px;
                 .fa-line-chart {
@@ -111,9 +112,9 @@
 .tile {
     height: 255px;
     width: 325px;
+    margin: 10px 0;
     background-color: $white;
     line-height: normal;
-    margin: 0 0 25px;
     -webkit-box-shadow: 0px 1px 5px #777777;
     box-shadow: 0px 1px 5px #777777;
     cursor: pointer;
@@ -142,11 +143,17 @@
             margin: 3px;
             width: 40px;
             background-color: white;
-            box-shadow: 1px 1px 3px black;
+            -webkit-box-shadow: 1px 1px 3px black;
+                    box-shadow: 1px 1px 3px black;
             i {
                 font-size: 4rem;
+                color: #9999992e;
+                -webkit-text-stroke: 1px hsla(0, 0%, 0%, 0.25);
+            }
+            .completed {
                 color: $orange;
-                -webkit-text-stroke: 1px black;
+                -webkit-text-stroke: 1px hsl(0, 0%, 0%);
+                
             }
         }
         img {
@@ -239,6 +246,7 @@
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
     .tile {
+        margin: 10px 0;
         .tile-details {
             .tile-name {
                 font-size: 2rem;

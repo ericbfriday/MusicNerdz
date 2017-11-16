@@ -97,6 +97,7 @@ input {
             color: white;
             cursor: pointer;
             -webkit-transition: background 0.3s ease-in-out;
+            -o-transition: background 0.3s ease-in-out;
             transition: background 0.3s ease-in-out;
         }
         input[type="submit"]:hover {
@@ -145,7 +146,8 @@ input {
             border-radius: 5px;
             padding: 1rem;
             background: $white;
-            box-shadow: 2px 2px 5px grey;
+            -webkit-box-shadow: 2px 2px 5px grey;
+                    box-shadow: 2px 2px 5px grey;
             -webkit-transition: -webkit-transform 300ms ease;
             transition: -webkit-transform 300ms ease;
             -o-transition: transform 300ms ease;

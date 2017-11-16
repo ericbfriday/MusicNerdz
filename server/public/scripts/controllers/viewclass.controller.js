@@ -1,11 +1,14 @@
-myApp.controller('ViewController', function ($http, TeacherService) {
+
+myApp.controller('ViewController', function ($http, TeacherService, UserService) {
     console.log('ViewController created');
     var vm = this;
     vm.teacherService = TeacherService;
-    vm.userObject = TeacherService.userObject;
+    vm.userService = UserService;
+    vm.userObject = UserService.userObject;
+    console.log('user object from theacher service', vm.userObject);
 
-    //just for testing
-    vm.teacher = '12';
+    //current teacher user for selecting classes and students
+    vm.teacher = vm.userObject.user.teachers_id;
 
     function Class(id, title, code) {
         this.id = id;
