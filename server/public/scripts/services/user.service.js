@@ -3,6 +3,8 @@ myApp
     console.log('UserService Loaded');
 
     var userObject = {};
+    userObject.new = [];
+    userObject.allMods=[];
 
     return {
       userObject: userObject,
@@ -15,44 +17,39 @@ myApp
             if (response.data.username) {
               // user has a curret session on the server
               userObject.user = response.data;
-              console.log('UserService -- getuser -- User Data: ', userObject.user);
-
               $http
                 .get('/student/modules/' + 7)
                 .then(function (res) {
-                  console.log(res);
                   userObject.assigned = res.data;
-                  console.log('logged in, showing assigned modules: ', userObject.assigned);
+                  console.log(userObject.assigned);
+                  
                 })
                 .then(function (res) {
                   $http
                     .get('/student/getAllModules')
+                    // use Lodash to compare all modules to assigned, and return the difference.
                     .then(function (res) {
                       userObject.allMods = res.data;
-                      console.log('not logged in, showing all modules: ', userObject.allMods);
-
+                      console.log(userObject.allMods);
                       userObject.new = _(userObject.allMods)
                         .differenceBy(userObject.assigned, 'id')
-                        .map(_.partial(_.pick, _, 'id'))
                         .value();
-
-                      console.log('logged in, show diff: ', userObject.new);
+                        console.log('diff', userObject.new);
+                        
                     });
                 });
             } else {
-
               console.log('UserService -- getuser -- failure');
               $http
                 .get('/student/getAllModules')
                 .then(function (res) {
                   userObject.allMods = res.data;
-                  console.log('not logged in, showing all modules: ', userObject.allMods);
+                  console.log('show all modules');
                 });
               // user has no session, bounce them back to the login page
               // $location.path("/home");
             }
           }, function (response) {
-            console.log('UserService -- getuser -- failure: ', response);
             $location.path("/home");
           });
       },
@@ -87,7 +84,8 @@ myApp
               // user has a curret session on the server
               userObject.user = response.data;
               if (!(response.data.username.teachers_id === null && response.data.username.students_id === null)) {
-                $location.path("/home");
+                // if the user has type student/teacher that is null, they are admin
+                $location.path("/admin/home");
               }
               console.log('UserService -- getuser -- User Data: ', userObject.user);
             } else {
@@ -105,7 +103,7 @@ myApp
         $http
           .get('/student/getAllModules')
           .then(function (resp) {
-
+            // splice random items out of all modules until 3 remain
             for (var i = resp.data.length; i > 3; i--) {
               userObject.featured = resp.data;
               userObject
@@ -116,6 +114,7 @@ myApp
       },
 
       loadmodule: function (id, ev) {
+        // send user to module page from landing page
         $http
           .get('/user')
           .then(function (response) {
@@ -154,6 +153,6 @@ myApp
       // (userObject.user) {     $http       .get('/student/modules/' + 7)
       // .then(function (res) {         userObject.assigned = res.data;
       // console.log('logged in, showing assigned modules: ', userObject.assigned);
-      //    });   } else {   } }
+      // });   } else {   } }
     };
   });
