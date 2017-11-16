@@ -12,7 +12,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         this.title = title;
         this.code = code;
         this.students = [];
-    };
+    }
 
     function Student (studId, first, last, email) {
         this.studId = studId;
@@ -20,7 +20,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         this.last = last;
         this.email = email;
         this.id = studId;
-    };
+    }
 
     function StudentGrade (studentId, final, response) {
         this.studId = studentId;
@@ -32,7 +32,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         this.id = id;
         this.title = title;
         this.studGrades = [];
-    };
+    }
 
     //create new class data
     vm.class = {
@@ -51,7 +51,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         classesId: '',
         teachersId: vm.teacher,
         // studentId: vm.student //?
-    }
+    };
 
     vm.classes = [];
     vm.modules = [];
@@ -63,7 +63,7 @@ myApp.controller('ViewController', function ($http, TeacherService) {
             console.log('addClass function after .then');
             vm.classes = [];
             vm.getClasses(vm.teacher);
-        })
+        });
 
     };
     
@@ -115,8 +115,8 @@ myApp.controller('ViewController', function ($http, TeacherService) {
                     vm.classes.push(newClass);
                 } else {
                     newClass.students.push(newStudent);
-                };  
-            };
+                }
+            }
             console.log('class and students after GET', vm.classes);            
         });
     };
@@ -148,25 +148,25 @@ myApp.controller('ViewController', function ($http, TeacherService) {
                         var newStud = new StudentGrade (studentId, final, response);
                         studentMap[final] = newStud;
                         newMod.studGrades.push(newStud);
-                    } ;  
+                    } 
                 } else {
                     if (studObj == null) {
                         var newStud = new StudentGrade (studentId, final, response);
                         studentMap[final] = newStud;
                         newMod.studGrades.push(newStud);
-                    };
-                };
-            };
+                    }
+                }
+            }
             console.log('modules and grades after selecting class with', vm.modules);
         });
-    }
+    };
     //connect to service to make http call to get students by class
     vm.getStudents = function (classId) {
         console.log('in get students with class ID', classId);
         TeacherService.getStudents(classId).then( function () {
             vm.students = vm.teacherService.students;
             console.log('students array after GET', vm.students);            
-        })
+        });
     };
 
     vm.deleteStudent = TeacherService.deleteStudent;

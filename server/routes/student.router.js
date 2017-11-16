@@ -136,6 +136,52 @@ router.get('/getGrades', function (req, res) {
   }); //END pool.connect
 }); //END router GET
 
+router.get('/modules/:id', function (req, res) {
+  console.log('modules route ', req.params.id);
+  // connect to database
+  pool.connect(function (err, client, done) {
+    // query to get grades based on student's id
+    let query = 'SELECT modules.* from users inner join students on users.students_id = students.id inner join classes_modules on students.classes_id = classes_modules.classes_id inner join modules on classes_modules.modules_id = modules.id where users.id = $1;';
+    let studID = req.params.id;
+    //error handling
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } //END if connection error
+    else {
+      if (studID === 'all') {
+        client.query('SELECT * from modules', function (quErr, resultObj) {
+          done();
+          //error handling
+          if (quErr) {
+            console.log('Query Error:', quErr);
+            res.sendStatus(500);
+          } //END if query error
+          else {
+            //send the list from the database to client side
+            console.log('sending all modules');
+            res.send(resultObj.rows);
+          } //END else send
+        }); //END client.query
+      } else {
+        client.query(query, [studID], function (quErr, resultObj) {
+          done();
+          //error handling
+          if (quErr) {
+            console.log('Query Error:', quErr);
+            res.sendStatus(500);
+          } //END if query error
+          else {
+            //send the list from the database to client side
+            console.log('sending targetted modules');
+            res.send(resultObj.rows);
+          } //END else send
+        }); //END client.query
+      }
+    } //END else send query
+  }); //END pool.connect
+}); //END router GET
+
 
 // **********Modules queries*********
 // SELECT questions.question, questions.type, questions.a,

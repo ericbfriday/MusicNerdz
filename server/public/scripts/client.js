@@ -95,17 +95,15 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
       resolve: {
-        getfeatured: function (UserService) {
-          console.log('resolve featured modules');
-          return UserService.getfeatured();
-        },
-        getAllModules: function (StudentService) {
-          console.log('resolve all modules');
-          return StudentService.getAllModules();
-        },
         getuser: function (UserService) {
           return UserService.getuser();
-        }
+        },
+        getfeatured: function (UserService) {
+          return UserService.getfeatured();
+        },
+        // getAllAssigned: function (UserService) {
+        //   return UserService.getAllAssigned();
+        // }
       }
     })
     .when('/student/module', {
