@@ -91,7 +91,9 @@ myApp.controller('ViewController', function ($http, TeacherService) {
 
     //retrieve class list from db by teacher
     vm.getClasses = function (teacherId) {
-        TeacherService.getClasses(teacherId).then( function () {
+        vm.classes = [];
+        TeacherService.getClasses(teacherId)
+        .then( function () {
             vm.returnedClasses = vm.teacherService.classes;
             var classMap = {};
 
@@ -169,7 +171,18 @@ myApp.controller('ViewController', function ($http, TeacherService) {
         })
     };
 
-    vm.deleteStudent = TeacherService.deleteStudent;
+    // vm.deleteStudent = TeacherService.deleteStudent;
+    // vm.deleteClass = TeacherService.deleteClass;
+
+    vm.deleteClass = function (classId) {
+        console.log('in delete class with classId:', classId);
+        TeacherService.deleteClass(classId).then(function () {
+            // vm.classes = vm.teacherService.classes;
+            vm.getClasses(vm.teacher);
+            console.log('classes after delete:', vm.classes);
+        })
+    } // end deleteClass
+
 
     console.log("vm.student", vm.student);
 });

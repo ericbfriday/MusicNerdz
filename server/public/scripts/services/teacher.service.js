@@ -2,6 +2,7 @@ myApp.service('TeacherService', function ($http) {
     var vm = this;
 
     var userObject = {};
+    vm.classes = [];
 
     vm.addClass = function (classInfo) {
         console.log('ViewController -- addClass -- sending to server...', classInfo);
@@ -23,7 +24,7 @@ myApp.service('TeacherService', function ($http) {
     vm.getClasses = function (teacherId) {
         console.log('teacher service get classes:', teacherId);
         return $http.get('/teacher/classes/' + teacherId).then(function (res) {
-            console.log('response from get classes', res);
+            console.log('response from get classes:', res);
             vm.classes = res.data;
         });
     };
@@ -41,7 +42,16 @@ myApp.service('TeacherService', function ($http) {
         return $http.delete('/teacher/deleteStudent/' + student).then(function (res) {
             console.log('response from delete student:', res);
             vm.student = res.data;
-            vm.getClasses(12);
+            
         });
+    };
+
+    vm.deleteClass = function (classId) {
+        console.log('teacher.service delete class:', classId);
+        return $http.delete('/teacher/deleteClass/' + classId).then(function (res) {
+            console.log('response from delete class:', res);
+            vm.classes = res.data;
+            
+        })
     };
 });
