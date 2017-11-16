@@ -12,7 +12,7 @@ router.post('/addStudent', function (req, res) {
       lName: req.body.last,
       email: req.body.email,
       number: encryptLib.encryptPassword(req.body.number),
-      classId: req.body.classId,
+      classId: req.body.classesId,
       teachersId: req.body.teachersId,
     };
     let values = [saveStudent.fName, saveStudent.lName, saveStudent.email, saveStudent.number, saveStudent.classId, saveStudent.email, saveStudent.number];

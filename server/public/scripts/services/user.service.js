@@ -34,9 +34,9 @@ myApp
             if (response.data.username) {
               // user has a curret session on the server
               userObject.user = response.data;
-              if ( !response.data.username.teachers_id ) {
-                $location.path("/home");
-              }
+              if ( response.data.username.teachers_id ) {
+                $location.path("/user");
+              } 
               console.log('UserService -- getuser -- User Data: ', userObject.user);
             } else {
               console.log('UserService -- getuser -- failure');
