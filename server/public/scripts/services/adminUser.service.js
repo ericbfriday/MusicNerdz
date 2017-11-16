@@ -1,5 +1,7 @@
+'use strict';
+
 myApp.service('AdminUserService', function ($http) {
-    var sv = this;
+    let sv = this;
 
     sv.schoolList = {data: []};
     sv.schoolName = '';
@@ -8,6 +10,8 @@ myApp.service('AdminUserService', function ($http) {
     sv.teacherFName = '';
     sv.teacherLName = '';
     sv.teacherSchool = '';
+    sv.teacherSchoolID = {data: null};
+    sv.teacherList = {data: []};
 
     // establishes structure of teacher object to be sent to router.
     class Teacher {
@@ -35,6 +39,30 @@ myApp.service('AdminUserService', function ($http) {
         });
     }; // end addSchool()
 
+    sv.deleteSchool = function (school) {
+        console.log('logging school.id to delete -> ', school.id);
+        return $http.delete('/teacher/deleteSchool/' + school.id)
+        .then((response)=>{
+            console.log('logging response in deleteSchool -> ', response);
+            sv.getSchools();
+        })
+        .catch((err)=> {
+            console.log('logging error in catch from deleteSchool -> ', err);
+        });
+    };
+
+    sv.deleteTeacher = function (teacher) {
+        console.log('logging teacher.id to delete -> ', teacher.id);
+        return $http.delete('/teacher/deleteteacher/' + teacher.id)
+        .then((response)=>{
+            console.log('logging response in deleteTeacher -> ', response);
+            sv.getTeachers();
+        })
+        .catch((err)=> {
+            console.log('logging error in catch from deleteTeacher -> ', err);
+        });
+    };
+
     // creates brand new, non-existing teacher from name and e-mail
     sv.addTeacher = function (fname, lname, email, schoolID) {
         sv.teacherObj = new Teacher(fname, lname, email, schoolID, sv.passwordGenerator());
@@ -52,7 +80,7 @@ myApp.service('AdminUserService', function ($http) {
         return $http.get('/teacher/schools')
         .then((res) => {
             sv.schoolList.data = res.data.rows;
-            // console.log('logging sv.schoolList -> ', sv.schoolList);
+            console.log('logging sv.schoolList -> ', sv.schoolList);
         }, (err) => {
             console.log('logging err in getSchools -> ', err);
         })
@@ -61,11 +89,24 @@ myApp.service('AdminUserService', function ($http) {
         }));
     }; // end getSchools()
 
+    sv.getTeachers = function () {
+        return $http.get('/teacher/teachers')
+        .then((res) => {
+            sv.teacherList.data = res.data.rows;
+            console.log('logging sv.teacherList -> ', sv.teacherList);
+        }, (err) => {
+            console.log('logging err in getTeachers -> ', err);
+        })
+        .catch((reason => {
+            console.log('error reason in getTeachers -> ', reason);
+        }));
+    }; // end getTeachers()
+
     sv.passwordGenerator = function () {
         let length = 12,
         charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
         retVal = "";
-        for (var i = 0, n = charset.length; i < length; ++i) {
+        for (let i = 0, n = charset.length; i < length; ++i) {
             retVal += charset.charAt(Math.floor(Math.random() * n));
         }
         console.log('retVal => ', retVal);

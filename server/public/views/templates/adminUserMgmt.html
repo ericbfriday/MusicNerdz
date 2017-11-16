@@ -1,55 +1,131 @@
-<section ng-init="auc.getSchools()" class="admin">
+<section ng-init="auc.getSchools(); auc.getTeachers()" class="admin">
     <div ng-include="'views/partials/admin_nav.html'"></div>
     <div layout="column" class="md-padding admin-container">
-        <md-card>
-            <md-card-title class="admin-title">
-                <md-card-title-text>
-                    <span class="md-headline">Create School:</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-                <h1 class="lead alert alert-danger" role="alert" ng-if="auc.message != ''">{{lc.message}}</h2>
-                    <form id="addSchoolForm" ng-submit="auc.addSchool(auc.schoolName)" class="admin-form small" layout="row" layout-align="center center">
-                        <md-input-container flex="45">
-                            <label for="name">Name</label>
-                            <input ng-model="auc.schoolName" md-select-on-focus required>
-                        </md-input-container>
-                        <md-button class="btn1" type="submit" name="submit" value="addSchool">Add School</md-button>
-                    </form>
-            </md-card-content>
-        </md-card>
+        <md-tabs md-dynamic-height md-border-bottom>
+            <md-tab label="Manage Schools">
+                <md-content class="md-padding">
+                    <md-card>
+                        <md-card-title class="admin-title">
+                            <md-card-title-text>
+                                <span class="md-headline">Create School:</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <h1 class="lead alert alert-danger" role="alert" ng-if="auc.message != ''">{{lc.message}}</h2>
+                                <form id="addSchoolForm" ng-submit="auc.addSchool(auc.schoolName)" class="admin-form small md-padding" layout="row" layout-align="center center">
+                                    <md-input-container flex="45">
+                                        <label for="name">Name</label>
+                                        <input ng-model="auc.schoolName" md-select-on-focus required>
+                                    </md-input-container>
+                                    <md-button class="btn1" type="submit" name="submit" value="addSchool">Add School</md-button>
+                                </form>
+                        </md-card-content>
+                    </md-card>
+                
+                    <md-card>
+                        <md-card-title class="admin-title">
+                            <md-card-title-text>
+                                <span class="md-headline">Delete School</span>
+                            </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                            <md-table-container>
+                                <table md-table>
+                                    <thead md-head md-row-select multiple class="md-padding">
+                                        <th md-column>School Name</th>
+                                        <th md-column>School ID</th>
+                                        <th md-column>Delete School</th>
+                                    </thead>
+                                    <tbody md-body>
+                                        <tr ng-repeat="school in auc.schoolList.data | orderBy: school.id">
+                                            <td md-cell>{{school.name}}</td>
+                                            <td md-cell>{{school.id}}</td>
+                                            <td md-cell>
+                                                <md-button class="md-warn" ng-click="auc.deleteSchool(school)">Delete</md-button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </md-table-container>
+                        </md-card-content>
+                    </md-card>
+                </md-tab>
 
-        <md-card>
-            <md-card-title class="admin-title">
-                <md-card-title-text>
-                    <span class="md-headline">Create Teacher:</span>
-                </md-card-title-text>
-            </md-card-title>
-            <md-card-content>
-                <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
-                    <form id="addTeacherForm" ng-submit="auc.addTeacher(auc.teacherFName, auc.teacherLName, auc.teacherEmail, auc.teacherSchool)" class="admin-form small">
+            <md-tab label="Manage Teachers">
+                <md-card>
+                    <md-card-title class="admin-title">
+                        <md-card-title-text>
+                            <span class="md-headline">Create Teacher:</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
+                        <h1 class="lead alert alert-danger" role="alert" ng-if="lc.message != ''">{{lc.message}}</h2>
+                            <form id="addTeacherForm" ng-submit="auc.addTeacher(auc.teacherFName, auc.teacherLName, auc.teacherEmail, auc.teacherSchool)"
+                                class="admin-form small">
+                                <md-input-container>
+                                    <label for="schoolList">Existing Schools</label>
+                                    <md-select placeholder="School Name" ng-model="auc.teacherSchool" required>
+                                        <md-option ng-repeat="school in auc.schoolList.data" ng-value="school.id">{{school.name}}</md-option>
+                                    </md-select>
+                                </md-input-container>
+                                <br>
+                                <md-input-container flex="100">
+                                    <label for="teacherFName">First Name:</label>
+                                    <input ng-model="auc.teacherFName" md-select-on-focus required>
+                                </md-input-container>
+                                <md-input-container flex="100">
+                                    <label for="teacherLName">Last Name:</label>
+                                    <input ng-model="auc.teacherLName" md-select-on-focus required>
+                                </md-input-container>
+                                <md-input-container flex="100">
+                                    <label for="teacherEmail">Email:</label>
+                                    <input ng-model="auc.teacherEmail" md-select-on-focus required>
+                                </md-input-container>
+                                <md-button class="btn1" type="submit" name="submit" value="addTeacher">Add Teacher</md-button>
+                            </form>
+                    </md-card-content>
+                </md-card>
+
+                <md-card>
+                    <md-card-title class="admin-title">
+                        <md-card-title-text>
+                            <span class="md-headline">Delete Teacher</span>
+                        </md-card-title-text>
+                    </md-card-title>
+                    <md-card-content>
                         <md-input-container>
-                            <label for="schoolList">Existing Schools</label>
-                            <md-select placeholder="School Name" ng-model="auc.teacherSchool" required>
+                            <label for="schoolList">Select Teacher's School</label>
+                            <md-select placeholder="School Name" ng-model="auc.teacherSchoolID" required>
                                 <md-option ng-repeat="school in auc.schoolList.data" ng-value="school.id">{{school.name}}</md-option>
                             </md-select>
                         </md-input-container>
-                        <br>
-                        <md-input-container flex="100">
-                            <label for="teacherFName">First Name:</label>
-                            <input ng-model="auc.teacherFName" md-select-on-focus required>
-                        </md-input-container>
-                        <md-input-container flex="100">
-                            <label for="teacherLName">Last Name:</label>
-                            <input ng-model="auc.teacherLName" md-select-on-focus required>
-                        </md-input-container>
-                        <md-input-container flex="100">
-                            <label for="teacherEmail">Email:</label>
-                            <input ng-model="auc.teacherEmail" md-select-on-focus required>
-                        </md-input-container>
-                        <md-button class="btn1" type="submit" name="submit" value="addTeacher">Add Teacher</md-button>
-                    </form>
-            </md-card-content>
-        </md-card>
+                        <md-table-container>
+                            <table md-table>
+                                <thead md-head md-row-select multiple>
+                                    <th md-column>Teacher ID</th>
+                                    <th md-column>Last Name</th>
+                                    <th md-column>First Name</th>
+                                    <th md-column>Email</th>
+                                    <th md-column>Delete</th>
+                                </thead>
+                                <tbody md-body>
+                                    <div>
+                                        <tr ng-repeat="teacher in auc.teacherList.data | orderBy: teacher.last" ng-show="teacher.schools_id == auc.teacherSchoolID">
+                                            <td md-cell>{{teacher.id}}</td>
+                                            <td md-cell>{{teacher.last}}</td>
+                                            <td md-cell>{{teacher.first}}</td>
+                                            <td md-cell>{{teacher.email}}</td>
+                                            <td md-cell>
+                                                <md-button class="md-warn" ng-click="auc.deleteTeacher(teacher)">Delete</md-button>
+                                            </td>
+                                        </tr>
+                                    </div>
+                                </tbody>
+                            </table>
+                        </md-table-container>
+                    </md-card-content>
+                </md-card>
+            </md-tab>
+        </md-tabs>
     </div>
 </section>
