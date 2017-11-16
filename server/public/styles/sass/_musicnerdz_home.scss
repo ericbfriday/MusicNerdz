@@ -75,7 +75,6 @@
     margin: 0 auto;
     text-align: center;
     line-height: 200px;
-    overflow: hidden;
     .main-carousel {
         -webkit-box-shadow: 0px 1px 5px $black;
         box-shadow: 0px 1px 5px $black;
@@ -110,13 +109,14 @@
 }
 
 .tile {
-    height: 275px;
+    height: 255px;
     width: 325px;
     background-color: $white;
     line-height: normal;
     margin: 0 0 25px;
     -webkit-box-shadow: 0px 1px 5px #777777;
     box-shadow: 0px 1px 5px #777777;
+    cursor: pointer;
     p {
         margin: 0;
     }
@@ -135,7 +135,7 @@
         background-image: url('http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg');
         background-size: cover;
         background-position: 100% 25%;
-        height: 200px;
+        height: 180px;
         span {
             float: right;
             height: 40px;
@@ -255,7 +255,7 @@
             width: 100%;
         }
         .main-display {
-            margin: 10px 20px;
+            margin: 30px 20px;
         }
         .carousel-item {
             .main-display {

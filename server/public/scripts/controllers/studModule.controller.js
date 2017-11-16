@@ -11,7 +11,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
      console.log(vm.McVal);
      console.log(vm.SaVal);
      
-    }//END submitQuiz
+    };//END submitQuiz
  
-    StudentService.getMod();    
+        
 });//END App Controller
