@@ -1,3 +1,12 @@
+
 {
-    "esversion"     : 6
+    "globalstrict"  : true,
+    "esversion"     : 6,
+    "loopfunc"      : true,
+    "node"          : true,
+    "camelcase"     : true,
+    "newcap"        : true,
+    "varstmt"       : true,
+    "evil"          : true,
+    "supernew"      : true
 }
