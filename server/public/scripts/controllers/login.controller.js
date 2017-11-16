@@ -22,6 +22,11 @@ myApp
           .post('/', vm.user)
           .then(function (response) {
             if (response.data.username) {
+              if (response.data.students_id===null && response.data.teachers_id===null) {
+                $location.path('/admin/home');
+                console.log('admin! moving along');
+                return;
+              }
               console.log('LoginController -- login -- success: ', response.data);
               // location works with SPA (ng-route)
               $location.path('/user'); // http://localhost:5000/#/user
@@ -54,5 +59,14 @@ myApp
             vm.message = "Please try again.";
           });
       }
+    };
+
+    vm.passwordReset = function(email) {
+      console.log('Send reset email');
+      $http.get('/resetRoute/' + email).then(function(response){
+        console.log(response);
+      });
+      vm.email = '';
+      vm.message = 'An email has been sent to ' +  vm.email + ' with instructions on how to reset your password.'
     };
   });

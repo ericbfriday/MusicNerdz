@@ -71,7 +71,7 @@ router.get('/assigned/:classIdParam', function (req, res) {
       }
     });
   });
-})
+});
 
 //get list of students by class
 router.get('/students/:classParam', (req, res) => {
@@ -141,6 +141,70 @@ router.get('/schools', (req, res) => {
   });
 }); // end /schools
 
+// gets list of schools to associate to teacher upon teacher creation
+router.get('/teachers', (req, res) => {
+  // console.log('Inside schools of teacher.router.js');
+  pool.connect(function (err, client, done) {
+    let queryString = "SELECT * FROM teachers;";
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(queryString, (err, result) => {
+      client.end();
+      if (err) {
+        console.log("Error querying data in /teachers GET route: ", err);
+        res.sendStatus(500);
+      } else {
+        res.send(result).status(200);
+      }
+    });
+  });
+}); // end /teachers
+
+router.delete('/deleteSchool/:id', (req, res) => {
+  console.log('logging req.params.id in /deleteSchool -> ', req.params.id);
+  pool.connect(function (err, client, done) {
+    let query = "DELETE FROM schools WHERE id = $1;";
+    let value = [req.params.id];
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(query, value, (err, result) => {
+      client.end();
+      if (err) {
+        console.log("Error querying data in /deleteSchool DELETE route: ", err);
+        res.sendStatus(500);
+      } else {
+        res.send(result.rows).status(200);
+      }
+    });
+  });
+});
+
+router.delete('/deleteTeacher/:id', (req, res) => {
+  console.log('logging req.params.id in /deleteteacher -> ', req.params.id);
+  pool.connect(function (err, client, done) {
+    let query = "DELETE FROM teachers WHERE id = $1;";
+    let value = [req.params.id];
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    client.query(query, value, (err, result) => {
+      client.end();
+      if (err) {
+        console.log("Error querying data in /deleteteacher DELETE route: ", err);
+        res.sendStatus(500);
+      } else {
+        console.log('logging result.rows in /deleteteacher -> ', result.row);
+        res.send(result.rows).status(200);
+      }
+    });
+  });
+});
+
 router.delete('/deleteStudent/:id', function (req, res) {
   console.log('logging req.params.id in /deleteStudent:', req.params.id);
   pool.connect(function (err, client, done) {
@@ -148,9 +212,31 @@ router.delete('/deleteStudent/:id', function (req, res) {
       console.log('Connection Error:', err);
       res.sendStatus(500);
     } else {
-      console.log('DELETE:, req.params.id');
+      console.log('DELETE:', req.params.id);
       var studId = [req.params.id];
       client.query('DELETE from students WHERE id = $1', studId, function (err, obj) {
+        done();
+        if (err) {
+          console.log(err);
+          res.sendStatus(500);
+        } else {
+          res.send(obj);
+        }
+      });
+    }
+  }); //end pool.connect
+}); //end router.delete
+
+router.delete('/deleteClass/:id', function (req, res) {
+  console.log('logging req.params.id in /deleteClass:', req.params.id);
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log('Connection Error', err);
+      res.sendStatus(500);
+    } else {
+      console.log('DELETE:', req.params.id);
+      var classId = [req.params.id];
+      client.query('DELETE from classes WHERE id = $1', classId, function (err, obj) {
         done();
         if (err) {
           console.log(err);

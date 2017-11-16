@@ -12,7 +12,7 @@ router.post('/addStudent', function (req, res) {
       lName: req.body.last,
       email: req.body.email,
       number: encryptLib.encryptPassword(req.body.number),
-      classId: req.body.classId,
+      classId: req.body.classesId,
       teachersId: req.body.teachersId,
     };
     let values = [saveStudent.fName, saveStudent.lName, saveStudent.email, saveStudent.number, saveStudent.classId, saveStudent.email, saveStudent.number];
@@ -65,13 +65,14 @@ router.get('/getAllModules', function (req, res) {
 
 
 //get module info from database
-router.get('/getModule', function (req, res) {
+router.get('/mod/:id', function (req, res) {
+  console.log('calling Module ID: ', req.params.id);
   // connect to database
   pool.connect(function (err, client, done) {
     // query to get module based on id
     let modQuery = 'SELECT questions.id, questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description AS mod_desc,modules.title AS mod_title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description AS history_desc, history.title AS history_title FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id WHERE modules.id = $1 ORDER BY questions.question;'
     // var to hold module id
-    let modID = 5;
+    let modID = req.params.id;
     //error handling
     if (err) {
       console.log('Connection Error:', err);
@@ -155,5 +156,52 @@ router.post('/quiz', function (req, res){
     } //END else send query
   }); //END pool.connect
 });//END router POST
+
+router.get('/modules/:id', function (req, res) {
+  console.log('modules route ', req.params.id);
+  // connect to database
+  pool.connect(function (err, client, done) {
+    // query to get grades based on student's id
+    let query = 'SELECT modules.* from users inner join students on users.students_id = students.id inner join classes_modules on students.classes_id = classes_modules.classes_id inner join modules on classes_modules.modules_id = modules.id where users.id = $1;';
+    let studID = req.params.id;
+    //error handling
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } //END if connection error
+    else {
+      if (studID === 'all') {
+        client.query('SELECT * from modules', function (quErr, resultObj) {
+          done();
+          //error handling
+          if (quErr) {
+            console.log('Query Error:', quErr);
+            res.sendStatus(500);
+          } //END if query error
+          else {
+            //send the list from the database to client side
+            console.log('sending all modules');
+            res.send(resultObj.rows);
+          } //END else send
+        }); //END client.query
+      } else {
+        client.query(query, [studID], function (quErr, resultObj) {
+          done();
+          //error handling
+          if (quErr) {
+            console.log('Query Error:', quErr);
+            res.sendStatus(500);
+          } //END if query error
+          else {
+            //send the list from the database to client side
+            console.log('sending targetted modules');
+            res.send(resultObj.rows);
+          } //END else send
+        }); //END client.query
+      }//END else
+    } //END else send query
+  }); //END pool.connect
+}); //END router GET
+
 
 module.exports = router;

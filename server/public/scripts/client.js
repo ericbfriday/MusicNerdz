@@ -18,34 +18,69 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     .when('/register', {
     templateUrl: '/views/templates/register.html',
     controller: 'LoginController as lc'
-    })
+  })
     .when('/admin/additionalResources', {
       templateUrl: '/views/templates/moduleAdditionalResources.html',
-      controller: 'ResourcesController as rc'
+      controller: 'ResourcesController as rc',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/home', {
       templateUrl: '/views/templates/adminLandingPage.html',
-      controller: 'AdminUserController as auc'
+      controller: 'AdminUserController as auc',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/songCreation', {
       templateUrl: '/views/templates/moduleSongCreation.html',
-      controller: 'SongCreation as sc'
+      controller: 'SongCreation as sc',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/quizCreation', {
       templateUrl: '/views/templates/moduleQuestionCreation.html',
-      controller: 'QuizCreation as qc'
+      controller: 'QuizCreation as qc',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/eventCreation', {
       templateUrl: '/views/templates/moduleHistoricalEvents.html',
-      controller: 'EventCreation as ec'
+      controller: 'EventCreation as ec',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/externalEventCreation', {
       templateUrl: '/views/templates/adminCreateHistoricalEvents.html',
-      controller: 'EventCreation as ec'
+      controller: 'EventCreation as ec',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/admin/userMgmt', {
       templateUrl: '/views/templates/adminUserMgmt.html',
-      controller: 'AdminUserController as auc'
+      controller: 'AdminUserController as auc',
+      resolve: {
+        getadmin: function (UserService) {
+          return UserService.getadmin();
+        }
+      }
     })
     .when('/home', {
       templateUrl: '/views/templates/home.html',
@@ -60,24 +95,24 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/user.html',
       controller: 'UserController as uc',
       resolve: {
-        getfeatured: function (UserService) {
-          console.log('resolve featured modules');
-          return UserService.getfeatured();
-        },
-        getAllModules: function (StudentService) {
-          console.log('resolve all modules');
-          return StudentService.getAllModules();
-        },
         getuser: function (UserService) {
           return UserService.getuser();
-        }
+        },
+        getfeatured: function (UserService) {
+          return UserService.getfeatured();
+        },
+        // getAllAssigned: function (UserService) {   return
+        // UserService.getAllAssigned(); }
       }
     })
-    .when('/student/module', {
+    .when('/student/mod/:id', {
       templateUrl: '/views/templates/lesson.html',
       controller: 'StudentModuleController as smc',
-      // resolve: {   getuser: function (UserService) {     return
-      // UserService.getuser();   } }
+      resolve: {
+        getmod: function ($route, StudentService) {
+          return StudentService.getMod($route.current.params.id);
+        }
+      }
     })
     .when('/student/grades', {
       templateUrl: '/views/templates/studentGrade.html',
@@ -91,14 +126,14 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       // resolve: {   getuser : function(UserService){     return
       // UserService.getuser();   } }
     })
-    .when('/teacher/gradingform/', {
+    .when('/teacher/gradingform/module/:module/student/:student', {
       templateUrl: '/views/templates/teacherGrading.html',
       controller: 'TeachergradeController as tgc',
-      // resolve: {
-      //   getteacher: function (UserService) {
-      //     return UserService.getteacher();
-      //   }
-      // }
+      resolve: {
+        getgradeform: function ($route, UserService) {
+          return UserService.getgradeform($route.current.params.module, $route.current.params.student);
+        }
+      }
     })
     .when('/viewclass', {
       templateUrl: '/views/templates/viewclass.html',

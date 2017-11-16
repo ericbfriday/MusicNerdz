@@ -51,7 +51,8 @@
                 font-size: 1.6rem;
                 margin: 0 35px;
                 padding: 5px;
-                box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+                -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+                        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
                 background: $orange;
                 height: 55px;
                 .fa-line-chart {
@@ -75,7 +76,6 @@
     margin: 0 auto;
     text-align: center;
     line-height: 200px;
-    overflow: hidden;
     .main-carousel {
         -webkit-box-shadow: 0px 1px 5px $black;
         box-shadow: 0px 1px 5px $black;
@@ -87,7 +87,7 @@
         position: relative;
         z-index: 1;
         padding: 0 0;
-        margin: 25px 0;
+        margin: 10px 0;
     }
     .main-container,
     .main-assigned {
@@ -101,7 +101,7 @@
     }
     .main-completed {
         line-height: normal;
-        margin: 20px;
+        margin: 5px;
         font-size: 3rem;
     }
     .container {
@@ -110,13 +110,14 @@
 }
 
 .tile {
-    height: 275px;
+    height: 255px;
     width: 325px;
     background-color: $white;
     line-height: normal;
     margin: 0 0 25px;
     -webkit-box-shadow: 0px 1px 5px #777777;
     box-shadow: 0px 1px 5px #777777;
+    cursor: pointer;
     p {
         margin: 0;
     }
@@ -135,7 +136,21 @@
         background-image: url('http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg');
         background-size: cover;
         background-position: 100% 25%;
-        height: 200px;
+        height: 180px;
+        span {
+            float: right;
+            height: 40px;
+            margin: 3px;
+            width: 40px;
+            background-color: white;
+            -webkit-box-shadow: 1px 1px 3px black;
+                    box-shadow: 1px 1px 3px black;
+            i {
+                font-size: 4rem;
+                color: $orange;
+                -webkit-text-stroke: 1px black;
+            }
+        }
         img {
             max-width: 100px;
         }
@@ -165,10 +180,11 @@
         background-position: 100% 40%;
         -webkit-box-shadow: 0px 1px 5px #333333;
         box-shadow: 0px 1px 5px #333333;
-        height: 235px;
+        height: 100%;
     }
     .main-display {
         color: $white;
+        height: 225px;
         .tile {
             margin: 0;
             height: auto;
@@ -219,7 +235,18 @@
     }
 }
 
+.md-button.md-raised:not([disabled]) {
+    font-size: 2rem;
+}
+
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .tile {
+        .tile-details {
+            .tile-name {
+                font-size: 2rem;
+            }
+        }
+    }
     .main {
         width: 100%;
         .main-container {
@@ -228,6 +255,9 @@
         }
         .main-carousel {
             width: 100%;
+        }
+        .main-display {
+            margin: 30px 20px;
         }
         .carousel-item {
             .main-display {
@@ -249,5 +279,4 @@
             }
         }
     }
-    
 }

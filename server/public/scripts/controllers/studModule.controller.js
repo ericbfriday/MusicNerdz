@@ -7,11 +7,6 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.mcQuestions = StudentService.mcQuestions;
     vm.histEvents = StudentService.histEvents;
 
-    console.log(vm.mcQuestions);
-
-
-
-
     // function to send responses and ids to questions in module to service
     vm.submitQuiz = function () {
         // obj to hold responses info

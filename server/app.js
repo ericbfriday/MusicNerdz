@@ -10,6 +10,7 @@ var sessionConfig = require('./modules/session.config');
 var indexRouter = require('./routes/index.router');
 var userRouter = require('./routes/user.router');
 var registerRouter = require('./routes/register.router');
+var resetRouter = require('./routes/pwreset.router');
 
 var teacherRouter = require('./routes/teacher.router');
 var studentRouter = require('./routes/student.router');
@@ -36,6 +37,7 @@ app.use(passport.session());
 // Routes
 app.use('/register', registerRouter);
 app.use('/user', userRouter);
+app.use('/resetRoute', resetRouter);
 
 app.use('/teacher', teacherRouter);
 app.use('/class', classRouter);
