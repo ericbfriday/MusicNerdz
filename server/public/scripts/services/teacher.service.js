@@ -1,21 +1,57 @@
 myApp.service('TeacherService', function ($http) {
     var vm = this;
 
-    var userObject = {};    
+    var userObject = {};
+    vm.classes = [];
+
+    vm.addClass = function (classInfo) {
+        console.log('ViewController -- addClass -- sending to server...', classInfo);
+        return $http
+            .post('/class/addClass', classInfo)
+            .then(function (response) {
+                console.log('back from addClass post response:', response);
+            });
+    };
+
+    vm.getAssigned = function (classId) {
+        console.log('teacher service get assigned:', classId);
+        return $http.get('/teacher/assigned/' + classId).then(function(res) {
+            console.log('response from get assigned', res);
+            vm.assigned = res.data;
+        });
+    };
 
     vm.getClasses = function (teacherId) {
         console.log('teacher service get classes:', teacherId);
-        return $http.get('/teacher/classes/' + teacherId).then(function(res) {
-            console.log('response from get classes', res);
+        return $http.get('/teacher/classes/' + teacherId).then(function (res) {
+            console.log('response from get classes:', res);
             vm.classes = res.data;
         });
-    }
+    };
 
     vm.getStudents = function (classId) {
         console.log('teacher service get students:', classId);
-        return $http.get('/teacher/students/' + classId).then(function(res) {
+        return $http.get('/teacher/students/' + classId).then(function (res) {
             console.log('response from get students', res);
             vm.students = res.data;
         });
-    }
+    };
+
+    vm.deleteStudent = function (student) {
+        console.log('teacher service delete student:', student);
+        return $http.delete('/teacher/deleteStudent/' + student).then(function (res) {
+            console.log('response from delete student:', res);
+            vm.student = res.data;
+            
+        });
+    };
+
+    vm.deleteClass = function (classId) {
+        console.log('teacher.service delete class:', classId);
+        return $http.delete('/teacher/deleteClass/' + classId).then(function (res) {
+            console.log('response from delete class:', res);
+            vm.classes = res.data;
+            
+        })
+    };
 });

@@ -3,17 +3,16 @@
 <!-- song info and video -->
 <div layout="row" class="fixed">
     <!-- video on left -->
-    <div flex="55">
-        <ng-youtube-embed video="smc.video1" autoplay="false" color="white" disablekb="false">
+    <div flex="70">
+        <ng-youtube-embed video="smc.mods.data[0].video" autoplay="false" color="white" disablekb="false">
         </ng-youtube-embed>
     </div>
     <!-- song data on right -->
-    <div flex="45">
-        <p class="sizeMd">Chance The Rapper</p>
-        <p class="sizeLg">Pusha Man | Acid Rap</p>
+    <div flex="30">
+        <p class="sizeMd">{{smc.mods.data[0].artist}}</p>
+        <p class="sizeLg">{{smc.mods.data[0].mod_title}} | {{smc.mods.data[0].album}}</p>
         <p class="sameAsP">
-            Acid rap is the second official mixtape by American rapper Chance The Rapper. It was released on April, 30th 2013, as a free
-            digital download
+            {{smc.mods.data[0].mod_desc}}
         </p>
     </div>
 </div>
@@ -21,6 +20,7 @@
 <div ng-cloak>
     <md-content class="sameAsP mod">
         <md-tabs md-dynamic-height md-border-bottom>
+<<<<<<< HEAD
             <md-tab label="Lesson">
                 <md-content class="md-padding">
                     <!-- lesson view -->
@@ -82,10 +82,13 @@
                     </form>
                 </md-content>
             </md-tab>
+=======
+>>>>>>> master
             <!-- lyric view -->
             <md-tab label="Lyrics">
                 <md-content class="md-padding mod">
                     <h1 class="md-display-2">Lyrics</h1>
+<<<<<<< HEAD
                     <p class="sameAsP">
                         [Verse 1: Chance The Rapper] Ten damn days And all I got to show for it is shoes, and shows, and chauffeurs with road rage
                         Still the same damn ad-lib: IGH!, old ways Still got a letterman, no practice Still got a burner,
@@ -140,17 +143,64 @@
                         The Rapper] I know you scared You should ask us if we scared too If you was there Then we'd just
                         knew you cared too
                     </p>
+=======
+                    <pre class="sameAsP">
+                            {{smc.mods.data[0].lyrics}}
+                        </pre>
+>>>>>>> master
                 </md-content>
             </md-tab>
             <!-- history view -->
-            <md-tab label="Historical References">
+            <md-tab label="Historical Events">
                 <md-content class="md-padding">
-                    <h1 class="md-display-2">Historical References</h1>
-                    <p class="sameAsP">Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie
-                        dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere
-                        mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam,
-                        congue eu enim scelerisque, finibus commodo lectus.
+                    <h1 class="md-display-2">Historical Events</h1>
+                    <p class="sameAsP" ng-repeat="event in smc.histEvents.data">
+                        <strong>{{event.title}}</strong>
+                        <br> {{event.desc}}
                     </p>
+                </md-content>
+            </md-tab>
+            <!-- Additional resources view -->
+            <md-tab label="Additional Resources">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Additional Resources</h1>
+                    <p class="sameAsP">
+                        <strong>beep</strong>
+                        <br> boop
+                    </p>
+                </md-content>
+            </md-tab>
+            <md-tab label="Lesson">
+                <md-content class="md-padding">
+                    <!-- lesson view -->
+                    <h1 class="md-display-2">Lesson</h1>
+                    <form name="userForm">
+                        <!-- multiple choice -->
+                        <div ng-repeat="mcQuest in smc.mcQuestions.data">
+                           <strong>{{$index + 1}})</strong> {{mcQuest.question}}
+                            <md-radio-group ng-model="scm.McVal[$index]">
+                                <md-radio-button value="a">
+                                    <strong>A</strong> {{mcQuest.a}}</md-radio-button>
+                                <md-radio-button value="b">
+                                    <strong>B</strong> {{mcQuest.b}} </md-radio-button>
+                                <md-radio-button value="c">
+                                    <strong>C</strong> {{mcQuest.c}}</md-radio-button>
+                                <md-radio-button value="d">
+                                    <strong>D</strong> {{mcQuest.d}}</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                        <!-- sort answer -->
+                        <div ng-repeat="saQuest in smc.saQuestions.data">
+                            {{saQuest.question}}
+                            <md-input-container class="md-block">
+                                <textarea ng-model="smc.SaVal[$index]" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+                            </md-input-container>
+                        </div>
+                        <!-- submit button -->
+                        <!-- ng-click="smc.StudentService.feedbackFunc()" -->
+                        <md-button class="sameAsP" ng-click="smc.submitQuiz
+                        ()">Submit</md-button>
+                    </form>
                 </md-content>
             </md-tab>
         </md-tabs>

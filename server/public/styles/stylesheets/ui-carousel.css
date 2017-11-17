@@ -48,8 +48,7 @@
   content: "\63"; }
 
 .ui-carousel {
-  display: block;
-  margin-bottom: 30px; }
+  display: block; }
   .ui-carousel .carousel-wrapper {
     position: relative; }
   .ui-carousel .track-wrapper {

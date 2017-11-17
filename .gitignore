@@ -45,8 +45,8 @@ typings/
 # Optional eslint cache
 .eslintcache
 
-#JSLint config
-.jslintrc
+#JSHint config
+.jshintrc
 
 # Optional REPL history
 .node_repl_history
@@ -70,3 +70,5 @@ tmp
 
 #VS Code ignores
 .vscode/
+
+.jshintrc

@@ -5,14 +5,28 @@
             <form ng-submit="lc.login()" layout="column" layout-align="space-around stretch">
                 <div>
                     <span class="fa fa-user-circle-o" flex="none"></span>
-                    <input type="text" ng-model="lc.user.username" placeholder="E-Mail (required)" ng-required="true" flex="grow" />
+                    <input type="text" ng-model="lc.user.username" placeholder="E-Mail (required)" ng-required="true" flex="grow"  autocomplete="off" autocapitalize="off" />
                 </div>
                 <div>
                     <span flex="none" class="fa fa-unlock"></span>
                     <input type="password" ng-model="lc.user.password" placeholder="Password" ng-required="true" flex="grow" />
                 </div>
                 <div>
-                    <input class="btn btn-default" type="submit" name="submit" value="Log In" />
+                    <input class="btn btn-default" type="submit" name="submit" value="Log In"/>
+                </div>
+                <md-button ng-click="reset=true" class="reset">
+                    Forgot password?
+                </md-button>
+            </form>
+            <form ng-if="reset" ng-submit="lc.passwordReset(lc.email)" class="reset-form">
+                <div  layout="row" layout-align="center stretch">                        
+                    <div>
+                        <span class="fa fa-user-circle-o" flex="none"></span>
+                        <input class="reset-input" type="text" ng-model="lc.email" placeholder="E-Mail (required)" ng-required="true" flex="grow"  autocomplete="off" autocapitalize="off" />
+                    </div>
+                    <md-button type="submit" class="reset-form-submit" value="reset">
+                        Submit
+                    </md-button>
                 </div>
             </form>
         </div>

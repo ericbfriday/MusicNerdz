@@ -1,29 +1,20 @@
-<ui-carousel slides="uc.userObject.featured" slides-to-show="1" slides-to-scroll="1" autoplay="true" autoplay-speed="4000"
+<ui-carousel slides="uc.userObject.featured" slides-to-show="1" slides-to-scroll="1" autoplay="true" autoplay-speed="6000"
   arrows="false" dots="false">
   <carousel-item layout="row" layout-align="center center">
-    <!-- 
-    <h3>
-      <img ng-src="{{ item }}">
-    </h3> -->
-    <div class="main-container" flex layout="column" layout-align="start stretch">
-      <div class="main-display" layout="row" layout-align="space-around">
-        <div class="tile" layout="column" layout-align=" stretch" flex>
+    <div class="main-container" flex layout="row" layout-align="start stretch">
+      <div class="main-display" layout="row" layout-align="space-around" flex=none>
+        <div class="tile" layout="column" layout-align="stretch" flex>
           <div class="tile-art" flex=none ng-style="{'background-image':'url({{item.art}})'}">
           </div>
-          <div class="tile-details" flex=60 layout="row" layout-align="center center">
-            <div class="tile-name" flex layout="column" layout-align="space-around stretch">
-              <p class="tile-artist" flex>{{ item.artist }}</p>
-              <p class="tile-record" flex>{{ item.album }}</p>
-            </div>
-            <div class="tile-album" flex=40>
-              5.0
-            </div>
-          </div>
         </div>
-
       </div>
-
+      <div class="main-display" layout="column" flex>
+        <div class="tile-name" flex layout="column" layout-align="start start">
+          <p class="tile-artist">{{item.artist}}</p>
+          <p class="tile-record">{{item.title}}</p>
+          <p class="tile-desc">{{item.description}}</p>
+        </div>
+      </div>
     </div>
-
   </carousel-item>
 </ui-carousel>
