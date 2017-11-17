@@ -235,4 +235,9 @@ router.get('/modules/:id', function (req, res) {
 }); //END router GET
 
 
+
+//NEW SQL QUERY::
+// SELECT questions.id, questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description AS mod_desc, modules.title AS mod_title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description AS history_desc, history.title AS history_title, tags.type FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id JOIN history_tags ON history.id = history_tags.history_id JOIN tags ON history_tags.tags_id = tags.id WHERE modules.id = 5 ORDER BY questions.question;
+
+
 module.exports = router;
