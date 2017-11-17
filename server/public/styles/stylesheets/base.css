@@ -1083,3 +1083,9 @@ input {
 .teacher-grading .teacher-grade-info .teacher-grade-tf span {
   display: block;
 }
+
+/* line 129, ../sass/_musicnerdz_studentgrade.scss */
+.fa-pencil-square-o {
+  font-size: 3rem;
+  cursor: pointer;
+}
