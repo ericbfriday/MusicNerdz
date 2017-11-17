@@ -44,14 +44,17 @@ input {
 }
 
 .login {
-    margin: 50px auto;
-    width: 625px;
+    margin: 15px;
+    width: 425px;
+    .reset {
+        background-color: lightgrey;
+        margin: 25px 0;
+    }
     form {
         .fa {
             font-size: 2em;
         }
         margin: auto;
-        padding: 22px 22px 22px 22px;
         width: 100%;
         div {
             display: -webkit-box;
@@ -106,6 +109,37 @@ input {
     }
 }
 
+.reset-form {
+    border-top: 1px solid black;
+    padding-top: 10px;
+    .reset-form-submit {
+        background: $orange;
+        border: 0;
+        width: 100%;
+        height: 40px;
+        border-radius: 3px;
+        color: white;
+        cursor: pointer;
+        -webkit-transition: background 0.3s ease-in-out;
+        -o-transition: background 0.3s ease-in-out;
+        transition: background 0.3s ease-in-out;
+        margin: 0 0 0 15px;
+        height: auto;
+    }
+    .reset-input {
+        margin-bottom: 0!important;
+    }
+    .login form input[type="text"] {
+        margin: 0;
+    }
+    button {
+        margin: 0;
+        padding: 0;
+    }
+}
+
+
+
 .radio-tile-group {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -147,7 +181,7 @@ input {
             padding: 1rem;
             background: $white;
             -webkit-box-shadow: 2px 2px 5px grey;
-                    box-shadow: 2px 2px 5px grey;
+            box-shadow: 2px 2px 5px grey;
             -webkit-transition: -webkit-transform 300ms ease;
             transition: -webkit-transform 300ms ease;
             -o-transition: transform 300ms ease;

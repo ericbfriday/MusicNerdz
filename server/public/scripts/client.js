@@ -114,6 +114,10 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         }
       }
     })
+    .when('/student/id/:id', {
+      templateUrl: '/views/templates/lesson.html',
+      controller: 'StudentModuleController as smc',
+    })
     .when('/student/grades', {
       templateUrl: '/views/templates/studentGrade.html',
       controller: 'StudentGradeController as sgc',

@@ -1,6 +1,6 @@
 'use strict';
 
-myApp.controller('AdminUserController', function(AdminUserService) {
+myApp.controller('AdminUserController', function(AdminUserService, UserService) {
     // console.log('AdminUserController created');
     const vm = this;
 
