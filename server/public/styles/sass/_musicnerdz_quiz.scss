@@ -11,17 +11,24 @@
             .details-container {
                 margin: 0 15px;
                 width: 75%;
-                .student-quiz-artist {
-                    font-weight: 300;
-                    font-size: 2.5rem;
+                .student-quiz-title {
+                    font-weight: 800;
+                    font-size: 3.5rem;
                     margin: 0 0 25px;
+                    color:$orange;
+                }
+                .student-quiz-artist {
+                    font-weight: 400;
+                    font-size: 2.5rem;
+                    margin: 0;
                 }
                 .student-quiz-details {
                     font-weight: 300;
-                    font-size: 1.8rem;
+                    font-size: 1.5rem;
                     margin: 0;
                     line-height: normal;
                 }
+
                 .student-quiz-desc {
                     max-height: 125px;
                     line-height: normal;
@@ -57,7 +64,7 @@
     }
     .student-quiz-lesson {
         margin: 35px;
-        padding-bottom: 75px;
+        padding: 0 25px 75px;
         textarea {
             border: 1px solid black
         }
