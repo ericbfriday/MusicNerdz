@@ -1,14 +1,16 @@
-<div ng-include="'views/partials/nav.html'"></div>
+<div ng-if="!uc.userObject.user.teachers_id" ng-include="'views/partials/nav.html'"></div>
+<div ng-if="uc.userObject.user.teachers_id" ng-include="'views/partials/teacher_nav.html'"></div>
+
 <div class="container" layout="column" layout-align="start stretch">
     <div class="main" layout="column" layout-align="start stretch" flex>
         <div class="main-carousel" flex=20>
             <div ng-include="'views/partials/carousel.html'" flex></div>
         </div>
-        <div ng-hide="!uc.userObject.user" class="main-completed" layout="row" layout-align="center center">Welcome, [so and so]</div>
+        <div ng-hide="!uc.userObject.user" class="main-completed" layout="row" layout-align="center center">Welcome, {{uc.userObject.student[0].first }}</div>
 
         <!-- Repeated ASSIGNED modules here -->
-        <div ng-hide="!uc.userObject.user" class="main-display" layout-wrap layout="row" layout-align="space-around center">
-            <div class="tile" layout="column" flex=30 ng-repeat="i in uc.userObject.assigned | filter: uc.search" ng-click="uc.userService.loadmodule(i.id)">
+        <div ng-hide="!uc.userObject.user" class="main-display assigned" layout-wrap layout="row" layout-align="space-between center">
+            <div class="tile" layout="column" flex=30 ng-repeat="i in uc.userObject.assigned">
                 <div class="tile-art" flex=none ng-style="{'background-image':'url({{i.art}})'}">
                     <span class="completed" layout="row" layout-align="center center">
                         <i class="fa fa-check" aria-hidden="true"></i>
@@ -19,7 +21,7 @@
                         <p class="tile-artist" flex>{{ i.artist }}</p>
                         <p class="tile-record" flex>{{ i.title }}</p>
                     </div>
-                    <div class="tile-album" flex=40>
+                    <div class="tile-album" flex=40 layout="row" layout-align="center center" ng-click="uc.userService.loadmodule(i.id)">
                         <i class="fa fa-play-circle-o" aria-hidden="true"></i>
                     </div>
                 </div>
@@ -28,9 +30,12 @@
 
         <!-- Repeated ASSGINED modules here -->
 
+        <div class="border" ng-show="uc.userObject.assigned.length>1"></div>
+
         <!-- Repeated DIFF modules here -->
+
         <div ng-hide="!uc.userObject.user" class="main-display" layout-wrap layout="row" layout-align="space-between">
-            <div class="tile" layout="column" flex=30 ng-repeat="i in vc.shownItems2" ng-click="uc.userService.loadmodule(i.id)">
+            <div class="tile" layout="column" flex=30 ng-repeat="i in vc.shownItems2 | filter: uc.search" ng-click="uc.userService.loadmodule(i.id)">
                 <div class="tile-art" flex=none ng-style="{'background-image':'url({{i.art}})'}">
                     <!-- <span class="completed" layout="row" layout-align="center center"> -->
                     <!-- <i class="fa fa-check" aria-hidden="true"></i> -->
@@ -41,7 +46,7 @@
                         <p class="tile-artist" flex>{{ i.artist }}</p>
                         <p class="tile-record" flex>{{ i.title }}</p>
                     </div>
-                    <div class="tile-album" flex=40>
+                    <div class="tile-album" flex=40 layout="row" layout-align="center center">
                         <i class="fa fa-play-circle-o" aria-hidden="true"></i>
                     </div>
                 </div>
@@ -51,7 +56,7 @@
 
         <!-- Repeated ALL modules here -->
         <div ng-hide="uc.userObject.user" class="main-display" layout-wrap layout="row" layout-align="space-between">
-            <div class="tile" layout="column" flex=30 ng-repeat="i in vc.shownItems" ng-click="uc.userService.loadmodule(i.id, $event)">
+            <div class="tile" layout="column" flex=30 ng-repeat="i in vc.shownItems | filter: uc.search">
                 <div class="tile-art" flex=none ng-style="{'background-image':'url({{i.art}})'}">
                     </span>
                 </div>
@@ -60,18 +65,21 @@
                         <p class="tile-artist" flex>{{ i.artist }}</p>
                         <p class="tile-record" flex>{{ i.title }}</p>
                     </div>
-                    <div class="tile-album" flex=40>
-                        <i class="fa fa-play-circle-o" aria-hidden="true"></i>
+                    <div class="tile-album" flex=40 layout="column" layout-align="center stretch" ng-click="uc.userService.loadmodule(i.id, $event)">
+                        <i class="fa fa-play-circle-o" aria-hidden="true" layout="row" layout-align="center center"></i>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Repeated ALL here -->
+
+        <md-collection-pagination ng-hide="!uc.userObject.user" class="md-padding" collection="uc.userObject.new" paginated-collection="vc.shownItems2"
+            per-page="6"></md-collection-pagination>
+        <md-collection-pagination ng-hide="uc.userObject.user" class="md-padding" collection="uc.userObject.allMods" paginated-collection="vc.shownItems"
+            per-page="18"></md-collection-pagination>
     </div>
 </div>
 </div>
 </div>
-<md-collection-pagination ng-hide="!uc.userObject.user" class="md-padding" collection="uc.userObject.new" paginated-collection="vc.shownItems2" per-page="3"></md-collection-pagination>
-<md-collection-pagination ng-hide="uc.userObject.user" class="md-padding" collection="uc.userObject.allMods" paginated-collection="vc.shownItems"
-    per-page="6"></md-collection-pagination>
+
 </div>

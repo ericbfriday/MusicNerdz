@@ -35,6 +35,37 @@ router.post('/addStudent', function (req, res) {
   });
 });
 
+router.get('/id/:id', function (req, res) {
+  // connect to database
+  pool.connect(function (err, client, done) {
+    // query 
+
+    let modQuery = 'SELECT * from students where students.id=$1';
+    let target = req.params.id;
+    //error handling
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } //END if connection error
+    else {
+      client.query(modQuery, [target], function (quErr, resultObj) {
+        done();
+        //error handling
+        if (quErr) {
+          console.log('Query Error:', quErr);
+          res.sendStatus(500);
+        } //END if query error
+        else {
+          //send the list from the database to client side
+          res.send(resultObj.rows);
+        } //END else send
+
+      }); //END client.query
+    } //END else send query
+  }); //END pool.connect
+}); //END router GET
+
+
 //get all modules from database
 router.get('/getAllModules', function (req, res) {
   // connect to database

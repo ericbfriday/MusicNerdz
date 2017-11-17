@@ -1,6 +1,6 @@
 <section ng-init="auc.getSchools(); auc.getTeachers()" class="admin">
-    <div ng-include="'views/partials/admin_nav.html'"></div>
-    <div layout="column" class="md-padding admin-container">
+    <div ng-include="'views/partials/admin_nav.html'" ng-controller="UserController as uc"></div>
+        <div layout="column" class="md-padding admin-container">
         <md-tabs md-dynamic-height md-border-bottom>
             <md-tab label="Manage Schools">
                 <md-content class="md-padding">

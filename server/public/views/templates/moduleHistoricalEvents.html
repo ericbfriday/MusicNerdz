@@ -1,5 +1,5 @@
 <section ng-init="ec.getHistoricalInfo()" class="admin">
-    <div ng-include="'views/partials/admin_nav.html'" ng-init="ec.getEvents()"></div>
+    <div ng-include="'views/partials/admin_nav.html'" ng-controller="UserController as uc" ng-init="ec.getEvents()"></div>
     <div class="md-padding admin-container">
         <md-card>
             <md-card-title class="admin-title">
