@@ -39,16 +39,5 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         console.log(id);
         console.log(mcQuest.id);
 
-<<<<<<< HEAD
-    //CALL getMod on page load
-    StudentService.getMod();
-    console.log('resp in controller:');
-
-    // StudentService.feedbackFunc();
-    console.log('feedback in controller:');
-    
-});//END App Controller
-=======
     } //END submitQuiz
 }); //END App Controller
->>>>>>> master
