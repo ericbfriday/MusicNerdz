@@ -1,4 +1,7 @@
 .student-quiz-main {
+    iframe {
+        margin: 0 25px;
+    }
     .md-tab {
         font-weight: 300;
     }
@@ -10,13 +13,14 @@
                 width: 75%;
                 .student-quiz-artist {
                     font-weight: 300;
-                    font-size: 4rem;
+                    font-size: 2.5rem;
                     margin: 0 0 25px;
                 }
                 .student-quiz-details {
                     font-weight: 300;
-                    font-size: 3rem;
+                    font-size: 1.8rem;
                     margin: 0;
+                    line-height: normal;
                 }
                 .student-quiz-desc {
                     max-height: 125px;

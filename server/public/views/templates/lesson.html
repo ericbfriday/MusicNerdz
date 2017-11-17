@@ -10,9 +10,10 @@
         </div>
         <!-- song data on right -->
         <div flex class="details" layout="column" layout-align="center center">
-            <div class="details-container" layout="column" layout-align="center center" ng-cloak>
-                <p class="student-quiz-artist">{{smc.mods.data[0].artist}}</p>
+            <div class="details-container" layout="column" layout-align="center center" ng-if="smc.mods.data.length">
                 <p class="student-quiz-details">Title: {{smc.mods.data[0].mod_title}}</p>
+
+                <p class="student-quiz-artist">{{smc.mods.data[0].artist}}</p>
                 <p class="student-quiz-details">Album: {{smc.mods.data[0].album}}</p>
                 <p class="sameAsP student-quiz-desc">
                     {{smc.mods.data[0].mod_desc}}
