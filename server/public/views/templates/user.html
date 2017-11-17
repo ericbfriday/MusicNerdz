@@ -6,7 +6,7 @@
         <div class="main-carousel" flex=20>
             <div ng-include="'views/partials/carousel.html'" flex></div>
         </div>
-        <div ng-hide="!uc.userObject.user" class="main-completed" layout="row" layout-align="center center">Welcome, {{uc.userObject.student[0].first }}</div>
+        <div ng-hide="!uc.userObject.user || uc.userObject.user.teachers_id" class="main-completed" layout="row" layout-align="center center">Welcome, {{uc.userObject.student[0].first }}</div>
 
         <!-- Repeated ASSIGNED modules here -->
         <div ng-hide="!uc.userObject.user" class="main-display assigned" layout-wrap layout="row" layout-align="space-between center">

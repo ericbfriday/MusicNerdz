@@ -133,12 +133,19 @@
         font-weight: 800;
         -o-text-overflow: ellipsis;
         text-overflow: ellipsis;
-        width: 100%;
+        width: 90%;
+        margin: 0 auto;
         overflow: hidden;
         white-space: nowrap;
     }
     .tile-name {
         font-size: 1.5rem;
+        .tile-record {
+            text-overflow: ellipsis;
+            width: 100%;
+            overflow: hidden;
+            white-space: nowrap;
+        }
     }
     .tile-art {
         background-image: url('http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg');
