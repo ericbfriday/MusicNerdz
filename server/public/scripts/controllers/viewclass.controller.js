@@ -1,5 +1,5 @@
 
-myApp.controller('ViewController', function ($http, TeacherService, UserService) {
+myApp.controller('ViewController', function ($http, $location, TeacherService, UserService) {
     console.log('ViewController created');
     var vm = this;
     vm.teacherService = TeacherService;
@@ -68,6 +68,10 @@ myApp.controller('ViewController', function ($http, TeacherService, UserService)
             vm.getClasses(vm.teacher);
         });
 
+    };
+
+    vm.relocate = function() {
+        $location.path("/teacher/gradingform/module/5/student/1");
     };
 
     //send student info to server for addition to db

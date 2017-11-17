@@ -167,14 +167,14 @@ myApp
       },
       getgradeform: function (mod, student) {
         console.log('module: ', mod, 'student: ', student);
-        $http
-          .get('/student/getModule')
-          .then(function (res) {
-            userObject.moduleinfo = res.data;
-          })
-          .then($http.get('/student/getGrades').then(function (resp) {
-            userObject.studentinfo = resp.data;
-          }));
+        // $http
+        //   .get('/student/getModule')
+        //   .then(function (res) {
+        //     userObject.moduleinfo = res.data;
+        //   })
+        //   .then($http.get('/student/getGrades').then(function (resp) {
+        //     userObject.studentinfo = resp.data;
+        //   }));
       },
 
       logout: function () {

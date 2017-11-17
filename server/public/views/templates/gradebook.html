@@ -24,7 +24,7 @@
                         <td md-cell ng-repeat="modAssigned in vc.modules">
                             <div ng-repeat="studentGrade in modAssigned.studGrades">
                                 <span style="text-transform: uppercase;" ng-show="studentGrade.studId == student.studId">{{studentGrade.final}}</span>
-                                <i ng-show="studentGrade.studId == student.studId && !studentGrade.final" class="fa fa-pencil-square-o" aria-hidden="true"></i>                                
+                                <i ng-show="studentGrade.studId == student.studId && !studentGrade.final" class="fa fa-pencil-square-o" aria-hidden="true" ng-click="vc.relocate()"></i>                                
                             </div>
                         </td>                                    
                     </tr>
