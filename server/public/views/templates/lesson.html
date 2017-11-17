@@ -56,7 +56,7 @@
                     <form name="userForm">
                         <!-- multiple choice -->
                         <div ng-repeat="mcQuest in smc.mcQuestions.data">
-                           <strong>{{$index + 1}})</strong> {{mcQuest.question}}
+                            <strong>{{$index + 1}})</strong> {{mcQuest.question}}
                             <md-radio-group ng-model="scm.McVal[$index]">
                                 <md-radio-button value="a">
                                     <strong>A</strong> {{mcQuest.a}}</md-radio-button>
@@ -77,8 +77,7 @@
                         </div>
                         <!-- submit button -->
                         <!-- ng-click="smc.StudentService.feedbackFunc()" -->
-                        <md-button class="sameAsP" ng-click="smc.submitQuiz
-                        ()">Submit</md-button>
+                        <md-button class="sameAsP" ng-click="smc.submitQuiz($event)">Submit</md-button>
                     </form>
                 </md-content>
             </md-tab>

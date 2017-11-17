@@ -5,84 +5,84 @@ myApp.service('StudentService', function ($http) {
         data: []
     };
 
-        sv.userObject=[];
+    sv.userObject=[];
 
-        sv.saQuestions = {
-            data: []
-        };
-        sv.mcQuestions = {
-            data: []
-        };
-        sv.studGrades = {
-            lesson5: [],
-            lesson2: []
-        };
-        sv.histEvents = {
-            data: []
-        };
+    sv.saQuestions = {
+        data: []
+    };
+    sv.mcQuestions = {
+        data: []
+    };
+    sv.studGrades = {
+        lesson5: [],
+        lesson2: []
+    };
+    sv.histEvents = {
+        data: []
+    };
 
     //constructor to store short answer questions
     function SaQs(question, id) {
         this.question = question;
-            this.id = id
+        this.id = id
     } //END constructor 
     
-        // constructor to create multiple choice objects
-        function McQs(question, a, b, c, d, correct) {
-            this.question = question;
-            this.a = a;
-            this.b = b;
-            this.c = c;
-            this.d = d;
-            this.correct = correct;
-        } //END constructor
+    // constructor to create multiple choice objects
+    function McQs(question, a, b, c, d, correct) {
+        this.question = question;
+        this.a = a;
+        this.b = b;
+        this.c = c;
+        this.d = d;
+        this.correct = correct;
+    } //END constructor
 
-        //constructor to create history events
-        function Hist(title, desc) {
-            this.title = title;
-                this.desc = desc
-        } //END constructor
+    //constructor to create history events
+    function Hist(title, desc) {
+        this.title = title;
+            this.desc = desc
+    } //END constructor
 
-        // function to remove duplicates
-        function removeDupes(originalArray, objKey) {
-            // local variables
-            let trimmedArray = [];
-            let values = [];
-            let value;
-            // loop through array
-            for (let i = 0; i < originalArray.length; i++) {
-                // set value to object key
-                value = originalArray[i][objKey];
-                if (values.indexOf(value) === -1) {
-                    // push to trimmedArray to hold
-                    trimmedArray.push(originalArray[i]);
-                    // push key value to values array
-                    values.push(value);
-                } //END if
-            } //END for loop
-            // return array without duplicates
-            return trimmedArray;
-        } //END removeDuplicates
+    // function to remove duplicates
+    function removeDupes(originalArray, objKey) {
+        // local variables
+        let trimmedArray = [];
+        let values = [];
+        let value;
+        // loop through array
+        for (let i = 0; i < originalArray.length; i++) {
+            // set value to object key
+            value = originalArray[i][objKey];
+            if (values.indexOf(value) === -1) {
+                // push to trimmedArray to hold
+                trimmedArray.push(originalArray[i]);
+                // push key value to values array
+                values.push(value);
+            } //END if
+        } //END for loop
+        // return array without duplicates
+        return trimmedArray;
+    } //END removeDuplicates
 
-        // function to get student grade info back from router
-        sv.getGrades = function () {
-            //temp arrays to hold grades for each module
-            let tempLesson5 = [];
-            let tempLesson2 = [];
-            //$http get request
-            $http.get('/student/getGrades').then(function (resp) {
-                    console.log('response in service:', resp);
-                    // sv.studGrades.data = resp.data loop though response
-                    for (let i = 0; i < resp.data.length; i++) {
-                        if (resp.data[i].modules_id === 5) {
-                            tempLesson5.push(resp.data[i] //END if
-                            );
-                        } else if (resp.data[i].modules_id === 2) {
-                            tempLesson2.push(resp.data[i]);
-                        } //END else if
-                    } //END for loop
-                })// END $http.then
-            }//END getGrades
+    // function to get student grade info back from router
+    sv.getGrades = function () {
+        //temp arrays to hold grades for each module
+        let tempLesson5 = [];
+        let tempLesson2 = [];
+        //$http get request
+        $http.get('/student/getGrades').then(function (resp) {
+                console.log('response in service:', resp);
+                // sv.studGrades.data = resp.data loop though response
+                for (let i = 0; i < resp.data.length; i++) {
+                    if (resp.data[i].modules_id === 5) {
+                        tempLesson5.push(resp.data[i] //END if
+                        );
+                    } else if (resp.data[i].modules_id === 2) {
+                        tempLesson2.push(resp.data[i]);
+                    } //END else if
+                } //END for loop
+            })// END $http.then
+        }//END getGrades
 
     //Function to get modules form server
     sv.getMod = function (id) {
@@ -160,11 +160,16 @@ myApp.service('StudentService', function ($http) {
         })//END $http.then
     }//END submitQuiz
 
-        sv.feedbackFunc = function () {
-            console.log('in feedback service');
-            var feedback = prompt("Tell us what you thought of this quiz.");
-        }; //end sv.feedback
-
-
-    }); //END
-}); //END service
+    sv.submitFb = function (feedback) {
+        console.log(feedback);
+        $http({
+            method: 'POST',
+            url: '/submitFb',
+            data: feedback
+        }).then(function (response) {
+            console.log('feedback response:', response);
+        })
+    }
+});
+//END
+//END service

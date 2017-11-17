@@ -158,7 +158,7 @@ router.get('/getGrades', function (req, res) {
   }); //END pool.connect
 }); //END router GET
 
-router.post('/quiz', function (req, res){
+router.post('/quiz', function (req, res) {
   console.log('BODY!', req.body);
   let ids = req.body.ids;
   let resps = req.body.resps;
@@ -186,7 +186,7 @@ router.post('/quiz', function (req, res){
       }); //END client.query
     } //END else send query
   }); //END pool.connect
-});//END router POST
+}); //END router POST
 
 router.get('/modules/:id', function (req, res) {
   console.log('modules route ', req.params.id);
@@ -229,10 +229,34 @@ router.get('/modules/:id', function (req, res) {
             res.send(resultObj.rows);
           } //END else send
         }); //END client.query
-      }//END else
+      } //END else
     } //END else send query
   }); //END pool.connect
 }); //END router GET
+
+router.post('/submitFb', function (req, res) {
+  console.log('req.body feedback:', req.body);
+  // pool.connect(function (err, client, done) {
+  //   // let feedbackQuery = 'INSERT INTO responses (admin_notes) VALUES ($1)';
+  //   // if (err) {
+  //   //   console.log('Connection Error:', err);
+  //   //   res.sendStatus(500);
+  //   // } else {
+  //   //   client.query(feedbackQuery, [req.body], function (err, obj) {
+  //   //     done();
+
+  //   //     if (err) {
+  //   //       console.log('query error:', err);
+  //   //       res.sendStatus(500);
+  //   //     } //end if query error
+  //   //     else {
+  //   //       console.log(obj);
+  //   //     }
+  //   //   }) //end client.query
+  //   // } //end client.query
+  //   // // }) //end pool.connect
+  // }) //end router.post
+});
 
 
 module.exports = router;
