@@ -6,6 +6,4 @@ myApp
   vm.userObject = UserService.userObject;
   vm.studentService = StudentService;
 
-
-
 });
