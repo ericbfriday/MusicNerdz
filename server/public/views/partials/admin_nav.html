@@ -1,19 +1,23 @@
-<div class="navbar admin">
-    <div class="container" layout="row" layout-align="start center" flex=100>
-        <a href="/#/user" flex=25>
-            <div class="main-logo" flex="noshrink">Music<span>Nerdz</span>
-            </div>
+<div class="navbar admin teacher">
+    <div class="container" layout="row" layout-align="space-between center" flex=100>
+        <a href="/#/user" flex="nogrow">
+            <img src="../../assets/images/mn.png" alt="">
         </a>
-        <div flex layout="row" layout-align="end">
-            <li flex layout="row" layout-align="end center" class="admin-nav">
-                <a href="/#/admin/home">Home</a>
-                <a href="/#/admin/songCreation">Create Module</a>
-                <a href="/#/admin/additionalResources">Additional Resources</a>
-                <a href="/#/admin/eventCreation">Associate Events</a>
-                <a href="/#/admin/quizCreation">Create Quiz</a>
-                <a href="/#/admin/externalEventCreation">Create Historic Events</a>
-                <a href="/#/admin/userMgmt">User Management</a>     
+        <div flex="nogrow" layout="row" layout-align="end" ng-cloak>
+            <li flex layout="row" layout-align="end center" class="student-nav">
+                <a ng-click="uc.userService.logout()" ng-show="!uc.userObject.user.students_id && !uc.userObject.user.teachers_id" layout="row" layout-align="center center" flex>
+                    <i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</a>
             </li>
         </div>
+    </div>
+    <div flex layout="row" layout-align="end">
+        <li flex layout="row" layout-align="end center" class="admin-nav">
+            <a href="/#/admin/songCreation">Create Module</a>
+            <a href="/#/admin/additionalResources">Additional Resources</a>
+            <a href="/#/admin/eventCreation">Associate Events</a>
+            <a href="/#/admin/quizCreation">Create Quiz</a>
+            <a href="/#/admin/externalEventCreation">Create Historic Events</a>
+            <a href="/#/admin/userMgmt">User Management</a>
+        </li>
     </div>
 </div>

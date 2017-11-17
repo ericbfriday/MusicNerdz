@@ -1,6 +1,6 @@
 <section ng-init="ec.getHistoricalInfo()" class="admin">
-    <div ng-include="'views/partials/admin_nav.html'"></div>
-    <div class="md-padding admin-container">
+    <div ng-include="'views/partials/admin_nav.html'" ng-controller="UserController as uc"></div>
+        <div class="md-padding admin-container">
         <form name="externalEventCreation" id="externalEventCreation" class="admin-form">
             <md-card>
                 <md-card-title class="admin-title">
