@@ -2,6 +2,8 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     console.log('StudentModuleController created');
     const vm = this;
     vm.userService = UserService;
+    vm.userObject = UserService.userObject;
+    console.log('userObject in stud Mod controller', vm.userObject);
     vm.mods = StudentService.mods;
     vm.saQuestions = StudentService.saQuestions;
     vm.mcQuestions = StudentService.mcQuestions;

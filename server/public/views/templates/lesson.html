@@ -14,6 +14,16 @@
         <p class="sameAsP">
            {{smc.mods.data[0].mod_desc}}
         </p>
+        <div ng-if="smc.userObject.teachers_id !== null">
+            <md-input-container>
+                <label>Assign to class</label>
+                <md-select ng-model="id" md-on-close="vc.updateAssigned(id)" multiple>
+                    <md-option ng-repeat="class in smc.classes" value={{class.id}}>
+                    {{class.title}}
+                    </md-option>
+                </md-select>
+            </md-input-container>
+        </div>
     </div>
 </div>
 <!-- tabs -->
