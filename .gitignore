@@ -72,3 +72,6 @@ tmp
 .vscode/
 
 .jshintrc
+.jscsrc
+.eslintrc
+.eslintrc.json
