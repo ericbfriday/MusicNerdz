@@ -236,26 +236,26 @@ router.get('/modules/:id', function (req, res) {
 
 router.post('/submitFb', function (req, res) {
   console.log('req.body feedback:', req.body);
-  // pool.connect(function (err, client, done) {
-  //   // let feedbackQuery = 'INSERT INTO responses (admin_notes) VALUES ($1)';
-  //   // if (err) {
-  //   //   console.log('Connection Error:', err);
-  //   //   res.sendStatus(500);
-  //   // } else {
-  //   //   client.query(feedbackQuery, [req.body], function (err, obj) {
-  //   //     done();
+  pool.connect(function (err, client, done) {
+    let feedbackQuery = 'INSERT INTO responses (admin_notes) VALUES ($1)';
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } else {
+      client.query(feedbackQuery, [req.body.feedback], function (err, obj) {
+        done();
 
-  //   //     if (err) {
-  //   //       console.log('query error:', err);
-  //   //       res.sendStatus(500);
-  //   //     } //end if query error
-  //   //     else {
-  //   //       console.log(obj);
-  //   //     }
-  //   //   }) //end client.query
-  //   // } //end client.query
-  //   // // }) //end pool.connect
-  // }) //end router.post
+        if (err) {
+          console.log('query error:', err);
+          res.sendStatus(500);
+        } //end if query error
+        else {
+          res.sendStatus(200);
+          console.log(obj);
+        }
+      }) //end client.query
+    } //end client.query
+    }) //end pool.connect
 });
 
 

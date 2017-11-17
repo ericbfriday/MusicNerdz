@@ -161,13 +161,13 @@ myApp.service('StudentService', function ($http) {
     }//END submitQuiz
 
     sv.submitFb = function (feedback) {
-        console.log(feedback);
+        console.log('feedback in service:',feedback);
         $http({
             method: 'POST',
-            url: '/submitFb',
+            url: '/student/submitFb',
             data: feedback
         }).then(function (response) {
-            console.log('feedback response:', response);
+            console.log('feedback response------->:', response);
         })
     }
 });
