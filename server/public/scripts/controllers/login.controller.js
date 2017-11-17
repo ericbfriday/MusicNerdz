@@ -11,7 +11,6 @@ myApp
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
     vm.path = $location.path();
-    console.log(vm.path);
 
     vm.login = function () {
       console.log('LoginController -- login');

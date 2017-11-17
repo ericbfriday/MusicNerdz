@@ -1,38 +1,76 @@
-.student-quiz {
-    .details {
-        .details-container {
-            margin: 0 15px;
-            width: 75%;
-            .student-quiz-artist {
-                font-weight: 300;
-                font-size: 4rem;
-                margin: 0;
-            }
-            .student-quiz-details {
-                font-weight: 300;
-                font-size: 3rem;
-                margin: 0;
+.student-quiz-main {
+    .md-tab {
+        font-weight: 300;
+    }
+    height: 100vh;
+    .student-quiz {
+        .details {
+            .details-container {
+                margin: 0 15px;
+                width: 75%;
+                .student-quiz-artist {
+                    font-weight: 300;
+                    font-size: 4rem;
+                    margin: 0 0 25px;
+                }
+                .student-quiz-details {
+                    font-weight: 300;
+                    font-size: 3rem;
+                    margin: 0;
+                }
+                .student-quiz-desc {
+                    max-height: 125px;
+                    line-height: normal;
+                    overflow: scroll;
+                }
             }
         }
     }
 }
 
 .student-quiz-module {
-    height: calc(100%-(430px));
+    md-tab-content {
+        pre {
+            padding: 0;
+        }
+    }
+    md-radio-button {
+        text-transform: capitalize;
+    }
+    .lyrics {
+        font-weight: 400;
+        font-family: lato;
+    }
+    md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
+        height: 100%;
+    }
+    .mod {
+        height: 100%;
+    }
     md-tabs.md-dynamic-height md-tabs-content-wrapper {
         margin: 0 auto;
         width: 85%;
     }
+    .student-quiz-lesson {
+        margin: 35px;
+        padding-bottom: 75px;
+        textarea {
+            border: 1px solid black
+        }
+    }
 }
 
-
 .fixed {
-    background-color: #000000;
-    color: white;
+    background-color: $black;
+    color: $white;
     min-height: 355px;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .md-padding {
+        padding: 40px;
+    }
     .student-quiz {
         .details {
             .details-container {
