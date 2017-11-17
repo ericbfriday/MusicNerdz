@@ -285,43 +285,44 @@ input {
   font-size: 1.6rem;
   margin: 0 10px;
   padding: 5px;
+  width: 150px;
   -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
   background: #fca311;
   height: 55px;
 }
-/* line 60, ../sass/_musicnerdz_home.scss */
+/* line 61, ../sass/_musicnerdz_home.scss */
 .navbar .container .student-nav a .fa-line-chart {
   margin: 5px;
 }
-/* line 65, ../sass/_musicnerdz_home.scss */
+/* line 66, ../sass/_musicnerdz_home.scss */
 .navbar .container .main-logo {
   color: black;
   margin: 0px 30px;
   font-size: 3rem;
 }
-/* line 69, ../sass/_musicnerdz_home.scss */
+/* line 70, ../sass/_musicnerdz_home.scss */
 .navbar .container .main-logo img {
   width: 150px;
 }
 
-/* line 76, ../sass/_musicnerdz_home.scss */
+/* line 77, ../sass/_musicnerdz_home.scss */
 .main {
   width: 1000px;
   margin: 0 auto;
   text-align: center;
   line-height: 200px;
 }
-/* line 81, ../sass/_musicnerdz_home.scss */
+/* line 82, ../sass/_musicnerdz_home.scss */
 .main .assigned {
   margin: 0;
 }
-/* line 84, ../sass/_musicnerdz_home.scss */
+/* line 85, ../sass/_musicnerdz_home.scss */
 .main .border {
   border-top: 1px solid black;
   margin: 15px 0;
 }
-/* line 88, ../sass/_musicnerdz_home.scss */
+/* line 89, ../sass/_musicnerdz_home.scss */
 .main .main-carousel {
   -webkit-box-shadow: 0px 1px 5px black;
   box-shadow: 0px 1px 5px black;
@@ -329,37 +330,37 @@ input {
   z-index: 2;
   background-color: #a8a8a8;
 }
-/* line 95, ../sass/_musicnerdz_home.scss */
+/* line 96, ../sass/_musicnerdz_home.scss */
 .main .main-display {
   position: relative;
   z-index: 1;
   padding: 0 0;
 }
-/* line 100, ../sass/_musicnerdz_home.scss */
+/* line 101, ../sass/_musicnerdz_home.scss */
 .main .main-container,
 .main .main-assigned {
   overflow: visible;
   padding: 0 50px;
 }
-/* line 104, ../sass/_musicnerdz_home.scss */
+/* line 105, ../sass/_musicnerdz_home.scss */
 .main .main-container h1,
 .main .main-assigned h1 {
   line-height: normal;
   margin: 20px;
   font-size: 3rem;
 }
-/* line 110, ../sass/_musicnerdz_home.scss */
+/* line 111, ../sass/_musicnerdz_home.scss */
 .main .main-completed {
   line-height: normal;
   margin: 5px;
   font-size: 3rem;
 }
-/* line 115, ../sass/_musicnerdz_home.scss */
+/* line 116, ../sass/_musicnerdz_home.scss */
 .main .container {
   height: auto;
 }
 
-/* line 120, ../sass/_musicnerdz_home.scss */
+/* line 121, ../sass/_musicnerdz_home.scss */
 .tile {
   height: 255px;
   width: 325px;
@@ -369,11 +370,11 @@ input {
   -webkit-box-shadow: 0px 1px 5px #777777;
   box-shadow: 0px 1px 5px #777777;
 }
-/* line 128, ../sass/_musicnerdz_home.scss */
+/* line 129, ../sass/_musicnerdz_home.scss */
 .tile p {
   margin: 0;
 }
-/* line 131, ../sass/_musicnerdz_home.scss */
+/* line 132, ../sass/_musicnerdz_home.scss */
 .tile .tile-artist {
   font-weight: 800;
   -o-text-overflow: ellipsis;
@@ -382,18 +383,18 @@ input {
   overflow: hidden;
   white-space: nowrap;
 }
-/* line 139, ../sass/_musicnerdz_home.scss */
+/* line 140, ../sass/_musicnerdz_home.scss */
 .tile .tile-name {
   font-size: 1.5rem;
 }
-/* line 142, ../sass/_musicnerdz_home.scss */
+/* line 143, ../sass/_musicnerdz_home.scss */
 .tile .tile-art {
   background-image: url("http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg");
   background-size: cover;
   background-position: 100% 25%;
   height: 180px;
 }
-/* line 147, ../sass/_musicnerdz_home.scss */
+/* line 148, ../sass/_musicnerdz_home.scss */
 .tile .tile-art span {
   float: right;
   height: 40px;
@@ -403,75 +404,75 @@ input {
   -webkit-box-shadow: 1px 1px 3px black;
   box-shadow: 1px 1px 3px black;
 }
-/* line 155, ../sass/_musicnerdz_home.scss */
+/* line 156, ../sass/_musicnerdz_home.scss */
 .tile .tile-art span i {
   font-size: 4rem;
   color: #9999992e;
   -webkit-text-stroke: 1px rgba(0, 0, 0, 0.25);
 }
-/* line 160, ../sass/_musicnerdz_home.scss */
+/* line 161, ../sass/_musicnerdz_home.scss */
 .tile .tile-art span .completed {
   color: #fca311;
   -webkit-text-stroke: 1px black;
 }
-/* line 166, ../sass/_musicnerdz_home.scss */
+/* line 167, ../sass/_musicnerdz_home.scss */
 .tile .tile-art img {
   max-width: 100px;
 }
-/* line 170, ../sass/_musicnerdz_home.scss */
+/* line 171, ../sass/_musicnerdz_home.scss */
 .tile .tile-details {
   -webkit-box-shadow: 0px 1px 5px #777777;
   box-shadow: 0px 1px 5px #777777;
 }
-/* line 173, ../sass/_musicnerdz_home.scss */
+/* line 174, ../sass/_musicnerdz_home.scss */
 .tile .tile-details .tile-album {
   font-size: 3em;
   line-height: 40px;
   height: 100%;
   cursor: pointer;
 }
-/* line 179, ../sass/_musicnerdz_home.scss */
+/* line 180, ../sass/_musicnerdz_home.scss */
 .tile .tile-details .tile-album .fa-play-circle-o {
   color: #14213d;
   font-size: 5rem;
 }
-/* line 184, ../sass/_musicnerdz_home.scss */
+/* line 185, ../sass/_musicnerdz_home.scss */
 .tile .tile-details .tile-name {
   border-right: 1px solid #777777;
   max-height: 45px;
 }
 
-/* line 192, ../sass/_musicnerdz_home.scss */
+/* line 193, ../sass/_musicnerdz_home.scss */
 .carousel-item img {
   max-width: 225px;
 }
-/* line 195, ../sass/_musicnerdz_home.scss */
+/* line 196, ../sass/_musicnerdz_home.scss */
 .carousel-item .tile-art {
   background-position: 100% 40%;
   -webkit-box-shadow: 0px 1px 5px #333333;
   box-shadow: 0px 1px 5px #333333;
   height: 100%;
 }
-/* line 201, ../sass/_musicnerdz_home.scss */
+/* line 202, ../sass/_musicnerdz_home.scss */
 .carousel-item .main-display {
   color: white;
   height: 225px;
   margin: 10px 0;
 }
-/* line 205, ../sass/_musicnerdz_home.scss */
+/* line 206, ../sass/_musicnerdz_home.scss */
 .carousel-item .main-display .tile {
   margin: 0;
   height: auto;
 }
-/* line 209, ../sass/_musicnerdz_home.scss */
+/* line 210, ../sass/_musicnerdz_home.scss */
 .carousel-item .main-display .tile-artist {
   font-weight: 100;
 }
-/* line 212, ../sass/_musicnerdz_home.scss */
+/* line 213, ../sass/_musicnerdz_home.scss */
 .carousel-item .main-display .tile-record {
   font-weight: 300;
 }
-/* line 215, ../sass/_musicnerdz_home.scss */
+/* line 216, ../sass/_musicnerdz_home.scss */
 .carousel-item .main-display .tile-artist,
 .carousel-item .main-display .tile-record {
   font-size: 4.5rem;
@@ -479,7 +480,7 @@ input {
   margin: 0;
   padding-left: 35px;
 }
-/* line 222, ../sass/_musicnerdz_home.scss */
+/* line 223, ../sass/_musicnerdz_home.scss */
 .carousel-item .main-display .tile-desc {
   font-weight: normal;
   font-size: 1.5rem;
@@ -489,69 +490,69 @@ input {
   text-align: left;
 }
 
-/* line 235, ../sass/_musicnerdz_home.scss */
+/* line 236, ../sass/_musicnerdz_home.scss */
 .ui-carousel .carousel-prev .carousel-btn {
   left: inherit;
 }
-/* line 240, ../sass/_musicnerdz_home.scss */
+/* line 241, ../sass/_musicnerdz_home.scss */
 .ui-carousel .carousel-next .carousel-btn {
   right: 0;
 }
-/* line 244, ../sass/_musicnerdz_home.scss */
+/* line 245, ../sass/_musicnerdz_home.scss */
 .ui-carousel .carousel-btn {
   opacity: 1;
 }
-/* line 246, ../sass/_musicnerdz_home.scss */
+/* line 247, ../sass/_musicnerdz_home.scss */
 .ui-carousel .carousel-btn:active {
   color: black;
 }
-/* line 249, ../sass/_musicnerdz_home.scss */
+/* line 250, ../sass/_musicnerdz_home.scss */
 .ui-carousel .carousel-btn:hover {
   color: black;
 }
 
-/* line 255, ../sass/_musicnerdz_home.scss */
+/* line 256, ../sass/_musicnerdz_home.scss */
 .md-button.md-raised:not([disabled]) {
   font-size: 2rem;
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
-  /* line 260, ../sass/_musicnerdz_home.scss */
+  /* line 261, ../sass/_musicnerdz_home.scss */
   .tile {
     margin: 10px 0;
   }
-  /* line 263, ../sass/_musicnerdz_home.scss */
+  /* line 264, ../sass/_musicnerdz_home.scss */
   .tile .tile-details .tile-name {
     font-size: 2rem;
   }
 
-  /* line 268, ../sass/_musicnerdz_home.scss */
+  /* line 269, ../sass/_musicnerdz_home.scss */
   .main {
     width: 100%;
   }
-  /* line 270, ../sass/_musicnerdz_home.scss */
+  /* line 271, ../sass/_musicnerdz_home.scss */
   .main .main-container {
     width: 95%;
     margin: 25px auto;
   }
-  /* line 274, ../sass/_musicnerdz_home.scss */
+  /* line 275, ../sass/_musicnerdz_home.scss */
   .main .main-carousel {
     width: 100%;
   }
-  /* line 277, ../sass/_musicnerdz_home.scss */
+  /* line 278, ../sass/_musicnerdz_home.scss */
   .main .main-display {
     margin: 30px 20px;
   }
-  /* line 281, ../sass/_musicnerdz_home.scss */
+  /* line 282, ../sass/_musicnerdz_home.scss */
   .main .carousel-item .main-display {
     padding: 0;
   }
 
-  /* line 288, ../sass/_musicnerdz_home.scss */
+  /* line 289, ../sass/_musicnerdz_home.scss */
   .navbar .container .search-form {
     margin: 0 15px;
   }
-  /* line 292, ../sass/_musicnerdz_home.scss */
+  /* line 293, ../sass/_musicnerdz_home.scss */
   .navbar .container .student-nav a {
     font-size: 2rem;
     color: black;
@@ -559,14 +560,19 @@ input {
   }
 }
 /* line 2, ../sass/_musicnerdz_teachernav.scss */
+.teacher img {
+  width: 150px;
+  margin: 0 30px;
+}
+/* line 6, ../sass/_musicnerdz_teachernav.scss */
 .teacher .container {
   height: 75px;
 }
-/* line 6, ../sass/_musicnerdz_teachernav.scss */
+/* line 11, ../sass/_musicnerdz_teachernav.scss */
 .teacher .teacher-nav a {
   font-size: 1.5rem;
 }
-/* line 8, ../sass/_musicnerdz_teachernav.scss */
+/* line 13, ../sass/_musicnerdz_teachernav.scss */
 .teacher .teacher-nav a:before {
   content: "\A";
   width: 10px;
@@ -576,7 +582,7 @@ input {
   display: inline-block;
   margin: 0 10px;
 }
-/* line 17, ../sass/_musicnerdz_teachernav.scss */
+/* line 22, ../sass/_musicnerdz_teachernav.scss */
 .teacher .teacher-nav a:hover {
   text-decoration: underline;
 }
@@ -586,10 +592,19 @@ input {
   font-family: 'Lato';
 }
 /* line 3, ../sass/_musicnerdz_adminnav.scss */
+.admin img {
+  width: 150px;
+  margin: 0 30px;
+}
+/* line 7, ../sass/_musicnerdz_adminnav.scss */
 .admin .container {
   height: 75px;
 }
-/* line 8, ../sass/_musicnerdz_adminnav.scss */
+/* line 12, ../sass/_musicnerdz_adminnav.scss */
+.admin .admin-nav a {
+  font-size: 1.5rem;
+}
+/* line 14, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-nav a:before {
   content: "\A";
   width: 10px;
@@ -599,32 +614,32 @@ input {
   display: inline-block;
   margin: 0 10px;
 }
-/* line 17, ../sass/_musicnerdz_adminnav.scss */
+/* line 23, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-nav a:hover {
   text-decoration: underline;
 }
-/* line 22, ../sass/_musicnerdz_adminnav.scss */
+/* line 28, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-title {
   background: #14213d;
   text-align: center;
   -webkit-box-shadow: 0px 3px 3px grey;
   box-shadow: 0px 3px 3px grey;
 }
-/* line 27, ../sass/_musicnerdz_adminnav.scss */
+/* line 33, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-title .md-headline {
   color: white;
   font-weight: 300;
 }
-/* line 33, ../sass/_musicnerdz_adminnav.scss */
+/* line 39, ../sass/_musicnerdz_adminnav.scss */
 .admin .centerbutton .btn1 {
   width: 300px;
   margin: 0 auto;
 }
-/* line 38, ../sass/_musicnerdz_adminnav.scss */
+/* line 44, ../sass/_musicnerdz_adminnav.scss */
 .admin form {
   font-size: 2rem;
 }
-/* line 41, ../sass/_musicnerdz_adminnav.scss */
+/* line 47, ../sass/_musicnerdz_adminnav.scss */
 .admin input {
   font-size: 2rem;
   font-family: Lato;
@@ -642,30 +657,30 @@ input {
   overflow: scroll;
   max-height: 125px;
 }
-/* line 57, ../sass/_musicnerdz_adminnav.scss */
+/* line 63, ../sass/_musicnerdz_adminnav.scss */
 .admin input ::-webkit-input-placeholder {
   color: white;
 }
-/* line 61, ../sass/_musicnerdz_adminnav.scss */
+/* line 67, ../sass/_musicnerdz_adminnav.scss */
 .admin input:focus ::-webkit-input-placeholder {
   color: white;
 }
-/* line 66, ../sass/_musicnerdz_adminnav.scss */
+/* line 72, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-container {
   width: 1200px;
   margin: 0 auto;
 }
-/* line 69, ../sass/_musicnerdz_adminnav.scss */
+/* line 75, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-container .quizSummary {
   margin: 38px 0;
 }
-/* line 72, ../sass/_musicnerdz_adminnav.scss */
+/* line 78, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-container .admin-label {
   margin: 0px;
   position: initial;
   font-size: 2rem;
 }
-/* line 77, ../sass/_musicnerdz_adminnav.scss */
+/* line 83, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-container .btn1 {
   -webkit-box-shadow: 0px 3px 3px grey;
   box-shadow: 0px 3px 3px grey;
@@ -673,16 +688,16 @@ input {
   margin: 10px auto;
   border-radius: 10px;
 }
-/* line 84, ../sass/_musicnerdz_adminnav.scss */
+/* line 90, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-container md-select {
   font-size: 2rem;
 }
-/* line 88, ../sass/_musicnerdz_adminnav.scss */
+/* line 94, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-container .admin-youtube button {
   width: 300px;
   margin: 0px auto;
 }
-/* line 92, ../sass/_musicnerdz_adminnav.scss */
+/* line 98, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-container .admin-youtube input,
 .admin .admin-container .admin-youtube textarea {
   font-family: Lato;
@@ -701,17 +716,17 @@ input {
   max-height: 125px;
   min-height: 125px;
 }
-/* line 109, ../sass/_musicnerdz_adminnav.scss */
+/* line 115, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-container .admin-youtube input ::-webkit-input-placeholder,
 .admin .admin-container .admin-youtube textarea ::-webkit-input-placeholder {
   color: white;
 }
-/* line 113, ../sass/_musicnerdz_adminnav.scss */
+/* line 119, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-container .admin-youtube input:focus ::-webkit-input-placeholder,
 .admin .admin-container .admin-youtube textarea:focus ::-webkit-input-placeholder {
   color: white;
 }
-/* line 120, ../sass/_musicnerdz_adminnav.scss */
+/* line 126, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form {
   width: 75%;
   margin: 0 auto;
@@ -719,22 +734,22 @@ input {
   overflow: scroll;
   height: calc(80vh - 75px);
 }
-/* line 126, ../sass/_musicnerdz_adminnav.scss */
+/* line 132, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form md-chips .md-chips.md-focused, .admin .admin-form md-chips .md-chips {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* line 130, ../sass/_musicnerdz_adminnav.scss */
+/* line 136, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form .md-errors-spacer {
   float: none;
 }
-/* line 133, ../sass/_musicnerdz_adminnav.scss */
+/* line 139, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form .admin-largelabel,
 .admin .admin-form .admin-youtube {
   margin: 15px 0;
   font-size: 1.4rem;
 }
-/* line 137, ../sass/_musicnerdz_adminnav.scss */
+/* line 143, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form .admin-largelabel label,
 .admin .admin-form .admin-youtube label {
   -webkit-transform: none !important;
@@ -742,18 +757,18 @@ input {
   transform: none !important;
   font-size: 1.7rem;
 }
-/* line 143, ../sass/_musicnerdz_adminnav.scss */
+/* line 149, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form .admin-largelabel textarea,
 .admin .admin-form .admin-youtube textarea {
   margin: 0;
   font-size: 1.4rem;
 }
-/* line 148, ../sass/_musicnerdz_adminnav.scss */
+/* line 154, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form md-input-container {
   margin-top: 0;
   margin-bottom: 0;
 }
-/* line 152, ../sass/_musicnerdz_adminnav.scss */
+/* line 158, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form input,
 .admin .admin-form textarea {
   font-family: Lato;
@@ -769,97 +784,97 @@ input {
   -webkit-box-shadow: 1px 1px 2px grey;
   box-shadow: 1px 1px 2px grey;
 }
-/* line 166, ../sass/_musicnerdz_adminnav.scss */
+/* line 172, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form input ::-webkit-input-placeholder,
 .admin .admin-form textarea ::-webkit-input-placeholder {
   color: white;
 }
-/* line 170, ../sass/_musicnerdz_adminnav.scss */
+/* line 176, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form input:focus ::-webkit-input-placeholder,
 .admin .admin-form textarea:focus ::-webkit-input-placeholder {
   color: white;
 }
-/* line 175, ../sass/_musicnerdz_adminnav.scss */
+/* line 181, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form textarea {
   padding: 15px;
   overflow: scroll;
   max-height: 125px;
   min-height: 125px;
 }
-/* line 181, ../sass/_musicnerdz_adminnav.scss */
+/* line 187, ../sass/_musicnerdz_adminnav.scss */
 .admin .admin-form label {
   padding-left: 10px !important;
   -webkit-transform: translate3d(0, 40px, 0) scale(1);
   transform: translate3d(0, 40px, 0) scale(1);
 }
 
-/* line 189, ../sass/_musicnerdz_adminnav.scss */
+/* line 195, ../sass/_musicnerdz_adminnav.scss */
 .small {
   height: auto !important;
 }
 
-/* line 193, ../sass/_musicnerdz_adminnav.scss */
+/* line 199, ../sass/_musicnerdz_adminnav.scss */
 #eventSearchForm {
   width: 75%;
   margin: 0 auto;
 }
-/* line 196, ../sass/_musicnerdz_adminnav.scss */
+/* line 202, ../sass/_musicnerdz_adminnav.scss */
 #eventSearchForm .admin-label {
   width: 50%;
   display: inline-block;
 }
 
-/* line 202, ../sass/_musicnerdz_adminnav.scss */
+/* line 208, ../sass/_musicnerdz_adminnav.scss */
 #eventCreationForm {
   height: auto;
 }
-/* line 204, ../sass/_musicnerdz_adminnav.scss */
+/* line 210, ../sass/_musicnerdz_adminnav.scss */
 #eventCreationForm .md-chips .md-chip-input-container {
   width: 35%;
 }
-/* line 207, ../sass/_musicnerdz_adminnav.scss */
+/* line 213, ../sass/_musicnerdz_adminnav.scss */
 #eventCreationForm .md-chips {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-/* line 211, ../sass/_musicnerdz_adminnav.scss */
+/* line 217, ../sass/_musicnerdz_adminnav.scss */
 #eventCreationForm .btn1 {
   margin: 0 3px;
   width: 200px;
 }
 
-/* line 218, ../sass/_musicnerdz_adminnav.scss */
+/* line 224, ../sass/_musicnerdz_adminnav.scss */
 #addResourcesForm md-card:last-child {
   padding: 15px;
 }
-/* line 221, ../sass/_musicnerdz_adminnav.scss */
+/* line 227, ../sass/_musicnerdz_adminnav.scss */
 #addResourcesForm a {
   width: 300px;
   margin: 0 auto;
 }
 
-/* line 229, ../sass/_musicnerdz_adminnav.scss */
+/* line 235, ../sass/_musicnerdz_adminnav.scss */
 #addQuestionsForm .admin-multiple-choice,
 #externalEventCreation .admin-multiple-choice {
   padding: 25px;
 }
-/* line 231, ../sass/_musicnerdz_adminnav.scss */
+/* line 237, ../sass/_musicnerdz_adminnav.scss */
 #addQuestionsForm .admin-multiple-choice md-autocomplete,
 #externalEventCreation .admin-multiple-choice md-autocomplete {
   width: 350px;
 }
 
-/* line 237, ../sass/_musicnerdz_adminnav.scss */
+/* line 243, ../sass/_musicnerdz_adminnav.scss */
 .md-resize-handle {
   display: none;
 }
 
-/* line 241, ../sass/_musicnerdz_adminnav.scss */
+/* line 247, ../sass/_musicnerdz_adminnav.scss */
 .admin-form-desc {
   min-height: 125px !important;
 }
 
-/* line 247, ../sass/_musicnerdz_adminnav.scss */
+/* line 253, ../sass/_musicnerdz_adminnav.scss */
 #addSchoolForm input,
 #addTeacherForm input {
   margin: 0;

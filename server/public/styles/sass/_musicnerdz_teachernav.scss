@@ -1,8 +1,13 @@
 .teacher {
+    img {
+        width: 150px;
+        margin: 0 30px;
+    }
     .container {
         height: 75px;
     }
     .teacher-nav {
+
         a {
             font-size: 1.5rem;
             &:before {
