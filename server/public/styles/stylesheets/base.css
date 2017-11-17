@@ -1089,3 +1089,55 @@ input {
   font-size: 3rem;
   cursor: pointer;
 }
+
+/* line 3, ../sass/_musicnerdz_quiz.scss */
+.student-quiz .details .details-container {
+  margin: 0 15px;
+  width: 75%;
+}
+/* line 6, ../sass/_musicnerdz_quiz.scss */
+.student-quiz .details .details-container .student-quiz-artist {
+  font-weight: 300;
+  font-size: 4rem;
+  margin: 0;
+}
+/* line 11, ../sass/_musicnerdz_quiz.scss */
+.student-quiz .details .details-container .student-quiz-details {
+  font-weight: 300;
+  font-size: 3rem;
+  margin: 0;
+}
+
+/* line 20, ../sass/_musicnerdz_quiz.scss */
+.student-quiz-module {
+  height: calc(100%-(430px));
+}
+/* line 22, ../sass/_musicnerdz_quiz.scss */
+.student-quiz-module md-tabs.md-dynamic-height md-tabs-content-wrapper {
+  margin: 0 auto;
+  width: 85%;
+}
+
+/* line 29, ../sass/_musicnerdz_quiz.scss */
+.fixed {
+  background-color: #000000;
+  color: white;
+  min-height: 355px;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  /* line 38, ../sass/_musicnerdz_quiz.scss */
+  .student-quiz .details .details-container {
+    margin: 0 35px;
+  }
+  /* line 41, ../sass/_musicnerdz_quiz.scss */
+  .student-quiz .details .student-quiz-artist {
+    font-weight: 300;
+    font-size: 4rem;
+  }
+  /* line 45, ../sass/_musicnerdz_quiz.scss */
+  .student-quiz .details .student-quiz-details {
+    font-weight: 300;
+    font-size: 3rem;
+  }
+}

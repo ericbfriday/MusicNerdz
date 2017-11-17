@@ -1,41 +1,40 @@
 <!-- navbar -->
 <div ng-include="'views/partials/nav.html'"></div>
 <!-- song info and video -->
-<div layout="row" class="fixed">
+<div layout="row" class="fixed student-quiz">
     <!-- video on left -->
-    <div flex="70">
+    <div flex="50">
         <ng-youtube-embed video="smc.mods.data[0].video" autoplay="false" color="white" disablekb="false">
         </ng-youtube-embed>
     </div>
     <!-- song data on right -->
-    <div flex="30">
-        <p class="sizeMd">{{smc.mods.data[0].artist}}</p>
-        <p class="sizeLg">{{smc.mods.data[0].mod_title}} | {{smc.mods.data[0].album}}</p>
-        <p class="sameAsP">
-           {{smc.mods.data[0].mod_desc}}
-        </p>
+    <div flex class="details" layout="column" layout-align="center center">
+        <div class="details-container" layout="column" layout-align="center center" ng-cloak>
+            <p class="student-quiz-artist">{{smc.mods.data[0].artist}}</p>
+            <p class="student-quiz-details">Title: {{smc.mods.data[0].mod_title}}</p>
+            <p class="student-quiz-details">Album: {{smc.mods.data[0].album}}</p>
+            <p class="sameAsP">
+                {{smc.mods.data[0].mod_desc}}
+            </p>
+        </div>
     </div>
 </div>
 <!-- tabs -->
-<div ng-cloak>
+<div class="student-quiz-module" ng-cloak>
     <md-content class="sameAsP mod">
         <md-tabs md-dynamic-height md-border-bottom>
             <!-- lyric view -->
             <md-tab label="Lyrics">
-                <md-content class="md-padding mod">
-                    <h1 class="md-display-2">Lyrics</h1>
-                        <pre class="sameAsP">
-                            {{smc.mods.data[0].lyrics}}
-                        </pre>
-                </md-content>
+                    {{smc.mods.data[0].lyrics}}
+                    
             </md-tab>
             <!-- history view -->
             <md-tab label="Historical References">
                 <md-content class="md-padding">
                     <h1 class="md-display-2">Historical References</h1>
                     <p class="sameAsP" ng-repeat="event in smc.histEvents.data">
-                        <strong>{{event.title}}</strong><br>
-                        {{event.desc}}
+                        <strong>{{event.title}}</strong>
+                        <br> {{event.desc}}
                     </p>
                 </md-content>
             </md-tab>
@@ -54,8 +53,8 @@
                                     <strong>B</strong> {{mcQuest.b}} </md-radio-button>
                                 <md-radio-button value="c">
                                     <strong>C</strong> {{mcQuest.c}}</md-radio-button>
-                            <md-radio-button value="d">
-                                <strong>D</strong> {{mcQuest.d}}</md-radio-button>
+                                <md-radio-button value="d">
+                                    <strong>D</strong> {{mcQuest.d}}</md-radio-button>
                             </md-radio-group>
                         </div>
                         <!-- sort answer -->
