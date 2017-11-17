@@ -30,7 +30,7 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
     })
     .when('/admin/home', {
       templateUrl: '/views/templates/adminLandingPage.html',
-      controller: 'AdminUserController as auc',
+      controller: 'AdminViewController as avc',
       resolve: {
         getadmin: function (UserService) {
           return UserService.getadmin();

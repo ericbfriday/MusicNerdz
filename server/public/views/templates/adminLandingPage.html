@@ -1,29 +1,29 @@
-<section>
+<section ng-init="avc.getModules()" class="admin">
     <div ng-include="'views/partials/admin_nav.html'"></div>
-    <md-card>
-        <md-card-title-text class="admin-title">
-            <md-card-title class="md-headline">
+    <md-card class="admin-container">
+        <md-card-title class="admin-title">
+            <md-card-title-text class="md-headline">
                 Manage Modules
             </md-card-title>
         </md-card-title-text>
-        <md-card-content>
+        <md-card-content class="md-padding">
             <div class="admin-landing-page">
                 <md-table-container>
                     <table md-table>
-                        <thead md-head md-row-select multiple>
+                        <thead md-head md-row-select multiple class="md-padding">
                             <th md-column>Module ID</th>
-                            <th md-column>Song Name</th>
+                            <th md-column>Song Title</th>
                             <th md-column>Song Album</th>
                             <th md-column>Song Artist</th>
                             <th md-column>Delete Module</th>
                         </thead>
                         <tbody md-body>
                             <div>
-                                <tr ng-repeat="teacher in auc.teacherList.data | orderBy: teacher.last" ng-show="teacher.schools_id == auc.teacherSchoolID">
-                                    <td md-cell></td>
-                                    <td md-cell></td>
-                                    <td md-cell></td>
-                                    <td md-cell></td>
+                                <tr ng-repeat="mod in avc.modList.data">
+                                    <td md-cell>{{mod.id}}</td>
+                                    <td md-cell>{{mod.title}}</td>
+                                    <td md-cell>{{mod.album}}</td>
+                                    <td md-cell>{{mod.artist}}</td>
                                     <td md-cell>
                                         <md-button class="md-warn" ng-click="">Delete</md-button>
                                     </td>
