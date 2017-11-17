@@ -38,5 +38,6 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         StudentService.submitQuiz(resps);
         console.log(id);
         console.log(mcQuest.id);
+
     } //END submitQuiz
 }); //END App Controller

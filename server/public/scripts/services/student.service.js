@@ -23,7 +23,7 @@ myApp.service('StudentService', function ($http) {
 
     //constructor to store short answer questions
     function SaQs(question, id) {
-        this.question = question,
+        this.question = question;
             this.id = id
     } //END constructor 
     
@@ -39,7 +39,7 @@ myApp.service('StudentService', function ($http) {
 
         //constructor to create history events
         function Hist(title, desc) {
-            this.title = title,
+            this.title = title;
                 this.desc = desc
         } //END constructor
 
