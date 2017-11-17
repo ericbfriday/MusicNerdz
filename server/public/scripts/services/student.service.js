@@ -95,4 +95,10 @@ myApp
             console.log('studGRADES:', sv.studGrades);
         }; //END getGrades
 
+        sv.feedbackFunc = function () {
+            console.log('in feedback service');
+            var feedback = prompt("Tell us what you thought of this quiz.");
+        }; //end sv.feedback
+
+
     }); //END

@@ -10,8 +10,11 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.submitQuiz = function () {
      console.log(vm.McVal);
      console.log(vm.SaVal);
+
      
     };//END submitQuiz
- 
+
+    // vm.feedbackFunc = StudentService.feedbackFunc;
+    console.log('feedback in controller:');
         
 });//END App Controller

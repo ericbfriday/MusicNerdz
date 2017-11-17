@@ -12,7 +12,7 @@
         <p class="sizeMd">{{smc.mods.data[0].artist}}</p>
         <p class="sizeLg">{{smc.mods.data[0].mod_title}} | {{smc.mods.data[0].album}}</p>
         <p class="sameAsP">
-           {{smc.mods.data[0].mod_desc}}
+            {{smc.mods.data[0].mod_desc}}
         </p>
     </div>
 </div>
@@ -24,7 +24,7 @@
             <md-tab label="Lyrics">
                 <md-content class="md-padding mod">
                     <h1 class="md-display-2">Lyrics</h1>
-                        <pre class="sameAsP">
+                    <pre class="sameAsP">
                             {{smc.mods.data[0].lyrics}}
                         </pre>
                 </md-content>
@@ -34,8 +34,8 @@
                 <md-content class="md-padding">
                     <h1 class="md-display-2">Historical References</h1>
                     <p class="sameAsP" ng-repeat="event in smc.histEvents.data">
-                        <strong>{{event.title}}</strong><br>
-                        {{event.desc}}
+                        <strong>{{event.title}}</strong>
+                        <br> {{event.desc}}
                     </p>
                 </md-content>
             </md-tab>
@@ -54,8 +54,8 @@
                                     <strong>B</strong> {{mcQuest.b}} </md-radio-button>
                                 <md-radio-button value="c">
                                     <strong>C</strong> {{mcQuest.c}}</md-radio-button>
-                            <md-radio-button value="d">
-                                <strong>D</strong> {{mcQuest.d}}</md-radio-button>
+                                <md-radio-button value="d">
+                                    <strong>D</strong> {{mcQuest.d}}</md-radio-button>
                             </md-radio-group>
                         </div>
                         <!-- sort answer -->
@@ -66,6 +66,7 @@
                             </md-input-container>
                         </div>
                         <!-- submit button -->
+                        <!-- ng-click="smc.StudentService.feedbackFunc()" -->
                         <md-button class="sameAsP" ng-click="smc.submitQuiz
                         ()">Submit</md-button>
                     </form>
