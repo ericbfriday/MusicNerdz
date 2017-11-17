@@ -38,8 +38,8 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         StudentService.submitQuiz(resps);
         console.log(id);
         console.log(mcQuest.id);
-    } //END submitQuiz
 
+<<<<<<< HEAD
     //CALL getMod on page load
     StudentService.getMod();
     console.log('resp in controller:');
@@ -48,3 +48,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     console.log('feedback in controller:');
     
 });//END App Controller
+=======
+    } //END submitQuiz
+}); //END App Controller
+>>>>>>> master
