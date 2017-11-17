@@ -1,4 +1,6 @@
-<div ng-include="'views/partials/nav.html'"></div>
+<div ng-if="!uc.userObject.user.teachers_id" ng-include="'views/partials/nav.html'"></div>
+<div ng-if="uc.userObject.user.teachers_id" ng-include="'views/partials/teacher_nav.html'"></div>
+
 <div class="container" layout="column" layout-align="start stretch">
     <div class="main" layout="column" layout-align="start stretch" flex>
         <div class="main-carousel" flex=20>

@@ -52,6 +52,16 @@ myApp
                     });
                 });
               $location.path("/user");
+              } else {
+                $http
+                .get('/student/getAllModules')
+                .then(function (res) {
+                  userObject.allMods = res.data;
+                  // get all and split out the assigned modules
+                  userObject.new = _(userObject.allMods)
+                    .differenceBy(userObject.assigned, 'id')
+                    .value();
+                });
               }
               
 
