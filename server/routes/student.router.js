@@ -1,3 +1,4 @@
+'use strict';
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
@@ -234,5 +235,34 @@ router.get('/modules/:id', function (req, res) {
   }); //END pool.connect
 }); //END router GET
 
+//get all modules from database
+router.get('/getFeedback/:id', function (req, res) {
+  let feedbackModID = req.params.id;
+  console.log('logging feedbackModID in student.router /getFeedback/:id -> ', feedbackModID);
+  // connect to database
+  pool.connect(function (err, client, done) {
+    // query 
+    let query = 'SELECT r.admin_notes FROM responses r JOIN questions q ON (r.questions_id=q.id) JOIN modules m ON (q.modules_id=m.id) WHERE r.questions_id = q.id AND q.modules_id = $1;';
+    let values = [feedbackModID];
+    //error handling
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } //END if connection error
+    else {
+      client.query(query, values, function (error, resp) {
+        done();
+        if (error) {
+          console.log('Query Error:', error);
+          res.sendStatus(500);
+        } //END if query error
+        else {
+          console.log('logging resp in /getFeedback/ ->', resp);
+          res.send(resp).status(200);
+        } //END else send
+      }); //END client.query
+    } //END else send query
+  }); //END pool.connect
+}); //END router GET
 
 module.exports = router;

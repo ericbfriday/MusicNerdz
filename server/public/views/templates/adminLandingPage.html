@@ -15,7 +15,7 @@
                             <th md-column>Song Title</th>
                             <th md-column>Song Album</th>
                             <th md-column>Song Artist</th>
-                            <th md-column>Delete Module</th>
+                            <th md-column>View Feedback</th>
                         </thead>
                         <tbody md-body>
                             <div>
@@ -25,7 +25,7 @@
                                     <td md-cell>{{mod.album}}</td>
                                     <td md-cell>{{mod.artist}}</td>
                                     <td md-cell>
-                                        <md-button class="md-warn" ng-click="">Delete</md-button>
+                                        <md-button class="md-warn" ng-click="avc.getFeedback(mod.id)">View Feedback</md-button>
                                     </td>
                                 </tr>
                             </div>

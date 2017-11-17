@@ -3,7 +3,11 @@
 myApp.controller("AdminViewController", function ($http) {
     const vm = this;
 
-    vm.modList = {data: []};
+    vm.modList = {
+        data: []
+    };
+
+    vm.feedback = [];
 
     vm.getModules = function () {
         $http.get('/student/getAllModules')
@@ -14,5 +18,17 @@ myApp.controller("AdminViewController", function ($http) {
             .catch(function (reason) {
                 console.log('Logging catch reason in adminView.controller -> ', reason);
             });
+    };
+
+    vm.getFeedback = function (id) {
+        $http.get('/student/getFeedback/' + id)
+        .then( function (res) {
+            console.log('getFeeedback response -> ', res);
+            vm.feedback = res.data.rows;
+            console.log('logging vm.feedback -> ', vm.feedback);
+        })
+        .catch( (err) => {
+            console.log('Logging err in getFeedback catch -> ', err);
+        });
     };
 });
