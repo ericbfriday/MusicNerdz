@@ -68,7 +68,6 @@ router.post('/assign', (req, res) => {
       console.log('values', values);
 
       client.query(query, values, (err, response) => {
-        client.end();
         if (err) {
           console.log("Error inserting data: ", err);
           res.sendStatus(500);
@@ -76,10 +75,9 @@ router.post('/assign', (req, res) => {
           console.log('insert in classes_modules', response);
         }
       })
-    }
-
-    res.sendStatus(203);   
+    }  
   })
+  res.sendStatus(203);
 })
 
 //get all assigned module info that matches class Id
