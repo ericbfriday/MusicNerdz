@@ -11,13 +11,14 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.mcQuestions = StudentService.mcQuestions;
     vm.essayQuestions = StudentService.essayQuestions;
     vm.histEvents = StudentService.histEvents;
-    vm.tags = StudentService.tags
+    vm.tags = StudentService.tags;
+    vm.addResources = StudentService.addResources;
+    //teacher
     vm.classes = TeacherService.classes;
     vm.selectedClasses = [];
-    vm.path = $location.path();
-
     vm.getClasses = TeacherService.getClasses;
     vm.updateAssigned = TeacherService.updateAssigned;
+    vm.path = $location.path();
 
     // constructor for quiz responses
     function QuizResps(studId, resp, questId) {

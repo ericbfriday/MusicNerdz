@@ -24,8 +24,11 @@ myApp.service('StudentService', function ($http) {
     sv.tags = {
         data: []
     }
-    sv.addCont = {
-        data: []
+    sv.addResources = {
+        video: [],
+        news: [],
+        blog: [],
+        other: []
     }
 
     //constructor to store short answer questions
@@ -57,6 +60,14 @@ myApp.service('StudentService', function ($http) {
         this.desc = desc
     } //END constructor
 
+    //constructor to create additional resources 
+    function addContent (title, desc, type, link) {
+        this.title = title;
+        this.desc = desc;
+        this.type = type;
+        this.link = link
+    } //END constructor
+
     // function to remove duplicates
     function removeDupes(originalArray, objKey) {
         // local variables
@@ -86,6 +97,10 @@ myApp.service('StudentService', function ($http) {
         let tempEssay = [];
         let tempHist = [];
         let tempTags = [];
+        let tempResVid = [];
+        let tempResNews = [];
+        let tempResBlog = [];
+        let tempResOth = [];
         console.log(id);
         // GET request
         $http.get('/student/mod/' + id).then(function (resp) {
@@ -120,16 +135,36 @@ myApp.service('StudentService', function ($http) {
                     // push new object into temp array
                     tempMC.push(question);
                 } //END else if
+                if (resp.data[i].res_type === 'v') {
+                    let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
+                    tempResVid.push(resource);   
+                }//END if video
+                else if (resp.data[i].res_type === 'na') {
+                    let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
+                    tempResNews.push(resource);
+                }//END else if news article 
+                else if (resp.data[i].res_type === 'bp') {
+                    let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
+                    tempResBlog.push(resource);
+                }//END else if blog post
+                else {
+                    let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
+                    tempResOth.push(resource);
+                }// END else other
             } //END for loop
             // remove dupes from array of tags
-            let tags_without_duplicates = Array.from(new Set(tempTags));
+            let tags_without_duplicates = Array.from(new Set(tempTags))
             // set globals to value of return from function without duplicates
             sv.tags.data = tags_without_duplicates
             sv.mcQuestions.data = removeDupes(tempMC, 'question');
             sv.histEvents.data = removeDupes(tempHist, 'title');
+            sv.addResources.video = removeDupes(tempResVid, 'title');
+            sv.addResources.news = removeDupes(tempResNews, 'title');
+            sv.addResources.blog = removeDupes(tempResBlog, 'title');
+            sv.addResources.other = removeDupes(tempResOth, 'title');
             sv.saQuestions.data = removeDupes(tempSA, 'question');
             sv.essayQuestions.data = removeDupes(tempEssay, 'question');
-            console.log('essay:', sv.essayQuestions.data);
+            console.log('resources', sv.addResources);
             
         }) //END $http.then
     } //END getMod
