@@ -159,21 +159,19 @@ router.get('/getGrades', function (req, res) {
 }); //END router GET
 
 router.post('/quiz', function (req, res){
-  console.log('BODY!', req.body);
-  let ids = req.body.ids;
-  let resps = req.body.resps;
-  let student = 9;
+  console.log('BODY!', req.body.data);
   // connect to database
   pool.connect(function (err, client, done) {
-    // query 
-    let modQuery = 'INSERT INTO responses (students_id, response, questions_id) VALUES ($1, $2, $3)';
     //error handling
     if (err) {
       console.log('Connection Error:', err);
       res.sendStatus(500);
     } //END if connection error
     else {
-      client.query(modQuery, [student, resps, ids], function (quErr, resultObj) {
+      // query 
+      let modQuery = 'INSERT INTO responses (students_id, response, questions_id) VALUES ($1, $2, $3)';
+      for (var i = 0; i < req.body.data.length; i++) {
+        client.query(modQuery, [req.body.data[i].studId, req.body.data[i].resp, req.body.data[i].questId ], function (quErr, resultObj) {
         done();
         //error handling
         if (quErr) {
@@ -181,9 +179,10 @@ router.post('/quiz', function (req, res){
           res.sendStatus(500);
         } //END if query error
         else {
-          console.log(resultObj);
+          res.sendStatus(200);
         } //END else send
       }); //END client.query
+    }//END for loop
     } //END else send query
   }); //END pool.connect
 });//END router POST

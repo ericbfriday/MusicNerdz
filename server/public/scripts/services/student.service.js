@@ -28,13 +28,14 @@ myApp.service('StudentService', function ($http) {
     } //END constructor 
     
         // constructor to create multiple choice objects
-        function McQs(question, a, b, c, d, correct) {
+        function McQs(question, a, b, c, d, correct, id) {
             this.question = question;
             this.a = a;
             this.b = b;
             this.c = c;
             this.d = d;
             this.correct = correct;
+            this.id = id
         } //END constructor
 
         //constructor to create history events
@@ -149,12 +150,12 @@ myApp.service('StudentService', function ($http) {
 
     // function to send quiz responses to server -> DB
     sv.submitQuiz = function ( resps ) {
-        console.log(resps );
+        objectToSend = {data: resps}
         // POST request
         $http({
             method: 'POST',
             url: '/student/quiz',
-            data: resps
+            data: objectToSend
         }).then(function (response) {
             console.log('GET response:', response);
         })//END $http.then
