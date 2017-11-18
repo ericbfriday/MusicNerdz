@@ -19,9 +19,9 @@
       <li flex layout="row" layout-align="end center" class="student-nav">
         <a href="/#/student/grades" ng-show="uc.userObject.user.students_id" layout="row" layout-align="center center" flex>
           View Grades</a>
-        <a href="/#/home" ng-show="lc.path !== '/home' && !uc.userObject.user" ng-cloak layout="row" layout-align="center center" flex=nogrow class="login">
+        <a href="/#/home" ng-show="lc.path !== '/home' && !uc.userObject.user.length" ng-cloak layout="row" layout-align="center center" flex=nogrow class="login">
           <i class="fa fa-sign-in" aria-hidden="true"></i>Log In</a>
-        <a ng-click="uc.userService.logout()" ng-show="uc.userObject.user" layout="row" layout-align="center center" flex>
+        <a ng-click="uc.userService.logout()" ng-show="uc.userObject.user.length" layout="row" layout-align="center center" flex>
           <i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</a>
       </li>
     </div>
