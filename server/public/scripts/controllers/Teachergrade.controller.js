@@ -1,7 +1,9 @@
+'use strict';
+
 myApp
 .controller('TeachergradeController', function ($http, UserService, StudentService, TeacherService) {
   console.log('TeachergradeController created');
-  var vm = this;
+  const vm = this;
   vm.userService = UserService;
   vm.userObject = UserService.userObject;
   vm.studentService = StudentService;

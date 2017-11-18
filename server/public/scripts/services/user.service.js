@@ -1,10 +1,12 @@
+'use strict';
 myApp
   .factory('UserService', function ($http, $location, $mdDialog, $window) {
     console.log('UserService Loaded');
 
-    var userObject = {};
+    let userObject = {};
     userObject.new = [];
     userObject.allMods = [];
+    userObject.studentinfo = [];
 
     return {
       userObject: userObject,
@@ -174,6 +176,8 @@ myApp
           })
           .then($http.get('/student/getGrades').then(function (resp) {
             userObject.studentinfo = resp.data;
+            console.log('userObject.studentinfo ', userObject.studentinfo);
+            
           }));
       },
 
