@@ -1,11 +1,19 @@
-myApp.controller('StudentModuleController', function (UserService, StudentService, $location) {
+myApp.controller('StudentModuleController', function (UserService, StudentService, TeacherService, $location) {
     console.log('StudentModuleController created');
     const vm = this;
+
     vm.userService = UserService;
+    vm.userObject = UserService.userObject;
     vm.mods = StudentService.mods;
     vm.saQuestions = StudentService.saQuestions;
     vm.mcQuestions = StudentService.mcQuestions;
     vm.histEvents = StudentService.histEvents;
+    vm.classes = TeacherService.classes;
+    vm.selectedClasses = [];
+    
+    vm.getClasses = TeacherService.getClasses;    
+    vm.updateAssigned = TeacherService.updateAssigned;
+    
 
     vm.path = $location.path();
 
@@ -42,4 +50,6 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         console.log(mcQuest.id);
 
     } //END submitQuiz
+
+    
 }); //END App Controller

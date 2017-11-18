@@ -29,7 +29,7 @@ router.post('/addSchool', function (req, res) {
 }); // end addSchool
 
   // adds teacher to user and teachers DB.
-router.post('/addTeacher', function (req, res) {
+router.post('/addTeacher', (req, res) => {
   pool.connect((err, client, done) => {
     let query = "WITH new_teacher AS (INSERT INTO teachers (first, last, email, schools_id) VALUES ($1, $2, $3, $4) RETURNING id) INSERT INTO users (type, username, password, teachers_id) VALUES (2, $5, $6, (SELECT id FROM new_teacher));";
     let values = [req.body.fname, req.body.lname, req.body.email, req.body.schoolID, req.body.email, encryptLib.encryptPassword(req.body.password)];
@@ -49,6 +49,36 @@ router.post('/addTeacher', function (req, res) {
       });
   });
 }); // end /addTeacher
+
+//update assigned modules
+router.post('/assign', (req, res) => {
+  console.log('req.body in assign post', req.body);
+  let classArr = req.body.classArr;
+  let moduleId = req.body.moduleId;
+
+  pool.connect((err, client, done) => {
+    if (err) {
+      console.log("Error connecting: ", err);
+      res.sendStatus(500);
+    }
+    for (let i = 0; i < classArr.length; i++) {
+      let classId = classArr[i];
+      let query = "INSERT INTO classes_modules (classes_id, modules_id) VALUES ($1, $2)";
+      let values = [classId, moduleId];
+      console.log('values', values);
+
+      client.query(query, values, (err, response) => {
+        if (err) {
+          console.log("Error inserting data: ", err);
+          res.sendStatus(500);
+        } else {
+          console.log('insert in classes_modules', response);
+        }
+      })
+    }  
+  })
+  res.sendStatus(203);
+})
 
 //get all assigned module info that matches class Id
 router.get('/assigned/:classIdParam', function (req, res) {

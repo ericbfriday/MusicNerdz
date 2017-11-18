@@ -2,7 +2,7 @@
     <!-- navbar -->
     <div ng-include="'views/partials/nav.html'"></div>
     <!-- song info and video -->
-    <div layout="row" layout-align = "space-between stretch" class="fixed student-quiz">
+    <div layout="row" layout-align="space-between stretch" class="fixed student-quiz">
         <!-- video on left -->
         <div flex="30" flex-lt-sm="50">
             <ng-youtube-embed video="smc.mods.data[0].video" autoplay="false" color="orange" disablekb="false" width="100%" theme="dark">
@@ -17,9 +17,21 @@
                 <p class="sameAsP student-quiz-desc">
                     {{smc.mods.data[0].mod_desc}}
                 </p>
+                <div class="assignBlock" ng-if="smc.userObject.user.teachers_id !== null" ng-init=smc.getClasses(smc.userObject.user.teachers_id)>
+                    <md-input-container>
+                        <label>Assign to Class</label>
+                        <md-select ng-model="smc.selectedClasses" md-on-close="smc.updateAssigned(smc.selectedClasses, smc.mods.data[0].id)"
+                            multiple>
+                            <md-option ng-repeat="class in smc.classes" value={{class.id}}>
+                                {{class.title}}
+                            </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
             </div>
         </div>
     </div>
+
     <!-- tabs -->
     <div class="student-quiz-module" ng-cloak flex>
         <md-content class="sameAsP mod">
@@ -28,8 +40,8 @@
                 <md-tab label="Lyrics">
                     <md-content class="md-padding mod">
                         <pre class="sameAsP lyrics">
-                            {{smc.mods.data[0].lyrics}}
-                        </pre>
+                                {{smc.mods.data[0].lyrics}}
+                            </pre>
                     </md-content>
                 </md-tab>
                 <!-- history view -->
@@ -68,11 +80,10 @@
                             </div>
                             <!-- submit button -->
                             <md-button class="sameAsP btn1" ng-click="smc.submitQuiz
-                        ()">Submit</md-button>
+                            ()">Submit</md-button>
                         </form>
                     </md-content>
                 </md-tab>
             </md-tabs>
         </md-content>
     </div>
-</div>

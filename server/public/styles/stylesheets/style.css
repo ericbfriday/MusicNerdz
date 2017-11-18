@@ -154,3 +154,8 @@ md-card-title {
 .btn1 {
     background-color: #fca311;
 }
+
+.assignBlock {
+    color: rgb(7, 6, 6);
+    background-color: white;
+}
