@@ -140,6 +140,7 @@ myApp.controller('ViewController', function ($http, $location, TeacherService, U
             vm.returnedAssigned = vm.teacherService.assigned;
             var assignedMap = {};
             var studentMap = {};
+            vm.modules = [];
 
             for (var i = 0; i < vm.returnedAssigned.length; i++) {
                 var moduleId = vm.returnedAssigned[i].mod_id;

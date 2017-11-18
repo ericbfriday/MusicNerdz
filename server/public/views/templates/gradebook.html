@@ -1,4 +1,4 @@
-<div ng-include="'views/partials/teacher_nav.html'"></div>
+<div ng-include="'views/partials/teacher_nav.html'" ng-controller="UserController as uc"></div>
 <div class="container gradebook" ng-init=vc.getClasses(vc.teacher)>
     <p>Gradebook</p>
     <div layout="row" layout-align="center center" flex layout-fill>
