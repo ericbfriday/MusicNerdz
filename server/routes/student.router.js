@@ -179,10 +179,10 @@ router.post('/quiz', function (req, res){
           res.sendStatus(500);
         } //END if query error
         else {
-          res.sendStatus(200);
-        } //END else send
+          console.log('posted');
+        } //END else posted
       }); //END client.query
-    }//END for loop
+      }//END for loop
     } //END else send query
   }); //END pool.connect
 });//END router POST

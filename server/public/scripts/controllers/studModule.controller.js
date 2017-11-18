@@ -41,6 +41,11 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
             //push their id as well
             resps.ids.push(vm.saQuestions.data[i].id)
         } //END for loop 
+        // loop through essay questions 
+        for (let i = 0; i < vm.essayQuestions.data.length; i++) {
+            //push their id as well
+            resps.ids.push(vm.essayQuestions.data[i].id)
+        } //END for loop 
         // convert object of mc responses to an array
         let mcResult = Object.keys(vm.McVal).map(function (key) {
             return vm.McVal[key];
@@ -49,8 +54,12 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         let saResult = Object.keys(vm.SaVal).map(function (key) {
             return vm.SaVal[key];
         }); //END sa Results
-        // set responses in temp object to combined sa and mc arrays
-        resps.resps = mcResult.concat(saResult);
+        let essayResult = Object.keys(vm.EssayVal).map(function (key) {
+            return vm.EssayVal[key];
+        }); //END sa Results
+        // set var in temp object to combined sa and mc arrays
+        let mcSa = mcResult.concat(saResult);
+        resps.resps = mcSa.concat(essayResult);
         // loop through ids
         for (var j = 0; j < resps.ids.length; j++) {
             // make new answer objects with student id

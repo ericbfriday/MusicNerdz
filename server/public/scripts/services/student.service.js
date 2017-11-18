@@ -165,7 +165,7 @@ myApp.service('StudentService', function ($http) {
             url: '/student/quiz',
             data: objectToSend
         }).then(function (response) {
-            console.log('GET response:', response);
+            console.log('posted');
         }) //END $http.then
     } //END submitQuiz
 
