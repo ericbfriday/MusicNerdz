@@ -1,20 +1,20 @@
 <section class="admin">
     <div>
-        <md-card class="md-padding admin-container">
+        <md-card class="admin-container">
             <md-card-title class="admin-title">
                 <md-card-title-text class="md-headline">
                     Student Feedback
                 </md-card-title-text>
             </md-card-title>
-            <div layout="row" layout-align="center center">
-                <div ng-repeat="fb in avc.feedback.data">
-                    <md-card layout-fill flex="25">
+            <md-card-content>
+                <div layout="row" layout-align="center center">
+                    <md-card ng-repeat="fb in avc.feedback.data"> <!-- layout-fill flex="25"-->
                         <md-card-content class="md-padding">
-                            {{fb}} {{fb[0].admin_notes}} {{avc.feedback}}
+                            {{fb.admin_notes}}
                         </md-card-content>
                     </md-card>
                 </div>
-            </div>
+            </md-card-content>
         </md-card>
     </div>
 </section>

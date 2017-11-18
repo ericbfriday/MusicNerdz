@@ -25,7 +25,7 @@
                                     <td md-cell>{{mod.album}}</td>
                                     <td md-cell>{{mod.artist}}</td>
                                     <td md-cell>
-                                        <md-button class="md-warn" ng-click="avc.getFeedback(mod.id); showFeedback($event)">View Feedback</md-button>
+                                        <md-button class="md-warn" ng-click="showFeedback($event); avc.getFeedback(mod.id) ">View Feedback</md-button>
                                     </td>
                                 </tr>
                             </div>

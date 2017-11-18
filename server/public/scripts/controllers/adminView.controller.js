@@ -8,8 +8,8 @@ myApp.controller("AdminViewController", function ($http, $mdDialog, $scope) {
     };
 
     vm.feedback = {
-        data: []}
-    ;
+        data: []
+    };
 
     vm.getModules = function () {
         $http.get('/student/getAllModules')
