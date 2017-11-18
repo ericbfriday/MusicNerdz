@@ -134,3 +134,19 @@
     font-size: 3rem;
     cursor: pointer;
 }
+
+.student-grade {
+    .student-grade-response {
+        font-size: 1.5rem;
+    }
+    md-card-title{
+        background: $blue;
+        color: $white;
+        padding:16px;
+        
+    }
+    h2 {
+        color: #fca311;
+        line-height: normal;
+    }
+}

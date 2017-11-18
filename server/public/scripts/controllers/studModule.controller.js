@@ -1,4 +1,4 @@
-myApp.controller('StudentModuleController', function (UserService, StudentService, $location) {
+myApp.controller('StudentModuleController', function (UserService, StudentService, TeacherService, $location) {
     console.log('StudentModuleController created');
     //GLOBALS
     const vm = this;
@@ -12,6 +12,12 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.essayQuestions = StudentService.essayQuestions;
     vm.histEvents = StudentService.histEvents;
     vm.tags = StudentService.tags
+    vm.classes = TeacherService.classes;
+    vm.selectedClasses = [];
+    vm.path = $location.path();
+
+    vm.getClasses = TeacherService.getClasses;
+    vm.updateAssigned = TeacherService.updateAssigned;
 
     // constructor for quiz responses
     function QuizResps(studId, resp, questId) {
@@ -19,8 +25,6 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         this.resp = resp;
         this.questId = questId
     } //END constructor 
-
-    vm.path = $location.path();
 
     // function to send responses and ids to questions in module to service
     vm.submitQuiz = function () {

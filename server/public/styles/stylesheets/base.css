@@ -1103,6 +1103,22 @@ input, body {
   cursor: pointer;
 }
 
+/* line 139, ../sass/_musicnerdz_studentgrade.scss */
+.student-grade .student-grade-response {
+  font-size: 1.5rem;
+}
+/* line 142, ../sass/_musicnerdz_studentgrade.scss */
+.student-grade md-card-title {
+  background: #14213d;
+  color: white;
+  padding: 16px;
+}
+/* line 148, ../sass/_musicnerdz_studentgrade.scss */
+.student-grade h2 {
+  color: #fca311;
+  line-height: normal;
+}
+
 /* line 1, ../sass/_musicnerdz_teacher.scss */
 .gradebook, .gradebook table {
   font-size: 2rem;
