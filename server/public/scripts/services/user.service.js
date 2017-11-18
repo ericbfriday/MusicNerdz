@@ -26,35 +26,36 @@ myApp
                 $location.path("/admin/home");
               } else if (response.data.students_id) {
                 // user is a student
-                
-                $http
-                .get('/student/modules/' + 7)
+
+                $http.get('/student/modules/' + 7)
                 // hard coded, use 'response.data.students_id'
-                .then(function (res) {
-                  userObject.assigned = res.data;
-                  // get all songs assigned to students in the class
-                })
-                .then(function (res) {
-                  $http
-                    .get('/student/getAllModules')
-                    .then(function (res) {
-                      userObject.allMods = res.data;
-                      // get all and split out the assigned modules
-                      userObject.new = _(userObject.allMods)
-                        .differenceBy(userObject.assigned, 'id')
-                        .value();
-                    });
-                }).then(function (res) {
-                  console.log(userObject.user.students_id);
-                  $http
-                    .get('/student/id/'+userObject.user.students_id)
-                    .then(function (res) {
-                      userObject.student = res.data;
-                      console.log(userObject.student);
-                    });
-                });
-              $location.path("/user");
-              } else {
+                  .then(function (res) {
+                    userObject.assigned = res.data;
+                    // get all songs assigned to students in the class
+                  })
+                  .then(function (res) {
+                    $http
+                      .get('/student/getAllModules')
+                      .then(function (res) {
+                        userObject.allMods = res.data;
+                        // get all and split out the assigned modules
+                        userObject.new = _(userObject.allMods)
+                          .differenceBy(userObject.assigned, 'id')
+                          .value();
+                      });
+                  })
+                  .then(function (res) {
+                    console.log(userObject.user.students_id);
+                    $http
+                      .get('/student/id/' + userObject.user.students_id)
+                      .then(function (res) {
+                        userObject.student = res.data;
+                        console.log(userObject.student);
+                      });
+                  });
+                $location.path("/user");
+              } else if (response.data.teachers_id) {
+                $location.path("/user");
                 $http
                 .get('/student/getAllModules')
                 .then(function (res) {
@@ -64,8 +65,17 @@ myApp
                     .differenceBy(userObject.assigned, 'id')
                     .value();
                 });
+              } else {
+                $http
+                  .get('/student/getAllModules')
+                  .then(function (res) {
+                    userObject.allMods = res.data;
+                    // get all and split out the assigned modules
+                    userObject.new = _(userObject.allMods)
+                      .differenceBy(userObject.assigned, 'id')
+                      .value();
+                  });
               }
-              
 
               // send students/teachers to /user, who are logged in
             } else {
@@ -169,19 +179,10 @@ myApp
       },
       getgradeform: function (mod, student) {
         console.log('module: ', mod, 'student: ', student);
-        $http
-          .get('/student/getModule')
-          .then(function (res) {
-            userObject.moduleinfo = res.data;
-          })
-          .then($http.get('/student/getGrades').then(function (resp) {
-            userObject.studentinfo = resp.data;
-            console.log('userObject.studentinfo ', userObject.studentinfo);
-          
-          })
-        .catch((error) => {
-          console.log('logging catch inside get /student/getModule ', error);
-        }));
+        // $http   .get('/student/getModule')   .then(function (res) {
+        // userObject.moduleinfo = res.data;   })
+        // .then($http.get('/student/getGrades').then(function (resp) {
+        // userObject.studentinfo = resp.data;   }));
       },
 
       logout: function () {

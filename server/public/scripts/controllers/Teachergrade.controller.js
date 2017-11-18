@@ -1,8 +1,7 @@
 'use strict';
+myApp.controller('TeachergradeController', function ($location, UserService, StudentService, TeacherService) {
 
-myApp
-.controller('TeachergradeController', function ($http, UserService, StudentService, TeacherService) {
-  console.log('TeachergradeController created');
+  // console.log('TeachergradeController created');
   const vm = this;
   vm.userService = UserService;
   vm.userObject = UserService.userObject;
@@ -12,7 +11,7 @@ myApp
   console.log('stdRsps:', vm.stdRsps);
   console.log('userObject:', vm.userObject);
 
-
-
-
+  vm.relocate = function () {
+    $location.path("/teacher/grading");
+    };
 });

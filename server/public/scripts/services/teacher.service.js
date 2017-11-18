@@ -1,6 +1,7 @@
 'use strict';
-myApp.service('TeacherService', function ($http) {
-    const vm = this;
+myApp.service('TeacherService', function ($http, UserService) {
+    var vm = this;
+
 
     // let userObject = {};
     vm.classes = [];
@@ -23,7 +24,7 @@ myApp.service('TeacherService', function ($http) {
     };
 
     vm.getClasses = function (teacherId) {
-        console.log('teacher service get classes:', teacherId);
+        console.log('teacher service get classes:', UserService.userObject);
         return $http.get('/teacher/classes/' + teacherId).then(function (res) {
             console.log('response from get classes:', res);
             vm.classes = res.data;
