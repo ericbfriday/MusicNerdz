@@ -140,4 +140,8 @@ myApp.service('TeacherService', function ($http) {
             
         })
     };
+
+    vm.updateAssigned = function (updateModArr) {
+        console.log('classes to update in teacherService', updateModArr);
+    }
 });

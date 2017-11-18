@@ -10,6 +10,9 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.histEvents = StudentService.histEvents;
     vm.classes = TeacherService.classes;
     vm.getClasses = TeacherService.getClasses;
+    vm.selectedClasses = [];
+    vm.updateAssigned = TeacherService.updateAssigned;
+    
 
     // function to send responses and ids to questions in module to service
     vm.submitQuiz = function () {
