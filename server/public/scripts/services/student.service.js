@@ -24,6 +24,9 @@ myApp.service('StudentService', function ($http) {
     sv.tags = {
         data: []
     }
+    sv.addCont = {
+        data: []
+    }
 
     //constructor to store short answer questions
     function SaQs(question, id) {
