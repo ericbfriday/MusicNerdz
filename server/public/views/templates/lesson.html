@@ -14,10 +14,10 @@
         <p class="sameAsP">
            {{smc.mods.data[0].mod_desc}}
         </p>
-        <div ng-if="smc.userObject.teachers_id !== null">
+        <div ng-if="smc.userObject.user.teachers_id !== null" ng-init=smc.getClasses(smc.userObject.user.teachers_id)>
             <md-input-container>
-                <label>Assign to class</label>
-                <md-select ng-model="id" md-on-close="vc.updateAssigned(id)" multiple>
+                <label>Assign to Class</label>
+                <md-select ng-model="id" md-on-close="smc.updateAssigned(id)" multiple>
                     <md-option ng-repeat="class in smc.classes" value={{class.id}}>
                     {{class.title}}
                     </md-option>

@@ -1,4 +1,4 @@
-myApp.controller('StudentModuleController', function (UserService, StudentService) {
+myApp.controller('StudentModuleController', function (UserService, StudentService, TeacherService) {
     console.log('StudentModuleController created');
     const vm = this;
     vm.userService = UserService;
@@ -8,6 +8,8 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.saQuestions = StudentService.saQuestions;
     vm.mcQuestions = StudentService.mcQuestions;
     vm.histEvents = StudentService.histEvents;
+    vm.classes = TeacherService.classes;
+    vm.getClasses = TeacherService.getClasses;
 
     // function to send responses and ids to questions in module to service
     vm.submitQuiz = function () {
@@ -42,4 +44,6 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         console.log(mcQuest.id);
 
     } //END submitQuiz
+
+    
 }); //END App Controller
