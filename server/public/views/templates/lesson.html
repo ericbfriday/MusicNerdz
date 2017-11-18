@@ -40,42 +40,66 @@
                 <md-tab label="Lyrics">
                     <md-content class="md-padding mod">
                         <pre class="sameAsP lyrics">
-                                {{smc.mods.data[0].lyrics}}
-                            </pre>
-                    </md-content>
-                </md-tab>
-                <!-- history view -->
-                <md-tab label="Historical References">
-                    <md-content class="md-padding">
-                        <p class="sameAsP" ng-repeat="event in smc.histEvents.data">
-                            <strong>{{event.title}}</strong>
-                            <br> {{event.desc}}
-                        </p>
-                    </md-content>
-                </md-tab>
-                <md-tab label="Lesson">
-                    <md-content class="student-quiz-lesson">
-                        <!-- lesson view -->
-                        <form name="userForm">
-                            <!-- multiple choice -->
-                            <div ng-repeat="mcQuest in smc.mcQuestions.data">
-                                {{mcQuest.question}}
-                                <md-radio-group ng-model="smc.McVal[$index]">
-                                    <md-radio-button value="a">
-                                        <strong>A.</strong> {{mcQuest.a}}</md-radio-button>
-                                    <md-radio-button value="b">
-                                        <strong>B.</strong> {{mcQuest.b}} </md-radio-button>
-                                    <md-radio-button value="c">
-                                        <strong>C.</strong> {{mcQuest.c}}</md-radio-button>
-                                    <md-radio-button value="d">
-                                        <strong>D.</strong> {{mcQuest.d}}</md-radio-button>
-                                </md-radio-group>
+                            {{smc.mods.data[0].lyrics}}
+                        </pre>
+                </md-content>
+            </md-tab>
+            <!-- history view -->
+            <md-tab label="Historical Events">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Historical Events</h1>
+                    <!-- tags -->
+                    <md-chips>
+                        <md-chip ng-repeat="tag in smc.tags.data">{{tag}}</md-chip>
+                    </md-chips>
+                    <!-- events -->
+                    <p class="sameAsP" ng-repeat="event in smc.histEvents.data">
+                        <strong>{{event.title}}</strong><br>
+                        {{event.desc}}
+                    </p>
+                </md-content>
+            </md-tab>
+            <!-- Additional resources view -->
+            <md-tab label="Additional Resources">
+                <md-content class="md-padding">
+                    <h1 class="md-display-2">Additional Resources</h1>
+                    <p class="sameAsP">
+                        <strong>beep</strong>
+                        <br> boop
+                    </p>
+                </md-content>
+            </md-tab>
+            <md-tab label="Quiz">
+                <md-content class="md-padding student-quiz-lesson">
+                    <!-- lesson view -->
+                    <h1 class="md-display-2">Quiz</h1>
+                    <form name="userForm" id="quiz">
+                        <!-- multiple choice -->
+                        <div ng-repeat="mcQuest in smc.mcQuestions.data">
+                           <strong>{{$index + 1}})</strong> {{mcQuest.question}}
+                            <md-radio-group ng-model="smc.McVal[$index]">
+                                <md-radio-button value="a">
+                                    <strong>A</strong> {{mcQuest.a}}</md-radio-button>
+                                <md-radio-button value="b">
+                                    <strong>B</strong> {{mcQuest.b}} </md-radio-button>
+                                <md-radio-button value="c">
+                                    <strong>C</strong> {{mcQuest.c}}</md-radio-button>
+                            <md-radio-button value="d">
+                                <strong>D</strong> {{mcQuest.d}}</md-radio-button>
+                            </md-radio-group>
+                        </div>
+                        <!-- sort answer -->
+                        <div ng-repeat="saQuest in smc.saQuestions.data">
+                            {{saQuest.question}}
+                            <md-input-container class="md-block">
+                                <textarea ng-model="smc.SaVal[$index]" md-maxlength="1000" rows="3" md-select-on-focus></textarea>
+                            </md-input-container>
                             </div>
-                            <!-- sort answer -->
-                            <div ng-repeat="saQuest in smc.saQuestions.data">
-                                {{saQuest.question}}
+                            <!-- essay -->
+                            <div ng-repeat="essayQuest in smc.essayQuestions.data">
+                                {{essayQuest.question}}
                                 <md-input-container class="md-block">
-                                    <textarea ng-model="smc.SaVal[$index]" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+                                    <textarea ng-model="smc.EssayVal[$index]" md-maxlength="5000" rows="5" md-select-on-focus></textarea>
                                 </md-input-container>
                             </div>
                             <!-- submit button -->
