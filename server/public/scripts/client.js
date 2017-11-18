@@ -148,12 +148,15 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         }
       }
     })
-    .when('/teacher/grading', {
+    .when('/teacher/grading/:id', {
       templateUrl: '/views/templates/gradebook.html',
       controller: 'ViewController as vc',
       resolve: {
-        getteacher: function (UserService) {
+        getteacher: function (UserService, $route) {
           return UserService.getteacher();
+        },
+        getClasses: function (TeacherService, $route) {
+          return TeacherService.getClasses($route.current.params.id);
         }
       }
     })

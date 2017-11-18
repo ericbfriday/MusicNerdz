@@ -5,6 +5,7 @@ myApp.controller('ViewController', function ($http, $location, TeacherService, U
     vm.teacherService = TeacherService;
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
+    
     console.log('user object from theacher service', vm.userObject);
 
     //current teacher user for selecting classes and students

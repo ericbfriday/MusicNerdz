@@ -5,6 +5,7 @@ myApp
     var userObject = {};
     userObject.new = [];
     userObject.allMods = [];
+    userObject.user=[];
 
     return {
       userObject: userObject,
