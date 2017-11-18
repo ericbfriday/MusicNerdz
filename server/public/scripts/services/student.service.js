@@ -20,6 +20,9 @@ myApp.service('StudentService', function ($http) {
         sv.histEvents = {
             data: []
         };
+        sv.tags = {
+            data: []
+        }
 
     //constructor to store short answer questions
     function SaQs(question, id) {
@@ -91,8 +94,8 @@ myApp.service('StudentService', function ($http) {
         let tempSA = [];
         let tempMC = [];
         let tempHist = [];
+        let tempTags = [];
         console.log(id);
-        
         // GET request
         $http.get('/student/mod/'+id).then(function (resp) {
             console.log('response in service:', resp);
@@ -103,6 +106,7 @@ myApp.service('StudentService', function ($http) {
                 // make history events objects and store in local array
                 let event = new Hist(resp.data[i].history_title, resp.data[i].history_desc);
                 tempHist.push(event);
+                tempTags.push(resp.data[i].type)
                 // if the question is Short Answer
                 if (resp.data[i].type === 'sa') {
                     // Make new SaQ object from response data for sas
@@ -119,9 +123,13 @@ myApp.service('StudentService', function ($http) {
                 } //END else if
             } //END for loop
             // set globals to value of return from function without duplicates
+            let tags_without_duplicates = Array.from(new Set(tempTags));
+            sv.tags.data = tags_without_duplicates
             sv.mcQuestions.data = removeDupes(tempMC, 'question');
             sv.histEvents.data = removeDupes(tempHist, 'title');
             sv.saQuestions.data = removeDupes(tempSA, 'question')
+            console.log('tags', sv.tags.data);
+            
         }) //END $http.then
     } //END getMod
 

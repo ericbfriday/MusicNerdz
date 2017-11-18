@@ -7,6 +7,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.saQuestions = StudentService.saQuestions;
     vm.mcQuestions = StudentService.mcQuestions;
     vm.histEvents = StudentService.histEvents;
+    vm.tags = StudentService.tags
 
     function QuizResps (studId, resp, questId) {
         this.studId = studId;
