@@ -80,8 +80,15 @@
                         <div ng-repeat="saQuest in smc.saQuestions.data">
                             {{saQuest.question}}
                             <md-input-container class="md-block">
-                                <textarea ng-model="smc.SaVal[$index]" md-maxlength="500" rows="5" md-select-on-focus></textarea>
+                                <textarea ng-model="smc.SaVal[$index]" md-maxlength="1000" rows="3" md-select-on-focus></textarea>
                             </md-input-container>
+                            </div>
+                            <!-- essay -->
+                            <div ng-repeat="essayQuest in smc.essayQuestions.data">
+                                {{essayQuest.question}}
+                                <md-input-container class="md-block">
+                                    <textarea ng-model="smc.EssayVal[$index]" md-maxlength="5000" rows="5" md-select-on-focus></textarea>
+                                </md-input-container>
                         </div>
                         <!-- submit button -->
                         <md-button class="sameAsP" ng-click="smc.submitQuiz()">Submit</md-button>

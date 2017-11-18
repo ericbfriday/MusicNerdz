@@ -9,6 +9,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.mods = StudentService.mods;
     vm.saQuestions = StudentService.saQuestions;
     vm.mcQuestions = StudentService.mcQuestions;
+    vm.essayQuestions = StudentService.essayQuestions;
     vm.histEvents = StudentService.histEvents;
     vm.tags = StudentService.tags
 

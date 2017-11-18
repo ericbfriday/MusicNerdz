@@ -11,6 +11,9 @@ myApp.service('StudentService', function ($http) {
     sv.mcQuestions = {
         data: []
     };
+    sv.essayQuestions = {
+        data: []
+    };
     sv.studGrades = {
         lesson5: [],
         lesson2: []
@@ -24,6 +27,12 @@ myApp.service('StudentService', function ($http) {
 
     //constructor to store short answer questions
     function SaQs(question, id) {
+        this.question = question;
+        this.id = id
+    } //END constructor 
+
+    //constructor to store essay questions
+    function EssayQs(question, id) {
         this.question = question;
         this.id = id
     } //END constructor 
@@ -71,6 +80,7 @@ myApp.service('StudentService', function ($http) {
         //Temp arrays to hold questions, history and tags
         let tempSA = [];
         let tempMC = [];
+        let tempEssay = [];
         let tempHist = [];
         let tempTags = [];
         console.log(id);
@@ -93,6 +103,13 @@ myApp.service('StudentService', function ($http) {
                     //push it to the temp array
                     tempSA.push(saQuestion);
                 } //END if
+                // if the question is Essay
+                if (resp.data[i].type === 'essay') {
+                    // Make new SaQ object from response data for sas
+                    let essayQuestion = new EssayQs(resp.data[i].question, resp.data[i].id)
+                    //push it to the temp array
+                    tempEssay.push(essayQuestion);
+                } //END if
                 // if the question is Multiple Choice
                 else if (resp.data[i].type === 'mc') {
                     // Make new McQ object from response data for mcs
@@ -107,7 +124,10 @@ myApp.service('StudentService', function ($http) {
             sv.tags.data = tags_without_duplicates
             sv.mcQuestions.data = removeDupes(tempMC, 'question');
             sv.histEvents.data = removeDupes(tempHist, 'title');
-            sv.saQuestions.data = removeDupes(tempSA, 'question')
+            sv.saQuestions.data = removeDupes(tempSA, 'question');
+            sv.essayQuestions.data = removeDupes(tempEssay, 'question');
+            console.log('essay:', sv.essayQuestions.data);
+            
         }) //END $http.then
     } //END getMod
 
