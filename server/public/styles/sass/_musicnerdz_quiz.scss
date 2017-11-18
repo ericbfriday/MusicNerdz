@@ -1,0 +1,100 @@
+.student-quiz-main {
+    iframe {
+        margin: 0 25px;
+    }
+    .md-tab {
+        font-weight: 300;
+    }
+    height: 100vh;
+    .student-quiz {
+        .details {
+            .details-container {
+                margin: 0 15px;
+                width: 75%;
+                .student-quiz-title {
+                    font-weight: 800;
+                    font-size: 3.5rem;
+                    margin: 0 0 25px;
+                    color:$orange;
+                }
+                .student-quiz-artist {
+                    font-weight: 400;
+                    font-size: 2.5rem;
+                    margin: 0;
+                }
+                .student-quiz-details {
+                    font-weight: 300;
+                    font-size: 1.5rem;
+                    margin: 0;
+                    line-height: normal;
+                }
+
+                .student-quiz-desc {
+                    max-height: 125px;
+                    line-height: normal;
+                    overflow: scroll;
+                }
+            }
+        }
+    }
+}
+
+.student-quiz-module {
+    md-tab-content {
+        pre {
+            padding: 0;
+        }
+    }
+    md-radio-button {
+        text-transform: capitalize;
+    }
+    .lyrics {
+        font-weight: 400;
+        font-family: lato;
+    }
+    md-tabs:not(.md-no-tab-content):not(.md-dynamic-height) {
+        height: 100%;
+    }
+    .mod {
+        height: 100%;
+    }
+    md-tabs.md-dynamic-height md-tabs-content-wrapper {
+        margin: 0 auto;
+        width: 85%;
+    }
+    .student-quiz-lesson {
+        margin: 35px;
+        padding: 0 25px 75px;
+        textarea {
+            border: 1px solid black
+        }
+    }
+}
+
+.fixed {
+    background-color: $black;
+    color: $white;
+    min-height: 355px;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+
+    .md-padding {
+        padding: 40px;
+    }
+    .student-quiz {
+        .details {
+            .details-container {
+                margin: 0 35px;
+            }
+            .student-quiz-artist {
+                font-weight: 300;
+                font-size: 4rem;
+            }
+            .student-quiz-details {
+                font-weight: 300;
+                font-size: 3rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,80 @@
+.gradebook {
+    .fa-pencil-square-o {
+        color: #006400;
+    }
+    font-size: 2rem;
+    font-weight: 400;
+    color: black;
+    table {
+        tr:nth-child(even) {
+            background: #ebebeb6e;
+        }
+        tr:nth-child(odd) {
+            background: #FFF
+        }
+        tbody {
+            tr:hover {
+                background: rgb(209, 209, 209);
+            }
+        }
+        span {
+            font-size: 2rem;
+        }
+        @extend .gradebook
+    }
+    p {
+        width: 150px;
+        margin: 15px auto;
+        font-size: 3rem;
+        font-weight: 300;
+    }
+}
+
+.viewclass {
+    .accordion-title {
+        background: $blue;
+        padding:16px;
+    }
+    .clearfix {
+        clear: both;
+    }
+    .deleteClassBtn {
+        float: right;
+        margin: 20px;
+    }
+    input {
+        border: 1px solid $grey;
+        text-indent: 15px;
+        height: 40px;
+        margin-right: 10px;
+        }
+    .md-headline {
+        color:$white;
+    }
+    .md-button:not([disabled]), .deleteStudBtn {
+        &:hover{
+            background-color: #fca311;
+            color: white;
+        }   
+    }
+    .md-button.md-warn, .deleteStudBtn {
+        min-width: 150px;
+        color: $orange;
+        border: 2px solid #fca311;
+        font-weight: 800;
+    
+    }
+}
+
+table.md-table th.md-column {
+    font-size: 2rem;
+    font-weight: 400;
+    color: black;
+}
+
+table.md-table td.md-cell,
+table.md-table td.md-cell {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: black;
+}
