@@ -33,6 +33,11 @@
             <md-tab label="Historical Events">
                 <md-content class="md-padding">
                     <h1 class="md-display-2">Historical Events</h1>
+                    <!-- tags -->
+                    <md-chips>
+                        <md-chip ng-repeat="tag in smc.tags.data">{{tag}}</md-chip>
+                    </md-chips>
+                    <!-- events -->
                     <p class="sameAsP" ng-repeat="event in smc.histEvents.data">
                         <strong>{{event.title}}</strong><br>
                         {{event.desc}}
@@ -71,7 +76,7 @@
                         <!-- sort answer -->
                         <div ng-repeat="saQuest in smc.saQuestions.data">
                             {{saQuest.question}}
-                            <md-input-container class="md-block">
+                            <md-input-container class="md-block"
                                 <textarea ng-model="smc.SaVal[$index]" md-maxlength="500" rows="5" md-select-on-focus></textarea>
                             </md-input-container>
                         </div>

@@ -1,25 +1,29 @@
 myApp.controller('StudentModuleController', function (UserService, StudentService) {
     console.log('StudentModuleController created');
+    //GLOBALS
     const vm = this;
+    // user
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
+    // module
     vm.mods = StudentService.mods;
     vm.saQuestions = StudentService.saQuestions;
     vm.mcQuestions = StudentService.mcQuestions;
     vm.histEvents = StudentService.histEvents;
     vm.tags = StudentService.tags
 
-    function QuizResps (studId, resp, questId) {
+    // constructor for quiz responses
+    function QuizResps(studId, resp, questId) {
         this.studId = studId;
         this.resp = resp;
         this.questId = questId
-
-    }
+    } //END constructor 
 
     // function to send responses and ids to questions in module to service
     vm.submitQuiz = function () {
-        // obj to hold responses info
+        // var to hold answer objects to send to service
         let answersToSend = [];
+        // obj to hold responses info
         let resps = {
             ids: [],
             resps: []
@@ -44,11 +48,15 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         }); //END sa Results
         // set responses in temp object to combined sa and mc arrays
         resps.resps = mcResult.concat(saResult);
+        // loop through ids
         for (var j = 0; j < resps.ids.length; j++) {
+            // make new answer objects with student id
             let answer = new QuizResps(vm.userObject.student[0].id, resps.resps[j], resps.ids[j])
+            // push new objects to array
             answersToSend.push(answer);
-        }//END for loop
+        } //END for loop
         // CALL service submit quiz with array to send
         StudentService.submitQuiz(answersToSend);
     } //END submitQuiz
+
 }); //END App Controller
