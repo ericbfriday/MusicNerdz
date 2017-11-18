@@ -1,11 +1,12 @@
 
-myApp.controller('ViewController', function ($http, TeacherService, UserService) {
+myApp.controller('ViewController', function ($http, $location, TeacherService, UserService) {
     console.log('ViewController created');
     var vm = this;
     vm.teacherService = TeacherService;
     vm.userService = UserService;
     vm.userObject = UserService.userObject;
-    console.log('user object from theacher service', vm.userObject);
+    
+    console.log('user object from teacher service', vm.userObject);
 
     //current teacher user for selecting classes and students
     vm.teacher = vm.userObject.user.teachers_id;
@@ -70,6 +71,10 @@ myApp.controller('ViewController', function ($http, TeacherService, UserService)
 
     };
 
+    vm.relocate = function() {
+        $location.path("/teacher/gradingform/module/5/student/1");
+    };
+
     //send student info to server for addition to db
     vm.addStudent = function (classId) {
         console.log(classId);
@@ -94,6 +99,7 @@ myApp.controller('ViewController', function ($http, TeacherService, UserService)
 
     //retrieve class list from db by teacher
     vm.getClasses = function (teacherId) {
+        console.log('in getClasses');
         vm.classes = [];
         TeacherService.getClasses(teacherId)
             .then(function () {
@@ -120,11 +126,10 @@ myApp.controller('ViewController', function ($http, TeacherService, UserService)
                         vm.classes.push(newClass);
                     } else {
                         newClass.students.push(newStudent);
-                    };
-                };
+                    }
+                }
                 console.log('class and students after GET', vm.classes);
             });
-
     };
 
     //call get assigned modules from service
@@ -135,6 +140,7 @@ myApp.controller('ViewController', function ($http, TeacherService, UserService)
             vm.returnedAssigned = vm.teacherService.assigned;
             var assignedMap = {};
             var studentMap = {};
+            vm.modules = [];
 
             for (var i = 0; i < vm.returnedAssigned.length; i++) {
                 var moduleId = vm.returnedAssigned[i].mod_id;
@@ -172,7 +178,7 @@ myApp.controller('ViewController', function ($http, TeacherService, UserService)
         TeacherService.getStudents(classId).then(function () {
             vm.students = vm.teacherService.students;
             console.log('students array after GET', vm.students);
-        })
+        });
     };
 
     // vm.deleteStudent = TeacherService.deleteStudent;
@@ -183,15 +189,16 @@ myApp.controller('ViewController', function ($http, TeacherService, UserService)
         TeacherService.deleteClass(classId).then(function () {
             vm.getClasses(vm.teacher);
             console.log('classes after delete:', vm.classes);
-        })
-    } // end deleteClass
+        });
+    }; // end deleteClass
 
     vm.deleteStudent = function (classId, stud_id) {
         console.log('in delete student with classId & stud_id:',classId, stud_id);
         TeacherService.deleteStudent(stud_id).then(function () {
             vm.getStudents(classId);
-        })
-    }
+        });
+    };
 
-    console.log("vm.student", vm.student);
+    vm.getClasses(vm.userObject.user.teachers_id);
+
 });
