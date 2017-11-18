@@ -177,8 +177,11 @@ myApp
           .then($http.get('/student/getGrades').then(function (resp) {
             userObject.studentinfo = resp.data;
             console.log('userObject.studentinfo ', userObject.studentinfo);
-            
-          }));
+          
+          })
+        .catch((error) => {
+          console.log('logging catch inside get /student/getModule ', error);
+        }));
       },
 
       logout: function () {
