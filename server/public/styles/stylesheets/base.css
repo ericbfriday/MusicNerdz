@@ -1103,12 +1103,53 @@ input, body {
   cursor: pointer;
 }
 
+/* line 1, ../sass/_musicnerdz_teacher.scss */
+.gradebook, .gradebook table {
+  font-size: 2rem;
+  font-weight: 400;
+  color: black;
+}
 /* line 2, ../sass/_musicnerdz_teacher.scss */
+.gradebook .fa-pencil-square-o {
+  color: #006400;
+}
+/* line 9, ../sass/_musicnerdz_teacher.scss */
+.gradebook table tr:nth-child(even) {
+  background: #ebebeb6e;
+}
+/* line 12, ../sass/_musicnerdz_teacher.scss */
+.gradebook table tr:nth-child(odd) {
+  background: #FFF;
+}
+/* line 16, ../sass/_musicnerdz_teacher.scss */
+.gradebook table tbody tr:hover {
+  background: #d1d1d1;
+}
+/* line 20, ../sass/_musicnerdz_teacher.scss */
+.gradebook table span {
+  font-size: 2rem;
+}
+/* line 25, ../sass/_musicnerdz_teacher.scss */
 .gradebook p {
   width: 150px;
   margin: 15px auto;
   font-size: 3rem;
   font-weight: 300;
+}
+
+/* line 33, ../sass/_musicnerdz_teacher.scss */
+table.md-table th.md-column {
+  font-size: 2rem;
+  font-weight: 400;
+  color: black;
+}
+
+/* line 39, ../sass/_musicnerdz_teacher.scss */
+table.md-table td.md-cell,
+table.md-table td.md-cell {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: black;
 }
 
 /* line 1, ../sass/_musicnerdz_quiz.scss */

@@ -1,8 +1,44 @@
 .gradebook {
+    .fa-pencil-square-o {
+        color: #006400;
+    }
+    font-size: 2rem;
+    font-weight: 400;
+    color: black;
+    table {
+        tr:nth-child(even) {
+            background: #ebebeb6e;
+        }
+        tr:nth-child(odd) {
+            background: #FFF
+        }
+        tbody {
+            tr:hover {
+                background: rgb(209, 209, 209);
+            }
+        }
+        span {
+            font-size: 2rem;
+        }
+        @extend .gradebook
+    }
     p {
         width: 150px;
         margin: 15px auto;
         font-size: 3rem;
-        font-weight: 300;    
+        font-weight: 300;
     }
+}
+
+table.md-table th.md-column {
+    font-size: 2rem;
+    font-weight: 400;
+    color: black;
+}
+
+table.md-table td.md-cell,
+table.md-table td.md-cell {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: black;
 }

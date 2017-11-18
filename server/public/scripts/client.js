@@ -143,12 +143,13 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/viewclass.html',
       controller: 'ViewController as vc',
       resolve: {
-        getteacher: function (UserService) {
+        getteacher: function (UserService, TeacherService) {
           return UserService.getteacher();
         },
         getClasses: function (TeacherService, $route) {
           return TeacherService.getClasses($route.current.params.id);
-        }
+        },
+        
       }
     })
     .when('/teacher/grading/:id', {

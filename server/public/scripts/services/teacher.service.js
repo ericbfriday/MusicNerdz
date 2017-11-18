@@ -23,9 +23,6 @@ myApp.service('TeacherService', function ($http, UserService) {
 
     vm.getClasses = function (teacherId) {
         console.log('teacher service get classes:', UserService.userObject);
-        // if (teacherId !== UserService.userObject.user.teachers_id){
-        //     $location.path('/viewclass/'+UserService.userObject.user.teachers_id);
-        // }
         return $http.get('/teacher/classes/' + teacherId).then(function (res) {
             console.log('response from get classes:', res);
             vm.classes = res.data;

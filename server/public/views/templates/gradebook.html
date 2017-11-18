@@ -5,7 +5,7 @@
         <md-input-container class="md-block" flex=30>
             <label>Class</label>
             <md-select ng-model="id" md-on-close="vc.getAssigned(id)">
-                <md-option ng-repeat="class in vc.classes" value={{class.id}}>
+                <md-option ng-repeat="class in vc.classes" value={{class.id}} class="gradebook-container">
                 {{class.title}}
                 </md-option>
             </md-select>
