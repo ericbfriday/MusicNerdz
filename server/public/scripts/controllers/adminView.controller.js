@@ -26,7 +26,7 @@ myApp.controller("AdminViewController", function ($http, $mdDialog, $scope) {
         $http.get('/student/getFeedback/' + id)
         .then( function (res) {
             console.log('getFeeedback response -> ', res);
-            vm.feedback.data = res.data.rows;
+            vm.feedback = res;
             console.log('logging vm.feedback -> ', vm.feedback);
         })
         .catch( function (err) {
