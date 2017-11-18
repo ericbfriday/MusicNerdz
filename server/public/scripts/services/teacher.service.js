@@ -1,4 +1,4 @@
-myApp.service('TeacherService', function ($http) {
+myApp.service('TeacherService', function ($http, UserService) {
     var vm = this;
 
     var userObject = {};
@@ -142,6 +142,14 @@ myApp.service('TeacherService', function ($http) {
     };
 
     vm.updateAssigned = function (updateModArr) {
-        console.log('classes to update in teacherService', updateModArr);
+        console.log('classes to update in teacherService', updateModArr, );
+        return $http.post('/teacher/assign', sv.quiz)
+        .then((response) => {
+            console.log('Posted -> ', response);
+            document.getElementById("addQuestionsForm").reset();
+        })
+        .catch((e) => {
+            console.log('logging catch error in sv.pushToQuiz', e);
+        });
     }
 });

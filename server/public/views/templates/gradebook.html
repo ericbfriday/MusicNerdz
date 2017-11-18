@@ -1,11 +1,11 @@
-<div ng-include="'views/partials/teacher_nav.html'"></div>
-<div class="container" ng-init=vc.getClasses(vc.teacher)>
+<div ng-include="'views/partials/teacher_nav.html'" ng-controller="UserController as uc"></div>
+<div class="container gradebook" ng-init=vc.getClasses(vc.teacher)>
     <p>Gradebook</p>
     <div layout="row" layout-align="center center" flex layout-fill>
         <md-input-container class="md-block" flex=30>
             <label>Class</label>
             <md-select ng-model="id" md-on-close="vc.getAssigned(id)">
-                <md-option ng-repeat="class in vc.classes" value={{class.id}}>
+                <md-option ng-repeat="class in vc.classes" value={{class.id}} class="gradebook-container">
                 {{class.title}}
                 </md-option>
             </md-select>
@@ -24,7 +24,7 @@
                         <td md-cell ng-repeat="modAssigned in vc.modules">
                             <div ng-repeat="studentGrade in modAssigned.studGrades">
                                 <span style="text-transform: uppercase;" ng-show="studentGrade.studId == student.studId">{{studentGrade.final}}</span>
-                                <i ng-show="studentGrade.studId == student.studId && !studentGrade.final" class="fa fa-pencil-square-o" aria-hidden="true"></i>                                
+                                <i ng-show="studentGrade.studId == student.studId && !studentGrade.final" class="fa fa-pencil-square-o" aria-hidden="true" ng-click="vc.relocate()"></i>                                
                             </div>
                         </td>                                    
                     </tr>

@@ -1,8 +1,10 @@
-<div ng-include="'views/partials/teacher_nav.html'"></div>
-<div class="container" ng-init=vc.getClasses(vc.teacher)>
+<div ng-include="'views/partials/teacher_nav.html'" ng-controller="UserController as uc"></div>
+<div class="container viewclass">
     <ang-accordion ng-repeat="class in vc.classes">
-        <collapsible-item item-title={{class.title}} ng-model="class.id"><md-button class="md-warn" class="deleteClassBtn" ng-click="vc.deleteClass(class.id)">Delete Class</md-button>
-            <div>
+        <collapsible-item item-title={{class.title}} ng-model="class.id">
+            <md-button class="md-warn deleteClassBtn" ng-click="vc.deleteClass(class.id)">Delete Class</md-button>
+            
+            <div class="clearfix">
                 <md-table-container>
                     <table md-table>
                         <thead md-head md-row-select multiple>
@@ -21,12 +23,12 @@
                     </table>
                 </md-table-container>
             </div>
-            <div class="md-padding">
-                <input type="text" ng-model="vc.student.first" placeholder="First Name" ng-required="true" flex="grow" />
-                <input type="text" ng-model="vc.student.last" placeholder="Last Name" ng-required="true" flex="grow" />
-                <input type="text" ng-model="vc.student.email" placeholder="Student Email" ng-required="true" flex="grow" />
-                <input type="text" ng-model="vc.student.number" placeholder="Student ID" flex="grow" />
-                <md-button class="addStudBtn" ng-click="vc.addStudent(class.id)">+ Add Student</md-button>
+            <div class="md-padding" layout="row" layout-align="start center">
+                <input type="text" ng-model="vc.student.first" placeholder="First Name" ng-required="true"/>
+                <input type="text" ng-model="vc.student.last" placeholder="Last Name" ng-required="true" />
+                <input type="text" ng-model="vc.student.email" placeholder="Student Email" ng-required="true"/>
+                <input type="text" ng-model="vc.student.number" placeholder="Student ID" />
+                <md-button class="deleteStudBtn" ng-click="vc.addStudent(class.id)">+ Add Student</md-button>
                 
             </div>
         </collapsible-item>
@@ -35,7 +37,7 @@
     <div class="md-padding">
         <input type="text" ng-model="vc.class.title" placeholder="Class Title" ng-required="true" flex="grow" />
         <input type="text" ng-model="vc.class.code" placeholder="Class Code" flex="grow" />
-        <md-button class="addClsBtn" ng-click="vc.addClass()">+ Add Class</md-button>
+        <md-button class="deleteStudBtn" ng-click="vc.addClass()">+ Add Class</md-button>
     </div>
 </div>
  
