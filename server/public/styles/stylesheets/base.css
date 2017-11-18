@@ -1137,14 +1137,52 @@ input, body {
   font-weight: 300;
 }
 
-/* line 33, ../sass/_musicnerdz_teacher.scss */
+/* line 34, ../sass/_musicnerdz_teacher.scss */
+.viewclass .accordion-title {
+  background: #14213d;
+  padding: 16px;
+}
+/* line 38, ../sass/_musicnerdz_teacher.scss */
+.viewclass .clearfix {
+  clear: both;
+}
+/* line 41, ../sass/_musicnerdz_teacher.scss */
+.viewclass .deleteClassBtn {
+  float: right;
+  margin: 20px;
+}
+/* line 45, ../sass/_musicnerdz_teacher.scss */
+.viewclass input, .viewclass body {
+  border: 1px solid #e5e5e5;
+  text-indent: 15px;
+  height: 40px;
+  margin-right: 10px;
+}
+/* line 51, ../sass/_musicnerdz_teacher.scss */
+.viewclass .md-headline {
+  color: white;
+}
+/* line 55, ../sass/_musicnerdz_teacher.scss */
+.viewclass .md-button:not([disabled]):hover, .viewclass .deleteStudBtn:hover {
+  background-color: #fca311;
+  color: white;
+}
+/* line 60, ../sass/_musicnerdz_teacher.scss */
+.viewclass .md-button.md-warn, .viewclass .deleteStudBtn {
+  min-width: 150px;
+  color: #fca311;
+  border: 2px solid #fca311;
+  font-weight: 800;
+}
+
+/* line 69, ../sass/_musicnerdz_teacher.scss */
 table.md-table th.md-column {
   font-size: 2rem;
   font-weight: 400;
   color: black;
 }
 
-/* line 39, ../sass/_musicnerdz_teacher.scss */
+/* line 75, ../sass/_musicnerdz_teacher.scss */
 table.md-table td.md-cell,
 table.md-table td.md-cell {
   font-size: 1.6rem;
