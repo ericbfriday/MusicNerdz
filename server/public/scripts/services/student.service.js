@@ -7,7 +7,6 @@ myApp.service('StudentService', function ($http) {
         data: []
     };
     sv.userObject = [];
-
     sv.saQuestions = {
         data: []
     };
@@ -189,6 +188,8 @@ myApp.service('StudentService', function ($http) {
             data: sv.objectToSend
         }).then(function (response) {
             console.log('posted');
+        }).catch(function (error) {
+            console.log('logging error in /student/quiz catch -> ', error);
         }); //END $http.then
     }; //END submitQuiz
 
