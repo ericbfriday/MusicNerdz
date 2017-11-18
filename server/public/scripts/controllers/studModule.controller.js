@@ -9,7 +9,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
 
     // function to send responses and ids to questions in module to service
     vm.submitQuiz = function () {
-        // obj to hold responses info
+        // //obj to hold responses info
         // let resps = {
         //     ids: [],
         //     resps: []
@@ -34,7 +34,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         // }); //END sa Results
         // // set responses in temp object to combined sa and mc arrays
         // resps.resps = mcResult.concat(saResult);
-        // CALL service submit quiz with resp object
+        // //CALL service submit quiz with resp object
         // StudentService.submitQuiz(resps);
         // console.log(id);
         // console.log(mcQuest.id);
