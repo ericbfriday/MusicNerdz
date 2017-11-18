@@ -141,15 +141,16 @@ myApp.service('TeacherService', function ($http, UserService) {
         })
     };
 
-    vm.updateAssigned = function (updateModArr, teachId) {
-        console.log('classes to update in teacherService', updateModArr, teachId);
-        // return $http.post('/teacher/assign', updateModArr, teachId)
-        // .then((response) => {
-        //     console.log('Posted -> ', response);
-        //     document.getElementById("addQuestionsForm").reset();
-        // })
-        // .catch((e) => {
-        //     console.log('logging catch error in sv.pushToQuiz', e);
-        // });
+    vm.updateAssigned = function (updateModArr, modId) {
+        console.log('classes to update in teacherService', updateModArr, modId);
+        let assignObj = {
+            classArr: updateModArr,
+            moduleId: modId
+        };
+
+        return $http.post('/teacher/assign', assignObj)
+        .then((res) => {
+            console.log('post response ', res);
+        });
     }
 });
