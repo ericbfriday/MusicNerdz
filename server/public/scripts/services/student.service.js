@@ -167,7 +167,7 @@ myApp.service('StudentService', function ($http) {
             url: '/student/submitFb',
             data: feedback
         }).then(function (response) {
-            console.log('feedback response------->:', response);
+            console.log('feedback response:', response);
         })
     }
 });

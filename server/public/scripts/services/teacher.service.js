@@ -52,6 +52,14 @@ myApp.service('TeacherService', function ($http) {
             console.log('response from delete class:', res);
             vm.classes = res.data;
             
-        })
-    };
+        }) //end $http.delete
+    }; //end deleteClass
+
+    vm.getStdRsps = function () {
+        vm.stdRsps = [{one:'one',}, {two:2}];
+        console.log('stdRsps:', );
+        // return $http.delete('/')
+
+    } //end getStdRsps
+    vm.getStdRsps();
 });

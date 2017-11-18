@@ -3,8 +3,15 @@
     <div class="teacher-grading" layout="column" layout-align="start stretch">
         <div class="teacher-grade-info" layout="row" layout-align="start stretch">
             <div class="teacher-grading-student" flex layout="column" layout-align="center center">
-                <div>James Smith</div>
-                <div>Class 2</div>
+                <!-- <div>James Smith</div>
+                <div>Class 2</div> -->
+                <div ng-repeat="i in tgc.stdRsps">
+                    <container>
+                        <div>{{ i.one}}</div>
+                        <div>{{ i.two}}</div>
+                    </container>
+                </div>
+
 
             </div>
             <div class="teacher-grading-song" flex layout="column" layout-align="center center">
