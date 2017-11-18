@@ -69,6 +69,11 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         } //END for loop
         // CALL service submit quiz with array to send
         StudentService.submitQuiz(answersToSend);
+        // reset inputs
+        vm.McVal = {};
+        vm.SaVal = {};
+        vm.EssayVal = {}; 
+        document.getElementById("quiz").reset();
     } //END submitQuiz
 
 }); //END App Controller
