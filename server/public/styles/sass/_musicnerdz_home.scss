@@ -100,6 +100,10 @@
     }
     .main-container,
     .main-assigned {
+        a {
+            text-decoration: none;
+            
+        }
         overflow: visible;
         padding: 0 50px;
         h1 {
@@ -118,6 +122,14 @@
     }
 }
 
+.tile-hero {
+    width: 80%;
+    .fa {
+        font-size: 5rem;
+        
+    }
+}
+
 .tile {
     height: 255px;
     width: 325px;
@@ -129,6 +141,7 @@
     p {
         margin: 0;
     }
+
     .tile-artist {
         font-weight: 800;
         -o-text-overflow: ellipsis;
@@ -137,6 +150,10 @@
         margin: 0 auto;
         overflow: hidden;
         white-space: nowrap;
+        .fa .fa-play-circle-o {
+            margin: 0 25px;
+        }
+
     }
     .tile-name {
         font-size: 1.5rem;
@@ -148,10 +165,21 @@
         }
     }
     .tile-art {
-        background-image: url('http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg');
+        // background-image: url('http://s0.limitedrun.com/images/1248348/daisy-4fa4818edd221.jpg');
         background-size: cover;
         background-position: 100% 25%;
         height: 180px;
+
+        .fa-play-circle-o {
+            font-size: 8rem;
+            color: $blue;
+            text-shadow:
+            -1px -1px 0 $grey,
+            1px -1px 0 $grey,
+            -1px 1px 0 $grey,
+            1px 1px 0 $grey;
+            opacity: .9;
+        }
         span {
             float: right;
             height: 40px;
