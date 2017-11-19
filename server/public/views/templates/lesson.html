@@ -31,6 +31,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
     <!-- tabs -->
     <div class="student-quiz-module" ng-cloak flex>
@@ -40,6 +41,26 @@
                 <md-tab label="Lyrics">
                     <md-content class="md-padding mod">
                         <pre class="sameAsP lyrics">
+=======
+    <!-- song data on right -->
+    <div flex="30">
+        <p class="sizeMd">{{smc.mods.data[0].artist}}</p>
+        <p class="sizeLg">{{smc.mods.data[0].mod_title}} | {{smc.mods.data[0].album}}</p>
+        <p class="sameAsP">
+            {{smc.mods.data[0].mod_desc}}
+        </p>
+    </div>
+</div>
+<!-- tabs -->
+<div ng-cloak>
+    <md-content class="sameAsP mod">
+        <md-tabs md-dynamic-height md-border-bottom>
+            <!-- lyric view -->
+            <md-tab label="Lyrics">
+                <md-content class="md-padding mod">
+                    <h1 class="md-display-2">Lyrics</h1>
+                    <pre class="sameAsP">
+>>>>>>> master
                             {{smc.mods.data[0].lyrics}}
                         </pre>
                 </md-content>

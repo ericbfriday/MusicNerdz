@@ -6,7 +6,7 @@ myApp.service('StudentService', function ($http) {
         data: []
     };
 
-    sv.userObject=[];
+    sv.userObject = [];
 
     sv.saQuestions = {
         data: []
@@ -33,7 +33,7 @@ myApp.service('StudentService', function ($http) {
         this.question = question;
         this.id = id
     } //END constructor 
-    
+
     // constructor to create multiple choice objects
     function McQs(question, a, b, c, d, correct) {
         this.question = question;
@@ -47,7 +47,7 @@ myApp.service('StudentService', function ($http) {
     //constructor to create history events
     function Hist(title, desc) {
         this.title = title;
-            this.desc = desc
+        this.desc = desc
     } //END constructor
 
     // function to remove duplicates
@@ -78,18 +78,18 @@ myApp.service('StudentService', function ($http) {
         let tempLesson2 = [];
         //$http get request
         $http.get('/student/getGrades').then(function (resp) {
-                console.log('response in service:', resp);
-                // sv.studGrades.data = resp.data loop though response
-                for (let i = 0; i < resp.data.length; i++) {
-                    if (resp.data[i].modules_id === 5) {
-                        tempLesson5.push(resp.data[i] //END if
-                        );
-                    } else if (resp.data[i].modules_id === 2) {
-                        tempLesson2.push(resp.data[i]);
-                    } //END else if
-                } //END for loop
-            })// END $http.then
-        }//END getGrades
+            console.log('response in service:', resp);
+            // sv.studGrades.data = resp.data loop though response
+            for (let i = 0; i < resp.data.length; i++) {
+                if (resp.data[i].modules_id === 5) {
+                    tempLesson5.push(resp.data[i] //END if
+                    );
+                } else if (resp.data[i].modules_id === 2) {
+                    tempLesson2.push(resp.data[i]);
+                } //END else if
+            } //END for loop
+        }) // END $http.then
+    } //END getGrades
 
     //Function to get modules form server
     sv.getMod = function (id) {
@@ -143,7 +143,7 @@ myApp.service('StudentService', function ($http) {
             sv.saQuestions.data = removeDupes(tempSA, 'question');
             sv.essayQuestions.data = removeDupes(tempEssay, 'question');
             console.log('essay:', sv.essayQuestions.data);
-            
+
         }) //END $http.then
     } //END getMod
 
@@ -174,7 +174,7 @@ myApp.service('StudentService', function ($http) {
     sv.submitQuiz = function (resps) {
         objectToSend = {
             data: resps
-        }//END objectToSend
+        } //END objectToSend
         // POST request
         $http({
             method: 'POST',
@@ -186,7 +186,7 @@ myApp.service('StudentService', function ($http) {
     } //END submitQuiz
 
     sv.submitFb = function (feedback) {
-        console.log('feedback in service:',feedback);
+        console.log('feedback in service:', feedback);
         $http({
             method: 'POST',
             url: '/student/submitFb',
@@ -196,5 +196,10 @@ myApp.service('StudentService', function ($http) {
         })
     }
 });
+
+sv.feedbackFunc = function () {
+    console.log('in feedback service');
+    var feedback = prompt("Tell us what you thought of this quiz.");
+}; //end sv.feedback
 //END
 //END service
