@@ -196,6 +196,8 @@ myApp
             userObject.studentinfo = resp.data;
             let q = userObject.studentinfo;
             // counts total number of correct & incorrect mc questions & gives % of them
+            // included inside getgradeform function due to issues using 'this.' to call func
+            // inside the same factory. Avoids refactoring. 
             let gradeGenerator = (q) => { 
               console.log('inside gradeGenerator -> ');
               console.log('loggin q -> ', q);
@@ -203,10 +205,10 @@ myApp
               let totalCounter = 0;
               console.log('Generating Grades -> ');
               q.forEach((ele) => {
-                if (ele.correct == ele.response) {
+                if (ele.correct == ele.response && ele.type == 'mc') {
                   correctCounter++;
                   totalCounter++;
-                } else {
+                } else if (ele.correct != ele.response && ele.type == 'mc') {
                   totalCounter++;
                 }
                 console.log('logging correctCounter & totalCounter -> ', correctCounter, totalCounter);
