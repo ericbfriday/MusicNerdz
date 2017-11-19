@@ -111,11 +111,6 @@ li a:hover {
 
 /* set bg and text color for song info in module */
 
-.fixed {
-    background-color: #afafaf;
-    color: white;
-}
-
 
 /* fix tabs on scroll in module */
 
@@ -137,6 +132,9 @@ md-tabs.md-dynamic-height md-tabs-content-wrapper {
 }
 
 md-card-title {
+    background: -webkit-gradient( linear, left top, left bottom, from(rgb(255, 247, 233)), color-stop(white), to(rgb(255, 247, 233)));
+    background: -webkit-linear-gradient( rgb(255, 247, 233), white, rgb(255, 247, 233));
+    background: -o-linear-gradient( rgb(255, 247, 233), white, rgb(255, 247, 233));
     background: linear-gradient( rgb(255, 247, 233), white, rgb(255, 247, 233));
     color: #535250;
 }
@@ -147,10 +145,17 @@ md-card-title {
 
 .uppercase {
     text-transform: uppercase;
-  color: #fca311
+    color: #fca311
 }
 
+
 /** Admin */
+
 .btn1 {
     background-color: #fca311;
+}
+
+.assignBlock {
+    color: rgb(7, 6, 6);
+    background-color: white;
 }

@@ -6,6 +6,7 @@
     border: 1px solid $black;
     background: $orange;
     .teacher-grade-info {
+        line-height: 30px;
         @extend .teacher-grade-questions;
         .teacher-grading-student {
             font-weight: 300;
@@ -17,11 +18,12 @@
             height: 100px;
             padding: 15px;
             border-left: 1px solid black;
+            line-height: 30px;
         }
     }
     .teacher-grade-questions {
         margin: 35px auto;
-        width: 600px;
+        width: 900px;
         background-color: rgba(255, 255, 255, 0.9);
         -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
@@ -53,6 +55,7 @@
             margin: 10px 0 25px;
             span {
                 text-align: center;
+                padding: 15px;
                 border-top: 1px solid $blue;
                 border-bottom: 1px solid $blue;
             }
@@ -67,6 +70,7 @@
             }
             span {
                 display: block;
+                padding: 15px 0;
             }
             button {
                 background: $orange;
@@ -123,5 +127,26 @@
                 display: block;
             }
         }
+    }
+}
+
+.fa-pencil-square-o {
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.student-grade {
+    .student-grade-response {
+        font-size: 1.5rem;
+    }
+    md-card-title{
+        background: $blue;
+        color: $white;
+        padding:16px;
+        
+    }
+    h2 {
+        color: #fca311;
+        line-height: normal;
     }
 }

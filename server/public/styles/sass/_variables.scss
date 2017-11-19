@@ -42,7 +42,12 @@ html {
     // increase or decrease incrementally to change site overall
 }
 
-body, input {
+body {
+    height: 100vh;
+    @extend input
+}
+
+input {
     font-family: 'Lato';
 }
 
