@@ -1,7 +1,9 @@
+'use strict';
 myApp.service('TeacherService', function ($http, UserService) {
     var vm = this;
 
-    var userObject = {};
+
+    // let userObject = {};
     vm.classes = [];
     vm.modules = [];
 
@@ -138,8 +140,14 @@ myApp.service('TeacherService', function ($http, UserService) {
             console.log('response from delete class:', res);
             vm.classes = res.data;
             
-        })
-    };
+        }); //end $http.delete
+    }; //end deleteClass
+
+    vm.getStdRsps = function () {
+        vm.stdRsps = [{one:'one',}, {two:2}];
+        console.log('stdRsps:', vm.stdRsps);
+    }; //end getStdRsps
+    vm.getStdRsps();
 
     vm.updateAssigned = function (updateModArr, modId) {
         console.log('classes to update in teacherService', updateModArr, modId);
@@ -152,5 +160,5 @@ myApp.service('TeacherService', function ($http, UserService) {
         .then((res) => {
             console.log('post response ', res);
         });
-    }
+    };
 });
