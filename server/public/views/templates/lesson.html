@@ -63,9 +63,31 @@
             <md-tab label="Additional Resources">
                 <md-content class="md-padding">
                     <h1 class="md-display-2">Additional Resources</h1>
-                    <p class="sameAsP">
-                        <strong>beep</strong>
-                        <br> boop
+                    <p class="sameAsP" ng-repeat=" res in smc.addResources.video">
+                        <strong>{{res.title}}</strong>
+                        <br>
+                         <span>{{res.desc}}</span>
+                        <ng-youtube-embed video="res.link" autoplay="false" color="orange" disablekb="false" width="100%" theme="dark">
+                        </ng-youtube-embed>
+                    </p>
+                    <!-- rough placement, not final -->
+                    <p class="sameAsP" ng-repeat=" res in smc.addResources.na">
+                        <strong>{{res.title}}</strong>
+                        <br>
+                        <span>{{res.desc}}</span>
+                        <a href="{{res.link}}">{{res.title}}</a>
+                    </p>
+                    <p class="sameAsP" ng-repeat=" res in smc.addResources.blog">
+                        <strong>{{res.title}}</strong>
+                        <br>
+                        <span>{{res.desc}}</span>
+                        <a href="res.link">{{res.title}}</a>
+                    </p>
+                    <p class="sameAsP" ng-repeat=" res in smc.addResources.other">
+                        <strong>{{res.title}}</strong>
+                        <br>
+                        <span>{{res.desc}}</span>
+                        <a href="res.link">{{res.title}}</a>
                     </p>
                 </md-content>
             </md-tab>
