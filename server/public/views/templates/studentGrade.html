@@ -1,28 +1,28 @@
 <div ng-include="'views/partials/nav.html'" ng-controller="UserController as uc"></div>
 <section class="sizeLg gradeMarg student-grade">
-    <h2 class="orange">{{sgc.studGrades.lesson5[0].first}} {{sgc.studGrades.lesson5[0].last}}</h2>
+    <h2 class="orange">{{sgc.userObject.student[0].first}} {{sgc.userObject.student[0].last}}</h2>
 
     <ang-accordion>
-        <collapsible-item item-title="Lesson {{sgc.studGrades.lesson5[0].modules_id}}">
+        <collapsible-item ng-repeat="answer in sgc.studGrades.data" item-title="Lesson {{answer[0].modules_id}} | {{answer[0].title}}">
             <div layout="row" class="gradeMarg sizeLg">
                 <div flex>
                     <span>Grade:</span>
-                    <strong class="uppercase">{{sgc.studGrades.lesson5[0].final_grade}}</strong>
+                    <strong class="uppercase">{{answer[0].final_grade}}</strong>
                 </div>
                 <div flex>
                     <span>Correct Answers:</span>
                     <strong>12/15</strong>
                 </div>
             </div>
-            <div class="gradeMarg student-grade-response" ng-repeat="sa in sgc.studGrades.lesson5">
+            <div class="gradeMarg student-grade-response" ng-repeat="quest in answer">
                 <div class="student-grade-response-bubble" layout="column" layout-align="start stretch">
-                    <h4 flex=10>{{sa.question}}</h4>
-                    <p flex=90>Student Response: <span class="student-grade-response">{{sa.response}}</span>
+                    <h4 flex=10>{{quest.question}}</h4>
+                    <p flex=90>Student Response: <span class="student-grade-response">{{quest.response}}</span>
                     </p>
                 </div>
                 <div class="student-grade-response-bubble-teacher" layout="column" layout-align="start stretch">
                     <h4 flex=10>Teacher Response:</h4>
-                    <p flex=90>{{sa.teacher_comments}}</p>
+                    <p flex=90>{{quest.teacher_comments}}</p>
                 </div>
             </div>
         </collapsible-item>
