@@ -179,11 +179,7 @@ myApp.service('StudentService', function ($http) {
     sv.submitQuiz = function (resps) {
         sv.objectToSend = {
             data: resps
-<<<<<<< HEAD
-        };//END objectToSend
-=======
         }; //END objectToSend
->>>>>>> master
         // POST request
         $http({
             method: 'POST',
@@ -191,11 +187,8 @@ myApp.service('StudentService', function ($http) {
             data: sv.objectToSend
         }).then(function (response) {
             console.log('posted');
-<<<<<<< HEAD
-=======
         }).catch(function (error) {
             console.log('logging error in /student/quiz catch -> ', error);
->>>>>>> master
         }); //END $http.then
     }; //END submitQuiz
 
