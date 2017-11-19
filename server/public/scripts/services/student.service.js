@@ -1,3 +1,4 @@
+"use strict";
 myApp.service('StudentService', function ($http) {
     //GLOBALS
     const sv = this;
@@ -5,6 +6,7 @@ myApp.service('StudentService', function ($http) {
     sv.mods = {
         data: []
     };
+    sv.userObject = [];
     sv.saQuestions = {
         data: []
     };
@@ -23,18 +25,38 @@ myApp.service('StudentService', function ($http) {
     };
     sv.tags = {
         data: []
-    }
+    };
 
     //constructor to store short answer questions
     function SaQs(question, id) {
         this.question = question;
-        this.id = id
+        this.id = id;
     } //END constructor 
+
+    // function to get student grade info back from router
+    sv.getGrades = function () {
+        //temp arrays to hold grades for each module
+        let tempLesson5 = [];
+        let tempLesson2 = [];
+        //$http get request
+        $http.get('/student/getGrades').then(function (resp) {
+            console.log('response in service:', resp);
+            // sv.studGrades.data = resp.data loop though response
+            for (let i = 0; i < resp.data.length; i++) {
+                if (resp.data[i].modules_id === 5) {
+                    tempLesson5.push(resp.data[i] //END if
+                    );
+                } else if (resp.data[i].modules_id === 2) {
+                    tempLesson2.push(resp.data[i]);
+                } //END else if
+            } //END for loop
+        }); // END $http.then
+    }; //END getGrades
 
     //constructor to store essay questions
     function EssayQs(question, id) {
         this.question = question;
-        this.id = id
+        this.id = id;
     } //END constructor 
 
     // constructor to create multiple choice objects
@@ -45,13 +67,13 @@ myApp.service('StudentService', function ($http) {
         this.c = c;
         this.d = d;
         this.correct = correct;
-        this.id = id
+        this.id = id;
     } //END constructor
 
     //constructor to create history events
     function Hist(title, desc) {
         this.title = title;
-        this.desc = desc
+        this.desc = desc;
     } //END constructor
 
     // function to remove duplicates
@@ -127,9 +149,9 @@ myApp.service('StudentService', function ($http) {
             sv.saQuestions.data = removeDupes(tempSA, 'question');
             sv.essayQuestions.data = removeDupes(tempEssay, 'question');
             console.log('essay:', sv.essayQuestions.data);
-            
-        }) //END $http.then
-    } //END getMod
+
+        }); //END $http.then
+    }; //END getMod
 
     // function to get student grades info back from router
     sv.getGrades = function () {
@@ -148,7 +170,7 @@ myApp.service('StudentService', function ($http) {
                     tempLesson2.push(resp.data[i]);
                 } //END else if
             } //END for loop
-        }) //END $http.then
+        }); //END $http.then
         sv.studGrades.lesson5 = tempLesson5;
         sv.studGrades.lesson2 = tempLesson2;
         console.log('studGRADES:', sv.studGrades);
@@ -156,17 +178,30 @@ myApp.service('StudentService', function ($http) {
 
     // function to send quiz responses to server -> DB
     sv.submitQuiz = function (resps) {
-        objectToSend = {
+        sv.objectToSend = {
             data: resps
-        }//END objectToSend
+        }; //END objectToSend
         // POST request
         $http({
             method: 'POST',
             url: '/student/quiz',
-            data: objectToSend
+            data: sv.objectToSend
         }).then(function (response) {
             console.log('posted');
-        }) //END $http.then
-    } //END submitQuiz
+        }).catch(function (error) {
+            console.log('logging error in /student/quiz catch -> ', error);
+        }); //END $http.then
+    }; //END submitQuiz
 
-}); //END service
+    sv.submitFb = function (feedback) {
+        console.log('feedback in service:', feedback);
+        $http({
+            method: 'POST',
+            url: '/student/submitFb',
+            data: feedback
+        }).then(function (response) {
+            console.log('feedback response:', response);
+        });
+    };
+});
+//END service
