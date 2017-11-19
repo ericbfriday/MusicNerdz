@@ -1,7 +1,7 @@
-myApp.service('StudentService', function ($http) {
+myApp.service('StudentService', function ($http, UserService) {
     //GLOBALS
     const sv = this;
-    sv.userObject = [];
+    sv.userObject = UserService.userObject;
     sv.mods = {
         data: []
     };
@@ -174,8 +174,9 @@ myApp.service('StudentService', function ($http) {
         //temp arrays to hold grades for each module
         let tempLesson5 = [];
         let tempLesson2 = [];
+        // let id = sv.userObject.student[0].id;
         // GET request
-        $http.get('/student/getGrades').then(function (resp) {
+        $http.get('/student/getGrades/').then(function (resp) {
             console.log('response in service:', resp);
             // loop though response
             for (let i = 0; i < resp.data.length; i++) {
@@ -206,5 +207,6 @@ myApp.service('StudentService', function ($http) {
             console.log('posted');
         }) //END $http.then
     } //END submitQuiz
+    // console.log('USER', sv.userObject.student[0].id);
 
 }); //END service

@@ -134,7 +134,7 @@ router.get('/getGrades', function (req, res) {
     // query to get grades based on student's id
     let modQuery = 'SELECT questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, responses.final_grade, students.first, students.last FROM questions JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1';
     // var to hold student id
-    let studID = 5;
+    let studID = req.user.students_id;
     //error handling
     if (err) {
       console.log('Connection Error:', err);
