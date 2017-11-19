@@ -23,18 +23,18 @@ myApp.service('StudentService', function ($http) {
     };
     sv.tags = {
         data: []
-    }
+    };
 
     //constructor to store short answer questions
     function SaQs(question, id) {
         this.question = question;
-        this.id = id
+        this.id = id;
     } //END constructor 
 
     //constructor to store essay questions
     function EssayQs(question, id) {
         this.question = question;
-        this.id = id
+        this.id = id;
     } //END constructor 
 
     // constructor to create multiple choice objects
@@ -45,13 +45,13 @@ myApp.service('StudentService', function ($http) {
         this.c = c;
         this.d = d;
         this.correct = correct;
-        this.id = id
+        this.id = id;
     } //END constructor
 
     //constructor to create history events
     function Hist(title, desc) {
         this.title = title;
-        this.desc = desc
+        this.desc = desc;
     } //END constructor
 
     // function to remove duplicates
@@ -99,14 +99,14 @@ myApp.service('StudentService', function ($http) {
                 // if the question is Short Answer
                 if (resp.data[i].type === 'sa') {
                     // Make new SaQ object from response data for sas
-                    let saQuestion = new SaQs(resp.data[i].question, resp.data[i].id)
+                    let saQuestion = new SaQs(resp.data[i].question, resp.data[i].id);
                     //push it to the temp array
                     tempSA.push(saQuestion);
                 } //END if
                 // if the question is Essay
                 if (resp.data[i].type === 'essay') {
                     // Make new SaQ object from response data for sas
-                    let essayQuestion = new EssayQs(resp.data[i].question, resp.data[i].id)
+                    let essayQuestion = new EssayQs(resp.data[i].question, resp.data[i].id);
                     //push it to the temp array
                     tempEssay.push(essayQuestion);
                 } //END if
@@ -121,15 +121,15 @@ myApp.service('StudentService', function ($http) {
             // remove dupes from array of tags
             let tags_without_duplicates = Array.from(new Set(tempTags));
             // set globals to value of return from function without duplicates
-            sv.tags.data = tags_without_duplicates
+            sv.tags.data = tags_without_duplicates;
             sv.mcQuestions.data = removeDupes(tempMC, 'question');
             sv.histEvents.data = removeDupes(tempHist, 'title');
             sv.saQuestions.data = removeDupes(tempSA, 'question');
             sv.essayQuestions.data = removeDupes(tempEssay, 'question');
             console.log('essay:', sv.essayQuestions.data);
             
-        }) //END $http.then
-    } //END getMod
+        }); //END $http.then
+    }; //END getMod
 
     // function to get student grades info back from router
     sv.getGrades = function () {
@@ -148,7 +148,7 @@ myApp.service('StudentService', function ($http) {
                     tempLesson2.push(resp.data[i]);
                 } //END else if
             } //END for loop
-        }) //END $http.then
+        }); //END $http.then
         sv.studGrades.lesson5 = tempLesson5;
         sv.studGrades.lesson2 = tempLesson2;
         console.log('studGRADES:', sv.studGrades);
@@ -158,7 +158,7 @@ myApp.service('StudentService', function ($http) {
     sv.submitQuiz = function (resps) {
         objectToSend = {
             data: resps
-        }//END objectToSend
+        };//END objectToSend
         // POST request
         $http({
             method: 'POST',
@@ -166,7 +166,7 @@ myApp.service('StudentService', function ($http) {
             data: objectToSend
         }).then(function (response) {
             console.log('posted');
-        }) //END $http.then
-    } //END submitQuiz
+        }); //END $http.then
+    }; //END submitQuiz
 
 }); //END service

@@ -11,7 +11,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.mcQuestions = StudentService.mcQuestions;
     vm.essayQuestions = StudentService.essayQuestions;
     vm.histEvents = StudentService.histEvents;
-    vm.tags = StudentService.tags
+    vm.tags = StudentService.tags;
     vm.classes = TeacherService.classes;
     vm.selectedClasses = [];
     vm.path = $location.path();
@@ -19,11 +19,13 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.getClasses = TeacherService.getClasses;
     vm.updateAssigned = TeacherService.updateAssigned;
 
+    console.log(vm.userObject);
+
     // constructor for quiz responses
     function QuizResps(studId, resp, questId) {
         this.studId = studId;
         this.resp = resp;
-        this.questId = questId
+        this.questId = questId;
     } //END constructor 
 
     // function to send responses and ids to questions in module to service
@@ -34,7 +36,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         let resps = {
             ids: [],
             resps: []
-        } //END resps
+        }; //END resps
         // loop through multiple choice questions
         for (let i = 0; i < vm.mcQuestions.data.length; i++) {
             // push their ids into temp obj
@@ -78,6 +80,6 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         vm.SaVal = {};
         vm.EssayVal = {}; 
         document.getElementById("quiz").reset();
-    } //END submitQuiz
+    }; //END submitQuiz
 
 }); //END App Controller
