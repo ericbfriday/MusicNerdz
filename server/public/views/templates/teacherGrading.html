@@ -43,7 +43,11 @@
                 <br>
                 <span>Notes From MusicNerdz:</span>
                 <span>{{q.teacher_comments}}</span>
-                <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..."></textarea>
+                <br>
+                <md-input-container class="small">
+                    <label><span>Teacher's Comments</span></label>
+                    <textarea ng-model="" rows="4" md-select-on-focus></textarea>
+                </md-input-container>
             </div>
         </div>
 
@@ -57,7 +61,10 @@
                 <br>
                 <span>Notes From MusicNerdz:</span>
                 <span>{{q.teacher_comments}}</span>
-                <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..."></textarea>
+                <md-input-container class="small">
+                        <label><span>Teacher's Comments</span></label>
+                        <textarea ng-model="tgc.userObject[$index].teacherFeedback" rows="4" md-select-on-focus></textarea>
+                    </md-input-container>
             </div>
         </div>
 
@@ -68,7 +75,6 @@
                 <button class="btn btn-default">Submit</button>
             </div>
         </div>
-
     </div>
 </div>
 </div>
