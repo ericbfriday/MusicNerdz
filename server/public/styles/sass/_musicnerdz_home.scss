@@ -47,7 +47,6 @@
             }
         }
         .student-nav {
-
             a {
                 cursor: pointer;
                 font-size: 1.6rem;
@@ -55,7 +54,7 @@
                 padding: 5px;
                 width: 150px;
                 -webkit-box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
-                        box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+                box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
                 background: $orange;
                 height: 55px;
                 .fa-line-chart {
@@ -84,7 +83,7 @@
     }
     .border {
         border-top: 1px solid black;
-        margin:15px 0;
+        margin: 15px 0;
     }
     .main-carousel {
         -webkit-box-shadow: 0px 1px 5px $black;
@@ -102,7 +101,6 @@
     .main-assigned {
         a {
             text-decoration: none;
-            
         }
         overflow: visible;
         padding: 0 50px;
@@ -126,7 +124,6 @@
     width: 80%;
     .fa {
         font-size: 5rem;
-        
     }
 }
 
@@ -141,7 +138,6 @@
     p {
         margin: 0;
     }
-
     .tile-artist {
         font-weight: 800;
         -o-text-overflow: ellipsis;
@@ -153,11 +149,11 @@
         .fa .fa-play-circle-o {
             margin: 0 25px;
         }
-
     }
     .tile-name {
         font-size: 1.5rem;
         .tile-record {
+            -o-text-overflow: ellipsis;
             text-overflow: ellipsis;
             width: 100%;
             overflow: hidden;
@@ -169,15 +165,10 @@
         background-size: cover;
         background-position: 100% 25%;
         height: 180px;
-
         .fa-play-circle-o {
             font-size: 8rem;
             color: $blue;
-            text-shadow:
-            -1px -1px 0 $grey,
-            1px -1px 0 $grey,
-            -1px 1px 0 $grey,
-            1px 1px 0 $grey;
+            text-shadow: -1px -1px 0 $grey, 1px -1px 0 $grey, -1px 1px 0 $grey, 1px 1px 0 $grey;
             opacity: .9;
         }
         span {
@@ -187,7 +178,7 @@
             width: 40px;
             background-color: white;
             -webkit-box-shadow: 1px 1px 3px black;
-                    box-shadow: 1px 1px 3px black;
+            box-shadow: 1px 1px 3px black;
             i {
                 font-size: 4rem;
                 color: #9999992e;
@@ -196,7 +187,6 @@
             .completed {
                 color: $orange;
                 -webkit-text-stroke: 1px hsl(0, 0%, 0%);
-                
             }
         }
         img {
@@ -211,7 +201,6 @@
             line-height: 40px;
             height: 100%;
             cursor: pointer;
-            
             .fa-play-circle-o {
                 color: $blue;
                 font-size: 5rem;
