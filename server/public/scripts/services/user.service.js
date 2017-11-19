@@ -92,7 +92,7 @@ myApp
           }, function (response) {
             $location.path("/home");
           });
-      },
+      }, // end getuser();
       getteacher: function () {
         console.log('UserService -- getteacher');
         $http
@@ -115,7 +115,7 @@ myApp
             console.log('UserService -- getuser -- failure: ', response);
             $location.path("/home");
           });
-      },
+      }, // end getteacher();
       getadmin: function () {
         console.log('UserService -- get admin');
         $http
@@ -137,8 +137,7 @@ myApp
             console.log('UserService -- getuser -- failure: ', response);
             $location.path("/home");
           });
-      },
-
+      }, // end getadmin();
       getfeatured: function () {
         $http
           .get('/student/getAllModules')
@@ -151,8 +150,7 @@ myApp
                 .splice(Math.floor(Math.random() * resp.data.length), 1);
             }
           }); //END $http GET
-      },
-
+      }, // end getfeatured();
       loadmodule: function (id) {
         // send user to module page from landing page
         console.log("module: ", id);
@@ -175,19 +173,7 @@ myApp
             console.log('UserService -- getuser -- failure: ', response);
             $location.path("/home");
           });
-
-      },
-      getgradeform: function (mod, student) {
-        console.log('module: ', mod, 'student: ', student);
-        // $http.get('/student/modules').then(function (res) {
-        //     userObject.moduleinfo = res.data;
-        //   })
-        //   .then(
-            $http.get('/student/getGrades').then(function (resp) {
-            userObject.studentinfo = resp.data;
-          });
-      },
-
+      }, // loadmodule();
       logout: function () {
         console.log('UserService -- logout');
         $http
@@ -198,6 +184,39 @@ myApp
               .location
               .reload();
           });
-      }
-    };
-  });
+      }, // end logout
+      getgradeform: function (mod, student) {
+        console.log('module: ', mod, 'student: ', student);
+        // $http.get('/student/modules').then(function (res) {
+        //     userObject.moduleinfo = res.data;
+        //   })
+        //   .then(
+        $http.get('/student/getGrades')
+          .then(function (resp) {
+            userObject.studentinfo = resp.data;
+            let q = userObject.studentinfo;
+            // counts total number of correct & incorrect mc questions & gives % of them
+            let gradeGenerator = (q) => { 
+              console.log('inside gradeGenerator -> ');
+              console.log('loggin q -> ', q);
+              let correctCounter = 0;
+              let totalCounter = 0;
+              console.log('Generating Grades -> ');
+              q.forEach((ele) => {
+                if (ele.correct == ele.response) {
+                  correctCounter++;
+                  totalCounter++;
+                } else {
+                  totalCounter++;
+                }
+                console.log('logging correctCounter & totalCounter -> ', correctCounter, totalCounter);
+              }); // end forEach loop
+              userObject.numberCorrect = correctCounter;
+              userObject.numberTotal = totalCounter;
+              userObject.correctPercet = ((correctCounter / totalCounter)*100);
+            }; // end gradeGenerator();
+            gradeGenerator(q);
+          }); // end $http.get
+      } // end getgradeform();
+    }; // end return
+  }); // end factory
