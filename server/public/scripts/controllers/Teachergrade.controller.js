@@ -14,4 +14,16 @@ myApp.controller('TeachergradeController', function ($location, UserService, Stu
   vm.relocate = function () {
     $location.path("/teacher/grading");
     };
+
+  vm.submitGrading = function (gradedObj) {
+    $http.post('/teacher/gradedQuiz', gradedObj)
+    .then((response) => {
+      console.log('Logging response in teachergrade controller submitGrading -> ', response);
+      
+    })
+    .catch((error) => {
+      console.log('Logging error in teachergrade controller submitGrading -> ', error);
+      
+    })
+  }
 });

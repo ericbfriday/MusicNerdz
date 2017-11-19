@@ -1,4 +1,5 @@
-var myApp = angular.module('myApp', [
+"use strict";
+const myApp = angular.module('myApp', [
   'ngRoute',
   'ngMaterial',
   'ngSanitize',

@@ -18,7 +18,8 @@
             <div class="teacher-grade-mc">
                 <p layout="row" layout-align="space-between center">{{q.question}}
                     <i ng-show="q.response === q.correct" class="fa fa-check-square-o" aria-hidden="true"></i>
-                    <i ng-show="q.response !== q.correct" class="fa fa-exclamation-circle" aria-hidden="true"></i> <!--  Add correct symbol based on logic here -->
+                    <i ng-show="q.response !== q.correct" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    <!--  Add correct symbol based on logic here -->
                 </p>
                 <span id="answerA[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'a', 'teacher-grade-mc-right': q.response === q.correct && q.correct === 'a'}">a. {{q.a}}</span>
                 <span id="answerB[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'b', 'teacher-grade-mc-right': q.response === q.correct && q.correct === 'b'}">b. {{q.b}}</span>
@@ -29,7 +30,8 @@
 
         <div class="teacher-grade-questions" flex layout="column" layout-align="start stretch">
             <div class="teacher-grade-results" layout="row" layout-align="center center">
-                <span>{{tgc.userObject.numberCorrect}} / {{tgc.userObject.numberTotal}} Correct - {{tgc.userObject.correctPercet | number: 0}}%</span>
+                <span>{{tgc.userObject.numberCorrect}} / {{tgc.userObject.numberTotal}} Correct - {{tgc.userObject.correctPercet
+                    | number: 0}}%</span>
                 <!-- need to calculate for future use -->
             </div>
         </div>
@@ -44,8 +46,10 @@
                 <span>Notes From MusicNerdz:</span>
                 <span>{{q.teacher_comments}}</span>
                 <br>
-                <md-input-container class="small">
-                    <label><span>Teacher's Comments</span></label>
+                <md-input-container class="md-block">
+                    <label>
+                        <span>Teacher's Comments</span>
+                    </label>
                     <textarea ng-model="" rows="4" md-select-on-focus></textarea>
                 </md-input-container>
             </div>
@@ -61,18 +65,23 @@
                 <br>
                 <span>Notes From MusicNerdz:</span>
                 <span>{{q.teacher_comments}}</span>
-                <md-input-container class="small">
-                        <label><span>Teacher's Comments</span></label>
-                        <textarea ng-model="tgc.userObject[$index].teacherFeedback" rows="4" md-select-on-focus></textarea>
-                    </md-input-container>
+                <md-input-container class="md-block">
+                    <label>
+                        <span>Teacher's Comments</span>
+                    </label>
+                    <textarea rows="4" md-select-on-focus></textarea>
+                </md-input-container>
             </div>
         </div>
 
         <div class="teacher-grade-questions" flex layout="column" layout-align="start stretch">
             <div class="teacher-grade-entry">
                 <span>Enter Final Grade:</span>
-                <input type="text">
-                <button class="btn btn-default">Submit</button>
+                <md-input-container>
+                    <label>% or Letter Grade</label>
+                    <input type="text" flex="50">
+                </md-input-container>
+                <button class="btn btn-default" ng-click="tgc.submitGrading(tgc.userObject)">Submit</button>
             </div>
         </div>
     </div>

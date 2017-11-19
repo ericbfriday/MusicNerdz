@@ -130,6 +130,8 @@ router.get('/mod/:id', function (req, res) {
 
 //get student grades info from database
 router.get('/getGrades', function (req, res) {
+  console.log('logging /getGrades req.user -> ', req.user);
+  
   // connect to database
   pool.connect(function (err, client, done) {
     // query to get grades based on student's id

@@ -1,3 +1,4 @@
+"use strict";
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
@@ -74,11 +75,11 @@ router.post('/assign', (req, res) => {
         } else {
           console.log('insert in classes_modules', response);
         }
-      })
+      });
     }  
-  })
+  });
   res.sendStatus(203);
-})
+});
 
 //get all assigned module info that matches class Id
 router.get('/assigned/:classIdParam', function (req, res) {
@@ -121,7 +122,7 @@ router.get('/students/:classParam', (req, res) => {
         res.sendStatus(500);
       } else {
         res.send(result.rows);
-        console.log('ef testing -> ', result.rows);
+        // console.log('ef testing -> ', result.rows);
       }
     });
   });
@@ -228,7 +229,7 @@ router.delete('/deleteTeacher/:id', (req, res) => {
         console.log("Error querying data in /deleteteacher DELETE route: ", err);
         res.sendStatus(500);
       } else {
-        console.log('logging result.rows in /deleteteacher -> ', result.row);
+        // console.log('logging result.rows in /deleteteacher -> ', result.row);
         res.send(result.rows).status(200);
       }
     });
@@ -243,7 +244,7 @@ router.delete('/deleteStudent/:id', function (req, res) {
       res.sendStatus(500);
     } else {
       console.log('DELETE:', req.params.id);
-      var studId = [req.params.id];
+      let studId = [req.params.id];
       client.query('DELETE from students WHERE id = $1', studId, function (err, obj) {
         done();
         if (err) {
@@ -265,18 +266,58 @@ router.delete('/deleteClass/:id', function (req, res) {
       res.sendStatus(500);
     } else {
       console.log('DELETE:', req.params.id);
-      var classId = [req.params.id];
+      let classId = [req.params.id];
       client.query('DELETE from classes WHERE id = $1', classId, function (err, obj) {
         done();
         if (err) {
           console.log(err);
           res.sendStatus(500);
         } else {
-          res.send(obj)
+          res.send(obj);
         }
-      })
+      });
     }
-  }) //end pool.connect
-}) //end router.delete
+  }); //end pool.connect
+}); //end router.delete
+
+// gets the grades of a student based off their ID. Used in the user service when the teacher pulls a students grades.
+// this mostly duplicates the /getGrades code from the student router, however it uses the param id to find the student
+// instead of the user.id.
+router.get('/getGrades/:id', function (req, res) {
+  console.log('logging /getGrades req.params.id -> ', req.params.id);
+  
+  // connect to database
+  pool.connect(function (err, client, done) {
+    // query to get grades based on student's id
+    let modQuery = 'SELECT questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, responses.final_grade, students.first, students.last FROM questions JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1';
+    // var to hold student id
+    let studID = req.params.id;
+    //error handling
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } //END if connection error
+    else {
+      client.query(modQuery, [studID], function (quErr, resultObj) {
+        done();
+        //error handling
+        if (quErr) {
+          console.log('Query Error:', quErr);
+          res.sendStatus(500);
+        } //END if query error
+        else {
+          //send the list from the database to client side
+          res.send(resultObj.rows);
+          console.log('RESULT:', resultObj.rows);
+        } //END else send
+      }); //END client.query
+    } //END else send query
+  }); //END pool.connect
+}); //END router GET
+
+router.post('/gradedQuiz', function (req, res) {
+  console.log('Logging req.body in /graded', req.body);
+  
+});
 
 module.exports = router;

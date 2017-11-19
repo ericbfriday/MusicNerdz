@@ -189,10 +189,10 @@ myApp
         console.log('module: ', mod, 'student: ', student);
         // $http.get('/student/modules').then(function (res) {
         //     userObject.moduleinfo = res.data;
-        //   })
-        //   .then(
-        $http.get('/student/getGrades')
+        //   }).then(
+        $http.get('/teacher/getGrades/' + student)
           .then(function (resp) {
+            console.log('logging resp in /getGrades -> ', resp);
             userObject.studentinfo = resp.data;
             let q = userObject.studentinfo;
             // counts total number of correct & incorrect mc questions & gives % of them
