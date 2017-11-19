@@ -135,9 +135,31 @@
     cursor: pointer;
 }
 
+.collapsible-item .body {
+    overflow: scroll;
+    top:0;
+}
+
 .student-grade {
     .student-grade-response {
-        font-size: 1.5rem;
+        .student-grade-response-bubble-teacher, .student-grade-response-bubble {
+            border:1px solid black;
+            margin: 10px 0;
+            box-shadow: 2px 2px 2px #b3b3b3;
+            background-color: $white;
+            p {
+                margin: 15px;
+            }
+            h4 {
+                color:$white;
+                margin: 0;
+                background-color: $blue;
+                padding: 5px;
+            }
+            border-radius: 5px;
+        }
+        font-size: 1.8rem;
+        font-family: 'Lato';
     }
     md-card-title{
         background: $blue;
@@ -146,7 +168,7 @@
         
     }
     h2 {
-        color: #fca311;
+        color: $orange;
         line-height: normal;
     }
 }

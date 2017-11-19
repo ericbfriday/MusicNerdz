@@ -139,14 +139,14 @@ myApp.service('StudentService', function ($http, UserService) {
                 // if the question is Short Answer
                 if (resp.data[i].type === 'sa') {
                     // Make new SaQ object from response data for sas
-                    let saQuestion = new SaQs(resp.data[i].question, resp.data[i].id)
+                    let saQuestion = new SaQs(resp.data[i].question, resp.data[i].id);
                     //push it to the temp array
                     tempSA.push(saQuestion);
                 } //END if
                 // if the question is Essay
                 if (resp.data[i].type === 'essay') {
                     // Make new SaQ object from response data for sas
-                    let essayQuestion = new EssayQs(resp.data[i].question, resp.data[i].id)
+                    let essayQuestion = new EssayQs(resp.data[i].question, resp.data[i].id);
                     //push it to the temp array
                     tempEssay.push(essayQuestion);
                 } //END if
@@ -177,7 +177,7 @@ myApp.service('StudentService', function ($http, UserService) {
             // remove dupes from array of tags
             let tags_without_duplicates = Array.from(new Set(tempTags))
             // set globals to value of return from function without duplicates
-            sv.tags.data = tags_without_duplicates
+            sv.tags.data = tags_without_duplicates;
             sv.mcQuestions.data = removeDupes(tempMC, 'question');
             sv.histEvents.data = removeDupes(tempHist, 'title');
             sv.addResources.video = removeDupes(tempResVid, 'title');
@@ -187,7 +187,6 @@ myApp.service('StudentService', function ($http, UserService) {
             sv.saQuestions.data = removeDupes(tempSA, 'question');
             sv.essayQuestions.data = removeDupes(tempEssay, 'question');
             console.log('essay:', sv.essayQuestions.data);
-
         }); //END $http.then
     }; //END getMod
 

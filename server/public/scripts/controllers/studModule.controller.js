@@ -21,6 +21,8 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     vm.updateAssigned = TeacherService.updateAssigned;
     vm.path = $location.path();
 
+    console.log(vm.userObject);
+
     // constructor for quiz responses
     function QuizResps(studId, resp, questId) {
         this.studId = studId;
