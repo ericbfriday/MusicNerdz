@@ -1103,17 +1103,43 @@ input, body {
   cursor: pointer;
 }
 
-/* line 139, ../sass/_musicnerdz_studentgrade.scss */
-.student-grade .student-grade-response {
-  font-size: 1.5rem;
+/* line 138, ../sass/_musicnerdz_studentgrade.scss */
+.collapsible-item .body {
+  overflow: scroll;
+  top: 0;
 }
-/* line 142, ../sass/_musicnerdz_studentgrade.scss */
+
+/* line 144, ../sass/_musicnerdz_studentgrade.scss */
+.student-grade .student-grade-response {
+  font-size: 1.8rem;
+  font-family: 'Lato';
+}
+/* line 145, ../sass/_musicnerdz_studentgrade.scss */
+.student-grade .student-grade-response .student-grade-response-bubble-teacher, .student-grade .student-grade-response .student-grade-response-bubble {
+  border: 1px solid black;
+  margin: 10px 0;
+  box-shadow: 2px 2px 2px #b3b3b3;
+  background-color: white;
+  border-radius: 5px;
+}
+/* line 150, ../sass/_musicnerdz_studentgrade.scss */
+.student-grade .student-grade-response .student-grade-response-bubble-teacher p, .student-grade .student-grade-response .student-grade-response-bubble p {
+  margin: 15px;
+}
+/* line 153, ../sass/_musicnerdz_studentgrade.scss */
+.student-grade .student-grade-response .student-grade-response-bubble-teacher h4, .student-grade .student-grade-response .student-grade-response-bubble h4 {
+  color: white;
+  margin: 0;
+  background-color: #14213d;
+  padding: 5px;
+}
+/* line 164, ../sass/_musicnerdz_studentgrade.scss */
 .student-grade md-card-title {
   background: #14213d;
   color: white;
   padding: 16px;
 }
-/* line 148, ../sass/_musicnerdz_studentgrade.scss */
+/* line 170, ../sass/_musicnerdz_studentgrade.scss */
 .student-grade h2 {
   color: #fca311;
   line-height: normal;
