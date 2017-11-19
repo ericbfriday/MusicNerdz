@@ -1,3 +1,4 @@
+"use strict";
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
@@ -158,8 +159,11 @@ router.get('/getGrades', function (req, res) {
   }); //END pool.connect
 }); //END router GET
 
-router.post('/quiz', function (req, res){
-  console.log('BODY!', req.body.data);
+router.post('/quiz', function (req, res) {
+  console.log('BODY!', req.body);
+  let ids = req.body.ids;
+  let resps = req.body.resps;
+  let student = 9;
   // connect to database
   pool.connect(function (err, client, done) {
     //error handling
@@ -185,7 +189,7 @@ router.post('/quiz', function (req, res){
       }//END for loop
     } //END else send query
   }); //END pool.connect
-});//END router POST
+}); //END router POST
 
 router.get('/modules/:id', function (req, res) {
   console.log('modules route ', req.params.id);
@@ -228,9 +232,46 @@ router.get('/modules/:id', function (req, res) {
             res.send(resultObj.rows);
           } //END else send
         }); //END client.query
-      }//END else
+      } //END else
     } //END else send query
   }); //END pool.connect
 }); //END router GET
 
+<<<<<<< HEAD
+=======
+router.post('/submitFb', function (req, res) {
+  console.log('req.body feedback:', req.body);
+  pool.connect(function (err, client, done) {
+    let feedbackQuery = 'INSERT INTO responses (admin_notes) VALUES ($1)';
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } else {
+      client.query(feedbackQuery, [req.body.feedback], function (err, obj) {
+        done();
+
+        if (err) {
+          console.log('query error:', err);
+          res.sendStatus(500);
+        } //end if query error
+        else {
+          res.sendStatus(200);
+          console.log(obj);
+        }
+      }); //end client.query
+    } //end client.query
+    }); //end pool.connect
+});
+
+
+
+//NEW SQL QUERY::
+// SELECT questions.id, questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description AS mod_desc, modules.title AS mod_title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description AS history_desc, history.title AS history_title, tags.type FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id JOIN history_tags ON history.id = history_tags.history_id JOIN tags ON history_tags.tags_id = tags.id WHERE modules.id = 5 ORDER BY questions.question;
+
+
+//OLD QUERY:
+// SELECT questions.id, questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description AS mod_desc, modules.title AS mod_title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description AS history_desc, history.title AS history_title FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id WHERE modules.id = $1 ORDER BY questions.question;
+
+
+>>>>>>> master
 module.exports = router;
