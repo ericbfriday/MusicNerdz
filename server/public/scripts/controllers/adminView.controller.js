@@ -1,6 +1,6 @@
 "use strict";
 
-myApp.controller("AdminViewController", function ($http, $mdDialog, $scope) {
+myApp.controller("AdminViewController", function ($http, $mdDialog, $scope, UserService) {
     const vm = this;
 
     vm.modList = {
@@ -9,6 +9,18 @@ myApp.controller("AdminViewController", function ($http, $mdDialog, $scope) {
 
     vm.feedback = {
         data: []
+    };
+
+    vm.userObject = UserService;
+
+    // UserService.getFeedback(5).then(function(data){
+    //     vm.userObject.data = data;
+    // });
+
+    vm.test = function(id) {
+        UserService.getFeedback(id).then(function(res){
+            vm.userObject.feedback = res;
+        });
     };
 
     vm.getModules = function () {
@@ -22,17 +34,17 @@ myApp.controller("AdminViewController", function ($http, $mdDialog, $scope) {
             });
     };
 
-    vm.getFeedback = function (id) {
-        $http.get('/student/getFeedback/' + id)
-        .then( function (res) {
-            console.log('getFeeedback response -> ', res);
-            vm.feedback = res;
-            console.log('logging vm.feedback -> ', vm.feedback);
-        })
-        .catch( function (err) {
-            console.log('Logging err in getFeedback catch -> ', err);
-        });
-    };
+    // vm.getFeedback = function (id) {
+    //     $http.get('/student/getFeedback/' + id)
+    //     .then( function (res) {
+    //         console.log('getFeeedback response -> ', res);
+    //         vm.feedback = res;
+    //         console.log('logging vm.feedback -> ', vm.feedback);
+    //     })
+    //     .catch( function (err) {
+    //         console.log('Logging err in getFeedback catch -> ', err);
+    //     });
+    // };
 
     $scope.showFeedback = function(ev) {
         console.log('logging showFeedback');
