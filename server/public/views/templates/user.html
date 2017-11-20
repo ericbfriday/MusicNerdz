@@ -3,9 +3,9 @@
 
 <div class="container" layout="column" layout-align="start stretch">
     <div class="main" layout="column" layout-align="start stretch" flex>
-        <div class="main-carousel" flex=20>
-            <div ng-include="'views/partials/carousel.html'" flex ng-controller="UserController as uc"></div>
-        </div>
+        <!-- <div class="main-carousel" flex=20>
+            <div ng-include="'views/partials/carousel.html'" flex ng-controller="UserController as uc" ng-cloak></div>
+        </div> -->
         <div ng-hide="!uc.userObject.user || uc.userObject.user.teachers_id" class="main-completed" layout="row" layout-align="center center">Welcome, {{uc.userObject.student[0].first }}.</div>
         <div ng-hide="!uc.userObject.user || uc.userObject.user.teachers_id || !uc.userObject.assigned" class="main-completed" layout="row" layout-align="center center">Assigned Lessons:</div>
         
