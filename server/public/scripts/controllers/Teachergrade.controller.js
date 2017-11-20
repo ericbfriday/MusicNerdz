@@ -12,7 +12,7 @@ myApp.controller('TeachergradeController', function ($http, $location, UserServi
   console.log('userObject:', vm.userObject);
 
   vm.relocate = function () {
-    $location.path("/teacher/grading");
+    $location.path("/teacher/grading/18");
   };
 
   vm.submitGrading = function (userObject) {
@@ -38,5 +38,4 @@ myApp.controller('TeachergradeController', function ($http, $location, UserServi
     console.log('logging userObject after final grade conversion -> ', userObject.studentinfo);
     vm.submitGrading(userObject);
   };
-
 });

@@ -81,7 +81,7 @@
                     <label>% or Letter Grade</label>
                     <input type="text" flex="50" ng-model="tgc.teacherFinalGrade">
                 </md-input-container>
-                <button class="btn btn-default" ng-click="tgc.finalGradeConverter(tgc.userObject, tgc.teacherFinalGrade)">Submit</button>
+                <button class="btn btn-default" ng-click="tgc.finalGradeConverter(tgc.userObject, tgc.teacherFinalGrade); tgc.relocate()">Submit</button>
             </div>
         </div>
     </div>

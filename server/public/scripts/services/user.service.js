@@ -1,6 +1,5 @@
 'use strict';
-myApp
-  .factory('UserService', function ($http, $location, $mdDialog, $window) {
+myApp.factory('UserService', function ($http, $location, $mdDialog, $window) {
     console.log('UserService Loaded');
 
     let userObject = {};

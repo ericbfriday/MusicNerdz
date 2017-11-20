@@ -315,32 +315,34 @@ router.get('/getGrades/:id', function (req, res) {
 }); //END router GET
 
 router.post('/gradedQuiz', function (req, res) {
-  console.log('Logging req.body in /graded', req.body);
-  let userObject = req.body;
+  // console.log('logging req.body -> ', req.body);
+  
+  // console.log('Logging req.body.studentinfo in /graded', req.body.studentinfo);
+  let userObject = req.body.studentinfo;
   let obj = [];
-  pool.connect(function (err, client, done) {
-    if (err) {
-      console.log('Connection Error', err);
-      res.sendStatus(500);
-    } else {
-      userObject.studentinfo.forEach((ele, i) => {
-        // variables here
-        let query = "UPDATE responses SET final_grade = $1, teacher_comments = $2 FROM responses WHERE student_id = $3 AND questions_id = $4";
-        let values = [req.body.final_grade, req.body.teacher_comments, req.body.student_id, req.body.questions_id]; // questions.modules_id
-        client.query(query, values, function (err, obj) {
-          if (err) {
-            console.log(err);
-            res.sendStatus(500);
-          } else {
-            // res.send(obj);
-            console.log('logging success in SET comment!');
-            
-          }
-        });
-      });
-    }
-    // client.end();
-  });
+  res.sendStatus(200);
+  // pool.connect(function (err, client, done) {
+  //   if (err) {
+  //     console.log('Connection Error', err);
+  //     res.sendStatus(500);
+  //   } else {
+  //     userObject.forEach((ele, i) => {
+  //       let query = `UPDATE "responses" SET "teacher_comments" = '$1' ,"final_grade"='$2' WHERE "students_id" = $3 AND "questions_id" = $4;`;
+  //       let values = [userObject[i].teacher_comments, userObject[i].final_grade, userObject[i].students_id, userObject[i].questions_id]; // questions.modules_id
+  //       console.log('logging values -> ', values);
+  //       client.query(query, values, function (err, obj) {
+  //         if (err) {
+  //           console.log(err);
+  //           res.sendStatus(500);
+  //         } else {
+  //           // res.send(obj);
+  //           console.log('logging success in SET comment!');
+  //         }
+  //       });
+  //     });
+  //   }
+  // client.end();
+  // });
 });
 
 module.exports = router;
