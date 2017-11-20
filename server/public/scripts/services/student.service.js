@@ -245,5 +245,4 @@ myApp.service('StudentService', function ($http, UserService) {
             console.log('feedback response:', response);
         });
     };
-});
-//END service
+}); //END service

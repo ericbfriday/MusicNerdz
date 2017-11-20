@@ -5,11 +5,11 @@
             <div flex="66" layout-fill class="admin-form small">
                 <md-card>
                     <md-card-title class="admin-title">
-                        <md-card-title-text class="md-headline ">
-                            Module Creation - Step 4: Create Quiz Questions
+                        <md-card-title-text class="md-headline">
+                            Lesson Creation - Step 4: Create Quiz Questions
                         </md-card-title-text>
                     </md-card-title>
-                    <md-input-container flex="50" class="md-padding ">
+                    <md-input-container flex="50" class="md-padding">
                         <label class="admin-label">Type of Question to Add</label>
                         <md-select name="correctAnswer" ng-model="qc.currentQType">
                             <md-option value="mc" selected>Multiple Choice</md-option>
@@ -119,7 +119,7 @@
                     <!-- Preview quiz button -  Currently not hooked up to a function. Waiting for teacher/student view of quiz to be written and then
                     we will base new code off of that. -->
                     <md-card>
-                        <md-button class="btn1" ng-click="">Preview Quiz</md-button>
+                        <!-- <md-button class="btn1" ng-click="">Preview Quiz</md-button> -->
 
                         <md-button class="btn1" ng-click="qc.showConfirm($event)" ng-href="#/admin/home">Finish & Submit Module</md-button>
                     </md-card>
