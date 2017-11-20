@@ -7,6 +7,7 @@ myApp
     userObject.new = [];
     userObject.allMods = [];
     userObject.studentinfo = [];
+    userObject.teacherResponse = '';
 
     return {
       userObject: userObject,
@@ -76,7 +77,6 @@ myApp
                       .value();
                   });
               }
-
               // send students/teachers to /user, who are logged in
             } else {
               console.log('UserService -- getuser -- failure');
@@ -198,20 +198,17 @@ myApp
             // counts total number of correct & incorrect mc questions & gives % of them
             // included inside getgradeform function due to issues using 'this.' to call func
             // inside the same factory. Avoids refactoring. 
-            let gradeGenerator = (q) => { 
-              console.log('inside gradeGenerator -> ');
-              console.log('loggin q -> ', q);
+            let gradeGenerator = (q) => {
               let correctCounter = 0;
               let totalCounter = 0;
-              console.log('Generating Grades -> ');
+              // console.log('Generating Grades -> ');
               q.forEach((ele) => {
-                if (ele.correct == ele.response && ele.type == 'mc') {
+                if (ele.correct == ele.response && ele.type == 'mc') { //checks if MC question for calculating # correct
                   correctCounter++;
                   totalCounter++;
-                } else if (ele.correct != ele.response && ele.type == 'mc') {
+                } else if (ele.correct != ele.response && ele.type == 'mc') { //checks if MC question for calculating # correct
                   totalCounter++;
                 }
-                console.log('logging correctCounter & totalCounter -> ', correctCounter, totalCounter);
               }); // end forEach loop
               userObject.numberCorrect = correctCounter;
               userObject.numberTotal = totalCounter;
