@@ -1,3 +1,4 @@
+"use strict";
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
@@ -40,7 +41,7 @@ router.get('/id/:id', function (req, res) {
   pool.connect(function (err, client, done) {
     // query 
 
-    let modQuery = 'SELECT * from students where students.id=$1';
+    let modQuery = 'SELECT email, first, id, last from students where students.id=$1';
     let target = req.params.id;
     //error handling
     if (err) {
@@ -101,7 +102,7 @@ router.get('/mod/:id', function (req, res) {
   // connect to database
   pool.connect(function (err, client, done) {
     // query to get module based on id
-    let modQuery = 'SELECT questions.id, questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description AS mod_desc,modules.title AS mod_title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description AS history_desc, history.title AS history_title, tags.type AS tag_type FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id JOIN history_tags ON history.id = history_tags.history_id JOIN tags ON history_tags.tags_id = tags.id WHERE modules.id = $1 ORDER BY questions.question;'
+    let modQuery = 'SELECT  resources.link, resources.description AS res_desc, resources.type AS res_type, resources.title AS res_title, questions.id, questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description AS mod_desc, modules.title AS mod_title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description AS history_desc, history.title AS history_title, tags.type AS tag_type FROM resources, questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id JOIN history_tags ON history.id = history_tags.history_id JOIN tags ON history_tags.tags_id = tags.id WHERE modules.id = $1 ORDER BY questions.question;'
     // var to hold module id
     let modID = req.params.id;
     //error handling
@@ -132,9 +133,9 @@ router.get('/getGrades', function (req, res) {
   // connect to database
   pool.connect(function (err, client, done) {
     // query to get grades based on student's id
-    let modQuery = 'SELECT questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, responses.final_grade, students.first, students.last FROM questions JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1';
+    let modQuery = 'SELECT modules.title, questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, responses.final_grade, students.first, students.last FROM  modules JOIN questions ON modules.id = questions.modules_id JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1';
     // var to hold student id
-    let studID = 5;
+    let studID = req.user.students_id;
     //error handling
     if (err) {
       console.log('Connection Error:', err);
@@ -255,19 +256,9 @@ router.post('/submitFb', function (req, res) {
           res.sendStatus(200);
           console.log(obj);
         }
-      }) //end client.query
+      }); //end client.query
     } //end client.query
-    }) //end pool.connect
+    }); //end pool.connect
 });
-
-
-
-//NEW SQL QUERY::
-// SELECT questions.id, questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description AS mod_desc, modules.title AS mod_title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description AS history_desc, history.title AS history_title, tags.type FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id JOIN history_tags ON history.id = history_tags.history_id JOIN tags ON history_tags.tags_id = tags.id WHERE modules.id = 5 ORDER BY questions.question;
-
-
-//OLD QUERY:
-// SELECT questions.id, questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description AS mod_desc, modules.title AS mod_title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description AS history_desc, history.title AS history_title FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id WHERE modules.id = $1 ORDER BY questions.question;
-
 
 module.exports = router;

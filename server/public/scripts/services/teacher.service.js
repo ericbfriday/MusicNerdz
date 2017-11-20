@@ -146,12 +146,8 @@ myApp.service('TeacherService', function ($http, UserService) {
     vm.getStdRsps = function () {
         vm.stdRsps = [{one:'one',}, {two:2}];
         console.log('stdRsps:', vm.stdRsps);
-        // return $http.delete('/')
-
     }; //end getStdRsps
     vm.getStdRsps();
-        })
-    };
 
     vm.updateAssigned = function (updateModArr, modId) {
         console.log('classes to update in teacherService', updateModArr, modId);
@@ -164,5 +160,5 @@ myApp.service('TeacherService', function ($http, UserService) {
         .then((res) => {
             console.log('post response ', res);
         });
-    }
+    };
 });
