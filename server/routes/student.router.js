@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
@@ -41,7 +41,7 @@ router.get('/id/:id', function (req, res) {
   pool.connect(function (err, client, done) {
     // query 
 
-    let modQuery = 'SELECT * from students where students.id=$1';
+    let modQuery = 'SELECT email, first, id, last from students where students.id=$1';
     let target = req.params.id;
     //error handling
     if (err) {
@@ -102,7 +102,7 @@ router.get('/mod/:id', function (req, res) {
   // connect to database
   pool.connect(function (err, client, done) {
     // query to get module based on id
-    let modQuery = 'SELECT questions.id, questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description AS mod_desc,modules.title AS mod_title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description AS history_desc, history.title AS history_title FROM questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id WHERE modules.id = $1 ORDER BY questions.question;';
+    let modQuery = 'SELECT  resources.link, resources.description AS res_desc, resources.type AS res_type, resources.title AS res_title, questions.id, questions.question, questions.type, questions.a, questions.b, questions.c, questions.d, questions.correct, modules.description AS mod_desc, modules.title AS mod_title, modules.album, modules.artist, modules.year, modules.lyrics, modules.video, history.description AS history_desc, history.title AS history_title, tags.type AS tag_type FROM resources, questions JOIN modules ON questions.modules_id = modules.id JOIN modules_history ON modules.id = modules_history.modules_id JOIN history ON modules_history.history_id = history.id JOIN history_tags ON history.id = history_tags.history_id JOIN tags ON history_tags.tags_id = tags.id WHERE modules.id = $1 ORDER BY questions.question;'
     // var to hold module id
     let modID = req.params.id;
     //error handling
@@ -135,7 +135,7 @@ router.get('/getGrades', function (req, res) {
     // query to get grades based on student's id
     let modQuery = 'SELECT questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, responses.final_grade, students.first, students.last FROM questions JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1';
     // var to hold student id
-    let studID = 5;
+    let studID = req.user.students_id;
     //error handling
     if (err) {
       console.log('Connection Error:', err);
@@ -159,22 +159,23 @@ router.get('/getGrades', function (req, res) {
   }); //END pool.connect
 }); //END router GET
 
-router.post('/quiz', function (req, res){
+router.post('/quiz', function (req, res) {
   console.log('BODY!', req.body);
   let ids = req.body.ids;
   let resps = req.body.resps;
   let student = 9;
   // connect to database
   pool.connect(function (err, client, done) {
-    // query 
-    let modQuery = 'INSERT INTO responses (students_id, response, questions_id) VALUES ($1, $2, $3)';
     //error handling
     if (err) {
       console.log('Connection Error:', err);
       res.sendStatus(500);
     } //END if connection error
     else {
-      client.query(modQuery, [student, resps, ids], function (quErr, resultObj) {
+      // query 
+      let modQuery = 'INSERT INTO responses (students_id, response, questions_id) VALUES ($1, $2, $3)';
+      for (var i = 0; i < req.body.data.length; i++) {
+        client.query(modQuery, [req.body.data[i].studId, req.body.data[i].resp, req.body.data[i].questId ], function (quErr, resultObj) {
         done();
         //error handling
         if (quErr) {
@@ -182,12 +183,13 @@ router.post('/quiz', function (req, res){
           res.sendStatus(500);
         } //END if query error
         else {
-          console.log(resultObj);
-        } //END else send
+          console.log('posted');
+        } //END else posted
       }); //END client.query
+      }//END for loop
     } //END else send query
   }); //END pool.connect
-});//END router POST
+}); //END router POST
 
 router.get('/modules/:id', function (req, res) {
   console.log('modules route ', req.params.id);
@@ -230,12 +232,12 @@ router.get('/modules/:id', function (req, res) {
             res.send(resultObj.rows);
           } //END else send
         }); //END client.query
-      }//END else
+      } //END else
     } //END else send query
   }); //END pool.connect
 }); //END router GET
 
-//get all modules from database
+ //get all modules from database
 router.get('/getFeedback/:id', function (req, res) {
   let feedbackModID = req.params.id;
   console.log('logging feedbackModID in student.router /getFeedback/:id -> ', feedbackModID);
@@ -264,5 +266,29 @@ router.get('/getFeedback/:id', function (req, res) {
     } //END else send query
   }); //END pool.connect
 }); //END router GET
+
+router.post('/submitFb', function (req, res) {
+  console.log('req.body feedback:', req.body);
+  pool.connect(function (err, client, done) {
+    let feedbackQuery = 'INSERT INTO responses (admin_notes) VALUES ($1)';
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } else {
+      client.query(feedbackQuery, [req.body.feedback], function (err, obj) {
+        done();
+
+        if (err) {
+          console.log('query error:', err);
+          res.sendStatus(500);
+        } //end if query error
+        else {
+          res.sendStatus(200);
+          console.log(obj);
+        }
+      }); //end client.query
+    } //end client.query
+    }); //end pool.connect
+});
 
 module.exports = router;

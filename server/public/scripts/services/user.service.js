@@ -1,10 +1,12 @@
+'use strict';
 myApp
   .factory('UserService', function ($http, $location, $mdDialog, $window, $q) {
     console.log('UserService Loaded');
 
-    var userObject = {};
+    let userObject = {};
     userObject.new = [];
     userObject.allMods = [];
+    userObject.studentinfo = [];
 
     return {
       userObject: userObject,
@@ -26,7 +28,7 @@ myApp
                 // user is a student
 
                 $http.get('/student/modules/' + 7)
-                // hard coded, use 'response.data.students_id'
+                  // hard coded, use 'response.data.students_id'
                   .then(function (res) {
                     userObject.assigned = res.data;
                     // get all songs assigned to students in the class
@@ -55,14 +57,14 @@ myApp
               } else if (response.data.teachers_id) {
                 $location.path("/user");
                 $http
-                .get('/student/getAllModules')
-                .then(function (res) {
-                  userObject.allMods = res.data;
-                  // get all and split out the assigned modules
-                  userObject.new = _(userObject.allMods)
-                    .differenceBy(userObject.assigned, 'id')
-                    .value();
-                });
+                  .get('/student/getAllModules')
+                  .then(function (res) {
+                    userObject.allMods = res.data;
+                    // get all and split out the assigned modules
+                    userObject.new = _(userObject.allMods)
+                      .differenceBy(userObject.assigned, 'id')
+                      .value();
+                  });
               } else {
                 $http
                   .get('/student/getAllModules')
@@ -175,10 +177,13 @@ myApp
       },
       getgradeform: function (mod, student) {
         console.log('module: ', mod, 'student: ', student);
-        // $http   .get('/student/getModule')   .then(function (res) {
-        // userObject.moduleinfo = res.data;   })
-        // .then($http.get('/student/getGrades').then(function (resp) {
-        // userObject.studentinfo = resp.data;   }));
+        // $http.get('/student/modules').then(function (res) {
+        //     userObject.moduleinfo = res.data;
+        //   })
+        //   .then(
+            $http.get('/student/getGrades').then(function (resp) {
+            userObject.studentinfo = resp.data;
+          });
       },
       getFeedback: function (id) {
         var deferred = $q.defer();
