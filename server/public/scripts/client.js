@@ -111,6 +111,9 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       resolve: {
         getmod: function ($route, StudentService) {
           return StudentService.getMod($route.current.params.id);
+        },
+        getteacher: function (UserService, TeacherService) {
+          return UserService.getteacher();
         }
       }
     })
