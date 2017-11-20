@@ -1,5 +1,5 @@
 myApp
-    .controller('ViewController', function ($http, $location, TeacherService, UserService,$mdDialog, $scope, $route) {
+    .controller('ViewController', function ($http, $location, TeacherService, UserService, $mdDialog, $scope, $route) {
         console.log('ViewController created');
         var vm = this;
         vm.teacherService = TeacherService;
@@ -59,48 +59,52 @@ myApp
             // studentId: vm.student //?
         };
 
-        $scope.showConfirm = function(ev, classID, student) {
+        $scope.showConfirm = function (ev, classID, student) {
             // Appending dialog to document.body to cover sidenav in docs app
-            var confirm = $mdDialog.confirm()
-                  .title('Would you like to delete this student?')
-                  .textContent('Deletion is permanent.')
-                  .ariaLabel('Delete Student Confirmation')
-                  .targetEvent(ev)
-                  .ok('Yes')
-                  .cancel('No');
-        
-            $mdDialog.show(confirm).then(function() {
-              $scope.status = 'Deleted!';
-              vm.deleteStudent(classID, student);
-              vm.getClasses(vm.userObject.user.teachers_id);
-              console.log('blah');
-            }, function() {
-              $scope.status = 'Canceled';
-              
-            });            
-          };
+            var confirm = $mdDialog
+                .confirm()
+                .title('Would you like to delete this student?')
+                .textContent('Deletion is permanent.')
+                .ariaLabel('Delete Student Confirmation')
+                .targetEvent(ev)
+                .ok('Yes')
+                .cancel('No');
 
-          $scope.showConfirmClass = function(ev, classID) {
+            $mdDialog
+                .show(confirm)
+                .then(function () {
+                    $scope.status = 'Deleted!';
+                    vm.deleteStudent(classID, student);
+                    vm.getClasses(vm.userObject.user.teachers_id);
+                    console.log('blah');
+                }, function () {
+                    $scope.status = 'Canceled';
+
+                });
+        };
+
+        $scope.showConfirmClass = function (ev, classID) {
             // Appending dialog to document.body to cover sidenav in docs app
-            var confirm = $mdDialog.confirm()
-                  .title('Would you like to delete this class?')
-                  .textContent('Deletion is permanent.')
-                  .ariaLabel('Delete Class Confirmation')
-                  .targetEvent(ev)
-                  .ok('Yes')
-                  .cancel('No');
-        
-            $mdDialog.show(confirm).then(function() {
-              $scope.status = 'Deleted!';
-              vm.deleteClass(classID);
-              $window.reload;
-            }, function() {
-              $scope.status = 'Canceled';
-              
-            });            
-          };
+            var confirm = $mdDialog
+                .confirm()
+                .title('Would you like to delete this class?')
+                .textContent('Deletion is permanent.')
+                .ariaLabel('Delete Class Confirmation')
+                .targetEvent(ev)
+                .ok('Yes')
+                .cancel('No');
 
+            $mdDialog
+                .show(confirm)
+                .then(function () {
+                    $scope.status = 'Deleted!';
+                    vm.deleteClass(classID);
+                    $route.reload();
+                }, function () {
+                    $scope.status = 'Canceled';
 
+                });
+        };
 
         //add class
         vm.addClass = function () {
@@ -109,9 +113,7 @@ myApp
                 .addClass(vm.class)
                 .then(function () {
                     $route.reload();
-                                        console.log('addClass function after .then');
-                    // vm.classes = [];
-                    // vm.getClasses(vm.teacher);
+                    console.log('addClass function after .then');
                 });
         };
 
@@ -121,9 +123,7 @@ myApp
 
         //send student info to server for addition to db
         vm.addStudent = function (classId) {
-            console.log(classId);
             vm.student.classesId = classId;
-            console.log("vm.student", vm.student);
             if (vm.student.email === '' || vm.student.number === '') {
                 vm.message = "Please complete all fields!";
             } else {
@@ -132,7 +132,6 @@ myApp
                     .post('/student/addStudent', vm.student)
                     .then(function (response) {
                         console.log('LoginController -- registerUser -- success');
-                        // $location.path('/home');
                     })
                     .catch(function (response) {
                         console.log('LoginController -- registerUser -- error');
@@ -149,6 +148,7 @@ myApp
 
         vm.clickAssigned = function (id) {
             vm.modules = [];
+            vm.classes = [];
 
             TeacherService
                 .getAssigned(id)
@@ -194,12 +194,14 @@ myApp
                         }
                     }
                 });
-        },
+        };
 
         vm.clickGetClass = function (id) {
             TeacherService
                 .getClasses(id)
                 .then(function (res) {
+                    vm.classes = [];
+                    
                     console.log('response from get classes:', res);
                     vm.returnedClasses = res.data;
                     var classMap = {};
@@ -231,7 +233,8 @@ myApp
                     }
                     console.log('class and students after GET', vm.classes);
                 });
-        },
+        };
+
         //connect to service to make http call to get students by class
         vm.getStudents = function (classId) {
             console.log('in get students with class ID', classId);
