@@ -1,6 +1,6 @@
 'use strict';
 myApp
-  .factory('UserService', function ($http, $location, $mdDialog, $window) {
+  .factory('UserService', function ($http, $location, $mdDialog, $window, $q) {
     console.log('UserService Loaded');
 
     let userObject = {};
@@ -154,8 +154,6 @@ myApp
       },
 
       loadmodule: function (id) {
-        // send user to module page from landing page
-        console.log("module: ", id);
         $http
           .get('/user')
           .then(function (response) {
@@ -187,6 +185,19 @@ myApp
             userObject.studentinfo = resp.data;
           });
       },
+      getFeedback: function (id) {
+        var deferred = $q.defer();
+        console.log('getfeedback');
+
+        $http.get('/student/getFeedback/' + id)
+        .then( function (res) {
+          deferred.resolve(res.data.rows);
+        })
+        .catch( function (err) {
+            console.log('Logging err in getFeedback catch -> ', err);
+        });
+        return deferred.promise;
+    },
 
       logout: function () {
         console.log('UserService -- logout');

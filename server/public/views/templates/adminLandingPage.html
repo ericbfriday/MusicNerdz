@@ -1,45 +1,38 @@
-<section>
+<section ng-init="avc.getModules()" class="admin">
     <div ng-include="'views/partials/admin_nav.html'" ng-controller="UserController as uc"></div>
-    <md-card>
-        <md-card-title-text class="admin-title">
-            <md-card-title class="md-headline">
-                Manage Modules
+    <md-card class="admin-container">
+        <md-card-title class="admin-title">
+            <md-card-title-text class="md-headline">
+                    Module Management
             </md-card-title>
         </md-card-title-text>
-        <md-card-content>
+        <md-card-content class="md-padding">
             <div class="admin-landing-page">
-
-
+                <md-table-container>
+                    <table md-table>
+                        <thead md-head md-row-select multiple class="md-padding">
+                            <th md-column>Module ID</th>
+                            <th md-column>Song Title</th>
+                            <th md-column>Song Album</th>
+                            <th md-column>Song Artist</th>
+                            <th md-column>View Feedback</th>
+                        </thead>
+                        <tbody md-body>
+                            <div>
+                                <tr ng-repeat="mod in avc.modList.data">
+                                    <td md-cell>{{mod.id}}</td>
+                                    <td md-cell>{{mod.title}}</td>
+                                    <td md-cell>{{mod.album}}</td>
+                                    <td md-cell>{{mod.artist}}</td>
+                                    <td md-cell>
+                                        <md-button class="md-warn" ng-click="showFeedback($event); avc.test(mod.id)">View Feedback</md-button>
+                                    </td>
+                                </tr>
+                            </div>
+                        </tbody>
+                    </table>
+                </md-table-container>
             </div>
         </md-card-content>
     </md-card>
-
-
-    <!-- <md-card md-padding layout="column">
-        <md-card-title>
-            <md-card-title-text>
-                Admin Landing Page - Placeholder until all final views are completed.
-            </md-card-title-text>
-        </md-card-title>
-        <div layout="row">
-            <md-button flex="33" class="btn md-primary md-raised" ng-href="#/register">Register</md-button>
-            <md-button flex="33" class="btn md-primary md-raised" ng-href="#/home">Home</md-button>
-            <md-button flex="33" class="btn md-primary md-raised" ng-href="#/admin/songCreation">Song/Module Creation</md-button>
-        </div>
-        <div layout="row">
-            <md-button flex="33" class="btn md-primary md-raised" ng-href="#/admin/quizCreation">Quiz Creation</md-button>
-            <md-button flex="33" class="btn md-primary md-raised" ng-href="#/admin/eventCreation">Historical Event Creation</md-button>
-            <md-button flex="33" class="btn md-primary md-raised" ng-href="#/admin/userMgmt">Admin User Management</md-button>
-        </div>
-        <div layout="row">
-            <md-button flex="33" class="btn md-primary md-raised" ng-href="#/user">Main Landing Page</md-button>
-            <md-button flex="33" class="btn md-primary md-raised" ng-href="#/student/module">Student Module View</md-button>
-            <md-button flex="33" class="btn md-primary md-raised" ng-href="#/student/grades">Student Grade View</md-button>
-        </div>
-        <div layout="row">
-            <md-button flex="33" class="btn md-primary md-raised" ng-href="#/info">Info</md-button>
-            <md-button flex="33" class="btn md-primary md-raised" ng-href="#/viewclass">View Class</md-button>
-            <div flex="33" layout-fill></div>
-        </div>
-    </md-card> -->
 </section>
