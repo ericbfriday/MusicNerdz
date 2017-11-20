@@ -114,18 +114,20 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         },
         getteacher: function (UserService, TeacherService) {
           return UserService.getteacher();
+        },
+        getid: function (UserService) {
+          return UserService.getid();
         }
       }
-    })
-    .when('/student/id/:id', {
-      templateUrl: '/views/templates/lesson.html',
-      controller: 'StudentModuleController as smc',
     })
     .when('/student/grades', {
       templateUrl: '/views/templates/studentGrade.html',
       controller: 'StudentGradeController as sgc',
-      // resolve: {   getuser: function (UserService) {     return
-      // UserService.getuser();   } }
+      resolve: {
+        getid: function (UserService) {
+          return UserService.getid();
+        }
+      }
     })
     .when('/info', {
       templateUrl: '/views/templates/info.html',
@@ -151,8 +153,7 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         },
         getClasses: function (TeacherService, $route) {
           return TeacherService.getClasses($route.current.params.id);
-        },
-        
+        }
       }
     })
     .when('/teacher/grading/:id', {
