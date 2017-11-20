@@ -17,7 +17,7 @@
                                 <td md-cell>{{student.last}}</td>                                    
                                 <td md-cell>{{student.first}}</td>
                                 <td md-cell>{{student.email}}</td>
-                                <td md-cell><md-button class="md-warn" class="deleteStudBtn" ng-click="vc.deleteStudent(class.id, student.id)">Delete Student</md-button></td>
+                                <td md-cell><md-button class="md-warn" class="deleteStudBtn" ng-click="showConfirm($event,class.id, student.id)">Delete Student</md-button></td>
                             </tr>
                         </tbody>
                     </table>

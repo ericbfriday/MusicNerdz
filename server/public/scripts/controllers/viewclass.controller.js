@@ -1,5 +1,5 @@
 myApp
-    .controller('ViewController', function ($http, $location, TeacherService, UserService) {
+    .controller('ViewController', function ($http, $location, TeacherService, UserService,$mdDialog, $scope) {
         console.log('ViewController created');
         var vm = this;
         vm.teacherService = TeacherService;
@@ -58,6 +58,25 @@ myApp
             teachersId: vm.teacher,
             // studentId: vm.student //?
         };
+
+        $scope.showConfirm = function(ev, classID, student) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Would you like to delete this student?')
+                  .textContent('Deletion is permanent.')
+                  .ariaLabel('Delete Student Confirmation')
+                  .targetEvent(ev)
+                  .ok('Yes')
+                  .cancel('No');
+        
+            $mdDialog.show(confirm).then(function() {
+              $scope.status = 'Deleted!';
+              vm.deleteStudent(classID, student);
+            }, function() {
+              $scope.status = 'Canceled';
+              
+            });            
+          };
 
         //add class
         vm.addClass = function () {
