@@ -51,35 +51,7 @@ myApp.service('TeacherService', function ($http, UserService) {
     vm.getClasses = function (teacherId) {
         vm.classes = [];
         console.log('teacher service get classes:', teacherId);
-        return $http.get('/teacher/classes/' + teacherId).then(function (res) {
-            console.log('response from get classes:', res);
-            vm.returnedClasses = res.data;
-            var classMap = {};
-
-            for (var i = 0; i < vm.returnedClasses.length; i++) {
-                var classId = vm.returnedClasses[i].classid;
-                var title = vm.returnedClasses[i].title;
-                var code = vm.returnedClasses[i].code;
-                var first = vm.returnedClasses[i].first;
-                var last = vm.returnedClasses[i].last;
-                var email = vm.returnedClasses[i].email;
-                var studId = vm.returnedClasses[i].studid;
-
-                var newStudent = new Student(studId, first, last, email);
-
-                var classObj = classMap[classId];
-
-                if (classObj == null) {
-                    var newClass = new Class(classId, title, code);
-                    classMap[classId] = newClass;
-                    newClass.students.push(newStudent);
-                    vm.classes.push(newClass);
-                } else {
-                    newClass.students.push(newStudent);
-                };
-            };
-            console.log('class and students after GET', vm.classes);
-        });
+        return $http.get('/teacher/classes/' + teacherId);
     };
 
     vm.getStudents = function (classId) {

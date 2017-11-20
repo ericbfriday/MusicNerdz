@@ -17,7 +17,7 @@
                 <p class="sameAsP student-quiz-desc">
                     {{smc.mods.data[0].mod_desc}}
                 </p>
-                <div class="assignBlock" ng-if="smc.userObject.user.teachers_id !== null" ng-init=smc.getClasses(smc.userObject.user.teachers_id)>
+                <div class="assignBlock" ng-if="smc.userObject.user.teachers_id !== null" ng-init=smc.clickModAssign(smc.userObject.user.teachers_id)>
                     <md-input-container>
                         <label>Assign to Class</label>
                         <md-select ng-model="smc.selectedClasses" md-on-close="smc.updateAssigned(smc.selectedClasses, smc.mods.data[0].id)"
