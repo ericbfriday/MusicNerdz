@@ -133,7 +133,7 @@ router.get('/getGrades', function (req, res) {
   // connect to database
   pool.connect(function (err, client, done) {
     // query to get grades based on student's id
-    let modQuery = 'SELECT questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, responses.final_grade, students.first, students.last FROM questions JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1';
+    let modQuery = 'SELECT modules.title, questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, responses.final_grade, students.first, students.last FROM  modules JOIN questions ON modules.id = questions.modules_id JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1';
     // var to hold student id
     let studID = req.user.students_id;
     //error handling
