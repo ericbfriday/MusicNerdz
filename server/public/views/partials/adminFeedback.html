@@ -7,12 +7,14 @@
                 </md-card-title-text>
             </md-card-title>
             <md-card-content>
-                <div layout="row" layout-align="center center">
-                    <md-card ng-repeat="fb in avc.userObject.feedback"> <!-- layout-fill flex="25"-->
-                        <md-card-content class="md-padding">
-                            {{fb}}{{avc.feedback.data.admin_notes}}
-                        </md-card-content>
-                    </md-card>
+                <div layout="column">
+                    <div layout="row" flex="100" layout-align="center center" layout-wrap>
+                        <md-card flex="25" ng-repeat="fb in avc.userObject.feedback" ng-show="fb.admin_notes !== null">
+                            <md-card-content class="md-padding">
+                                {{fb.admin_notes}}
+                            </md-card-content>
+                        </md-card>
+                    </div>
                 </div>
             </md-card-content>
         </md-card>

@@ -147,6 +147,7 @@ myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) 
         console.log('Logging event in associatedEvent -> ', ev);
         sv.associatedEvents.data.push(ev);
         console.log('Logging sv.associatedEvents in associatedEvent -> ', sv.associatedEvents);
+        document.getElementById('eventSearchForm').reset();
     };
 
     sv.getEvents = function () {
