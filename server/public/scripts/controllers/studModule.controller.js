@@ -1,5 +1,5 @@
 "use strict";
-myApp.controller('StudentModuleController', function (UserService, StudentService, TeacherService, $location) {
+myApp.controller('StudentModuleController', function (UserService, StudentService, TeacherService, $location, $scope) {
     console.log('StudentModuleController created');
     //GLOBALS
     const vm = this;
@@ -75,15 +75,21 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
             // push new objects to array
             answersToSend.push(answer);
         } //END for loop
-        // CALL service submit quiz with array to send
+        // feedback prompt
+        vm.feedback = prompt("Tell us what you thought of this quiz.");
+        console.log('in feedback controller', vm.feedback);
+        // CALL service submit quiz with array to send and feedback
+        StudentService.submitFb({ feedback: vm.feedback });
         StudentService.submitQuiz(answersToSend);
         // reset inputs
         vm.McVal = {};
         vm.SaVal = {};
         vm.EssayVal = {}; 
-        vm.feedback = prompt("Tell us what you thought of this quiz.");
-        console.log('in feedback controller', vm.feedback);
-        StudentService.submitFb({feedback: vm.feedback});
         document.getElementById("quiz").reset();
+        // take student home when done with lesson 
+        $scope.go = function () {
+            $location.path('#/user/');
+        };
+        $scope.go()
     }; //END submitQuiz
 }); //END App Controller
