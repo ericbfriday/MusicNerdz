@@ -41,7 +41,7 @@ router.get('/id/:id', function (req, res) {
   pool.connect(function (err, client, done) {
     // query 
 
-    let modQuery = 'SELECT * from students where students.id=$1';
+    let modQuery = 'SELECT email, first, id, last from students where students.id=$1';
     let target = req.params.id;
     //error handling
     if (err) {
