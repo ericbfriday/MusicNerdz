@@ -135,7 +135,7 @@ router.get('/getGrades', function (req, res) {
   // connect to database
   pool.connect(function (err, client, done) {
     // query to get grades based on student's id
-    let modQuery = 'SELECT questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, responses.final_grade, students.first, students.last FROM questions JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1';
+    let modQuery = 'SELECT modules.title, questions.question, questions.type, questions.modules_id, questions.a, questions.b, questions.c, questions.d, questions.correct, responses.response, responses.teacher_comments, responses.final_grade, students.first, students.last FROM  modules JOIN questions ON modules.id = questions.modules_id JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $1';
     // var to hold student id
     let studID = req.user.students_id;
     //error handling
@@ -235,6 +235,36 @@ router.get('/modules/:id', function (req, res) {
           } //END else send
         }); //END client.query
       } //END else
+    } //END else send query
+  }); //END pool.connect
+}); //END router GET
+
+ //get all modules from database
+router.get('/getFeedback/:id', function (req, res) {
+  let feedbackModID = req.params.id;
+  console.log('logging feedbackModID in student.router /getFeedback/:id -> ', feedbackModID);
+  // connect to database
+  pool.connect(function (err, client, done) {
+    // query 
+    let query = 'SELECT r.admin_notes FROM responses r JOIN questions q ON (r.questions_id=q.id) JOIN modules m ON (q.modules_id=m.id) WHERE r.questions_id = q.id AND q.modules_id = $1;';
+    let values = [feedbackModID];
+    //error handling
+    if (err) {
+      console.log('Connection Error:', err);
+      res.sendStatus(500);
+    } //END if connection error
+    else {
+      client.query(query, values, function (error, resp) {
+        done();
+        if (error) {
+          console.log('Query Error:', error);
+          res.sendStatus(500);
+        } //END if query error
+        else {
+          console.log('logging resp in /getFeedback/ ->', resp);
+          res.send(resp).status(200);
+        } //END else send
+      }); //END client.query
     } //END else send query
   }); //END pool.connect
 }); //END router GET

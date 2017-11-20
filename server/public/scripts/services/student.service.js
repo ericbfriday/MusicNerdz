@@ -16,10 +16,7 @@ myApp.service('StudentService', function ($http, UserService) {
     sv.essayQuestions = {
         data: []
     };
-    sv.studGrades = {
-        lesson5: [],
-        lesson2: []
-    };
+    sv.studGrades = { data: []};
     sv.histEvents = {
         data: []
     };
@@ -192,26 +189,33 @@ myApp.service('StudentService', function ($http, UserService) {
 
     // function to get student grades info back from router
     sv.getGrades = function () {
-        //temp arrays to hold grades for each module
-        let tempLesson5 = [];
-        let tempLesson2 = [];
+        //temp arrays to hold grades for SA and ESSAY
+        let tempGrades = [];
         // let id = sv.userObject.student[0].id;
         // GET request
         $http.get('/student/getGrades/').then(function (resp) {
             console.log('response in service:', resp);
             // loop though response
             for (let i = 0; i < resp.data.length; i++) {
-                if (resp.data[i].modules_id === 5) {
-                    tempLesson5.push(resp.data[i]);
+                if (resp.data[i].type === 'sa' || resp.data[i].type === 'essay') {
+                    tempGrades.push(resp.data[i]);
                 } //END if
-                else if (resp.data[i].modules_id === 2) {
-                    tempLesson2.push(resp.data[i]);
-                } //END else if
             } //END for loop
+            function groupBy(arr, property) {
+                return arr.reduce(function (memo, x) {
+                    if (!memo[x[property]]) { memo[x[property]] = []; }
+                    memo[x[property]].push(x);
+                    return memo;
+                }, {});
+            }
+            tempGrades = groupBy(tempGrades, 'modules_id');
+            // convert object of sa responses to an array
+            let result = Object.keys(tempGrades).map(function (key) {
+                return tempGrades[key];
+            }); //END sa Results
+            sv.studGrades.data = result;
+            console.log('result',result);  
         }); //END $http.then
-        sv.studGrades.lesson5 = tempLesson5;
-        sv.studGrades.lesson2 = tempLesson2;
-        console.log('studGRADES:', sv.studGrades);
     }; //END getGrades
 
     // function to send quiz responses to server -> DB
@@ -241,5 +245,4 @@ myApp.service('StudentService', function ($http, UserService) {
             console.log('feedback response:', response);
         });
     };
-});
-//END service
+}); //END service
