@@ -2,7 +2,6 @@
 myApp.service('TeacherService', function ($http, UserService) {
     var vm = this;
 
-
     // let userObject = {};
     vm.classes = [];
     vm.modules = [];
@@ -56,46 +55,62 @@ myApp.service('TeacherService', function ($http, UserService) {
 
     vm.getStudents = function (classId) {
         console.log('teacher service get students:', classId);
-        return $http.get('/teacher/students/' + classId).then(function (res) {
-            console.log('response from get students', res);
-            vm.students = res.data;
-        });
+        return $http
+            .get('/teacher/students/' + classId)
+            .then(function (res) {
+                console.log('response from get students', res);
+                vm.students = res.data;
+            });
     };
 
     vm.deleteStudent = function (student) {
         console.log('teacher service delete student:', student);
-        return $http.delete('/teacher/deleteStudent/' + student).then(function (res) {
-            console.log('response from delete student:', res);
-            vm.student = res.data;
-            
-        });
+        return $http
+            .delete('/teacher/deleteStudent/' + student)
+            .then(function (res) {
+                console.log('response from delete student:', res);
+                vm.student = res.data;
+
+            });
     };
 
     vm.deleteClass = function (classId) {
         console.log('teacher.service delete class:', classId);
-        return $http.delete('/teacher/deleteClass/' + classId).then(function (res) {
-            console.log('response from delete class:', res);
-            vm.classes = res.data;
-            
-        }); //end $http.delete
+        return $http
+            .delete('/teacher/deleteClass/' + classId)
+            .then(function (res) {
+                console.log('response from delete class:', res);
+                vm.classes = res.data;
+
+            }); //end $http.delete
     }; //end deleteClass
 
     vm.getStdRsps = function () {
-        vm.stdRsps = [{one:'one',}, {two:2}];
+        vm.stdRsps = [
+            {
+                one: 'one'
+            }, {
+                two: 2
+            }
+        ];
         console.log('stdRsps:', vm.stdRsps);
     }; //end getStdRsps
     vm.getStdRsps();
 
     vm.updateAssigned = function (updateModArr, modId) {
-        console.log('classes to update in teacherService', updateModArr, modId);
-        let assignObj = {
-            classArr: updateModArr,
-            moduleId: modId
-        };
-
-        return $http.post('/teacher/assign', assignObj)
-        .then((res) => {
-            console.log('post response ', res);
-        });
+        if (updateModArr.length == 0 ) {
+            console.log('empty!');
+        } else {
+            console.log('classes to update in teacherService', updateModArr, modId);
+            let assignObj = {
+                classArr: updateModArr,
+                moduleId: modId
+            };
+            return $http
+                .post('/teacher/assign', assignObj)
+                .then((res) => {
+                    console.log('post response ', res);
+                });
+        }
     };
 });
