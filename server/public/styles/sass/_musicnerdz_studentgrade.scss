@@ -137,21 +137,23 @@
 
 .collapsible-item .body {
     overflow: scroll;
-    top:0;
+    top: 0;
 }
 
 .student-grade {
     .student-grade-response {
-        .student-grade-response-bubble-teacher, .student-grade-response-bubble {
-            border:1px solid black;
+        .student-grade-response-bubble-teacher,
+        .student-grade-response-bubble {
+            border: 1px solid black;
             margin: 10px 0;
+            -webkit-box-shadow: 2px 2px 2px #b3b3b3;
             box-shadow: 2px 2px 2px #b3b3b3;
             background-color: $white;
             p {
                 margin: 15px;
             }
             h4 {
-                color:$white;
+                color: $white;
                 margin: 0;
                 background-color: $blue;
                 padding: 5px;
@@ -161,11 +163,10 @@
         font-size: 1.8rem;
         font-family: 'Lato';
     }
-    md-card-title{
+    md-card-title {
         background: $blue;
         color: $white;
-        padding:16px;
-        
+        padding: 16px;
     }
     h2 {
         color: $orange;
