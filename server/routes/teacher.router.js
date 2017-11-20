@@ -325,7 +325,7 @@ router.post('/gradedQuiz', function (req, res) {
     } else {
       userObject.studentinfo.forEach((ele, i) => {
         // variables here
-        let query = "SET responses.final_grade = $1, responses.teacher_comments = $2 FROM responses JOIN responses ON questions.id = responses.questions_id JOIN students ON responses.students_id = students.id WHERE students.id = $3 AND questions.id = $4";
+        let query = "UPDATE responses SET final_grade = $1, teacher_comments = $2 FROM responses WHERE student_id = $3 AND questions_id = $4";
         let values = [req.body.final_grade, req.body.teacher_comments, req.body.student_id, req.body.questions_id]; // questions.modules_id
         client.query(query, values, function (err, obj) {
           if (err) {
