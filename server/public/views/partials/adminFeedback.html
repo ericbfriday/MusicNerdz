@@ -1,0 +1,20 @@
+<section class="admin">
+    <div>
+        <md-card class="admin-container">
+            <md-card-title class="admin-title">
+                <md-card-title-text class="md-headline">
+                    Student Feedback
+                </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+                <div layout="row" layout-align="center center">
+                    <md-card ng-repeat="fb in avc.userObject.feedback"> <!-- layout-fill flex="25"-->
+                        <md-card-content class="md-padding">
+                            {{fb}}{{avc.feedback.data.admin_notes}}
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </md-card-content>
+        </md-card>
+    </div>
+</section>

@@ -1,6 +1,7 @@
 'use strict';
-myApp.factory('UserService', function ($http, $location, $mdDialog, $window) {
-  console.log('UserService Loaded');
+myApp
+  .factory('UserService', function ($http, $location, $mdDialog, $window, $q) {
+    console.log('UserService Loaded');
 
   let userObject = {};
   userObject.new = [];
@@ -173,6 +174,7 @@ myApp.factory('UserService', function ($http, $location, $mdDialog, $window) {
         });
     },
 
+<<<<<<< HEAD
     getfeatured: function () {
       $http
         .get('/student/getAllModules')
@@ -186,6 +188,17 @@ myApp.factory('UserService', function ($http, $location, $mdDialog, $window) {
           }
         }); //END $http GET
     },
+=======
+      loadmodule: function (id) {
+        $http
+          .get('/user')
+          .then(function (response) {
+            if (response.data.username) {
+              // user has a curret session on the server
+              userObject.userName = response.data.username;
+              console.log('UserService -- getuser -- User Data: ', userObject.userName, id);
+              $location.path("/student/mod/" + id);
+>>>>>>> master
 
     loadmodule: function (id) {
       // send user to module page from landing page
@@ -214,11 +227,37 @@ myApp.factory('UserService', function ($http, $location, $mdDialog, $window) {
     getgradeform: function (mod, student) {
       console.log('module: ', mod, 'student: ', student);
 
+<<<<<<< HEAD
       $http
         .get('/student/getGrades')
         .then(function (resp) {
           userObject.studentinfo = resp.data;
         });
+=======
+      },
+      getgradeform: function (mod, student) {
+        console.log('module: ', mod, 'student: ', student);
+        // $http.get('/student/modules').then(function (res) {
+        //     userObject.moduleinfo = res.data;
+        //   })
+        //   .then(
+            $http.get('/student/getGrades').then(function (resp) {
+            userObject.studentinfo = resp.data;
+          });
+      },
+      getFeedback: function (id) {
+        var deferred = $q.defer();
+        console.log('getfeedback');
+
+        $http.get('/student/getFeedback/' + id)
+        .then( function (res) {
+          deferred.resolve(res.data.rows);
+        })
+        .catch( function (err) {
+            console.log('Logging err in getFeedback catch -> ', err);
+        });
+        return deferred.promise;
+>>>>>>> master
     },
 
     logout: function () {

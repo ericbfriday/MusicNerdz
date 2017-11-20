@@ -71,5 +71,7 @@ tmp
 #VS Code ignores
 .vscode/
 
-.jshintr
+.jshintrc
+.jscsrc
+.eslintrc
 .eslintrc.json
