@@ -2,7 +2,10 @@
 <div class="container viewclass">
     <ang-accordion ng-repeat="class in vc.classes">
         <collapsible-item item-title={{class.title}} ng-model="class.id">
-            <md-button class="md-warn deleteClassBtn" ng-click="vc.deleteClass(class.id)">Delete Class</md-button>
+            <!-- <md-button class="md-warn deleteClassBtn" ng-click="vc.deleteClass(class.id)">Delete Class</md-button> -->
+            <md-button class="md-warn deleteClassBtn" ng-click="showConfirm($event,class.id)">Delete Class</md-button>
+            
+            
             
             <div class="clearfix">
                 <md-table-container>

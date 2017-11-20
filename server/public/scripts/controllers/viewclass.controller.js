@@ -78,6 +78,27 @@ myApp
             });            
           };
 
+          $scope.showConfirmClass = function(ev, classID) {
+            // Appending dialog to document.body to cover sidenav in docs app
+            var confirm = $mdDialog.confirm()
+                  .title('Would you like to delete this class?')
+                  .textContent('Deletion is permanent.')
+                  .ariaLabel('Delete Class Confirmation')
+                  .targetEvent(ev)
+                  .ok('Yes')
+                  .cancel('No');
+        
+            $mdDialog.show(confirm).then(function() {
+              $scope.status = 'Deleted!';
+              vm.deleteClass(classID);
+            }, function() {
+              $scope.status = 'Canceled';
+              
+            });            
+          };
+
+
+
         //add class
         vm.addClass = function () {
             console.log('in add class', vm.class);
