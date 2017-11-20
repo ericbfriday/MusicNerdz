@@ -1,5 +1,5 @@
 myApp
-    .controller('ViewController', function ($http, $location, TeacherService, UserService,$mdDialog, $scope) {
+    .controller('ViewController', function ($http, $location, TeacherService, UserService,$mdDialog, $scope, $route) {
         console.log('ViewController created');
         var vm = this;
         vm.teacherService = TeacherService;
@@ -72,6 +72,8 @@ myApp
             $mdDialog.show(confirm).then(function() {
               $scope.status = 'Deleted!';
               vm.deleteStudent(classID, student);
+              vm.getClasses(vm.userObject.user.teachers_id);
+              console.log('blah');
             }, function() {
               $scope.status = 'Canceled';
               
@@ -91,6 +93,7 @@ myApp
             $mdDialog.show(confirm).then(function() {
               $scope.status = 'Deleted!';
               vm.deleteClass(classID);
+              $window.reload;
             }, function() {
               $scope.status = 'Canceled';
               
@@ -105,11 +108,11 @@ myApp
             TeacherService
                 .addClass(vm.class)
                 .then(function () {
-                    console.log('addClass function after .then');
-                    vm.classes = [];
-                    vm.getClasses(vm.teacher);
+                    $route.reload();
+                                        console.log('addClass function after .then');
+                    // vm.classes = [];
+                    // vm.getClasses(vm.teacher);
                 });
-
         };
 
         vm.relocate = function () {
