@@ -44,43 +44,8 @@ myApp.service('TeacherService', function ($http, UserService) {
     };
 
     vm.getAssigned = function (classId) {
-        vm.modules = [];
         console.log('teacher service get assigned:', classId);
-        return $http.get('/teacher/assigned/' + classId).then(function(res) {
-            console.log('response from get assigned', res);
-
-            vm.returnedAssigned = res.data;
-            var assignedMap = {};
-            var studentMap = {};
-
-            for (var i = 0; i < vm.returnedAssigned.length; i++) {
-                var moduleId = vm.returnedAssigned[i].mod_id;
-                var title = vm.returnedAssigned[i].title;
-                var studentId = vm.returnedAssigned[i].stud_id;
-                var final = vm.returnedAssigned[i].final_grade;
-                var response = vm.returnedAssigned[i].response;
-
-                var assignedObj = assignedMap[moduleId];
-                var studObj = studentMap[final];
-
-                if (assignedObj == null) {
-                    var newMod = new ModTitleId(moduleId, title);
-                    assignedMap[moduleId] = moduleId;
-                    vm.modules.push(newMod);
-                    if (studObj == null) {
-                        var newStud = new StudentGrade(studentId, final, response);
-                        studentMap[final] = newStud;
-                        newMod.studGrades.push(newStud);
-                    } 
-                } else {
-                    if (studObj == null) {
-                        var newStud = new StudentGrade(studentId, final, response);
-                        studentMap[final] = newStud;
-                        newMod.studGrades.push(newStud);
-                    }
-                }
-            }
-        });
+        return $http.get('/teacher/assigned/' + classId);
     };
 
     vm.getClasses = function (teacherId) {
