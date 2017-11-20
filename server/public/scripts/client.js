@@ -153,6 +153,9 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         },
         getClasses: function (TeacherService, $route) {
           return TeacherService.getClasses($route.current.params.id);
+        },
+        getid: function (UserService) {
+          return UserService.getid();
         }
       }
     })
@@ -165,6 +168,9 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         },
         getClasses: function (TeacherService, $route) {
           return TeacherService.getClasses($route.current.params.id);
+        },
+        getid: function (UserService) {
+          return UserService.getid();
         }
       }
     })

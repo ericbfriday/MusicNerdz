@@ -1,5 +1,5 @@
 <div ng-include="'views/partials/teacher_nav.html'" ng-controller="UserController as uc"></div>
-<div class="container gradebook" ng-init=vc.getClasses(vc.teacher)>
+<div class="container gradebook" ng-init=vc.clickGetClass(vc.teacher)>
     <p>Gradebook</p>
     <div layout="row" layout-align="center center" flex layout-fill>
         <md-input-container class="md-block" flex=30>
