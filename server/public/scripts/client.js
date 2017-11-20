@@ -163,15 +163,16 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/gradebook.html',
       controller: 'ViewController as vc',
       resolve: {
+        // getid: function (UserService) {
+        //   return UserService.getid();
+        // },
         getteacher: function (UserService) {
           return UserService.getteacher();
         },
         getClasses: function (TeacherService, $route) {
           return TeacherService.getClasses($route.current.params.id);
         },
-        getid: function (UserService) {
-          return UserService.getid();
-        }
+
       }
     })
     .otherwise({redirectTo: 'user'});

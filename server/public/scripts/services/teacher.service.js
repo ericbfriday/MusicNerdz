@@ -48,7 +48,6 @@ myApp.service('TeacherService', function ($http, UserService) {
     };
 
     vm.getClasses = function (teacherId) {
-        vm.classes = [];
         console.log('teacher service get classes:', teacherId);
         return $http.get('/teacher/classes/' + teacherId);
     };

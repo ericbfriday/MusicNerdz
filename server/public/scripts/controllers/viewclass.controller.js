@@ -148,9 +148,11 @@ myApp
 
         vm.clickAssigned = function (id) {
             vm.modules = [];
-            vm.classes = [];
 
-            TeacherService
+            if (!id) {
+                console.log('empty');
+            } else {
+                TeacherService
                 .getAssigned(id)
                 .then(function (data) {
 
@@ -194,13 +196,17 @@ myApp
                         }
                     }
                 });
+            }
+
+
         };
 
         vm.clickGetClass = function (id) {
-            TeacherService
+
+                console.log('not empty');
+                TeacherService
                 .getClasses(id)
                 .then(function (res) {
-                    vm.classes = [];
                     
                     console.log('response from get classes:', res);
                     vm.returnedClasses = res.data;
@@ -233,6 +239,8 @@ myApp
                     }
                     console.log('class and students after GET', vm.classes);
                 });
+            
+
         };
 
         //connect to service to make http call to get students by class
