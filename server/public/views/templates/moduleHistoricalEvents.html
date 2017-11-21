@@ -31,7 +31,7 @@
                 </md-card-title-text>
             </md-card-title>
             <md-card-content layout="column">
-                <form name="eventCreation" id="eventCreationForm" class="md-padding admin-form small">
+                <form name="eventCreation" id="moduleEventCreationForm" class="md-padding admin-form small">
                     <div layout="row">
                         <md-input-container flex="75">
                             <label>Title of Event</label>
@@ -45,7 +45,7 @@
                     <div layout="row">
                         <md-input-container flex="100" class="admin-largelabel">
                             <label>Description of Event:</label>
-                            <pre><textarea rows="4" ng-model="ec.desc"></textarea></pre>
+                            <pre><textarea rows="4" ng-model="ec.desc" id="moduleEventCreationForm"></textarea></pre>
                         </md-input-container>
                     </div>
                     <md-chips ng-model="ec.hTags" md-autocomplete-snap md-transform-chip="ec.transformChip($chip)" md-require-match="ec.requireMatch">
