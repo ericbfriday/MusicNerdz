@@ -212,6 +212,8 @@ myApp.factory('UserService', function ($http, $location, $mdDialog, $window, $q)
 
     },
     getgradeform: function (mod, student) {
+      userObject.studentinfo = [];    
+      console.log(userObject.studentinfo);  
       console.log('module: ', mod, 'student: ', student);
       // $http.get('/student/modules').then(function (res) {
       //     userObject.moduleinfo = res.data;
@@ -220,6 +222,7 @@ myApp.factory('UserService', function ($http, $location, $mdDialog, $window, $q)
         .then(function (resp) {
           console.log('logging resp in /getGrades -> ', resp);
           userObject.studentinfo = resp.data;
+          userObject.studentinfo.splice(userObject.studentinfo.length,-5);
           let q = userObject.studentinfo;
           // counts total number of correct & incorrect mc questions & gives % of them
           // included inside getgradeform function due to issues using 'this.' to call func
