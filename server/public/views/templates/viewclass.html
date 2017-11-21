@@ -1,23 +1,24 @@
 <div ng-include="'views/partials/teacher_nav.html'" ng-controller="UserController as uc"></div>
 <div class="container viewclass">
-    <ang-accordion ng-repeat="class in vc.classes">
+    <ang-accordion ng-repeat="class in vc.classes | orderBy: 'title'">
         <collapsible-item item-title={{class.title}} ng-model="class.id">
             <md-button class="md-warn deleteClassBtn" ng-click="vc.deleteClass(class.id)">Delete Class</md-button>
-            
             <div class="clearfix">
                 <md-table-container>
                     <table md-table>
                         <thead md-head md-row-select multiple>
                             <th md-column md-order-by="lastName">Last Name</th>
-                            <th md-column >First Name</th>
-                            <th md-column >Student Email</th>
+                            <th md-column>First Name</th>
+                            <th md-column>Student Email</th>
                         </thead>
                         <tbody md-body>
-                            <tr ng-repeat="student in class.students | orderBy: lastName">
-                                <td md-cell>{{student.last}}</td>                                    
+                            <tr ng-repeat="student in class.students | orderBy: 'last'">
+                                <td md-cell>{{student.last}}</td>
                                 <td md-cell>{{student.first}}</td>
                                 <td md-cell>{{student.email}}</td>
-                                <td md-cell><md-button class="md-warn" class="deleteStudBtn" ng-click="vc.deleteStudent(class.id, student.id)">Delete Student</md-button></td>
+                                <td md-cell>
+                                    <md-button class="md-warn" class="deleteStudBtn" ng-click="vc.deleteStudent(class.id, student.id)">Delete Student</md-button>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -25,8 +26,8 @@
             </div>
             <div class="md-padding" layout="row" layout-align="start center">
                 <input type="text" ng-model="vc.student.last" placeholder="Last Name" ng-required="true" />
-                <input type="text" ng-model="vc.student.first" placeholder="First Name" ng-required="true"/>
-                <input type="text" ng-model="vc.student.email" placeholder="Student Email" ng-required="true"/>
+                <input type="text" ng-model="vc.student.first" placeholder="First Name" ng-required="true" />
+                <input type="text" ng-model="vc.student.email" placeholder="Student Email" ng-required="true" />
                 <input type="text" ng-model="vc.student.number" placeholder="Student ID" />
                 <md-button class="deleteStudBtn" ng-click="vc.addStudent(class.id)">+ Add Student</md-button>
             </div>
@@ -38,4 +39,3 @@
         <md-button class="deleteStudBtn" ng-click="vc.addClass()">+ Add Class</md-button>
     </div>
 </div>
- 
