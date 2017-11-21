@@ -213,12 +213,36 @@ myApp.factory('UserService', function ($http, $location, $mdDialog, $window, $q)
     },
     getgradeform: function (mod, student) {
       console.log('module: ', mod, 'student: ', student);
-      $http
-        .get('/student/getGrades')
+      // $http.get('/student/modules').then(function (res) {
+      //     userObject.moduleinfo = res.data;
+      //   }).then(
+      $http.get('/teacher/getGrades/' + student)
         .then(function (resp) {
+          console.log('logging resp in /getGrades -> ', resp);
           userObject.studentinfo = resp.data;
-        });
-    },
+          let q = userObject.studentinfo;
+          // counts total number of correct & incorrect mc questions & gives % of them
+          // included inside getgradeform function due to issues using 'this.' to call func
+          // inside the same factory. Avoids refactoring. 
+          let gradeGenerator = (q) => {
+            let correctCounter = 0;
+            let totalCounter = 0;
+            // console.log('Generating Grades -> ');
+            q.forEach((ele) => {
+              if (ele.correct == ele.response && ele.type == 'mc') { //checks if MC question for calculating # correct
+                correctCounter++;
+                totalCounter++;
+              } else if (ele.correct != ele.response && ele.type == 'mc') { //checks if MC question for calculating # correct
+                totalCounter++;
+              }
+            }); // end forEach loop
+            userObject.numberCorrect = correctCounter;
+            userObject.numberTotal = totalCounter;
+            userObject.correctPercet = ((correctCounter / totalCounter)*100);
+          }; // end gradeGenerator();
+          gradeGenerator(q);
+        }); // end $http.get
+    }, // end getgradeform();
     getFeedback: function (id) {
       var deferred = $q.defer();
       console.log('getfeedback');

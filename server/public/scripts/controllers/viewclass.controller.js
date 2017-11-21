@@ -118,7 +118,7 @@ myApp
         };
 
         vm.relocate = function () {
-            $location.path("/teacher/gradingform/module/5/student/1");
+            $location.path("/teacher/gradingform/module/5/student/46");
         };
 
         //send student info to server for addition to db
