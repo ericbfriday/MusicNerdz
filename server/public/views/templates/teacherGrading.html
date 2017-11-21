@@ -50,7 +50,7 @@
                     <label>
                         <span>Teacher's Comments</span>
                     </label>
-                    <textarea ng-model="q.teacherResponse" rows="4" md-select-on-focus></textarea>
+                    <textarea ng-model="q.teacherResponse" rows="4" md-select-on-focus id="teacherGradingTeacherCommentsSA[$index]"></textarea>
                 </md-input-container>
             </div>
         </div>
@@ -69,7 +69,7 @@
                     <label>
                         <span>Teacher's Comments</span>
                     </label>
-                    <textarea rows="4" md-select-on-focus  ng-model="q.teacherResponse"></textarea>
+                    <textarea rows="4" md-select-on-focus  ng-model="q.teacherResponse" id="teacherGradingTeacherCommentsEssay[$index]"></textarea>
                 </md-input-container>
             </div>
         </div>
@@ -79,7 +79,7 @@
                 <span>Enter Final Grade:</span>
                 <md-input-container>
                     <label></label>
-                    <input type="text" flex="50" ng-model="tgc.teacherFinalGrade">
+                    <input type="text" flex="50" ng-model="tgc.teacherFinalGrade" id="teacherGradingFinalGrade">
                 </md-input-container>
                 <button class="btn btn-default" ng-click="tgc.finalGradeConverter(tgc.userObject, tgc.teacherFinalGrade); tgc.relocate()">Submit</button>
             </div>

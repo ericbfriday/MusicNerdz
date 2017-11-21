@@ -82,11 +82,11 @@
                             <div class="admin-form small" layout="column" layout-align="start stretch">
                                 <md-input-container>
                                     <label>Question:</label>
-                                    <textarea ng-model="qc.currentSAQ" rows="4" md-select-on-focus id="saq"></textarea>
+                                    <textarea ng-model="qc.currentSAQ" rows="4" md-select-on-focus id="saq" id="saq1"></textarea>
                                 </md-input-container>
                                 <md-input-container>
                                     <label>Notes or Answer</label>
-                                    <textarea ng-model="qc.currentSAA" rows="4" md-select-on-focus id="saa"></textarea>
+                                    <textarea ng-model="qc.currentSAA" rows="4" md-select-on-focus id="saa" id="saa1"></textarea>
                                 </md-input-container>
                             </div>
                             <md-button class="btn1" ng-click="qc.pushSAQ(qc.currentSAQ, qc.currentSAA)">Make New Short Answer Question</md-button>
@@ -105,11 +105,11 @@
 
                                 <md-input-container>
                                     <label>Essay Title/Question</label>
-                                    <textarea ng-model="qc.currentEQ" rows="2" md-select-on-focus></textarea>
+                                    <textarea ng-model="qc.currentEQ" rows="2" md-select-on-focus id="essayq1"></textarea>
                                 </md-input-container>
                                 <md-input-container>
                                     <label>Essay Notes & Answers</label>
-                                    <textarea ng-model="qc.currentEA" rows="4" md-select-on-focus></textarea>
+                                    <textarea ng-model="qc.currentEA" rows="4" md-select-on-focus id="essaya1"></textarea>
                                 </md-input-container>
                             </div>
                             <md-button class="btn1" ng-click="qc.pushEssayQ(qc.currentEQ, qc.currentEA)">Make New Essay Topic</md-button>
