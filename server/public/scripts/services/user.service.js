@@ -37,7 +37,7 @@ myApp.factory('UserService', function ($http, $location, $mdDialog, $window, $q)
             } else if (response.data.students_id) {
               // user is a student
 
-              $http.get('/student/modules/' + 7)
+              $http.get('/student/modules/' + response.data.id)
               // hard coded, use 'response.data.students_id'
                 .then(function (res) {
                   userObject.assigned = res.data;

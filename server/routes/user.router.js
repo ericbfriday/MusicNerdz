@@ -11,7 +11,8 @@ router.get('/', function(req, res) {
     var userInfo = {
       username : req.user.username,
       students_id: req.user.students_id,
-      teachers_id: req.user.teachers_id
+      teachers_id: req.user.teachers_id,
+      id: req.user.id
     };
     res.send(userInfo);
   } else {
