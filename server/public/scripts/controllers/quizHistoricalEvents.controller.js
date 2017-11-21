@@ -1,3 +1,4 @@
+"use strict";
 myApp.controller('EventCreation', function (ModuleCreation) {
     console.log('in quizHistoricalEvents.controller!');
 

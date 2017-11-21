@@ -1,5 +1,6 @@
+"use strict";
 myApp.service('ModuleCreation', function ($http, $mdDialog, $timeout, $q, $log) {
-    var sv = this;
+    const sv = this;
 
     /** BEGIN ADDITIONAL RESOURCES SECTION OF CODE */
 

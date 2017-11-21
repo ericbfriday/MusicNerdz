@@ -1,6 +1,6 @@
 'use strict';
 myApp.service('TeacherService', function ($http, UserService) {
-    var vm = this;
+    const vm = this;
 
 
     // let userObject = {};

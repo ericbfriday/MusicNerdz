@@ -1,12 +1,12 @@
 'use strict';
-myApp
-  .factory('UserService', function ($http, $location, $mdDialog, $window, $q) {
+myApp.factory('UserService', function ($http, $location, $mdDialog, $window, $q) {
     console.log('UserService Loaded');
 
     let userObject = {};
     userObject.new = [];
     userObject.allMods = [];
     userObject.studentinfo = [];
+    userObject.teacherResponse = '';
 
     return {
       userObject: userObject,
@@ -76,7 +76,6 @@ myApp
                       .value();
                   });
               }
-
               // send students/teachers to /user, who are logged in
             } else {
               console.log('UserService -- getuser -- failure');
@@ -92,7 +91,7 @@ myApp
           }, function (response) {
             $location.path("/home");
           });
-      },
+      }, // end getuser();
       getteacher: function () {
         console.log('UserService -- getteacher');
         $http
@@ -115,7 +114,7 @@ myApp
             console.log('UserService -- getuser -- failure: ', response);
             $location.path("/home");
           });
-      },
+      }, // end getteacher();
       getadmin: function () {
         console.log('UserService -- get admin');
         $http
@@ -137,8 +136,7 @@ myApp
             console.log('UserService -- getuser -- failure: ', response);
             $location.path("/home");
           });
-      },
-
+      }, // end getadmin();
       getfeatured: function () {
         $http
           .get('/student/getAllModules')
@@ -151,8 +149,7 @@ myApp
                 .splice(Math.floor(Math.random() * resp.data.length), 1);
             }
           }); //END $http GET
-      },
-
+      }, // end getfeatured();
       loadmodule: function (id) {
         $http
           .get('/user')
@@ -173,18 +170,7 @@ myApp
             console.log('UserService -- getuser -- failure: ', response);
             $location.path("/home");
           });
-
-      },
-      getgradeform: function (mod, student) {
-        console.log('module: ', mod, 'student: ', student);
-        // $http.get('/student/modules').then(function (res) {
-        //     userObject.moduleinfo = res.data;
-        //   })
-        //   .then(
-            $http.get('/student/getGrades').then(function (resp) {
-            userObject.studentinfo = resp.data;
-          });
-      },
+      }, // loadmodule();
       getFeedback: function (id) {
         var deferred = $q.defer();
         console.log('getfeedback');
@@ -198,7 +184,6 @@ myApp
         });
         return deferred.promise;
     },
-
       logout: function () {
         console.log('UserService -- logout');
         $http
@@ -209,6 +194,38 @@ myApp
               .location
               .reload();
           });
-      }
-    };
-  });
+      }, // end logout
+      getgradeform: function (mod, student) {
+        console.log('module: ', mod, 'student: ', student);
+        // $http.get('/student/modules').then(function (res) {
+        //     userObject.moduleinfo = res.data;
+        //   }).then(
+        $http.get('/teacher/getGrades/' + student)
+          .then(function (resp) {
+            console.log('logging resp in /getGrades -> ', resp);
+            userObject.studentinfo = resp.data;
+            let q = userObject.studentinfo;
+            // counts total number of correct & incorrect mc questions & gives % of them
+            // included inside getgradeform function due to issues using 'this.' to call func
+            // inside the same factory. Avoids refactoring. 
+            let gradeGenerator = (q) => {
+              let correctCounter = 0;
+              let totalCounter = 0;
+              // console.log('Generating Grades -> ');
+              q.forEach((ele) => {
+                if (ele.correct == ele.response && ele.type == 'mc') { //checks if MC question for calculating # correct
+                  correctCounter++;
+                  totalCounter++;
+                } else if (ele.correct != ele.response && ele.type == 'mc') { //checks if MC question for calculating # correct
+                  totalCounter++;
+                }
+              }); // end forEach loop
+              userObject.numberCorrect = correctCounter;
+              userObject.numberTotal = totalCounter;
+              userObject.correctPercet = ((correctCounter / totalCounter)*100);
+            }; // end gradeGenerator();
+            gradeGenerator(q);
+          }); // end $http.get
+      } // end getgradeform();
+    }; // end return
+  }); // end factory
