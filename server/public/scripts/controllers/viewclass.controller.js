@@ -1,4 +1,4 @@
-
+"use strict";
 myApp.controller('ViewController', function ($http, $location, TeacherService, UserService) {
     console.log('ViewController created');
     var vm = this;
@@ -46,7 +46,7 @@ myApp.controller('ViewController', function ($http, $location, TeacherService, U
     };
 
     vm.relocate = function() {
-        $location.path("/teacher/gradingform/module/5/student/1");
+        $location.path("/teacher/gradingform/module/5/student/46");
     };
 
     //send student info to server for addition to db
