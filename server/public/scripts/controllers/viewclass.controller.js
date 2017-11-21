@@ -202,7 +202,7 @@ myApp
         };
 
         vm.clickGetClass = function (id) {
-
+                vm.classes=[];
                 console.log('not empty');
                 TeacherService
                 .getClasses(id)
@@ -264,7 +264,8 @@ myApp
                 .then(function () {
                     vm.getClasses(vm.teacher);
                     console.log('classes after delete:', vm.classes);
-                });
+                    $route.reload();
+                                });
         }; // end deleteClass
 
         vm.deleteStudent = function (classId, stud_id) {

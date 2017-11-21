@@ -1,4 +1,3 @@
-'use strict';
 myApp.factory('UserService', function ($http, $location, $mdDialog, $window, $q) {
   console.log('UserService Loaded');
 

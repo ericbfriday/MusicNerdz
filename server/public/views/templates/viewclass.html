@@ -1,6 +1,6 @@
 <div ng-include="'views/partials/teacher_nav.html'" ng-controller="UserController as uc"></div>
 <div class="container viewclass">
-    <ang-accordion ng-repeat="class in vc.classes">
+    <ang-accordion ng-repeat="class in vc.classes | orderBy: 'title'">
         <collapsible-item item-title={{class.title}} ng-model="class.id">
             <!-- <md-button class="md-warn deleteClassBtn" ng-click="vc.deleteClass(class.id)">Delete Class</md-button> -->
             <md-button class="md-warn deleteClassBtn" ng-click="showConfirmClass($event,class.id)">Delete Class</md-button>
@@ -13,7 +13,7 @@
                             <th md-column >Student Email</th>
                         </thead>
                         <tbody md-body>
-                            <tr ng-repeat="student in class.students | orderBy: lastName">
+                            <tr ng-repeat="student in class.students | orderBy: 'last'">
                                 <td md-cell>{{student.last}}</td>                                    
                                 <td md-cell>{{student.first}}</td>
                                 <td md-cell>{{student.email}}</td>
