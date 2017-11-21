@@ -272,6 +272,7 @@ myApp
             TeacherService
                 .deleteStudent(stud_id)
                 .then(function () {
+                    vm.students=[];
                     vm.getStudents(classId);
                 });
         };

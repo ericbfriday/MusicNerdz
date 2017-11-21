@@ -1,12 +1,12 @@
 'use strict';
 myApp.factory('UserService', function ($http, $location, $mdDialog, $window, $q) {
-    console.log('UserService Loaded');
+  console.log('UserService Loaded');
 
-    let userObject = {};
-    userObject.new = [];
-    userObject.allMods = [];
-    userObject.studentinfo = [];
-    userObject.teacherResponse = '';
+  let userObject = {};
+  userObject.new = [];
+  userObject.allMods = [];
+  userObject.studentinfo = [];
+  userObject.teacherResponse = '';
 
   return {
     userObject: userObject,

@@ -4,9 +4,6 @@
         <collapsible-item item-title={{class.title}} ng-model="class.id">
             <!-- <md-button class="md-warn deleteClassBtn" ng-click="vc.deleteClass(class.id)">Delete Class</md-button> -->
             <md-button class="md-warn deleteClassBtn" ng-click="showConfirmClass($event,class.id)">Delete Class</md-button>
-            
-            
-            
             <div class="clearfix">
                 <md-table-container>
                     <table md-table>
@@ -27,15 +24,13 @@
                 </md-table-container>
             </div>
             <div class="md-padding" layout="row" layout-align="start center">
-                <input type="text" ng-model="vc.student.first" placeholder="First Name" ng-required="true"/>
-                <input type="text" ng-model="vc.student.last" placeholder="Last Name" ng-required="true" />
-                <input type="text" ng-model="vc.student.email" placeholder="Student Email" ng-required="true"/>
-                <input type="text" ng-model="vc.student.number" placeholder="Student ID" />
+                <input type="text" ng-model="class.first" placeholder="First Name" ng-required="true"/>
+                <input type="text" ng-model="class.last" placeholder="Last Name" ng-required="true" />
+                <input type="text" ng-model="class.email" placeholder="Student Email" ng-required="true"/>
+                <input type="text" ng-model="class.number" placeholder="Student ID" />
                 <md-button class="deleteStudBtn" ng-click="vc.addStudent(class.id)">+ Add Student</md-button>
-                
             </div>
-        </collapsible-item>
-        
+        </collapsible-item>   
     </ang-accordion>
     <div class="md-padding">
         <input type="text" ng-model="vc.class.title" placeholder="Class Title" ng-required="true" flex="grow" />
