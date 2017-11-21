@@ -5,7 +5,7 @@
         <md-input-container class="md-block" flex=30>
             <label>Class</label>
             <md-select ng-model="id" md-on-close="vc.clickAssigned(id)">
-                <md-option ng-repeat="class in vc.classes" value={{class.id}} class="gradebook-container">
+                <md-option ng-repeat="class in vc.classes | orderBy: 'title'" value={{class.id}} class="gradebook-container">
                 {{class.title}}
                 </md-option>
             </md-select>
@@ -19,7 +19,7 @@
                     <th md-column ng-repeat="module in vc.modules">Lesson: {{module.title}}</th>
                 </thead>
                 <tbody md-body>
-                    <tr ng-repeat="student in class.students | orderBy: name">
+                    <tr ng-repeat="student in class.students | orderBy: 'last'">
                         <td md-cell>{{student.last}}, {{student.first}}</td>
                         <td md-cell ng-repeat="modAssigned in vc.modules">
                             <div ng-repeat="studentGrade in modAssigned.studGrades">

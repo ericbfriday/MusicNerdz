@@ -123,7 +123,9 @@ myApp
 
         //send student info to server for addition to db
         vm.addStudent = function (classId) {
+            console.log('add');
             vm.student.classesId = classId;
+            console.log(vm.student.email);
             if (vm.student.email === '' || vm.student.number === '') {
                 vm.message = "Please complete all fields!";
             } else {
