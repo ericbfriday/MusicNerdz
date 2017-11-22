@@ -65,18 +65,18 @@ router.get('/reset/:email/:token', function(req, res, next){
             var transporter = nodemailer.createTransport({
                 service: 'Gmail',
                 auth: {
-                    user: 'erpersons2@gmail.com',
+                    user: 'MusicNerdzMN@gmail.com',
                     pass: process.env.MAILERPASSWORD
                 }
             });
             var mailOptions = {
-                from: 'erpersons2@gmail.com',
+                from: 'MusicNerdzMN@gmail.com',
                 to: email,
                 subject: 'MusicNerdz Password Reset',
                 // CHANGE THIS MESSAGE AT SOME POINT
                 // WHAT URL AFTER DEPLOY???
                 html: '<p>Your password has been changed to ' + newPass + '. </p>' +
-                '<p>Please update your password immediately.</p>'
+                '<p>Please login using this new password.</p>'
             };
             transporter.sendMail(mailOptions, function(err, info){
                 callback(err, 'done');
@@ -139,12 +139,12 @@ router.get('/:email', function(req, res, next){
             var transporter = nodemailer.createTransport({
                 service: 'Gmail',
                 auth: {
-                    user: 'erpersons2@gmail.com',
+                    user: 'MusicNerdzMN@gmail.com',
                     pass: process.env.MAILERPASSWORD
                 }
             });
             var mailOptions = {
-                from: 'erpersons2@gmail.com',
+                from: 'MusicNerdzMN@gmail.com',
                 to: email,
                 subject: 'MusicNerdz Password Reset',
                 // CHANGE THIS MESSAGE AT SOME POINT
@@ -152,7 +152,7 @@ router.get('/:email', function(req, res, next){
                 html: '<p>Hello MusicNerdz User!</p>' +
                 '<p>You are receiving this email because a password reset has been requested from the MusicNerdz application.</p>' +
                 '<p><a href="http://localhost:8080/resetRoute/reset/' + email + '/' + token + '">Click here to confirm</a></p>' +
-                '<p>You will receive an email with your new password shortly, and will be redirected to the MusicNerdz login page.</p>' +
+                '<p>You will receive an additional email with your new password shortly, and will be redirected to the MusicNerdz login page.</p>' +
                 '<p>If you did not make this request, please disregard.</p>' 
             };
             transporter.sendMail(mailOptions, function(err, info){
