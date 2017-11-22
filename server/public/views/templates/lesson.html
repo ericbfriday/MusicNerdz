@@ -12,18 +12,18 @@
         <div flex=50 flex-lt-sm="50" class="details" layout="column" layout-align="center center">
             <div class="details-container" layout="column" layout-align="start start" ng-if="smc.mods.data.length">
                 <p class="student-quiz-title">{{smc.mods.data[0].mod_title}}</p>
-
                 <p class="student-quiz-artist">{{smc.mods.data[0].artist}}</p>
                 <p class="sameAsP student-quiz-desc">
                     {{smc.mods.data[0].mod_desc}}
                 </p>
-                <div class="assignBlock" ng-if="smc.userObject.user.teachers_id !== null" ng-init=smc.getClasses(smc.userObject.user.teachers_id)>
+                <div class="assignBlock" ng-if="smc.userObject.user.teachers_id !== null" ng-init=smc.clickModAssign(smc.userObject.user.teachers_id)>
                     <md-input-container>
                         <label>Assign to Class</label>
-                        <md-select ng-model="smc.selectedClasses" md-on-close="smc.updateAssigned(smc.selectedClasses, smc.mods.data[0].id)"
+                        <md-select ng-model="smc.selectedClasses" 
                             multiple>
-                            <md-option ng-repeat="class in smc.classes" value={{class.id}}>
+                            <md-option ng-repeat="class in smc.classes | orderBy: 'title'" value={{class.id}}>
                                 {{class.title}}
+                                <!-- md-on-close="smc.updateAssigned(smc.selectedClasses, smc.mods.data[0].id)" -->
                             </md-option>
                         </md-select>
                     </md-input-container>
@@ -63,7 +63,7 @@
             <md-tab label="Additional Resources">
                 <md-content class="md-padding">
                     <h1 class="md-display-2">Additional Resources</h1>
-                    <p class="sameAsP" ng-repeat=" res in smc.addResources.video">
+                    <p class="sameAsP historicalevents" ng-repeat=" res in smc.addResources.video">
                         <strong>{{res.title}}</strong>
                         <br>
                          <span>{{res.desc}}</span>

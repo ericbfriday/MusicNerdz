@@ -1,5 +1,5 @@
 <ui-carousel slides="uc.userObject.featured" slides-to-show="1" slides-to-scroll="1" autoplay="true" autoplay-speed="6000"
-  arrows="false" dots="false">
+  arrows="false" dots="false" ng-if="uc.userObject.featured.length">
   <carousel-item layout="row" layout-align="center center">
     <div class="main-container" flex layout="row" layout-align="start stretch">
       <a ng-href="/#/student/mod/{{item.id}}">

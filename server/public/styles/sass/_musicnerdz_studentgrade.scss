@@ -29,6 +29,7 @@
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
         padding: 10px;
         textarea {
+            background-color:white;
             resize: none;
             font-size: 1.5rem;
             display: block;
@@ -67,6 +68,8 @@
                 text-align: center;
                 border: 1px solid $grey;
                 text-transform: uppercase;
+                background-color: white;
+                height: 55px;
             }
             span {
                 display: block;

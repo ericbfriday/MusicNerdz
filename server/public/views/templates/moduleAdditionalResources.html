@@ -33,17 +33,17 @@
                                 <div layout="row" layout-align="center center" flex>
                                     <md-input-container flex="50">
                                         <label>Video Title</label>
-                                        <input ng-model="rc.vTitle">
+                                        <input ng-model="rc.vTitle" id="addResTitle">
                                     </md-input-container>
                                     <md-input-container flex="50">
                                         <label>YouTube URL</label>
-                                        <input ng-model="rc.vURL">
+                                        <input ng-model="rc.vURL" id="addResURL">
                                     </md-input-container>
                                 </div>
                                 <div layout="row" layout-align="center center" flex layout-fill>
                                     <md-input-container flex="100" class="admin-largelabel">
                                         <label>Description & Notes</label>
-                                        <textarea ng-model="rc.vDesc" rows="6" md-select-on-focus></textarea>
+                                        <textarea ng-model="rc.vDesc" rows="6" md-select-on-focus id="addResDesc"></textarea>
                                     </md-input-container>
                                 </div>
                                 <md-button class="btn1" ng-submit ng-click="rc.pushV(rc.vTitle, rc.vURL, rc.vDesc)">Add New YouTube Video</md-button>

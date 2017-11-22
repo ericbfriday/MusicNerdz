@@ -17,11 +17,71 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     //teacher
     vm.classes = TeacherService.classes;
     vm.selectedClasses = [];
-    vm.getClasses = TeacherService.getClasses;
+    // vm.getClasses = TeacherService.getClasses;
+
+    function Class(id, title, code) {
+        this.id = id;
+        this.title = title;
+        this.code = code;
+        this.students = [];
+    }
+
+    function Student(studId, first, last, email) {
+        this.studId = studId;
+        this.first = first;
+        this.last = last;
+        this.email = email;
+        this.id = studId;
+    }
+
+    function StudentGrade(studentId, final, response) {
+        this.studId = studentId;
+        this.final = final;
+        this.response = response;
+    }
+
+    function ModTitleId(id, title) {
+        this.id = id;
+        this.title = title;
+        this.studGrades = [];
+    }
+
+    vm.clickModAssign = function(id) {
+        TeacherService.getClasses(id)
+        .then(function (res) {
+            console.log('response from get classes:', res);
+            vm.returnedClasses = res.data;
+            var classMap = {};
+
+            for (var i = 0; i < vm.returnedClasses.length; i++) {
+                var classId = vm.returnedClasses[i].classid;
+                var title = vm.returnedClasses[i].title;
+                var code = vm.returnedClasses[i].code;
+                var first = vm.returnedClasses[i].first;
+                var last = vm.returnedClasses[i].last;
+                var email = vm.returnedClasses[i].email;
+                var studId = vm.returnedClasses[i].studid;
+
+                var newStudent = new Student(studId, first, last, email);
+
+                var classObj = classMap[classId];
+
+                if (classObj == null) {
+                    var newClass = new Class(classId, title, code);
+                    classMap[classId] = newClass;
+                    newClass.students.push(newStudent);
+                    vm.classes.push(newClass);
+                } else {
+                    newClass.students.push(newStudent);
+                };
+            };
+            console.log('class and students after GET', vm.classes);
+        });
+    };
+
+
     vm.updateAssigned = TeacherService.updateAssigned;
     vm.path = $location.path();
-
-    console.log(vm.userObject);
 
     // constructor for quiz responses
     function QuizResps(studId, resp, questId) {

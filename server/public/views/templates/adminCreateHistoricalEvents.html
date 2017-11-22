@@ -12,17 +12,17 @@
                     <div layout="row" layout-fill>
                         <md-input-container flex="75">
                             <label>Title of Event</label>
-                            <input ng-model="ec.title" md-select-on-focus>
+                            <input ng-model="ec.title" md-select-on-focus id="histTitleEv">
                         </md-input-container>
                         <md-input-container flex="25">
                             <label>Event Year</label>
-                            <input ng-model="ec.year" md-select-on-focus>
+                            <input ng-model="ec.year" md-select-on-focus id="histYearEv">
                         </md-input-container>
                     </div>
                     <div layout="row">
                         <md-input-container flex="100" class = "admin-largelabel">
                             <label>Description of Event</label>
-                            <pre><textarea rows="4" ng-model="ec.desc"></textarea></pre>
+                            <pre><textarea rows="4" ng-model="ec.desc" id="histDescEv"></textarea></pre>
                         </md-input-container>
                     </div>
                     <md-chips ng-model="ec.hTags" md-autocomplete-snap md-transform-chip="ec.transformChip($chip)" md-require-match="ec.requireMatch">

@@ -112,18 +112,23 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       resolve: {
         getmod: function ($route, StudentService) {
           return StudentService.getMod($route.current.params.id);
+        },
+        // getteacher: function (UserService, TeacherService) {
+        //   return UserService.getteacher();
+        // },
+        getid: function (UserService) {
+          return UserService.getid();
         }
       }
-    })
-    .when('/student/id/:id', {
-      templateUrl: '/views/templates/lesson.html',
-      controller: 'StudentModuleController as smc',
     })
     .when('/student/grades', {
       templateUrl: '/views/templates/studentGrade.html',
       controller: 'StudentGradeController as sgc',
-      // resolve: {   getuser: function (UserService) {     return
-      // UserService.getuser();   } }
+      resolve: {
+        getid: function (UserService) {
+          return UserService.getid();
+        }
+      }
     })
     .when('/info', {
       templateUrl: '/views/templates/info.html',
@@ -150,19 +155,25 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         getClasses: function (TeacherService, $route) {
           return TeacherService.getClasses($route.current.params.id);
         },
-        
+        getid: function (UserService) {
+          return UserService.getid();
+        }
       }
     })
     .when('/teacher/grading/:id', {
       templateUrl: '/views/templates/gradebook.html',
       controller: 'ViewController as vc',
       resolve: {
+        // getid: function (UserService) {
+        //   return UserService.getid();
+        // },
         getteacher: function (UserService) {
           return UserService.getteacher();
         },
         getClasses: function (TeacherService, $route) {
           return TeacherService.getClasses($route.current.params.id);
-        }
+        },
+
       }
     })
     .otherwise({redirectTo: 'user'});

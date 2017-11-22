@@ -3,15 +3,15 @@
     <h2 class="orange">{{sgc.userObject.student[0].first}} {{sgc.userObject.student[0].last}}</h2>
 
     <ang-accordion>
-        <collapsible-item ng-repeat="answer in sgc.studGrades.data" item-title="Lesson {{answer[0].modules_id}} | {{answer[0].title}}">
+        <collapsible-item ng-repeat="answer in sgc.studGrades.data" item-title="Lesson 10 | One Mic">
             <div layout="row" class="gradeMarg sizeLg">
                 <div flex>
-                    <span>Grade:</span>
+                    <span>Grade: A+</span>
                     <strong class="uppercase">{{answer[0].final_grade}}</strong>
                 </div>
                 <div flex>
                     <span>Correct Answers:</span>
-                    <strong>12/15</strong>
+                    <strong>100%</strong>
                 </div>
             </div>
             <div class="gradeMarg student-grade-response" ng-repeat="quest in answer">
@@ -22,7 +22,7 @@
                 </div>
                 <div class="student-grade-response-bubble-teacher" layout="column" layout-align="start stretch">
                     <h4 flex=10>Teacher Response:</h4>
-                    <p flex=90>{{quest.teacher_comments}}</p>
+                    <p flex=90>Great Job!</p>
                 </div>
             </div>
         </collapsible-item>

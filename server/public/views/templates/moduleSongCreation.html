@@ -12,31 +12,31 @@
                     <div layout="row" layout-align="space-between center">
                         <md-input-container flex="40">
                             <label>Title of Song</label>
-                            <input ng-model="sc.songTitle.data" md-select-on-focus autofocus>
+                            <input ng-model="sc.songTitle.data" md-select-on-focus autofocus id="songCreationTitle">
                         </md-input-container>
                         <md-input-container flex="40" flex-offset="10">
                             <label>Title of Album</label>
-                            <input ng-model="sc.songAlbum.data" md-select-on-focus>
+                            <input ng-model="sc.songAlbum.data" md-select-on-focus id="songCreationAlbum">
                         </md-input-container>
                     </div>
                     <div layout="row" layout-align="start center">
                         <md-input-container flex="40">
                             <label>Artist</label>
-                            <input ng-model="sc.songArtist.data" md-select-on-focus>
+                            <input ng-model="sc.songArtist.data" md-select-on-focus id="songCreationArtist">
                         </md-input-container>
                         <md-input-container flex="10" flex-offset="20">
                             <label>Year</label>
-                            <input ng-model="sc.songYear.data" md-select-on-focus maxlength="4">
+                            <input ng-model="sc.songYear.data" md-select-on-focus maxlength="4" id="songCreationYear">
                         </md-input-container>
                     </div>
                     <div layout="row" layout-align="space-between center">
                         <md-input-container flex="40">
                             <label>Album Art URL</label>
-                            <input ng-model="sc.songArt.data" md-select-on-focus>
+                            <input ng-model="sc.songArt.data" md-select-on-focus id="songCreationArt">
                         </md-input-container>
                         <md-input-container flex="40">
                             <label>Youtube Video URL</label>
-                            <input ng-model="sc.songURL.data" md-select-on-focus>
+                            <input ng-model="sc.songURL.data" md-select-on-focus id="songCreationURL">
                         </md-input-container>
                     </div>
                     <!-- <div layout="row" layout-align="space-between center">
@@ -46,7 +46,7 @@
                         <md-input-container flex="100" class="admin-largelabel">
                             <label>Description:</label>
 
-                            <textarea ng-model="sc.songDesc.data" rows="6" md-select-on-focus></textarea>
+                            <textarea ng-model="sc.songDesc.data" rows="6" md-select-on-focus id="songCreationDesc"></textarea>
 
                         </md-input-container>
                     </div>
@@ -54,7 +54,7 @@
                         <md-input-container flex="100" class="admin-largelabel">
                             <label>Lyrics:</label>
 
-                            <textarea ng-model="sc.songLyrics.data" rows="6" md-select-on-focus></textarea>
+                            <textarea ng-model="sc.songLyrics.data" rows="6" md-select-on-focus id="songCreationLyrics"></textarea>
 
                         </md-input-container>
                     </div>
