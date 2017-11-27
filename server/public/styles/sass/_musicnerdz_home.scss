@@ -96,6 +96,12 @@
         position: relative;
         z-index: 1;
         padding: 0 0;
+        .tile-name {
+            div {
+                width: 80%;
+                text-align: left;
+            }
+        }
     }
     .main-container,
     .main-assigned {
@@ -151,6 +157,7 @@
         }
     }
     .tile-name {
+
         font-size: 1.5rem;
         .tile-record {
             -o-text-overflow: ellipsis;
@@ -245,12 +252,30 @@
             padding-left: 35px;
         }
         .tile-desc {
-            font-weight: normal;
-            font-size: 1.5rem;
-            margin: 0;
-            padding: 35px;
-            line-height: normal;
-            text-align: left;
+            overflow: hidden;
+            position: relative;
+            line-height: 1.2em;
+            max-height: 3.6em;
+            text-align: justify;
+            margin-right: 0em;
+            padding-right: 0.8em;
+            margin-left: 35px;
+            width: 75%;
+            &:before {
+                content: '...';
+                position: absolute;
+                right: 0;
+                bottom: 2px;
+            }
+            &:After {
+                content: '';
+                position: absolute;
+                right: 0;
+                width: 1em;
+                height: 1em;
+                margin-top: 0.2em;
+                background: #a8a8a8;
+            }
         }
     }
 }
