@@ -38,7 +38,7 @@
                 <p layout="row" layout-align="space-between center">{{q.question}}</p>
                 <div>
                     <span>STUDENT: {{q.response}}</span>
-                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..."></textarea>
+                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..." ng-model="tgc.userObject.studentinfo[q]"></textarea>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
                 <p layout="row" layout-align="space-between center">{{q.question}}</p>
                 <div>
                     <span>STUDENT: {{q.response}}</span>
-                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..."></textarea>
+                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..." ng-model="tgc.userObject.studentinfo[q]"></textarea>
                 </div>
             </div>
         </div>

@@ -47,6 +47,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     }
 
     vm.clickModAssign = function(id) {
+        vm.classes=[];
         TeacherService.getClasses(id)
         .then(function (res) {
             console.log('response from get classes:', res);
@@ -150,6 +151,6 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         $scope.go = function () {
             $location.path('#/user/');
         };
-        $scope.go()
+        $scope.go();
     }; //END submitQuiz
 }); //END App Controller

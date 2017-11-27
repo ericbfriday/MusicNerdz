@@ -65,9 +65,10 @@ myApp
                       });
                   });
               } else if (response.data.teachers_id) {
-                if ($location.path('/home')) {
-                  $location.path('/user');
-                }
+                // if ($location.path('/home')) {
+                //   console.log('redirect Teacher!');
+                //   $location.path('/user');
+                // }
                 $http
                   .get('/student/getAllModules')
                   .then(function (res) {
@@ -219,7 +220,7 @@ myApp
         $http
           .get('/teacher/getGrades/' + student)
           .then(function (resp) {
-            console.log('logging resp in /getGrades -> ', resp);
+            console.log('logging resp in /getGrades -> ', resp.data);
             userObject.studentinfo = resp.data;
             userObject
               .studentinfo

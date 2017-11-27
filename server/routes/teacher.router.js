@@ -1,4 +1,3 @@
-"use strict";
 const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
@@ -35,9 +34,10 @@ router.get('/gradeform/:mod/:student', function (req, res) {
   console.log('finding student/mod: ', req.params.mod, req.params.student);
   pool.connect(function (err, client, done) {
 
-    let query = "SELECT * FROM  (SELECT * FROM students WHERE students.id=$1 LIMIT  1 ) t CROSS J" +
-        "OIN ( SELECT * FROM modules WHERE modules.id =$2 LIMIT 1 ) m CROSS JOIN ( SELEC" +
-        "T classes.title as class FROM classes WHERE classes.id = 43 LIMIT 1 ) c;";
+    let query = "SELECT * FROM  (SELECT id as studentID, first, last, classes_id as classID FROM " +
+        "students WHERE students.id=$1 LIMIT  1 ) t CROSS JOIN ( SELECT * FROM modules WH" +
+        "ERE modules.id =$2 LIMIT 1 ) m CROSS JOIN ( SELECT classes.title as class FROM c" +
+        "lasses WHERE classes.id = 43 LIMIT 1 ) c;";
     let target = [req.params.student, req.params.mod];
 
     if (err) {
@@ -339,17 +339,15 @@ router.delete('/deleteClass/:id', function (req, res) {
 
 // Below gets the grades of a student based off their ID. It's used in the user
 // service when the teacher pulls a students grades. this mostly duplicates the
-// /getGrades code from the student router, however it uses the param id to
-// find the student instead of the user.id.
+// /getGrades code from the student router, however it uses the param id to find
+// the student instead of the user.id.
 router.get('/getGrades/:id', function (req, res) {
-  // console.log('logging /getGrades req.params.id -> ', req.params.id); connect
-  // to database
   pool
     .connect(function (err, client, done) {
       // query to get grades based on student's id
       let modQuery = 'SELECT DISTINCT questions.question, questions.type, questions.modules_id, questi' +
           'ons.a, questions.b, questions.c, questions.d, questions.correct, responses.respo' +
-          'nse, responses.teacher_comments, responses.final_grade, students.first, students' +
+          'nse, responses.teacher_comments, responses.final_grade, responses.questions_id, students.first, students' +
           '.last FROM questions JOIN responses ON questions.id = responses.questions_id JOI' +
           'N students ON responses.students_id = students.id WHERE students.id = $1';
       // var to hold student id
@@ -379,22 +377,32 @@ router.get('/getGrades/:id', function (req, res) {
 }); //END router GET
 
 router.post('/gradedQuiz', function (req, res) {
-  // console.log('logging req.body -> ', req.body); console.log('Logging
-  // req.body.studentinfo in /graded', req.body.studentinfo);
   let userObject = req.body.studentinfo;
+  console.log('studentinfo ', userObject);
   let obj = [];
-  res.sendStatus(200);
-  // pool.connect(function (err, client, done) {   if (err) {
-  // console.log('Connection Error', err);     res.sendStatus(500);   } else {
-  // userObject.forEach((ele, i) => {       let query = `UPDATE "responses" SET
-  // "teacher_comments" = '$1' ,"final_grade"='$2' WHERE "students_id" = $3 AND
-  // "questions_id" = $4;`;       let values = [userObject[i].teacher_comments,
-  // userObject[i].final_grade, userObject[i].students_id,
-  // userObject[i].questions_id]; // questions.modules_id console.log('logging
-  // values -> ', values);       client.query(query, values, function (err, obj) {
-  //         if (err) {           console.log(err);  res.sendStatus(500); } else {
-  //           // res.send(obj); console.log('logging success in SET comment!');
-  //     }       });     }); } client.end(); });
+  pool.connect(function (err, client, done) {
+    if (err) {
+      console.log('Connection Error', err);
+      res.sendStatus(500);
+    } else {
+      userObject.forEach((ele, i) => {
+        let query = "UPDATE responses SET teacher_comments = $1 ,final_grade=$2 WHERE students_id = $" +
+            "3 AND questions_id = $4";
+        let values = [userObject[i].teacher_comments, userObject[i].final_grade, userObject[i].studentID, userObject[i].questions_id]; // questions.modules_id
+        console.log('values here: ', values);
+        client.query(query, values, function (err, obj) {
+          done();
+          if (err) {
+            console.log(err);
+            res.sendStatus(500);
+          } else {
+            console.log('logging success in SET comment!');
+          }
+        });
+      });
+      res.sendStatus(200);      
+    }
+  });
 });
 
 module.exports = router;
