@@ -155,8 +155,8 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         getClasses: function (TeacherService, $route) {
           return TeacherService.getClasses($route.current.params.id);
         },
-        getuser: function (UserService) {
-          return UserService.getuser();
+        getid: function (UserService) {
+          return UserService.getid();
         }
       }
     })
