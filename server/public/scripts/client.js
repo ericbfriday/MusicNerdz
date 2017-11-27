@@ -116,8 +116,8 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         // getteacher: function (UserService, TeacherService) {
         //   return UserService.getteacher();
         // },
-        getid: function (UserService) {
-          return UserService.getid();
+        getuser: function (UserService) {
+          return UserService.getuser();
         }
       }
     })
@@ -125,8 +125,8 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       templateUrl: '/views/templates/studentGrade.html',
       controller: 'StudentGradeController as sgc',
       resolve: {
-        getid: function (UserService) {
-          return UserService.getid();
+        getuser: function (UserService) {
+          return UserService.getuser();
         }
       }
     })
@@ -142,6 +142,12 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       resolve: {
         getgradeform: function ($route, UserService) {
           return UserService.getgradeform($route.current.params.module, $route.current.params.student);
+        },
+        getteacher: function (UserService, TeacherService) {
+          return UserService.getteacher();
+        },
+        getid: function (UserService) {
+          return UserService.getid();
         }
       }
     })

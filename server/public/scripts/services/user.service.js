@@ -30,15 +30,15 @@ myApp.factory('UserService', function ($http, $location, $mdDialog, $window, $q)
             // user has a curret session on the server
             userObject.user = response.data;
             console.log('UserService -- getuser -- User Data: ', userObject.user);
-
             if ((response.data.teachers_id === null && response.data.students_id === null)) {
               // if the user is logged in, and is admin, their home page is the admin panel
               $location.path("/admin/home");
             } else if (response.data.students_id) {
+              if ($location.path('/home')) {
+                $location.path('/user');
+              }
               // user is a student
-
               $http.get('/student/modules/' + response.data.id)
-              // hard coded, use 'response.data.students_id'
                 .then(function (res) {
                   userObject.assigned = res.data;
                   // get all songs assigned to students in the class
@@ -55,17 +55,16 @@ myApp.factory('UserService', function ($http, $location, $mdDialog, $window, $q)
                     });
                 })
                 .then(function (res) {
-                  console.log(userObject.user.students_id);
                   $http
                     .get('/student/id/' + userObject.user.students_id)
                     .then(function (res) {
                       userObject.student = res.data;
-                      console.log(userObject.student);
                     });
                 });
-              $location.path("/user");
             } else if (response.data.teachers_id) {
-              $location.path("/user");
+              if ($location.path('/home')) {
+                $location.path('/user');
+              }
               $http
                 .get('/student/getAllModules')
                 .then(function (res) {
