@@ -6,7 +6,7 @@
             <label>Class</label>
             <md-select ng-model="id" md-on-close="vc.clickAssigned(id)">
                 <md-option ng-repeat="class in vc.classes | orderBy: 'title'" value={{class.id}} class="gradebook-container">
-                {{class.title}}
+                    {{class.title}}
                 </md-option>
             </md-select>
         </md-input-container>
@@ -24,12 +24,14 @@
                         <td md-cell ng-repeat="modAssigned in vc.modules">
                             <div ng-repeat="studentGrade in modAssigned.studGrades">
                                 <span style="text-transform: uppercase;" ng-show="studentGrade.studId == student.studId">{{studentGrade.final}}</span>
-                                <i ng-show="studentGrade.studId == student.studId && !studentGrade.final" class="fa fa-pencil-square-o" aria-hidden="true" ng-click="vc.relocate()"></i>                                
+                                <a ng-href="/#/teacher/gradingform/module/{{modAssigned.id}}/student/{{student.id}}">
+                                    <i ng-show="studentGrade.studId == student.studId && !studentGrade.final" class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </a>
                             </div>
-                        </td>                                    
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </md-table-container>
-    </div>  
+    </div>
 </div>

@@ -200,7 +200,7 @@ myApp
                 });
             }
 
-
+            console.log('modules info: ', vm.modules);
         };
 
         vm.clickGetClass = function (id) {

@@ -142,6 +142,12 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
       resolve: {
         getgradeform: function ($route, UserService) {
           return UserService.getgradeform($route.current.params.module, $route.current.params.student);
+        },
+        getteacher: function (UserService, TeacherService) {
+          return UserService.getteacher();
+        },
+        getid: function (UserService) {
+          return UserService.getid();
         }
       }
     })
