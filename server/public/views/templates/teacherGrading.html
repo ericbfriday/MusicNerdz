@@ -36,44 +36,29 @@
             </div>
         </div>
 
+
+
         <div class="teacher-grade-questions" flex layout="column" layout-align="start stretch" ng-repeat="q in tgc.userObject.studentinfo"
             ng-show="q.type == 'sa'">
+
             <div class="teacher-grade-sa">
                 <p layout="row" layout-align="space-between center">{{q.question}}</p>
-                <span>Student Response:</span>
-                <span>{{q.response}}</span>
-                <br>
-                <span>Notes From MusicNerdz:</span>
-                <span>{{q.teacher_comments}}</span>
-                <br>
-                <md-input-container class="md-block">
-                    <label>
-                        <span>Teacher's Comments</span>
-                    </label>
-                    <textarea ng-model="q.teacherResponse" rows="4" md-select-on-focus id="teacherGradingTeacherCommentsSA[$index]"></textarea>
-                </md-input-container>
+                <div>
+                    <span>STUDENT: {{q.response}}</span>
+                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..."></textarea>
+                </div>
             </div>
         </div>
-
         <div class="teacher-grade-questions" flex layout="column" layout-align="start stretch" ng-repeat="q in tgc.userObject.studentinfo"
             ng-show="q.type == 'essay'">
             <div class="teacher-grade-sa">
-                <!-- To be updated to class="teacher-grade-essay" once class exists for styling -->
                 <p layout="row" layout-align="space-between center">{{q.question}}</p>
-                <span>Student Response:</span>
-                <span>{{q.response}}</span>
-                <br>
-                <span>Notes From MusicNerdz:</span>
-                <span>{{q.teacher_comments}}</span>
-                <md-input-container class="md-block">
-                    <label>
-                        <span>Teacher's Comments</span>
-                    </label>
-                    <textarea rows="4" md-select-on-focus  ng-model="q.teacherResponse" id="teacherGradingTeacherCommentsEssay[$index]"></textarea>
-                </md-input-container>
+                <div>
+                    <span>STUDENT: {{q.response}}</span>
+                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..."></textarea>
+                </div>
             </div>
         </div>
-
         <div class="teacher-grade-questions" flex layout="column" layout-align="start stretch">
             <div class="teacher-grade-entry">
                 <span>Enter Final Grade:</span>
