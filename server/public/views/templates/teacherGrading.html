@@ -21,10 +21,10 @@
                     <i ng-show="q.response !== q.correct" class="fa fa-exclamation-circle" aria-hidden="true"></i>
                     <!--  Add correct symbol based on logic here -->
                 </p>
-                <span id="answerA[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'a', 'teacher-grade-mc-right': q.response === q.correct && q.correct === 'a'}">a. {{q.a}}</span>
-                <span id="answerB[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'b', 'teacher-grade-mc-right': q.response === q.correct && q.correct === 'b'}">b. {{q.b}}</span>
-                <span id="answerC[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'c', 'teacher-grade-mc-right': q.response === q.correct && q.correct === 'c'}">c. {{q.c}}</span>
-                <span id="answerD[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'd', 'teacher-grade-mc-right': q.response === q.correct && q.correct === 'd'}">d. {{q.d}}</span>
+                <span id="answerA[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'a', 'teacher-grade-mc-right': q.correct === 'a'}">a. {{q.a}}</span>
+                <span id="answerB[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'b', 'teacher-grade-mc-right': q.correct === 'b'}">b. {{q.b}}</span>
+                <span id="answerC[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'c', 'teacher-grade-mc-right': q.correct === 'c'}">c. {{q.c}}</span>
+                <span id="answerD[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'd', 'teacher-grade-mc-right': q.correct === 'd'}">d. {{q.d}}</span>
             </div>
         </div>
 
