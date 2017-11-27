@@ -28,18 +28,21 @@
         -webkit-box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
         box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
         padding: 10px;
-        textarea {
-            background-color:white;
-            resize: none;
-            font-size: 1.5rem;
-            display: block;
-            width: 100%;
-            height: 100px;
-            margin-top: 40px;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-            border: 1px solid $grey;
+        .teacher-grade-sa {
+            textarea {
+                background-color:white;
+                resize: none;
+                font-size: 1.5rem;
+                display: block;
+                width: 100%;
+                height: 100px;
+                margin-top: 40px;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                border: 1px solid $grey;
+            }
         }
+        
         .fa-exclamation-circle,
         .fa-check-square-o {
             font-size: 2.5rem;

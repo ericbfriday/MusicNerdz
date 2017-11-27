@@ -215,9 +215,7 @@ myApp
       },
       getgradeform: function (mod, student) {
         userObject.studentinfo = [];
-        console.log(userObject.studentinfo);
         console.log('module: ', mod, 'student: ', student);
-
         $http
           .get('/teacher/getGrades/' + student)
           .then(function (resp) {
@@ -252,7 +250,6 @@ myApp
           .get('/teacher/gradeform/' + mod + '/' + student)
           .then(function (res) {
             userObject.moduleinfo = res.data[0];
-            console.log('module info: ', userObject.moduleinfo);
           });
       }, // end getgradeform();
       getFeedback: function (id) {
