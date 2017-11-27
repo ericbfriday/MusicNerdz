@@ -8,7 +8,6 @@ myApp.controller('TeachergradeController', function ($http, $location, UserServi
   vm.teacherService = TeacherService;
   vm.stdRsps = TeacherService.stdRsps;
   vm.teacherFinalGrade = null;
-  console.log('stdRsps:', vm.stdRsps);
   console.log('userObject:', vm.userObject);
 
   vm.relocate = function () {
@@ -31,7 +30,6 @@ myApp.controller('TeachergradeController', function ($http, $location, UserServi
   // changes 'final_grade' attribute of each response to match teacher's final grade.
   // Then feeds userObject (which contains teacher's notes and final_grade) into submitGrading function.
   vm.finalGradeConverter = function (userObject, teacherFinalGrade) {
-    console.log('converting final grades');
     userObject.studentinfo.forEach(ele => {
       ele.final_grade = teacherFinalGrade;
     });

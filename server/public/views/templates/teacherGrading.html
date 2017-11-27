@@ -3,13 +3,13 @@
     <div class="teacher-grading" layout="column" layout-align="start stretch">
         <div class="teacher-grade-info" layout="row" layout-align="start stretch">
             <div class="teacher-grading-student" flex layout="column" layout-align="center center">
-                <div>Hollandsworth, Mercedes</div>
-                <div>2nd Period</div>
+                <div>{{tgc.userObject.moduleinfo.last}}, {{tgc.userObject.moduleinfo.first}}</div>
+                <div>{{tgc.userObject.moduleinfo.class}}</div>
                 <!-- class name goes here -->
             </div>
             <div class="teacher-grading-song" flex layout="column" layout-align="center center">
-                <div>Danny</div>
-                <div>Brown</div>
+                <div>{{tgc.userObject.moduleinfo.title}}</div>
+                <div>{{tgc.userObject.moduleinfo.artist}}</div>
             </div>
         </div>
 
