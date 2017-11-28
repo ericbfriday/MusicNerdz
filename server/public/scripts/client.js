@@ -113,7 +113,7 @@ myApp.config(function ($routeProvider, $locationProvider, $mdThemingProvider) {
         getmod: function ($route, StudentService) {
           return StudentService.getMod($route.current.params.id);
         },
-        getClasses: function (TeacherService, $route) {
+        getClasses: function ($route, TeacherService) {
           return TeacherService.getClasses($route.current.params.id);
         },
         getuser: function (UserService) {

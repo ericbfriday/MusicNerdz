@@ -36,9 +36,7 @@ myApp
                 // if the user is logged in, and is admin, their home page is the admin panel
                 $location.path("/admin/home");
               } else if (response.data.students_id) {
-                if ($location.path('/home')) {
-                  $location.path('/user');
-                }
+
                 // user is a student
                 $http
                   .get('/student/modules/' + response.data.id)

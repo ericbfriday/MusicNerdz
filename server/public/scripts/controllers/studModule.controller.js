@@ -136,6 +136,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
             // push new objects to array
             answersToSend.push(answer);
         } //END for loop
+        console.log(answersToSend);
         // feedback prompt
         vm.feedback = prompt("Tell us what you thought of this quiz.");
         console.log('in feedback controller', vm.feedback);
