@@ -47,6 +47,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
     }
 
     vm.clickModAssign = function(id) {
+        vm.classes=[];
         TeacherService.getClasses(id)
         .then(function (res) {
             console.log('response from get classes:', res);
@@ -135,6 +136,7 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
             // push new objects to array
             answersToSend.push(answer);
         } //END for loop
+        console.log(answersToSend);
         // feedback prompt
         vm.feedback = prompt("Tell us what you thought of this quiz.");
         console.log('in feedback controller', vm.feedback);
@@ -150,6 +152,6 @@ myApp.controller('StudentModuleController', function (UserService, StudentServic
         $scope.go = function () {
             $location.path('#/user/');
         };
-        $scope.go()
+        $scope.go();
     }; //END submitQuiz
 }); //END App Controller

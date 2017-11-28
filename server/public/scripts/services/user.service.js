@@ -36,9 +36,7 @@ myApp
                 // if the user is logged in, and is admin, their home page is the admin panel
                 $location.path("/admin/home");
               } else if (response.data.students_id) {
-                if ($location.path('/home')) {
-                  $location.path('/user');
-                }
+
                 // user is a student
                 $http
                   .get('/student/modules/' + response.data.id)
@@ -65,9 +63,10 @@ myApp
                       });
                   });
               } else if (response.data.teachers_id) {
-                if ($location.path('/home')) {
-                  $location.path('/user');
-                }
+                // if ($location.path('/home')) {
+                //   console.log('redirect Teacher!');
+                //   $location.path('/user');
+                // }
                 $http
                   .get('/student/getAllModules')
                   .then(function (res) {
@@ -219,7 +218,7 @@ myApp
         $http
           .get('/teacher/getGrades/' + student)
           .then(function (resp) {
-            console.log('logging resp in /getGrades -> ', resp);
+            console.log('logging resp in /getGrades -> ', resp.data);
             userObject.studentinfo = resp.data;
             userObject
               .studentinfo

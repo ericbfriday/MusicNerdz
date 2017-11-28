@@ -16,25 +16,27 @@ myApp.service('StudentService', function ($http, UserService) {
     sv.essayQuestions = {
         data: []
     };
-    sv.studGrades = { data: []};
+    sv.studGrades = {
+        data: []
+    };
     sv.histEvents = {
         data: []
     };
     sv.tags = {
         data: []
-    }
+    };
     sv.addResources = {
         video: [],
         news: [],
         blog: [],
         other: []
-    }
+    };
 
     //constructor to store short answer questions
     function SaQs(question, id) {
         this.question = question;
         this.id = id;
-    } //END constructor 
+    } //END constructor
 
     // function to get student grade info back from router
     sv.getGrades = function () {
@@ -42,25 +44,27 @@ myApp.service('StudentService', function ($http, UserService) {
         let tempLesson5 = [];
         let tempLesson2 = [];
         //$http get request
-        $http.get('/student/getGrades').then(function (resp) {
-            console.log('response in service:', resp);
-            // sv.studGrades.data = resp.data loop though response
-            for (let i = 0; i < resp.data.length; i++) {
-                if (resp.data[i].modules_id === 5) {
-                    tempLesson5.push(resp.data[i] //END if
-                    );
-                } else if (resp.data[i].modules_id === 2) {
-                    tempLesson2.push(resp.data[i]);
-                } //END else if
-            } //END for loop
-        }); // END $http.then
+        $http
+            .get('/student/getGrades')
+            .then(function (resp) {
+                console.log('response in service:', resp);
+                // sv.studGrades.data = resp.data loop though response
+                for (let i = 0; i < resp.data.length; i++) {
+                    if (resp.data[i].modules_id === 5) {
+                        tempLesson5.push(resp.data[i] //END if
+                        );
+                    } else if (resp.data[i].modules_id === 2) {
+                        tempLesson2.push(resp.data[i]);
+                    } //END else if
+                } //END for loop
+            }); // END $http.then
     }; //END getGrades
 
     //constructor to store essay questions
     function EssayQs(question, id) {
         this.question = question;
         this.id = id;
-    } //END constructor 
+    } //END constructor
 
     // constructor to create multiple choice objects
     function McQs(question, a, b, c, d, correct, id) {
@@ -79,12 +83,12 @@ myApp.service('StudentService', function ($http, UserService) {
         this.desc = desc;
     } //END constructor
 
-    //constructor to create additional resources 
-    function addContent (title, desc, type, link) {
+    //constructor to create additional resources
+    function addContent(title, desc, type, link) {
         this.title = title;
         this.desc = desc;
         this.type = type;
-        this.link = link
+        this.link = link;
     } //END constructor
 
     // function to remove duplicates
@@ -122,100 +126,106 @@ myApp.service('StudentService', function ($http, UserService) {
         let tempResOth = [];
         console.log(id);
         // GET request
-        $http.get('/student/mod/' + id).then(function (resp) {
-            console.log('response in service:', resp);
-            // set data to global variable
-            sv.mods.data = resp.data;
-            // loop through response
-            for (let i = 0; i < resp.data.length; i++) {
-                // make history events objects and store in local array
-                let event = new Hist(resp.data[i].history_title, resp.data[i].history_desc);
-                tempHist.push(event);
-                // push tags into temp array
-                tempTags.push(resp.data[i].tag_type);
-                // if the question is Short Answer
-                if (resp.data[i].type === 'sa') {
-                    // Make new SaQ object from response data for sas
-                    let saQuestion = new SaQs(resp.data[i].question, resp.data[i].id);
-                    //push it to the temp array
-                    tempSA.push(saQuestion);
-                } //END if
-                // if the question is Essay
-                if (resp.data[i].type === 'essay') {
-                    // Make new SaQ object from response data for sas
-                    let essayQuestion = new EssayQs(resp.data[i].question, resp.data[i].id);
-                    //push it to the temp array
-                    tempEssay.push(essayQuestion);
-                } //END if
-                // if the question is Multiple Choice
-                else if (resp.data[i].type === 'mc') {
-                    // Make new McQ object from response data for mcs
-                    let question = new McQs(resp.data[i].question, resp.data[i].a, resp.data[i].b, resp.data[i].c, resp.data[i].d, resp.data[i].correct, resp.data[i].id);
-                    // push new object into temp array
-                    tempMC.push(question);
-                } //END else if
-                if (resp.data[i].res_type === 'v') {
-                    let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
-                    tempResVid.push(resource);   
-                }//END if video
-                else if (resp.data[i].res_type === 'na') {
-                    let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
-                    tempResNews.push(resource);
-                }//END else if news article 
-                else if (resp.data[i].res_type === 'bp') {
-                    let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
-                    tempResBlog.push(resource);
-                }//END else if blog post
-                else {
-                    let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
-                    tempResOth.push(resource);
-                }// END else other
-            } //END for loop
-            // remove dupes from array of tags
-            let tags_without_duplicates = Array.from(new Set(tempTags))
-            // set globals to value of return from function without duplicates
-            sv.tags.data = tags_without_duplicates;
-            sv.mcQuestions.data = removeDupes(tempMC, 'question');
-            sv.histEvents.data = removeDupes(tempHist, 'title');
-            sv.addResources.video = removeDupes(tempResVid, 'title');
-            sv.addResources.news = removeDupes(tempResNews, 'title');
-            sv.addResources.blog = removeDupes(tempResBlog, 'title');
-            sv.addResources.other = removeDupes(tempResOth, 'title');
-            sv.saQuestions.data = removeDupes(tempSA, 'question');
-            sv.essayQuestions.data = removeDupes(tempEssay, 'question');
-            console.log('essay:', sv.essayQuestions.data);
-        }); //END $http.then
+        $http
+            .get('/student/mod/' + id)
+            .then(function (resp) {
+                console.log('response in service:', resp);
+                // set data to global variable
+                sv.mods.data = resp.data;
+                // loop through response
+                for (let i = 0; i < resp.data.length; i++) {
+                    // make history events objects and store in local array
+                    let event = new Hist(resp.data[i].history_title, resp.data[i].history_desc);
+                    tempHist.push(event);
+                    // push tags into temp array
+                    tempTags.push(resp.data[i].tag_type);
+                    // if the question is Short Answer
+                    if (resp.data[i].type === 'sa') {
+                        // Make new SaQ object from response data for sas
+                        let saQuestion = new SaQs(resp.data[i].question, resp.data[i].id);
+                        //push it to the temp array
+                        tempSA.push(saQuestion);
+                    } //END if
+                    // if the question is Essay
+                    if (resp.data[i].type === 'essay') {
+                        // Make new SaQ object from response data for sas
+                        let essayQuestion = new EssayQs(resp.data[i].question, resp.data[i].id);
+                        //push it to the temp array
+                        tempEssay.push(essayQuestion) //END if
+                        // if the question is Multiple Choice;
+                    } else if (resp.data[i].type === 'mc') {
+                        // Make new McQ object from response data for mcs
+                        let question = new McQs(resp.data[i].question, resp.data[i].a, resp.data[i].b, resp.data[i].c, resp.data[i].d, resp.data[i].correct, resp.data[i].id);
+                        // push new object into temp array
+                        tempMC.push(question);
+                    } //END else if
+                    if (resp.data[i].res_type === 'v') {
+                        let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
+                        tempResVid.push(resource //END if video
+                        );
+                    } else if (resp.data[i].res_type === 'na') {
+                        let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
+                        tempResNews.push(resource //END else if news article
+                        );
+                    } else if (resp.data[i].res_type === 'bp') {
+                        let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
+                        tempResBlog.push(resource //END else if blog post
+                        );
+                    } else {
+                        let resource = new addContent(resp.data[i].res_title, resp.data[i].res_desc, resp.data[i].res_type, resp.data[i].link);
+                        tempResOth.push(resource);
+                    } // END else other
+                } //END for loop
+                // remove dupes from array of tags
+                let tags_without_duplicates = Array.from(new Set(tempTags))
+                // set globals to value of return from function without duplicates
+                sv.tags.data = tags_without_duplicates;
+                sv.mcQuestions.data = removeDupes(tempMC, 'question');
+                sv.histEvents.data = removeDupes(tempHist, 'title');
+                sv.addResources.video = removeDupes(tempResVid, 'title');
+                sv.addResources.news = removeDupes(tempResNews, 'title');
+                sv.addResources.blog = removeDupes(tempResBlog, 'title');
+                sv.addResources.other = removeDupes(tempResOth, 'title');
+                sv.saQuestions.data = removeDupes(tempSA, 'question');
+                sv.essayQuestions.data = removeDupes(tempEssay, 'question');
+                console.log('essay:', sv.essayQuestions.data);
+            }); //END $http.then
     }; //END getMod
 
     // function to get student grades info back from router
     sv.getGrades = function () {
         //temp arrays to hold grades for SA and ESSAY
         let tempGrades = [];
-        // let id = sv.userObject.student[0].id;
-        // GET request
-        $http.get('/student/getGrades/').then(function (resp) {
-            console.log('response in service:', resp);
-            // loop though response
-            for (let i = 0; i < resp.data.length; i++) {
-                if (resp.data[i].type === 'sa' || resp.data[i].type === 'essay') {
-                    tempGrades.push(resp.data[i]);
-                } //END if
-            } //END for loop
-            function groupBy(arr, property) {
-                return arr.reduce(function (memo, x) {
-                    if (!memo[x[property]]) { memo[x[property]] = []; }
-                    memo[x[property]].push(x);
-                    return memo;
-                }, {});
-            }
-            tempGrades = groupBy(tempGrades, 'modules_id');
-            // convert object of sa responses to an array
-            let result = Object.keys(tempGrades).map(function (key) {
-                return tempGrades[key];
-            }); //END sa Results
-            sv.studGrades.data = result;
-            console.log('result',result);  
-        }); //END $http.then
+        // let id = sv.userObject.student[0].id; GET request
+        $http
+            .get('/student/getGrades/')
+            .then(function (resp) {
+                console.log('response in service:', resp);
+                // loop though response
+                for (let i = 0; i < resp.data.length; i++) {
+                    if (resp.data[i].type === 'sa' || resp.data[i].type === 'essay') {
+                        tempGrades.push(resp.data[i]);
+                    } //END if
+                } //END for loop
+                function groupBy(arr, property) {
+                    return arr.reduce(function (memo, x) {
+                        if (!memo[x[property]]) {
+                            memo[x[property]] = [];
+                        }
+                        memo[x[property]].push(x);
+                        return memo;
+                    }, {});
+                }
+                tempGrades = groupBy(tempGrades, 'modules_id');
+                // convert object of sa responses to an array
+                let result = Object
+                    .keys(tempGrades)
+                    .map(function (key) {
+                        return tempGrades[key];
+                    }); //END sa Results
+                sv.studGrades.data = result;
+                console.log('result', result);
+            }); //END $http.then
     }; //END getGrades
 
     // function to send quiz responses to server -> DB
@@ -224,24 +234,17 @@ myApp.service('StudentService', function ($http, UserService) {
             data: resps
         }; //END objectToSend
         // POST request
-        $http({
-            method: 'POST',
-            url: '/student/quiz',
-            data: sv.objectToSend
-        }).then(function (response) {
+        $http({method: 'POST', url: '/student/quiz', data: sv.objectToSend}).then(function (response) {
             console.log('posted');
-        }).catch(function (error) {
-            console.log('logging error in /student/quiz catch -> ', error);
-        }); //END $http.then
+        })
+            .catch(function (error) {
+                console.log('logging error in /student/quiz catch -> ', error);
+            }); //END $http.then
     }; //END submitQuiz
 
     sv.submitFb = function (feedback) {
         console.log('feedback in service:', feedback);
-        $http({
-            method: 'POST',
-            url: '/student/submitFb',
-            data: feedback
-        }).then(function (response) {
+        $http({method: 'POST', url: '/student/submitFb', data: feedback}).then(function (response) {
             console.log('feedback response:', response);
         });
     };

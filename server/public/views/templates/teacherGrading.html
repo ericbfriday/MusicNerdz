@@ -12,14 +12,12 @@
                 <div>{{tgc.userObject.moduleinfo.artist}}</div>
             </div>
         </div>
-
         <div class="teacher-grade-questions" flex layout="column" layout-align="start stretch" ng-repeat="q in tgc.userObject.studentinfo"
             ng-show="q.type == 'mc'">
             <div class="teacher-grade-mc">
                 <p layout="row" layout-align="space-between center">{{q.question}}
                     <i ng-show="q.response === q.correct" class="fa fa-check-square-o" aria-hidden="true"></i>
                     <i ng-show="q.response !== q.correct" class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                    <!--  Add correct symbol based on logic here -->
                 </p>
                 <span id="answerA[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'a', 'teacher-grade-mc-right': q.correct === 'a'}">a. {{q.a}}</span>
                 <span id="answerB[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'b', 'teacher-grade-mc-right': q.correct === 'b'}">b. {{q.b}}</span>
@@ -27,25 +25,20 @@
                 <span id="answerD[$index]" ng-class="{'teacher-grade-mc-wrong': q.response !== q.correct && q.response == 'd', 'teacher-grade-mc-right': q.correct === 'd'}">d. {{q.d}}</span>
             </div>
         </div>
-
         <div class="teacher-grade-questions" flex layout="column" layout-align="start stretch">
             <div class="teacher-grade-results" layout="row" layout-align="center center">
                 <span>{{tgc.userObject.numberCorrect}} / {{tgc.userObject.numberTotal}} Correct - {{tgc.userObject.correctPercet
                     | number: 0}}%</span>
-                <!-- need to calculate for future use -->
             </div>
         </div>
 
-
-
         <div class="teacher-grade-questions" flex layout="column" layout-align="start stretch" ng-repeat="q in tgc.userObject.studentinfo"
             ng-show="q.type == 'sa'">
-
             <div class="teacher-grade-sa">
                 <p layout="row" layout-align="space-between center">{{q.question}}</p>
                 <div>
                     <span>STUDENT: {{q.response}}</span>
-                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..."></textarea>
+                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..." ng-model="tgc.userObject.studentinfo[q]"></textarea>
                 </div>
             </div>
         </div>
@@ -55,7 +48,7 @@
                 <p layout="row" layout-align="space-between center">{{q.question}}</p>
                 <div>
                     <span>STUDENT: {{q.response}}</span>
-                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..."></textarea>
+                    <textarea name="teacher-grade-sa" id="teacher-grade-sa" placeholder="Teacher response..." ng-model="tgc.userObject.studentinfo[q]"></textarea>
                 </div>
             </div>
         </div>
@@ -66,7 +59,7 @@
                     <label></label>
                     <input type="text" flex="50" ng-model="tgc.teacherFinalGrade" id="teacherGradingFinalGrade">
                 </md-input-container>
-                <button class="btn btn-default" ng-click="tgc.finalGradeConverter(tgc.userObject, tgc.teacherFinalGrade); tgc.relocate()">Submit</button>
+                <button class="btn btn-default" ng-click="tgc.finalGradeConverter(tgc.userObject, tgc.teacherFinalGrade)">Submit</button>
             </div>
         </div>
     </div>
