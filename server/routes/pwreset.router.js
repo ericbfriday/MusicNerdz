@@ -154,7 +154,7 @@ router.get('/:email', function(req, res, next){
                 // WHAT URL AFTER DEPLOY???
                 html: '<p>Hello MusicNerdz User!</p>' +
                 '<p>You are receiving this email because a password reset has been requested from the MusicNerdz application.</p>' +
-                '<p><a href="http://localhost:8080/resetRoute/reset/' + email + '/' + token + '">Click here to confirm</a></p>' +
+                '<p><a href="http://www.musicnerdz.com/resetRoute/reset/' + email + '/' + token + '">Click here to confirm</a></p>' +
                 '<p>You will receive an additional email with your new password shortly, and will be redirected to the MusicNerdz login page.</p>' +
                 '<p>If you did not make this request, please disregard.</p>' 
             };
