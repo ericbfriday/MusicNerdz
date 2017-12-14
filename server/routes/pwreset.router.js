@@ -6,6 +6,9 @@ var pool = require('../modules/pool.js')
 var encryptLib = require('../modules/encryption');
 
 var nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 router.get('/reset/:email/:token', function(req, res, next){
     var email = req.params.email;
@@ -63,10 +66,10 @@ router.get('/reset/:email/:token', function(req, res, next){
         },
         function(newPass, callback){
             var transporter = nodemailer.createTransport({
-                service: 'Gmail',
+                service: 'SendGrid',
                 auth: {
-                    user: 'MusicNerdzMN@gmail.com',
-                    pass: process.env.MAILERPASSWORD
+                    user: 'apikey',
+                    pass: process.env.SENDGRID_API_KEY
                 }
             });
             var mailOptions = {
@@ -137,10 +140,10 @@ router.get('/:email', function(req, res, next){
         function(token, username, done) {
             console.log('Sending email')
             var transporter = nodemailer.createTransport({
-                service: 'Gmail',
+                service: 'SendGrid',
                 auth: {
-                    user: 'MusicNerdzMN@gmail.com',
-                    pass: process.env.MAILERPASSWORD
+                    user: 'apikey',
+                    pass: process.env.SENDGRID_API_KEY
                 }
             });
             var mailOptions = {
